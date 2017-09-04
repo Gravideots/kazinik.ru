@@ -1,0 +1,22 @@
+{
+  "name": "kazinik",
+  "version": "1.0.0",
+  "description": "Personal site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gravideots/kazinik.ru.git"
+  },
+  "author": "GDS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gravideots/kazinik.ru/issues"
+  },
+  "homepage": "https://github.com/Gravideots/kazinik.ru#readme",
+  "devDependencies": {
+    "webpack": "^3.5.5"
+  }
+}
