@@ -9,5 +9,7 @@ $ npm install
 ## Запуск сервера
 
 ```shell
+sudo mongod --dbpath /path/to/mongodb/ --port 27017
 $ npm run backend-dev
 ```
+
