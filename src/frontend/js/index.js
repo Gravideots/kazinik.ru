@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
-import 'babel-polyfill';
-
-import configureStore from 'config/store';
-import Client from 'views/Client';
 
 import es6Promise from 'es6-promise';
+import 'babel-polyfill';
 import 'isomorphic-fetch';
+
+import configureStore from 'config/store';
+import App from './app';
+
 
 // Load SCSS
 import '../style/app.scss';
@@ -29,12 +30,12 @@ const render = Component => {
 };
 
 // Render app
-render(Client);
+render(App);
 
 if (module.hot) {
-  module.hot.accept('./views/Client/', () => {
-    const NewClient = require('./views/Client/index').default; // eslint-disable-line global-require
+  module.hot.accept('./app', () => {
+    const NewApp = require('./app').default; // eslint-disable-line global-require
 
-    render(NewClient);
+    render(NewApp);
   });
 }

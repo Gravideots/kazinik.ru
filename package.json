@@ -6,7 +6,10 @@
   "scripts": {
     "backend-dev": "nodemon src/backend/server.js",
     "start": "webpack-dev-server",
-    "client:dev": "webpack-dashboard -t 'Marvin' -- webpack-dev-server",
+    "build": "npm run clean && set NODE_ENV=production && webpack",
+    "clean": "rm -rf ./build",
+    "lint-hook": "eslint ./src/frontend/js ./webpack ./*.js -f table --ext .js --ext .jsx",
+    "lint": "npm run lint-hook --silent || true",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -64,12 +67,15 @@
     "cookie-parser": "^1.4.3",
     "eslint": "^4.6.1",
     "express": "^4.15.4",
+    "file-loader": "^0.11.2",
+    "immutable": "^3.8.1",
+    "isomorphic-fetch": "^2.2.1",
     "mongoose": "^4.11.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
-    "react-router-redux": "^4.0.8",
+    "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   }

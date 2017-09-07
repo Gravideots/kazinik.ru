@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer');
 const paths = {
   source: path.join(__dirname, '../src/frontend'),
   javascript: path.join(__dirname, '../src/frontend/js'),
+  scss: path.join(__dirname, '../src/frontend/js'),
   images: path.join(__dirname, '../src/frontend/assets/img'),
   svg: path.join(__dirname, '../src/frontend/assets/svg'),
   build: path.join(__dirname, '../build'),
@@ -109,7 +110,7 @@ const rules = [
       {
         loader: 'file-loader',
         options: {
-          name: 'client/assets/[name]-[hash].[ext]',
+          name: './client/assets/[name]-[hash].[ext]',
         },
       },
     ],

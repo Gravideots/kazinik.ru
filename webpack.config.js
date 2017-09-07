@@ -71,7 +71,7 @@ module.exports = {
   entry,
   output: {
     path: paths.build,
-    publicPath: '/',
+    publicPath: '',
     filename: outputFiles.client,
   },
   module: {
