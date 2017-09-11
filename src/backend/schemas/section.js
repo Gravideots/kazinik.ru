@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const dbConfig = require('../config/dbConfig');
+const mongoose = require('mongoose')
+const dbConfig = require('../config/dbConfig')
 
 const SectionSchema = mongoose.Schema({
     Active: Boolean,
