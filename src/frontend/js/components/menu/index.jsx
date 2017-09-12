@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { routeCodes } from 'config/routes';
+
 import workAndCoLogoImg from '../../../assets/img/logo.png';
 
 export default class Menu extends Component {
