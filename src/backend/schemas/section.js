@@ -9,9 +9,7 @@ const SectionSchema = mongoose.Schema({
         URL: String,
         Text: String
     }],
-    Listing: [{
-
-    }]
+    Listing: [{ type: mongoose.Schema.Types.Object }]
 })
 
 const db = mongoose.createConnection(dbConfig.appDB.url);

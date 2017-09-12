@@ -1,11 +1,10 @@
 const section = require('../controllers/section')
+const note = require('../controllers/note')
+const media = require('../controllers/media')
 require('../config/console-colors')
 
 const Title = 'Title'
 const Description = 'Description'
-const sectionID = '59b6ae06d79f600a321bfd7c'
-
-
 
 function createSection(Title, Description) {
 
@@ -27,7 +26,7 @@ function getAllSections() {
     })
 }
 
-function getSectionByID() {
+function getSectionByID(sectionID) {
 
     section.getSectionByID(sectionID, function (err, sections) {
         if (err)
@@ -36,6 +35,8 @@ function getSectionByID() {
             console.log('Got section with ID %s'.info, sectionID, sections)
     })
 }
+
+
 
 function dropSectionByID() {
     section.dropSectionByID(sectionID, function (err, result) {
@@ -46,7 +47,51 @@ function dropSectionByID() {
     })
 }
 
-createSection(Title, Description)
-getAllSections()
-getSectionByID(sectionID)
-dropSectionByID()
+function addNoteToSection(sectionID) {
+    note.createNewNote(sectionID, 'Test', 'TESTTEST', function (err, done) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Note added'.info, done)
+    })
+}
+
+function getNoteByID(sectionID, noteID) {
+
+    note.getNoteByID(sectionID, noteID, function (err, note) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Got note with ID %s'.info, noteID, note)
+    })
+}
+
+function dropNoteByID(noteID) {
+    note.dropNoteByID(noteID, function (err, result) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Section with ID %s removed'.info, noteID, result)
+    })
+}
+
+function addMediaToSection(sectionID) {
+    media.createNewMedia(sectionID, 'Test', 'TESTTEST', function (err, done) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Note added'.info, done)
+    })
+}
+
+
+//createSection(Title, Description)
+//getAllSections()
+//getSectionByID('59b6e5f24ecf0613801c377f')
+getNoteByID('59b6e8eecc08c5145e2afb92', '59b6e921a46a3f147662a2e5')
+//dropSectionByID()
+
+//addNoteToSection('59b6e8eecc08c5145e2afb92')
+//addMediaToSection('59b6e5f24ecf0613801c377f');
+
+//dropNoteByID('59b6d5ba9cd83810f5ce5f64')
