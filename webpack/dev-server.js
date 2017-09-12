@@ -23,6 +23,9 @@ const devServer = {
     warnings: true,
     colors: true,
   },
+  headers: {
+    'Access-Control-Allow-Origin': '*'
+  }
 };
 
 module.exports = {
