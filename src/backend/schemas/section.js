@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const dbConfig = require('../config/dbConfig')
+const NoteSchema = require('./note')
+const MediaSchema = require('./media')
 
 const SectionSchema = mongoose.Schema({
     Active: Boolean,
@@ -9,7 +11,10 @@ const SectionSchema = mongoose.Schema({
         URL: String,
         Text: String
     }],
-    Listing: [{ type: mongoose.Schema.Types.Object }]
+    Listing: {
+        Notes: [NoteSchema],
+        Media: [MediaSchema]
+    }
 })
 
 const db = mongoose.createConnection(dbConfig.appDB.url);

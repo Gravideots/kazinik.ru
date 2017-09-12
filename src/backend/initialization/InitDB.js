@@ -3,8 +3,8 @@ const note = require('../controllers/note')
 const media = require('../controllers/media')
 require('../config/console-colors')
 
-const Title = 'Title'
-const Description = 'Description'
+const Title = 'Section Title'
+const Description = 'Section Description'
 
 function createSection(Title, Description) {
 
@@ -48,7 +48,7 @@ function dropSectionByID() {
 }
 
 function addNoteToSection(sectionID) {
-    note.createNewNote(sectionID, 'Test', 'TESTTEST', function (err, done) {
+    note.createNewNote(sectionID, 'Note Title', 'Note Description', function (err, done) {
         if (err)
             console.log('Error! Can not access DB'.error)
         else
@@ -61,13 +61,25 @@ function getNoteByID(sectionID, noteID) {
     note.getNoteByID(sectionID, noteID, function (err, note) {
         if (err)
             console.log('Error! Can not access DB'.error)
-        else
+        else {
             console.log('Got note with ID %s'.info, noteID, note)
+        }
     })
 }
 
-function dropNoteByID(noteID) {
-    note.dropNoteByID(noteID, function (err, result) {
+function updateNoteByID(sectionID, noteID, data) {
+
+    note.updateNoteByID(sectionID, noteID, data, function (err, note) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else {
+            console.log('Note with ID %s Updated'.info, noteID, note)
+        }
+    })
+}
+
+function dropNoteByID(sectionID, noteID) {
+    note.dropNoteByID(sectionID, noteID, function (err, result) {
         if (err)
             console.log('Error! Can not access DB'.error)
         else
@@ -76,7 +88,7 @@ function dropNoteByID(noteID) {
 }
 
 function addMediaToSection(sectionID) {
-    media.createNewMedia(sectionID, 'Test', 'TESTTEST', function (err, done) {
+    media.createNewMedia(sectionID, 'Media Title', 'Media Description', function (err, done) {
         if (err)
             console.log('Error! Can not access DB'.error)
         else
@@ -86,12 +98,15 @@ function addMediaToSection(sectionID) {
 
 
 //createSection(Title, Description)
+
 //getAllSections()
 //getSectionByID('59b6e5f24ecf0613801c377f')
-getNoteByID('59b6e8eecc08c5145e2afb92', '59b6e921a46a3f147662a2e5')
+
 //dropSectionByID()
+//dropNoteByID('59b7ef39c516191bebf8ad50', '59b7ef8f6ca1911c019c6958')
 
-//addNoteToSection('59b6e8eecc08c5145e2afb92')
-//addMediaToSection('59b6e5f24ecf0613801c377f');
+//addNoteToSection('59b7ef39c516191bebf8ad50')
+//addMediaToSection('59b7ef39c516191bebf8ad50');
 
-//dropNoteByID('59b6d5ba9cd83810f5ce5f64')
+//getNoteByID('59b7ef39c516191bebf8ad50', '59b7fe0b01e9541c7043a7f3')
+updateNoteByID('59b7ef39c516191bebf8ad50', '59b7fe0b01e9541c7043a7f3', "SUPER TITLE")

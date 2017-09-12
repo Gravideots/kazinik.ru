@@ -2,8 +2,7 @@ const mongoose = require('mongoose')
 const MediaSchema = require('./media')
 const dbConfig = require('../config/dbConfig')
 
-
-const NoteSchema = mongoose.Schema({
+module.exports = NoteSchema = mongoose.Schema({
     Active: Boolean,
     Date: Date,
     Author: String,
@@ -29,6 +28,6 @@ const NoteSchema = mongoose.Schema({
 
 })
 
-const db = mongoose.createConnection(dbConfig.appDB.url);
+//const db = mongoose.createConnection(dbConfig.appDB.url);
 
-module.exports = db.model('Note', NoteSchema);
+//module.exports = mongoose.model('Note', NoteSchema);
