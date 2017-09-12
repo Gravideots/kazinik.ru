@@ -4,7 +4,7 @@
   "description": "Personal site",
   "main": "server.js",
   "scripts": {
-    "backend-dev": "nodemon src/backend/server.js",
+    "start-server": "nodemon src/backend/server.js",
     "init-db": "node src/backend/initialization/InitDB.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
