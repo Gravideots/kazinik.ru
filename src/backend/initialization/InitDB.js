@@ -36,8 +36,6 @@ function getSectionByID(sectionID) {
     })
 }
 
-
-
 function dropSectionByID() {
     section.dropSectionByID(sectionID, function (err, result) {
         if (err)
@@ -68,7 +66,6 @@ function getNoteByID(sectionID, noteID) {
 }
 
 function updateNoteByID(sectionID, noteID, data) {
-
     note.updateNoteByID(sectionID, noteID, data, function (err, note) {
         if (err)
             console.log('Error! Can not access DB'.error)
@@ -96,17 +93,49 @@ function addMediaToSection(sectionID) {
     })
 }
 
+function getMediaByID(sectionID, mediaID) {
+    media.getMediaByID(sectionID, mediaID, function (err, media) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else {
+            console.log('Got media with ID %s'.info, mediaID, media)
+        }
+    })
+}
+
+function dropMediaByID(sectionID, mediaID) {
+    media.dropMediaByID(sectionID, mediaID, function (err, result) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Media with ID %s removed'.info, mediaID, result)
+    })
+}
+
+function updateMediaByID(sectionID, mediaID, data) {
+    media.updateMediaByID(sectionID, mediaID, data, function (err, media) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Media with ID %s Updated'.info, mediaID, media)
+    })
+}
+
 
 //createSection(Title, Description)
-
-//getAllSections()
-//getSectionByID('59b6e5f24ecf0613801c377f')
-
-//dropSectionByID()
-//dropNoteByID('59b7ef39c516191bebf8ad50', '59b7ef8f6ca1911c019c6958')
-
 //addNoteToSection('59b7ef39c516191bebf8ad50')
 //addMediaToSection('59b7ef39c516191bebf8ad50');
 
+
+//getAllSections()
+//getSectionByID('59b6e5f24ecf0613801c377f')
 //getNoteByID('59b7ef39c516191bebf8ad50', '59b7fe0b01e9541c7043a7f3')
-updateNoteByID('59b7ef39c516191bebf8ad50', '59b7fe0b01e9541c7043a7f3', "SUPER TITLE")
+//getMediaByID('59b7ef39c516191bebf8ad50', '59b7efa90df3651c17045191')
+
+
+//dropSectionByID()
+//dropNoteByID('59b7ef39c516191bebf8ad50', '59b7ef8f6ca1911c019c6958')
+//dropMediaByID('59b7ef39c516191bebf8ad50', '59b814d01c7a921f1017a907')
+
+//updateNoteByID('59b7ef39c516191bebf8ad50', '59b7fe0b01e9541c7043a7f3', "SUPER TITLE")
+//updateMediaByID('59b7ef39c516191bebf8ad50', '59b7efa90df3651c17045191', "SUPER MEDIA TITLE")

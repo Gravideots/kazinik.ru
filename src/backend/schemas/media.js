@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const dbConfig = require('../config/dbConfig');
 
-const MediaSchema = mongoose.Schema({
+module.exports = MediaSchema = mongoose.Schema({
     Active: Boolean,
     Title: String,
     Tags: [{
@@ -11,7 +10,3 @@ const MediaSchema = mongoose.Schema({
     Type: String,
     URL: String,
 })
-
-const db = mongoose.createConnection(dbConfig.appDB.url);
-
-module.exports = db.model('Media', MediaSchema);
