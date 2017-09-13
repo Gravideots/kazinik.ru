@@ -1,4 +1,6 @@
 const Section = require('../schemas/section')
+const Note = require('../schemas/note')
+const Media = require('../schemas/media')
 
 const createNewSection = function (Title, Description, done) {
     let newSection = new Section()
@@ -26,7 +28,13 @@ const getAllSections = function (done) {
 
 const getSectionByID = function (sectionID, done) {
     Section
-        .findOne({ _id: sectionID }, function (err, section) {
+        .findOne({ _id: sectionID })
+        .populate(
+        {
+            path: 'Listing',
+            model: Note
+        })
+        .exec(function (err, section) {
             if (err)
                 throw err
             else

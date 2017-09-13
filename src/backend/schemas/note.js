@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
+const MediaSchema = require('./media')
 const dbConfig = require('../config/dbConfig')
-const Media = require('./media')
 
-const NoteSchema = mongoose.Schema({
+module.exports = NoteSchema = mongoose.Schema({
     Active: Boolean,
     Date: Date,
     Author: String,
@@ -23,11 +23,11 @@ const NoteSchema = mongoose.Schema({
         Question: String,
         Answer: String,
         Image: String,
-        Media: [{ type: Schema.Types.ObjectId, ref: 'Media' }]
+        //Media: [{ type: MediaSchema.Types.ObjectId, ref: 'Media' }]
     }]
 
 })
 
-const db = mongoose.createConnection(dbConfig.appDB.url)
+//const db = mongoose.createConnection(dbConfig.appDB.url);
 
-module.exports = db.model('Note', NoteSchema)
+//module.exports = mongoose.model('Note', NoteSchema);

@@ -4,7 +4,7 @@
   "description": "Personal site",
   "main": "server.js",
   "scripts": {
-    "backend-dev": "nodemon src/backend/server.js",
+    "start-server": "nodemon src/backend/server.js",
     "init-db": "node src/backend/initialization/InitDB.js",
     "start": "webpack-dev-server",
     "build": "npm run clean && set NODE_ENV=production && webpack",
