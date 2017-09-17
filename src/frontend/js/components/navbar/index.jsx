@@ -3,20 +3,55 @@ import { NavLink } from 'react-router-dom';
 import { routeCodes } from 'config/routes';
 
 import Input from '../input'
+import Logo from '../logo'
+import Icon from '../icon'
+import Button from '../button'
+import Text from '../text'
 
 export default class Navbar extends Component {
   render() {
     return (
-        <nav className="nav-extended">
+        <nav className="Navbar nav-extended">
             <div className="nav-wrapper">
                 <div className="row">
-                    <a href="#" data-activates="mobile-demo" className="col s1"><i className="material-icons">menu</i></a>
-                    <div className="row col s11 hide-on-med-and-down">
-                        <div className="col s1"><p>Михаил Казиник</p></div>
-                        <div className="col s1"><Input placeholder='Input' type='text' iconName='search' onChange={this.handleChange}/></div>
-                        <div className="col s1"><a href="badges.html">Components</a></div>
-                        <div className="col s1"><a href="collapsible.html">JavaScript</a></div>
-                        <div className="col s1">6</div>
+                    <div className="col" >
+                        <Button onClick={console.log}>
+                            <Icon iconName={'menu'} size='small'/>
+                        </Button>
+                    </div>
+                    <div className="col l9 xl11 hide-on-med-and-down">
+                        <div className="col"><Logo text='Михаил Казиник'/></div>
+                        <div className="col l3 xl2"><Input placeholder='Поиск' type='text' iconName='search' onChange={this.handleChange}/></div>
+                        <div className="col">
+                            <div className="col">
+                                <Text type='footnote' >
+                                    Контакты
+                                </Text>
+                            </div>
+                            <div className="col">
+                                <Text type='footnote' >
+                                    <a href="mailto:youremailaddress">mikhail@kazinik.com</a> 
+                                </Text>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="col">
+                                <Text type='footnote' >
+                                    <a href="http://vk.com"><Icon iconName={'code'} size='tiny'/></a> 
+                                </Text>
+                            </div>
+                            <div className="col">
+                                <Text type='footnote' >
+                                    <a href="http://fb.com"><Icon iconName={'class'} size='tiny'/></a> 
+                                </Text>
+                            </div>
+                            <div className="col">
+                                <Text type='footnote' >
+                                    <a href="http://youtube.com"><Icon iconName={'report'} size='tiny'/></a> 
+                                </Text>
+                            </div>
+                        </div>
+                        <div className="col"><Button onClick={console.log} text='Форма обратной связи'/></div>
                     </div>
                 </div>
                 <ul className="side-nav" id="mobile-demo">

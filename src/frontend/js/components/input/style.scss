@@ -1,6 +1,5 @@
 .Input{
     position: relative;
-    margin: 1rem 0;
 
     input{
         height: 1rem;
@@ -10,6 +9,7 @@
         padding: 0 1rem;
         color: #353232;
         text-align: center;
+        font-size: 0.6667rem;
 
         &::placeholder{
             color: #797878;
@@ -29,6 +29,7 @@
         color: #797878;
         transform: rotateY(180deg);
         left: 2px;
-        font-size: 1rem;
+        top: 0.2667rem;
+        font-size: 0.6667rem;
     }
 }

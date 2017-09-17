@@ -1,8 +1,25 @@
 nav{
-    background-color: #E6E5D1;
-    color: black;
-
-    a{
+    &.Navbar{
+        background-color: #E6E5D1;
         color: black;
-    }
-} 
+    
+        a{
+            color: #039be5;
+            font-size: 0.6667rem;
+        }
+
+        i.material-icons{
+            color: black;
+            
+            &.tiny{
+                font-size: 1rem;
+            }
+            &.small{
+                font-size: 2rem;
+            }
+            &.medium{
+                font-size: 4rem;
+            }
+        }
+    } 
+}

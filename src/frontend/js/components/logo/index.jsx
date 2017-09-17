@@ -14,7 +14,7 @@ export default class Logo extends Component {
       text
     } = this.props;
 
-    let content = <Text type="header">{text}</Text>;
+    let content = <Text>{text}</Text>;
 
     if(children)
       content = children;
