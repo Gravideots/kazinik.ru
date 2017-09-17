@@ -1,0 +1,26 @@
+.Text{
+    .main{
+        color: black;
+        font-size: 1rem;
+    }
+    .footnote{
+        @extend .main;
+        font-size: 0.6667rem; 
+    }
+    .header{
+        @extend .main;
+        font-size: 1.5rem;
+    }
+    .superHeader{
+        @extend .main;
+        font-size: 2.667rem;
+    }
+    .footnoteWhite{
+        @extend .footnote;
+        color: white;
+    }
+    .headerWhite{
+        @extend .header;
+        color: white;
+    }
+}
