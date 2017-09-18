@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 export default class Text extends Component {
-    static propTypes = {
-        children: PropTypes.string,
-    }
     render() {
         const {
             type,

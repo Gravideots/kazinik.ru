@@ -21,7 +21,7 @@ export default class Input extends Component {
         placeholder,
         iconName
     } = this.props;
-    const icon = (iconName !== undefined)? <Icon iconName={iconName} size='medium'/>: null;
+    const icon = (iconName !== undefined)? <Icon iconName={iconName} size='tiny'/>: null;
     return (
       <div className='Input'>
         {icon}
