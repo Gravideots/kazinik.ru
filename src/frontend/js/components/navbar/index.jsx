@@ -20,7 +20,14 @@ export default class Navbar extends Component {
                         </Button>
                     </div>
                     <div className="col l9 xl11 hide-on-med-and-down">
-                        <div className="col"><Logo text='Михаил Казиник'/></div>
+                        <NavLink
+                            activeClassName='Menu-link--active'
+                            className='Menu-link'
+                            exact
+                            to={ routeCodes.Main }
+                        >
+                            <div className="col"><Logo text='Михаил Казиник'/></div>
+                        </NavLink>
                         <div className="col l3 xl2"><Input placeholder='Поиск' type='text' iconName='search' onChange={this.handleChange}/></div>
                         <div className="col">
                             <div className="col">
