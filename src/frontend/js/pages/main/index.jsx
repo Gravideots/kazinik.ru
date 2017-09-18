@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { testAction, testAsync } from './actions.js';
 
+import Image from 'components/image';
+
 @connect(state => ({
   asyncData: state.main.get('asyncData'),
   asyncError: state.main.get('asyncError'),
@@ -49,7 +51,7 @@ export default class Main extends Component {
     return (
       <div className='MainPage'>
         <h1>MainPage</h1>
-
+        <Image src='https://js.devexpress.com/Content/Images/features/html5-css-javascript-logos.png' alt='html54'/>
         <h3>Synchronous action</h3>
         <div className='Example'>
           <p>Counter: { counter }</p>
