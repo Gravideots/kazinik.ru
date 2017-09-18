@@ -18,6 +18,21 @@ export default class Slider extends Component {
             <div>
                 <Slide/>
             </div>
+            <div>
+                <Slide/>
+            </div>
+            <div>
+                <Slide/>
+            </div>
+            <div>
+                <Slide/>
+            </div>
+            <div>
+                <Slide/>
+            </div>
+            <div>
+                <Slide/>
+            </div>
         </Slick>
     );
   }

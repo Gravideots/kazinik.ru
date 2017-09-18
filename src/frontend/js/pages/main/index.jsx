@@ -50,29 +50,15 @@ export default class Main extends Component {
     
     return (
       <div className='MainPage'>
-        <div className='container row'>
-            <div className='col l3'>
-              <Slider/>
-            </div>
-            <div className='col l3'>
-              <Slider/>
-            </div>
-            <div className='col l3'>
-              <Slider/>
-            </div>
-        </div>
         <div className='row'>
-            <div className='col l3'>
+            <div className='col l6'>
+              <Slider/>
+            </div>
+            <div className='col l6'>
               <Slider/>
             </div>
         </div>
-        <h3>Synchronous action</h3>
-        <div className='Example'>
-          <p>Counter: { counter }</p>
-          <button onClick={ this.handleTestButtonClick }>
-            Increase
-          </button>
-        </div>
+
 
         <h3>Async action example</h3>
         <div className='Example'>
