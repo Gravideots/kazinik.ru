@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { testAction, testAsync } from './actions.js';
+import { testAction, testAsync, getMainPage } from './actions.js';
 
 import Slider from 'components/slider';
 
@@ -9,6 +9,11 @@ import Slider from 'components/slider';
   asyncData: state.main.get('asyncData'),
   asyncError: state.main.get('asyncError'),
   asyncLoading: state.main.get('asyncLoading'),
+
+  mainPageAsyncData: state.main.get('mainPageAsyncData'),
+  mainPageAsyncError: state.main.get('mainPageAsyncError'),
+  mainPageAsyncLoading: state.main.get('mainPageAsyncLoading'),
+
   counter: state.main.get('counter'),
 }))
 export default class Main extends Component {
@@ -16,6 +21,9 @@ export default class Main extends Component {
     asyncData: PropTypes.string,
     asyncError: PropTypes.object,
     asyncLoading: PropTypes.bool,
+    mainPageAsyncData: PropTypes.object,
+    mainPageAsyncError: PropTypes.object,
+    mainPageAsyncLoading: PropTypes.bool,
     counter: PropTypes.number,
     // from react-redux connect
     dispatch: PropTypes.func,
@@ -26,6 +34,12 @@ export default class Main extends Component {
 
     this.handleAsyncButtonClick = this.handleAsyncButtonClick.bind(this);
     this.handleTestButtonClick = this.handleTestButtonClick.bind(this);
+  }
+
+  componentWillMount() {
+    const { dispatch } = this.props;
+    
+    dispatch(getMainPage());
   }
 
   handleAsyncButtonClick() {
@@ -45,39 +59,68 @@ export default class Main extends Component {
       asyncData,
       asyncError,
       asyncLoading,
+      mainPageAsyncData,
+      mainPageAsyncError,
+      mainPageAsyncLoading,
       counter,
     } = this.props;
+
+    let special;
+    let sections;
+    let events;
+    let school;
+    let partners;
+
     
+    //TODO вынести в отдельный файл
+    let firstBlock;
+    let secondBlock;
+    let thirdBlock;
+
+    if(mainPageAsyncData){
+        special = mainPageAsyncData.special;
+        sections = mainPageAsyncData.sectionsBlock;
+        events = mainPageAsyncData.slideShowEvents;
+        school = mainPageAsyncData.slideShowSchool;
+        partners = mainPageAsyncData.slideShowPartners;
+
+        if(special && special.Active){
+          firstBlock =  <div className='row'>
+                            <div className='col l4'>
+                              <Slider data={events} navigation='MAIN' internal={true} show='1'/>
+                            </div>
+                            <div className='col l4'>
+                              <Slider data={events} navigation='MAIN' internal={true} show='1'/>
+                            </div>
+                            <div className='col l4'>
+                              <Slider data={school} navigation='SEARCH' internal={true} show='1'/>
+                            </div>
+                        </div>
+        }else{
+          firstBlock =  <div className='row'>
+                            <div className='col l6'>
+                              <Slider data={events} navigation='MAIN' internal={true} show='1'/>
+                            </div>
+                            <div className='col l6'>
+                              <Slider data={school} navigation='SEARCH' internal={true} show='1'/>
+                            </div>
+                        </div>
+        }
+
+        if(partners){
+          secondBlock = <div className='row'>
+                            <div className='col s12'>
+                              <Slider data={partners} navigation='MAIN' internal={false} show='7'/>
+                            </div>
+                        </div>
+        }
+    }
+
     return (
       <div className='MainPage'>
-        <div className='row'>
-            <div className='col l6'>
-              <Slider/>
-            </div>
-            <div className='col l6'>
-              <Slider/>
-            </div>
-        </div>
-
-
-        <h3>Async action example</h3>
-        <div className='Example'>
-          { asyncData &&
-            <p>
-              Date: { asyncData.date }<br />
-              Time: { asyncData.time }<br />
-              Miliseconds since epoch: { asyncData.milliseconds_since_epoch }
-            </p> }
-          { asyncLoading && <p>Loading...</p> }
-          { asyncError && <p>Error: { asyncError }</p> }
-          <button
-            disabled={ asyncLoading }
-            onClick={ this.handleAsyncButtonClick }
-          >
-            Get async data
-          </button>
-        </div>
-        
+        {firstBlock}
+        {secondBlock}   
+        {thirdBlock} 
       </div>
     );
   }
