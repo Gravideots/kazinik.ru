@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { testAction, testAsync, getMainPage } from './actions.js';
 
 import Slider from 'components/slider';
+import Sections from './sections';
 
 @connect(state => ({
   asyncData: state.main.get('asyncData'),
@@ -114,13 +115,14 @@ export default class Main extends Component {
                             </div>
                         </div>
         }
+
     }
 
     return (
       <div className='MainPage'>
         {firstBlock}
         {secondBlock}   
-        {thirdBlock} 
+        <Sections sections={sections} />
       </div>
     );
   }

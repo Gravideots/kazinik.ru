@@ -1,0 +1,25 @@
+.SectionBlock{
+    position: relative;
+    height: 265px;
+    text-align: center;
+    
+    .Image:nth-of-type(1){
+        height: 100%;
+        width: auto;
+        background-color: #E6E5D1;
+    }
+
+    .Image:nth-of-type(2){
+        position: absolute;
+        top: 35%;
+        left: 0;
+        height: 15%;
+    }
+
+    .Text{
+        position: absolute;
+        bottom: 15%;
+        left: 0;
+        width: 100%;
+    }
+}

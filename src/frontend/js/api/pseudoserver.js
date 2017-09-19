@@ -1,6 +1,6 @@
 export const MainPage = {
     special: {
-        Active: false,
+        Active: true,
         contentType: '',
         contentURL: ''
     },
@@ -79,8 +79,29 @@ export const MainPage = {
             Active: true,
             URL: 'Media',
             Title: 'Медиатека',
-            Icon: 'assets/img/logos/hig.jpg',
-            BackgroundImage: 'assets/img/black.jpg'
+            Icon: 'assets/img/icons/media_ico.svg',
+            BackgroundImage: 'assets/img/icons/media_back.svg'
+        },
+        {
+            Active: true,
+            URL: 'Shop',
+            Title: 'Магазин',
+            Icon: 'assets/img/icons/shop_ico.svg',
+            BackgroundImage: 'assets/img/icons/shop_back.svg'
+        },
+        {
+            Active: true,
+            URL: 'SEARCH',
+            Title: 'Магазин',
+            Icon: 'assets/img/icons/shop_ico.svg',
+            BackgroundImage: 'assets/img/icons/shop_back.svg'
+        },
+        {
+            Active: true,
+            URL: 'Shop',
+            Title: 'Магазин',
+            Icon: 'assets/img/icons/shop_ico.svg',
+            BackgroundImage: 'assets/img/icons/shop_back.svg'
         }
     ]
 }

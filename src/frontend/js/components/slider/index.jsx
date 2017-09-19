@@ -30,7 +30,7 @@ export default class Slider extends Component {
     return (
         <Slick {...settings}>
             {
-                data.map((slideInfo, key) => {
+                data.map( (slideInfo, key) => {
                     if(internal)
                         return   <div key={key}>
                                         <Link to={{
