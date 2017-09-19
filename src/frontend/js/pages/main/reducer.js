@@ -5,6 +5,9 @@ import {
   TEST_ASYNC_ACTION_START,
   TEST_ASYNC_ACTION_ERROR,
   TEST_ASYNC_ACTION_SUCCESS,
+  GET_MAIN_PAGE_START,
+  GET_MAIN_PAGE_ERROR,
+  GET_MAIN_PAGE_SUCCESS
 } from './actions.js';
 
 const initialState = Map({
@@ -12,6 +15,9 @@ const initialState = Map({
   asyncLoading: false,
   asyncError: null,
   asyncData: null,
+  mainPageAsyncLoading: false,
+  mainPageAsyncError: null,
+  mainPageAsyncData: null,
 });
 
 const actionsMap = {
@@ -41,6 +47,27 @@ const actionsMap = {
     return state.merge(Map({
       asyncLoading: false,
       asyncData: action.data,
+    }));
+  },
+  
+  //Main page data
+  [GET_MAIN_PAGE_START]: (state) => {
+    return state.merge(Map({
+      mainPageAsyncLoading: true,
+      mainPageAsyncError: null,
+      mainPageAsyncData: null,
+    }));
+  },
+  [GET_MAIN_PAGE_ERROR]: (state, action) => {
+    return state.merge(Map({
+      mainPageAsyncLoading: false,
+      mainPageAsyncError: action.data,
+    }));
+  },
+  [GET_MAIN_PAGE_SUCCESS]: (state, action) => {
+    return state.merge(Map({
+      mainPageAsyncLoading: false,
+      mainPageAsyncData: action.data,
     }));
   },
 };

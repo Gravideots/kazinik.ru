@@ -9,6 +9,7 @@ const publicPath = '/';
 export const routeCodes = {
   Main: publicPath,
   SEARCH: `${ publicPath }search`,
+  SCHOOL: `${ publicPath }school`,
 };
 
 export default () => (
