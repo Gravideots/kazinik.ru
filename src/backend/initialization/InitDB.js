@@ -1,6 +1,8 @@
 const section = require('../controllers/section')
 const note = require('../controllers/note')
 const media = require('../controllers/media')
+const guest = require('../controllers/guest')
+
 require('../config/console-colors')
 
 const Title = 'Section Title'
@@ -16,6 +18,16 @@ function createSection(Title, Description) {
     })
 }
 
+function createGuestSection(Title) {
+
+    guest.createGuestSection(Title, function (err, guestSection) {
+        if (err)
+            console.log('Error! Guest section was not created'.error)
+        else
+            console.log('Guest section created'.info, guestSection)
+    })
+}
+
 function getAllSections() {
 
     section.getAllSections(function (err, sections) {
@@ -23,6 +35,33 @@ function getAllSections() {
             console.log('Error! Can not access DB'.error)
         else
             console.log('Got sections, here is a list'.info, sections)
+    })
+}
+
+function getGuestSection() {
+    guest.getGuestSection(function (err, sections) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Got guest section, here is a list'.info, sections)
+    })
+}
+
+function createGuestQuestion(id) {
+    guest.createQuestion(id, "!!!!QUESTION!!!!", function (err, question) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Got guest section, here is a list'.info, question)
+    })
+}
+
+function createGuestAnswer(id, questionID) {
+    guest.createAnswer(id, questionID, "!!!!ANSWER!!!!", function (err, answer) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Got guest section, here is a list'.info, answer)
     })
 }
 
@@ -123,19 +162,25 @@ function updateMediaByID(sectionID, mediaID, data) {
 
 
 //createSection(Title, Description)
-//addNoteToSection('59b7ef39c516191bebf8ad50')
-//addMediaToSection('59b7ef39c516191bebf8ad50');
+//createGuestSection('Гостевая')
+//addNoteToSection('59b9400d427b0b242db852e3')
+//addMediaToSection('59b9400d427b0b242db852e3');
 
 
 //getAllSections()
 //getSectionByID('59b6e5f24ecf0613801c377f')
-//getNoteByID('59b7ef39c516191bebf8ad50', '59b7fe0b01e9541c7043a7f3')
-//getMediaByID('59b7ef39c516191bebf8ad50', '59b7efa90df3651c17045191')
-
+//getNoteByID('59b9400d427b0b242db852e3', '59b9418273e5a4244751b6b3')
+//getMediaByID('59b9400d427b0b242db852e3', '59b9418273e5a4244751b6b7')
+//getGuestSection();
 
 //dropSectionByID()
 //dropNoteByID('59b7ef39c516191bebf8ad50', '59b7ef8f6ca1911c019c6958')
 //dropMediaByID('59b7ef39c516191bebf8ad50', '59b814d01c7a921f1017a907')
 
-//updateNoteByID('59b7ef39c516191bebf8ad50', '59b7fe0b01e9541c7043a7f3', "SUPER TITLE")
-//updateMediaByID('59b7ef39c516191bebf8ad50', '59b7efa90df3651c17045191', "SUPER MEDIA TITLE")
+//updateNoteByID('59b9400d427b0b242db852e3', '59b9418273e5a4244751b6b3', "SUPER TITLE")
+//updateMediaByID('59b9400d427b0b242db852e3', '59b9418273e5a4244751b6b7', "SUPER MEDIA TITLE")
+
+//createGuestQuestion("59c93eda182ecb06f53c019a");
+createGuestAnswer('59c93eda182ecb06f53c019a', '59c93eeaa8d2a8070c7d3220')
+
+
