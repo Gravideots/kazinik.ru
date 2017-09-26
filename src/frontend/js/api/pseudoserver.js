@@ -72,6 +72,36 @@ export const MainPage = {
             Active: true,
             URL: 'https://ya.ru',
             BackgroundImage: 'assets/img/logos/hig.svg',
+        },
+        {
+            Active: true,
+            URL: 'https://ya.ru',
+            BackgroundImage: 'assets/img/logos/hig.svg',
+        },
+        {
+            Active: true,
+            URL: 'https://ya.ru',
+            BackgroundImage: 'assets/img/logos/hig.svg',
+        },
+        {
+            Active: true,
+            URL: 'https://ya.ru',
+            BackgroundImage: 'assets/img/logos/hig.svg',
+        },
+        {
+            Active: true,
+            URL: 'https://ya.ru',
+            BackgroundImage: 'assets/img/logos/hig.svg',
+        },
+        {
+            Active: true,
+            URL: 'https://ya.ru',
+            BackgroundImage: 'assets/img/logos/hig.svg',
+        },
+        {
+            Active: true,
+            URL: 'https://ya.ru',
+            BackgroundImage: 'assets/img/logos/hig.svg',
         }
     ],
     sectionsBlock: [
@@ -94,14 +124,32 @@ export const MainPage = {
             URL: 'SEARCH',
             Title: 'Магазин',
             Icon: 'assets/img/icons/shop_ico.svg',
-            BackgroundImage: 'assets/img/icons/shop_back.svg'
+            BackgroundImage: 'assets/img/icons/note_back.svg'
         },
         {
             Active: true,
             URL: 'Shop',
             Title: 'Магазин',
             Icon: 'assets/img/icons/shop_ico.svg',
-            BackgroundImage: 'assets/img/icons/shop_back.svg'
+            BackgroundImage: 'assets/img/icons/talk_back.svg'
         }
     ]
+}
+
+export const EventPage = {
+    Active: true,
+    Special: false,
+    EventDate: new Date(),
+    Address: "Address",
+    Title: 'Title',
+    SubTitle: 'SubTitle',
+    TitleImage: {
+        Full: 'url',
+        Crop: 'url'
+    },
+    Text: [{
+        Title: 'url',
+        Info: 'url'
+    }],
+    Button: 'url'
 }

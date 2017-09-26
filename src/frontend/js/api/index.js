@@ -1,7 +1,7 @@
 import promisePolyfill from 'es6-promise';
 import 'isomorphic-fetch';
 
-import { MainPage } from './pseudoserver.js';
+import { MainPage, EventPage } from './pseudoserver.js';
 
 promisePolyfill.polyfill();
 
@@ -18,7 +18,16 @@ function mainPage() {
     });
 }
 
+function eventPage(id) {
+  return fetch('http://date.jsontest.com/')
+    .then(response => {
+      console.log('eventPage async', EventPage)
+      return EventPage;
+    });
+}
+
 export default {
   testAsync,
-  mainPage
+  mainPage,
+  eventPage
 };
