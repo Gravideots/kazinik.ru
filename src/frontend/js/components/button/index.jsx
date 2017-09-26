@@ -19,10 +19,12 @@ export default class Button extends Component {
   render() {
     const {
       children,
-      text
+      text,
+      data,
+      className
     } = this.props;
 
-    let content = <button className="btn waves-effect waves-light black ">{text}</button>;
+    let content = <button data-target={data} className={"btn waves-effect waves-light black" +  (className !== undefined? ' '+className : '')}>{text}</button>;
 
     if(children)
       content = children;
