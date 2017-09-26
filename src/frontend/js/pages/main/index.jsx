@@ -88,22 +88,22 @@ export default class Main extends Component {
         if(special && special.Active){
           firstBlock =  <div className='row'>
                             <div className='col l4'>
-                              <Slider data={events} navigation='MAIN' internal={true} show='1'/>
+                              <Slider data={events} navigation='EVENT' internal={true} show='1'/>
                             </div>
                             <div className='col l4'>
-                              <Slider data={events} navigation='MAIN' internal={true} show='1'/>
+                              <Slider data={events} navigation='EVENT' internal={true} show='1' dots={true}/>
                             </div>
                             <div className='col l4'>
-                              <Slider data={school} navigation='SEARCH' internal={true} show='1'/>
+                              <Slider data={school} navigation='SEARCH' internal={true} show='1' dots={true}/>
                             </div>
                         </div>
         }else{
           firstBlock =  <div className='row'>
                             <div className='col l6'>
-                              <Slider data={events} navigation='MAIN' internal={true} show='1'/>
+                              <Slider data={events} navigation='MAIN' internal={true} show='1' dots={true}/>
                             </div>
                             <div className='col l6'>
-                              <Slider data={school} navigation='SEARCH' internal={true} show='1'/>
+                              <Slider data={school} navigation='SEARCH' internal={true} show='1' dots={true}/>
                             </div>
                         </div>
         }
@@ -111,7 +111,7 @@ export default class Main extends Component {
         if(partners){
           secondBlock = <div className='row'>
                             <div className='col s12'>
-                              <Slider data={partners} navigation='MAIN' internal={false} show='7'/>
+                              <Slider data={partners} navigation='MAIN' internal={false} show='7' arrow={true}/>
                             </div>
                         </div>
         }

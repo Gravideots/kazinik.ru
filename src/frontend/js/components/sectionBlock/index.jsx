@@ -13,10 +13,10 @@ export default class SectionBlock extends Component {
     } = this.props;
 
     return (
-        <Link to={{
+        <Link className='SectionBlock col s3' to={{
             pathname: routeCodes[sectionsData.URL]
         }}>
-            <div className='SectionBlock col'>
+            <div>
                 <Image src={sectionsData.BackgroundImage} alt={sectionsData.Title}/>
                 <Image src={sectionsData.Icon} alt={sectionsData.Title}/>
                 <Text type='main'>{sectionsData.Title}</Text>
