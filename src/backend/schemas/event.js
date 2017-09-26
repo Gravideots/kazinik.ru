@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const dbConfig = require('../config/dbConfig');
 
-const EventSchema = mongoose.Schema({
+module.exports = EventSchema = mongoose.Schema({
     Active: Boolean,
     Special: Boolean,
     EventDate: Date,
@@ -19,7 +18,4 @@ const EventSchema = mongoose.Schema({
     Button: String
 })
 
-const db = mongoose.createConnection(dbConfig.appDB.url);
-
-module.exports = db.model('Event', EventSchema);
 
