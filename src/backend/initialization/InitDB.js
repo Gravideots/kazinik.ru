@@ -2,6 +2,8 @@ const section = require('../controllers/section')
 const note = require('../controllers/note')
 const media = require('../controllers/media')
 const guest = require('../controllers/guest')
+const event = require('../controllers/event')
+
 
 require('../config/console-colors')
 
@@ -161,6 +163,48 @@ function updateMediaByID(sectionID, mediaID, data) {
 }
 
 
+function createEvent(done) {
+    event.createEvent(function (err, event) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Event created'.info, event)
+    })
+}
+
+function getEventByID(id, done) {
+    event.getEventByID(id, function (err, event) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Got Event'.info, event)
+    })
+}
+
+function updateEventByID(id, data, done) {
+    event.updateEventByID(id, data, function (err, event) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Event Updated'.info, event)
+    })
+}
+
+function dropEventByID(id, done) {
+    event.dropEventByID(id, function (err, result) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Event Removed'.info, result)
+    })
+}
+
+//createEvent()
+//updateEventByID('59ca635e9bc74808adb7a10e', 'SomeData')
+//getEventByID('59ca5313e6378b0850fdf72e')
+//dropEventByID('59ca635e9bc74808adb7a10e')
+
+
 //createSection(Title, Description)
 //createGuestSection('Гостевая')
 //addNoteToSection('59b9400d427b0b242db852e3')
@@ -181,6 +225,6 @@ function updateMediaByID(sectionID, mediaID, data) {
 //updateMediaByID('59b9400d427b0b242db852e3', '59b9418273e5a4244751b6b7', "SUPER MEDIA TITLE")
 
 //createGuestQuestion("59c93eda182ecb06f53c019a");
-createGuestAnswer('59c93eda182ecb06f53c019a', '59c93eeaa8d2a8070c7d3220')
+//createGuestAnswer('59c93eda182ecb06f53c019a', '59c93eeaa8d2a8070c7d3220')
 
 
