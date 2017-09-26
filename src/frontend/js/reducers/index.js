@@ -4,5 +4,5 @@ import event from '../pages/event/reducer.js';
 
 export default combineReducers({
   main,
-  event
+  event,
 });

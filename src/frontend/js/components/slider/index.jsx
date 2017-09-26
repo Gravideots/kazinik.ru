@@ -30,7 +30,7 @@ export default class Slider extends Component {
         slidesToShow: show,
         slidesToScroll: 1,
         nextArrow: (arrow && data.length > show)? <Button><Icon iconName='navigate_next' size='medium'/></Button>: null,
-        prevArrow: (arrow && data.length > show)? <Button><Icon iconName='navigate_before' size='medium'/></Button>: null 
+        prevArrow: (arrow && data.length > show)? <Button><Icon iconName='navigate_before' size='medium'/></Button>: null
     };
 
     return (

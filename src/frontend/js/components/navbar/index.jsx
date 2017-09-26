@@ -37,24 +37,24 @@ export default class Navbar extends Component {
                             </div>
                             <div className="col">
                                 <Text type='footnote' >
-                                    <a href="mailto:youremailaddress">mikhail@kazinik.com</a> 
+                                    <a href="mailto:youremailaddress">mikhail@kazinik.com</a>
                                 </Text>
                             </div>
                         </div>
                         <div className="col">
                             <div className="col">
                                 <Text type='footnote' >
-                                    <a href="http://vk.com"><Icon iconName={'code'} size='tiny'/></a> 
+                                    <a href="http://vk.com"><Icon iconName={'code'} size='tiny'/></a>
                                 </Text>
                             </div>
                             <div className="col">
                                 <Text type='footnote' >
-                                    <a href="http://fb.com"><Icon iconName={'class'} size='tiny'/></a> 
+                                    <a href="http://fb.com"><Icon iconName={'class'} size='tiny'/></a>
                                 </Text>
                             </div>
                             <div className="col">
                                 <Text type='footnote' >
-                                    <a href="http://youtube.com"><Icon iconName={'report'} size='tiny'/></a> 
+                                    <a href="http://youtube.com"><Icon iconName={'report'} size='tiny'/></a>
                                 </Text>
                             </div>
                         </div>

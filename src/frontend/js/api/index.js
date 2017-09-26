@@ -6,12 +6,12 @@ import { MainPage, EventPage } from './pseudoserver.js';
 promisePolyfill.polyfill();
 
 function testAsync() {
-  return fetch('http://date.jsontest.com/')
+  return fetch('https://jsonplaceholder.typicode.com/posts/1')
     .then(response => response.json());
 }
 
 function mainPage() {
-  return fetch('http://date.jsontest.com/')
+  return fetch('https://jsonplaceholder.typicode.com/posts/1')
     .then(response => {
       console.log('mainPage async', MainPage)
       return MainPage;
@@ -19,7 +19,7 @@ function mainPage() {
 }
 
 function eventPage(id) {
-  return fetch('http://date.jsontest.com/')
+  return fetch('https://jsonplaceholder.typicode.com/posts/1')
     .then(response => {
       console.log('eventPage async', EventPage)
       return EventPage;
