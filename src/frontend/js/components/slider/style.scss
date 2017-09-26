@@ -1,0 +1,14 @@
+.Slider{
+    .Button{
+        position: absolute;
+        top: calc(50% - 2rem);
+
+        &:nth-child(1){
+            left: -2rem;
+        }
+
+        &:nth-child(3){
+            right: -2rem;
+        }
+    }
+}
