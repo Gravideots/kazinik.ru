@@ -37,7 +37,7 @@ export const MainPage = {
         }
     ],
     slideShowPartners: [
-        
+
         {
             Active: true,
             URL: 'https://ya.ru',
