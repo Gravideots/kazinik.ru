@@ -3,7 +3,7 @@ const note = require('../controllers/note')
 const media = require('../controllers/media')
 const guest = require('../controllers/guest')
 const event = require('../controllers/event')
-
+const school = require('../controllers/school')
 
 require('../config/console-colors')
 
@@ -199,11 +199,51 @@ function dropEventByID(id, done) {
     })
 }
 
+function createSchool(done) {
+    school.createSchool(function (err, school) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('school created'.info, school)
+    })
+}
+
+function getSchoolByID(id, done) {
+    school.getSchoolByID(id, function (err, school) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Got school'.info, school)
+    })
+}
+
+function updateSchoolByID(id, data, done) {
+    school.updateSchoolByID(id, data, function (err, event) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Event Updated'.info, event)
+    })
+}
+
+function dropSchoolByID(id, done) {
+    school.dropSchoolByID(id, function (err, result) {
+        if (err)
+            console.log('Error! Can not access DB'.error)
+        else
+            console.log('Event Removed'.info, result)
+    })
+}
+
 //createEvent()
 //updateEventByID('59ca635e9bc74808adb7a10e', 'SomeData')
 //getEventByID('59ca5313e6378b0850fdf72e')
 //dropEventByID('59ca635e9bc74808adb7a10e')
 
+//createSchool()
+//getSchoolByID('59ca689fa7156b094154b440')
+//updateSchoolByID('59ca689fa7156b094154b440')
+dropSchoolByID('59ca689fa7156b094154b440')
 
 //createSection(Title, Description)
 //createGuestSection('Гостевая')

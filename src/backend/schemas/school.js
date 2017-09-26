@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const dbConfig = require('../config/dbConfig');
 
-const SchoolSchema = mongoose.Schema({
+module.exports = SchoolSchema = mongoose.Schema({
     Active: Boolean,
     Title: String,
     SubTitle: String,
@@ -21,8 +20,4 @@ const SchoolSchema = mongoose.Schema({
     }],
     Button: String
 })
-
-const db = mongoose.createConnection(dbConfig.appDB.url);
-
-module.exports = db.model('School', SchoolSchema);
 
