@@ -140,16 +140,68 @@ export const EventPage = {
     Active: true,
     Special: false,
     EventDate: new Date(),
-    Address: "Address",
-    Title: 'Title',
-    SubTitle: 'SubTitle',
+    Address: "Лихачевский проезд д.1",
+    Title: 'Убить Моцарта',
+    SubTitle: 'Михаил Казиник',
     TitleImage: {
-        Full: 'url',
+        Full: 'http://kazinik.ru/documents/kazinik_ru_4_100_1.jpg',
         Crop: 'url'
     },
-    Text: [{
-        Title: 'url',
-        Info: 'url'
-    }],
-    Button: 'url'
+    Text: [
+        {
+            Title: 'Вопрос Сальери',
+            Info: 'Один из самых обсуждаемых в мире вопросов звучит так: отравил ли Сальери Моцарта? Особенно в России, и особенно после Маленькой трагедии Пушкина. Большинство исследователей отвечают: Нет, Сальери не убивал Моцарта! Некоторые продолжают упрямо настаивать: Убил! И всё же, возможно, убил. Отравил, но не ядом. Премьера моноспектакля, который вы увидите и услышите – это сенсация. И главным ответом на вопрос об убийстве станет музыка. Самая невероятная, самая необычная!Один из самых обсуждаемых в мире вопросов звучит так: отравил ли Сальери Моцарта? Особенно в России, и особенно после Маленькой трагедии Пушкина. Большинство исследователей отвечают: Нет, Сальери не убивал Моцарта! Некоторые продолжают упрямо настаивать: Убил! И всё же, возможно, убил. Отравил, но не ядом. Премьера моноспектакля, который вы увидите и услышите – это сенсация. И главным ответом на вопрос об убийстве станет музыка. Самая невероятная, самая необычная!Один из самых обсуждаемых в мире вопросов звучит так: отравил ли'
+        },
+        {
+            Title: 'В концерте принимают участие:',
+            Info: 'Ансамбль "Unda Maris" Лауреаты международных конкурсов: Тамара Егорова - скрипка Регина Штейнман - альт Мария Гришина - виолончель Лауреат международных конкурсов Егор Колесов - орган'
+        }
+    ],
+    Button: [
+        {
+            Name: 'Кассир.ру',
+            Url: 'http://kassir.ru',
+            img: 'http://kazinik.ru/documents/l2.gif'
+        },
+        {
+            Name: 'Biletix.ru',
+            Url: 'http://Biletix.ru',
+            img: 'http://kazinik.ru/documents/l4.gif'
+        },
+        {
+            Name: 'Biletix.ru',
+            Url: 'http://Biletix.ru',
+            img: 'http://kazinik.ru/documents/l1.gif'
+        },
+        {
+            Name: 'Biletix.ru',
+            Url: 'http://Biletix.ru',
+            img: 'http://kazinik.ru/documents/l3.gif'
+        },
+        {
+            Name: 'Biletix.ru',
+            Url: 'http://Biletix.ru',
+            img: 'http://kazinik.ru/documents/l5.gif'
+        },
+        {
+            Name: 'Biletix.ru',
+            Url: 'http://Biletix.ru',
+            img: 'http://kazinik.ru/documents/l6.gif'
+        },
+        {
+            Name: 'Biletix.ru',
+            Url: 'http://Biletix.ru',
+            img: 'http://kazinik.ru/documents/l7.gif'
+        },
+        {
+            Name: 'Biletix.ru',
+            Url: 'http://Biletix.ru',
+            img: 'http://kazinik.ru/documents/l8.gif'
+        },
+        {
+            Name: 'Biletix.ru',
+            Url: 'http://Biletix.ru',
+            img: 'http://kazinik.ru/documents/l9.gif'
+        }
+    ]
 }

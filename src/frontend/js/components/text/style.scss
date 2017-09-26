@@ -1,4 +1,6 @@
 .Text{
+    width: 100%;
+    
     .main{
         color: black;
         font-size: 1rem;
@@ -6,6 +8,11 @@
     .footnote{
         @extend .main;
         font-size: 0.6667rem; 
+    }
+    .subheader{
+        @extend .main;
+        font-size: 1.25rem;  
+        margin: 0.5rem 0;
     }
     .header{
         @extend .main;
@@ -26,5 +33,14 @@
     .headerWhite{
         @extend .header;
         color: white;
+    }
+    .italic{
+        font-style: italic;
+    }
+    .bold{
+        font-weight: bold;
+    }
+    .bolder{
+        font-weight: bolder;
     }
 }
