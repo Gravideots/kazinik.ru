@@ -22,16 +22,8 @@
         @extend .main;
         font-size: 2.667rem;
     }
-    .mainWhite{
+    .whiteText{
         @extend .main;
-        color: white;
-    }
-    .footnoteWhite{
-        @extend .footnote;
-        color: white;
-    }
-    .headerWhite{
-        @extend .header;
         color: white;
     }
     .italic{

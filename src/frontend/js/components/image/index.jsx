@@ -5,12 +5,13 @@ export default class Image extends Component {
   render() {
     const {
       src,
-      alt
+      alt,
+      background
     } = this.props;
-
-    return (
-      <img src={src} alt={alt} className='Image'/>
-    );
+    if(background)
+      return (<div style={{'backgroundImage': 'url(' + src + ')'}} alt={alt} className='Image'/>);
+    else
+      return (<img src={src} alt={alt} className='Image responsive-img'/>);
   }
 }
 

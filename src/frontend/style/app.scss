@@ -2,15 +2,14 @@ html {
     font-family: 'PT Sans', sans-serif;
     font-size: 26px;
     overflow-x: hidden;
-
-
-    p{
-      margin: 0;
+    p {
+        margin: 0;
     }
-    .row{    
-      padding: 5px;
+    .row {
+        padding: 5px;
     }
-  }
+}
+
 @import '../js/components/navbar/style.scss';
 @import '../js/components/input/style.scss';
 @import '../js/components/button/style.scss';
@@ -20,6 +19,6 @@ html {
 @import '../js/components/slide/style.scss';
 @import '../js/components/image/style.scss';
 @import '../js/components/sectionBlock/style.scss';
-
 //Pages
 @import '../js/pages/event/style.scss';
+@import '../js/pages/school/style.scss';

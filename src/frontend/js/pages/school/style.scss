@@ -1,0 +1,25 @@
+.SchoolPage {
+    .imageCoverBlock {
+        position: relative;
+        height: 432px;
+        margin-top: -20px;
+        width: 100%;
+        text-align: center;
+        .Image {
+            position: absolute;
+            height: 100%;
+            left: 0;
+        }
+        img.Image {
+            opacity: 0.5;
+        }
+        .valign-wrapper {
+            height: 100%;
+            flex-wrap: wrap;
+
+            .Text{
+                z-index: 3
+            }
+        }
+    }
+}

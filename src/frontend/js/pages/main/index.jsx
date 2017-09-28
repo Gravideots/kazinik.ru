@@ -110,7 +110,7 @@ export default class Main extends Component {
             <Slider data={events} navigation='EVENT' internal={true} show='1' dots={true}/>
           </div>
           <div className='col l4'>
-            <Slider data={school} navigation='SEARCH' internal={true} show='1' dots={true}/>
+            <Slider data={school} navigation='SCHOOL' internal={true} show='1' dots={true}/>
           </div>
         </div>
       } else {
@@ -119,7 +119,7 @@ export default class Main extends Component {
             <Slider data={events} navigation='MAIN' internal={true} show='1' dots={true}/>
           </div>
           <div className='col l6'>
-            <Slider data={school} navigation='SEARCH' internal={true} show='1' dots={true}/>
+            <Slider data={school} navigation='SCHOOL' internal={true} show='1' dots={true}/>
           </div>
         </div>
       }
