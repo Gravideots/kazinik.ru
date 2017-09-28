@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router';
 
 import Main from '../pages/main';
 import Event from '../pages/event';
+import School from '../pages/school';
 import Search from '../pages/search';
 
 const publicPath = '/';
@@ -19,5 +20,6 @@ export default () => (
     <Route exact path={ publicPath } component={ Main } />
     <Route path={ routeCodes.SEARCH } component={ Search } />
     <Route path={ routeCodes.EVENT + ':id'} component={ Event } />
+    <Route path={ routeCodes.SCHOOL + ':id'} component={ School } />
   </Switch>
 );
