@@ -1,3 +1,6 @@
+$media: screen;
+$feature: max-width;
+$value: 1100px;
 html {
     font-family: 'PT Sans', sans-serif;
     font-size: 26px;
@@ -7,6 +10,18 @@ html {
     }
     .row {
         padding: 5px;
+    }
+    .Main {
+        @media #{$media} and ($feature: $value) {
+            display: none;
+        }
+    }
+    .UnderConstr {
+        display: none;
+        text-align: center;
+        @media #{$media} and ($feature: $value) {
+            display: block;
+        }
     }
 }
 
@@ -22,3 +37,4 @@ html {
 //Pages
 @import '../js/pages/event/style.scss';
 @import '../js/pages/school/style.scss';
+@import '../js/pages/interview/style.scss';
