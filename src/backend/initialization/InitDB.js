@@ -243,7 +243,7 @@ function dropSchoolByID(id, done) {
 //createSchool()
 //getSchoolByID('59ca689fa7156b094154b440')
 //updateSchoolByID('59ca689fa7156b094154b440')
-dropSchoolByID('59ca689fa7156b094154b440')
+//dropSchoolByID('59ca689fa7156b094154b440')
 
 //createSection(Title, Description)
 //createGuestSection('Гостевая')
