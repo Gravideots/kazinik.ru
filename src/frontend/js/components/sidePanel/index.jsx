@@ -9,11 +9,10 @@ export default class SidePanel extends Component {
     render() {
         let sidebar =
             <ul >
-                <li><a href="#!">First Link With Icon</a></li>
+                <li><a href="#!">First Link</a></li>
                 <li><a href="#!">Second Link</a></li>
-                <li><div className="divider"></div></li>
-                <li>Subheader</li>
-                <li>hird Link With Waves</li>
+                <li>Third link</li>
+                <li>Fourth link</li>
             </ul >
         return sidebar
     }
