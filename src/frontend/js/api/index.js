@@ -1,17 +1,17 @@
 import promisePolyfill from 'es6-promise';
 import 'isomorphic-fetch';
 
-import { MainPage, EventPage } from './pseudoserver.js';
+import { MainPage, EventPage, SchoolPage } from './pseudoserver.js';
 
 promisePolyfill.polyfill();
 
 function testAsync() {
-  return fetch('http://date.jsontest.com/')
+  return fetch('https://jsonplaceholder.typicode.com/posts/1')
     .then(response => response.json());
 }
 
 function mainPage() {
-  return fetch('http://date.jsontest.com/')
+  return fetch('https://jsonplaceholder.typicode.com/posts/1')
     .then(response => {
       console.log('mainPage async', MainPage)
       return MainPage;
@@ -19,15 +19,24 @@ function mainPage() {
 }
 
 function eventPage(id) {
-  return fetch('http://date.jsontest.com/')
+  return fetch('https://jsonplaceholder.typicode.com/posts/1')
     .then(response => {
       console.log('eventPage async', EventPage)
       return EventPage;
     });
 }
 
+function schoolPage(id) {
+  return fetch('https://jsonplaceholder.typicode.com/posts/1')
+    .then(response => {
+      console.log('schoolPage async', SchoolPage)
+      return SchoolPage;
+    });
+}
+
 export default {
   testAsync,
   mainPage,
-  eventPage
+  eventPage,
+  schoolPage,
 };

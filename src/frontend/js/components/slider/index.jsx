@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { routeCodes } from 'config/routes';
 import Slick from 'react-slick';
 
@@ -30,7 +30,7 @@ export default class Slider extends Component {
         slidesToShow: show,
         slidesToScroll: 1,
         nextArrow: (arrow && data.length > show)? <Button><Icon iconName='navigate_next' size='medium'/></Button>: null,
-        prevArrow: (arrow && data.length > show)? <Button><Icon iconName='navigate_before' size='medium'/></Button>: null 
+        prevArrow: (arrow && data.length > show)? <Button><Icon iconName='navigate_before' size='medium'/></Button>: null
     };
 
     return (
@@ -40,8 +40,7 @@ export default class Slider extends Component {
                     if(internal)
                         return   <div key={key}>
                                         <Link to={{
-                                            pathname: routeCodes[navigation],
-                                            search: slideInfo.URL,
+                                            pathname: routeCodes[navigation] + slideInfo.URL
                                         }}>
                                             <Slide data={slideInfo}/>
                                         </Link>

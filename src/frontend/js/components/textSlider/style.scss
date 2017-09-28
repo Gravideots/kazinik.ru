@@ -1,0 +1,19 @@
+.TextSlider{
+
+    .Button{
+        position: absolute;
+        top: calc(50% - 2rem);
+
+        &:nth-child(1){
+            left: -3rem;
+        }
+
+        &:nth-child(3){
+            right: -2.5rem;
+        }
+    }
+
+    .slick-slide {
+        padding: 0.3rem;
+    }
+}

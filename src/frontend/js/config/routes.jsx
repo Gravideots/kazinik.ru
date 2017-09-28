@@ -1,8 +1,9 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router';
 
 import Main from '../pages/main';
 import Event from '../pages/event';
+import School from '../pages/school';
 import Search from '../pages/search';
 import Admin from '../pages/admin'
 
@@ -19,7 +20,10 @@ export const routeCodes = {
 export default () => (
   <Switch>
     <Route exact path={publicPath} component={Main} />
-    <Route path={routeCodes.SEARCH} component={Search} />
     <Route path={routeCodes.ADMIN} component={Admin} />
-  </Switch>
+    <Route exact path={publicPath} component={Main} />
+    <Route path={routeCodes.SEARCH} component={Search} />
+    <Route path={routeCodes.EVENT + ':id'} component={Event} />
+    <Route path={routeCodes.SCHOOL + ':id'} component={School} />
+  </Switch >
 );

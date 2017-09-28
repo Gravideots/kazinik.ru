@@ -1,13 +1,14 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter  } from 'react-router-dom';
 import Routes from 'config/routes';
 
 import Menu from 'components/menu';
 import Navbar from 'components/navbar';
 import Sidebar from 'components/sidePanel'
 
+//TODO включить BrowserRouter вместо HashRouter читать тут - http://prgssr.ru/development/pogruzhenie-v-react-router.html
 export default () => (
-  <BrowserRouter>
+  <HashRouter >
     <div className='Main'>
       <Sidebar />
       <Navbar />
@@ -15,5 +16,5 @@ export default () => (
         <Routes />
       </div>
     </div>
-  </BrowserRouter>
+  </HashRouter >
 );

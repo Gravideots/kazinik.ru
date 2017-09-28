@@ -1,11 +1,18 @@
 .Text{
+    width: 100%;
+
     .main{
         color: black;
         font-size: 1rem;
     }
     .footnote{
         @extend .main;
-        font-size: 0.6667rem; 
+        font-size: 0.6667rem;
+    }
+    .subheader{
+        @extend .main;
+        font-size: 1.25rem;
+        margin: 0.5rem 0;
     }
     .header{
         @extend .main;
@@ -15,16 +22,17 @@
         @extend .main;
         font-size: 2.667rem;
     }
-    .mainWhite{
+    .whiteText{
         @extend .main;
         color: white;
     }
-    .footnoteWhite{
-        @extend .footnote;
-        color: white;
+    .italic{
+        font-style: italic;
     }
-    .headerWhite{
-        @extend .header;
-        color: white;
+    .bold{
+        font-weight: bold;
+    }
+    .bolder{
+        font-weight: bolder;
     }
 }
