@@ -69,6 +69,7 @@
     "eslint": "^4.6.1",
     "express": "^4.15.4",
     "file-loader": "^0.11.2",
+    "immutability-helper": "^2.4.0",
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
     "mongoose": "^4.11.10",
