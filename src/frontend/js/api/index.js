@@ -1,7 +1,7 @@
 import promisePolyfill from 'es6-promise';
 import 'isomorphic-fetch';
 
-import { MainPage, EventPage, SchoolPage, InterviewPage } from './pseudoserver.js';
+import { MainPage, EventPage, SchoolPage, NotePage } from './pseudoserver.js';
 
 promisePolyfill.polyfill();
 
@@ -34,11 +34,11 @@ function schoolPage(id) {
     });
 }
 
-function interviewPage(id) {
+function notePage(id) {
   return fetch('https://jsonplaceholder.typicode.com/posts/1')
     .then(response => {
-      console.log('interviewPage async', InterviewPage)
-      return InterviewPage;
+      console.log('NotePage async', NotePage)
+      return NotePage[id];
     });
 }
 
@@ -47,5 +47,5 @@ export default {
   mainPage,
   eventPage,
   schoolPage,
-  interviewPage,
+  notePage,
 };
