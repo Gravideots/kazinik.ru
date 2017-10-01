@@ -1,7 +1,7 @@
 import promisePolyfill from 'es6-promise';
 import 'isomorphic-fetch';
 
-import { MainPage, EventPage, SchoolPage, NotePage } from './pseudoserver.js';
+import { MainPage, EventPage, SchoolPage, NotePage, SectionPage } from './pseudoserver.js';
 
 promisePolyfill.polyfill();
 
@@ -13,7 +13,6 @@ function testAsync() {
 function mainPage() {
   return fetch('https://jsonplaceholder.typicode.com/posts/1')
     .then(response => {
-      console.log('mainPage async', MainPage)
       return MainPage;
     });
 }
@@ -21,7 +20,6 @@ function mainPage() {
 function eventPage(id) {
   return fetch('https://jsonplaceholder.typicode.com/posts/1')
     .then(response => {
-      console.log('eventPage async', EventPage)
       return EventPage;
     });
 }
@@ -29,7 +27,6 @@ function eventPage(id) {
 function schoolPage(id) {
   return fetch('https://jsonplaceholder.typicode.com/posts/1')
     .then(response => {
-      console.log('schoolPage async', SchoolPage)
       return SchoolPage;
     });
 }
@@ -37,8 +34,19 @@ function schoolPage(id) {
 function notePage(id) {
   return fetch('https://jsonplaceholder.typicode.com/posts/1')
     .then(response => {
-      console.log('NotePage async', NotePage)
-      return NotePage[id];
+      for(var note in NotePage){
+        console.log('NotePage[note]', NotePage[note])
+        console.log('id', id)
+        if(NotePage[note].Id == id)
+         return NotePage[note];
+      }
+    });
+}
+
+function sectionPage(type, tag) {
+  return fetch('https://jsonplaceholder.typicode.com/posts/1')
+    .then(response => {
+      return SectionPage[type];
     });
 }
 
@@ -48,4 +56,5 @@ export default {
   eventPage,
   schoolPage,
   notePage,
+  sectionPage,
 };

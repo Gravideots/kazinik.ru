@@ -8,7 +8,7 @@ export const MainPage = {
         {
             Active: true,
             Title: 'Школа для мальчиков и девочек',
-            SubTitle: 'Будет скрипка, будут танцы, будут игры и свекла',
+            SubTitle: 'Lorem ipsum dolor sit amet',
             BackgroundImage: 'https://www.w3.org/html/logo/downloads/HTML5_sticker.png',
             URL: '1'
         }
@@ -16,22 +16,22 @@ export const MainPage = {
     slideShowEvents: [
         {
             Active: true,
-            Title: 'Концерт в камерном зале дворца',
-            SubTitle: 'Будет скрипка, будут танцы, будут телки и бухло',
+            Title: 'Концерт в камерном зале',
+            SubTitle: 'Lorem ipsum dolor sit amet',
             BackgroundImage: 'http://kazinik.ru/documents/__________________4_100.jpg',
             URL: '1'
         },
         {
             Active: true,
             Title: 'Сказки старого органа',
-            SubTitle: 'Будет скрипка, будут танцы, будут телки и бухло',
+            SubTitle: 'Lorem ipsum dolor sit amet',
             BackgroundImage: 'http://kazinik.ru/documents/__________________3_100.jpg',
             URL: '2'
         },
         {
             Active: true,
-            Title: 'Концерт в камерном зале дворца бла бла',
-            SubTitle: 'Будет скрипка, будут танцы, будут телки и бухло',
+            Title: 'Концерт в камерном зале',
+            SubTitle: 'Lorem ipsum dolor sit amet',
             BackgroundImage: 'http://kazinik.ru/documents/__________________3_100.jpg',
             URL: '2'
         }
@@ -107,6 +107,7 @@ export const MainPage = {
     sectionsBlock: [
         {
             Active: true,
+            Listed: true,
             URL: 'Media',
             Title: 'Медиатека',
             Icon: 'assets/img/icons/media_ico.svg',
@@ -121,14 +122,15 @@ export const MainPage = {
         },
         {
             Active: true,
-            URL: 'NOTE',
-            Title: 'Мысли вслух',
+            Listed: true,
+            URL: 'Notes',
+            Title: 'Мысли в слух',
             Icon: 'assets/img/icons/note_ico.svg',
             BackgroundImage: 'assets/img/icons/note_back.svg'
         },
         {
             Active: true,
-            URL: 'NOTE',
+            URL: 'GUEST',
             Title: 'Гостевая',
             Icon: 'assets/img/icons/talk_ico.svg',
             BackgroundImage: 'assets/img/icons/talk_back.svg'
@@ -236,9 +238,44 @@ export const SchoolPage = {
 export const NotePage = [
     {
         Date: new Date(),
+        Id: 1,
+        Author: 'Великолепный Иван Иванович',
+        Title: 'Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так.',
+        SubTitle: 'Etiam condimentum lectus ut quam placerat convallis.Etiam condimentum lectus ut quam placerat convallis.Etiam condimentum lectus ut quam placerat convallis.',
+        Description: 'Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так.',
+        TitleImage: {
+            Full: 'https://i.imgur.com/NnzxG4S.jpg',
+            Crop: 'https://i.imgur.com/NnzxG4S.jpg',
+        },
+        Tags: [{
+            URL: 'String',
+            Text: 'String'
+        }],
+        Note: [
+            {
+                Title: 'Etiam condimentum lectus ut quam placerat convallis.',
+                Text: 'Etiam condimentum lectus ut quam placerat convallis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
+                Question: null,
+                Answer: null,
+                Image: 'https://previews.123rf.com/images/kaspri/kaspri1405/kaspri140500002/28032240-Raw-buckwheat-groats-background-dry-cereal-seeds-large-vertical--Stock-Photo.jpg',
+                Media: []
+            },
+            {
+                Title: 'Etiam condimentum lectus ut quam placerat convallis.',
+                Text: 'Etiam condimentum lectus ut quam placerat convallis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
+                Question: null,
+                Answer: null,
+                Image: 'https://previews.123rf.com/images/kaspri/kaspri1405/kaspri140500002/28032240-Raw-buckwheat-groats-background-dry-cereal-seeds-large-vertical--Stock-Photo.jpg',
+                Media: []
+            },
+        ]
+    },
+    {
+        Date: new Date(),
+        Id:2,
         Author: 'Великолепный Иван Иванович',
         Title: 'Австрия и её великолепные музыканты',
-        SubTitle: '(На самом деле нет)',
+        SubTitle: 'Все как на самом деле нет',
         Description: 'Etiam condimentum lectus ut quam placerat convallis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer vitae turpis ac ex ultricies mattis. Duis lorem neque, facilisis at volutpat id, convallis ac sapien. Etiam ac vulputate leo, in commodo est. In vel sagittis dolor. Curabitur rutrum felis eu fermentum tincidunt. Etiam ut sollicitudin dui. Proin justo turpis, interdum accumsan ligula nec, mollis ornare lectus. Donec malesuada vitae justo nec imperdiet. Aenean quis faucibus nulla, vel commodo eros. Nulla sit amet pharetra sem. Maecenas semper purus eu vehicula congue. Integer aliquet, eros pulvinar gravida dapibus, velit leo pellentesque nisi, eget finibus odio ligula sit amet ipsum. Duis dapibus massa vitae enim vestibulum, sed rutrum ligula dictum.',
         TitleImage: {
             Full: 'https://i.imgur.com/NnzxG4S.jpg',
@@ -266,30 +303,73 @@ export const NotePage = [
                 Media: []
             }
         ]
-    },
-    {
-        Date: new Date(),
-        Author: 'Великолепный Иван Иванович',
-        Title: 'Австрия и её великолепные музыканты',
-        SubTitle: '(На самом деле да)',
-        Description: 'Etiam condimentum lectus ut quam placerat convallis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer vitae turpis ac ex ultricies mattis. Duis lorem neque, facilisis at volutpat id, convallis ac sapien. Etiam ac vulputate leo, in commodo est. In vel sagittis dolor. Curabitur rutrum felis eu fermentum tincidunt. Etiam ut sollicitudin dui. Proin justo turpis, interdum accumsan ligula nec, mollis ornare lectus. Donec malesuada vitae justo nec imperdiet. Aenean quis faucibus nulla, vel commodo eros. Nulla sit amet pharetra sem. Maecenas semper purus eu vehicula congue. Integer aliquet, eros pulvinar gravida dapibus, velit leo pellentesque nisi, eget finibus odio ligula sit amet ipsum. Duis dapibus massa vitae enim vestibulum, sed rutrum ligula dictum.',
-        TitleImage: {
-            Full: 'https://i.imgur.com/NnzxG4S.jpg',
-            Crop: 'https://i.imgur.com/NnzxG4S.jpg',
-        },
-        Tags: [{
-            URL: 'String',
-            Text: 'String'
-        }],
-        Note: [
-            {
-                Title: 'Etiam condimentum lectus ut quam placerat convallis.',
-                Text: 'Etiam condimentum lectus ut quam placerat convallis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-                Question: null,
-                Answer: null,
-                Image: '',
-                Media: []
-            }
-        ]
     }
 ]
+
+export const SectionPage = {
+    Notes: {
+        Active: Boolean,
+        Title: "Заголовок секции.",
+        Description: 'Это дополнительное описание секции, можно уточнить что именно можно найти в этом разделе.',
+        Tags: [
+            {
+                URL: 'Media',
+                Text: 'Статья1'
+            },
+            {
+                URL: 'Media',
+                Text: 'Статья2'
+            },
+            {
+                URL: 'Media',
+                Text: 'Статья3'
+            },
+            {
+                URL: 'Media',
+                Text: 'Статья4'
+            },
+            {
+                URL: 'Media',
+                Text: 'Статья5'
+            },
+        ],
+        Listing: {
+            Notes: [
+                NotePage[0],
+                NotePage[1]
+            ]
+        }
+    },
+    Media: {
+        Active: Boolean,
+        Title: "Заголовок секции MEDIA.",
+        Description: 'Это дополнительное описание секции, можно уточнить что именно можно найти в этом разделе.',
+        Tags: [
+            {
+                URL: 'Notes',
+                Text: 'Статья'
+            },
+            {
+                URL: 'Notes',
+                Text: 'Статья'
+            },
+            {
+                URL: 'Notes',
+                Text: 'Статья'
+            },
+            {
+                URL: 'Notes',
+                Text: 'Статья'
+            },
+            {
+                URL: 'Notes',
+                Text: 'Статья'
+            },
+        ],
+        Listing: {
+            Media: [
+
+            ]
+        }
+    },
+}

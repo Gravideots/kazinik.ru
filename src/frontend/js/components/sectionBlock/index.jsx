@@ -13,7 +13,7 @@ export default class SectionBlock extends Component {
 
         return (
             <Link className='SectionBlock col s3'
-            to={{ pathname: routeCodes[ sectionsData.URL ] }}>
+            to={{ pathname: (sectionsData.Listed)? routeCodes['SECTION'] + sectionsData.URL : routeCodes[ sectionsData.URL ] }}>
                 <div>
                     <Image src={ sectionsData.BackgroundImage } alt={ sectionsData.Title }/>
                     <Image src={ sectionsData.Icon } alt={ sectionsData.Title }/>

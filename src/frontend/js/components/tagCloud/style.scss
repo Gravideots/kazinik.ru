@@ -1,0 +1,18 @@
+.TagsCloud {
+    .chip {
+        height: auto;
+        font-size: 0.7rem;
+        font-weight: normal;
+        color: rgba(0, 0, 0, 1);
+        line-height: 1rem;
+        padding: 0 0.5rem;
+        border: 0;
+        border-radius: 1rem;
+        background-color: #ffffff;
+        margin: auto;
+        &.active {
+            border: 2px solid;
+            font-weight: bold;
+        }
+    }
+}
