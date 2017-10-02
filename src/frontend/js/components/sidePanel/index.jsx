@@ -92,7 +92,6 @@ export default class SideNav extends Component {
                     : `translateX(${openFromRight
                         ? 102
                         : -102}%)`,
-
                 float: openFromRight
                     ? 'right'
                     : 'left'
