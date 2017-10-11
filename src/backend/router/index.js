@@ -49,11 +49,14 @@ router.get('/special-event', function (req, res) {
     specialEvent(req, res)
 })
 
-router.get('/api/sections', cors(), function (req, res) {
-    section.getExistingSectionsList(req, res)
+router.get('/api/sections/:param', function (req, res) {
+    if (req.params.param == 'existing') 
+        section.getExistingSectionsList(req, res)
+    if (req.params.param == 'possible') 
+        section.getPossibleSectiosList(req, res)
 })
 
-router.post('/api/section/new', cors(), function (req, res) {
+router.post('/api/section/new', function (req, res) {
     section.createNewSection(req, res)
 })
 

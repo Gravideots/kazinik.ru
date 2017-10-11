@@ -32,18 +32,11 @@ function getAdminPageError(error) {
 
 export function getAdminPage() {
     return function (dispatch) {
-        dispatch(getAdminPageStart());
+        dispatch(getAdminPageSuccess());
 
-        api
-            .getAdminPage()
-            .then(data => {
-                data
-                    .json()
-                    .then(data => {
-                        dispatch(getAdminPageSuccess(data.body))
-                    });
-            })
-            .catch(error => dispatch(getAdminPageError(error)));
+        // api     .getAdminPage()     .then(data => {         data             .json()
+        //     .then(data => { dispatch(getAdminPageSuccess(data.body))  });     })
+        // .catch(error => dispatch(getAdminPageError(error)));
     };
 }
 
@@ -60,7 +53,7 @@ export function getPossibleSectiosList() {
     return function (dispatch) {
         dispatch(getPossibleSectionsListStart())
         api
-            .getSectionsList()
+            .getSectionsList("possible")
             .then(data => {
                 data
                     .json()
@@ -116,7 +109,7 @@ export function getExistingSectios() {
     return function (dispatch) {
         dispatch(getExistingSectiosStart())
         api
-            .getSectionsList()
+            .getSectionsList('existing')
             .then(data => {
                 data
                     .json()

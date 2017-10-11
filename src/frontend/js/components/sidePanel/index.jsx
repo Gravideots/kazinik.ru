@@ -50,7 +50,6 @@ export default class Sidebar extends Component {
     }
 
     render() {
-
         let {adminPageLoaded, show, openFromRight, content, dispatch} = this.props;
 
         if (adminPageLoaded) 
@@ -236,28 +235,34 @@ class SidebarAdminContent extends Component {
 
     render() {
         let {title, content} = this.props;
-        return (
-            <div>
-                <div className='Title'>
-                    <h5>
-                        {this.props.title || 'Заглушка'}
-                    </h5>
-                </div>
-                <div>
-                    < Button onClick= { () => { this.getPossibleSectios() } } text='Добавить раздел'/> {content
-                        .sections
-                        .map(function (element, i) {
-                            return < Button
-                            text = {
-                                element.Title
-                            }
-                            key = {
-                                i
-                            } />
-                    }, this)
-}
-                </div>
-            </div>
-        )
+
+        let ExistingSections
+        if (content && content.ExistingSections) {
+            ExistingSections = (content.ExistingSections.map(function (element, i) {
+                return < Button text = {
+                    element.Title
+                }
+                key = {
+                    i
+                } />
+        }, this))
     }
+
+    return (
+        <div>
+            <div className='Title'>
+                <h5>
+                    {this.props.title || 'Заглушка'}
+                </h5>
+            </div>
+            <div>
+                <Button
+                    onClick={() => {
+                    this.getPossibleSectios()
+                }}
+                    text='Добавить раздел'/> {ExistingSections}
+            </div>
+        </div>
+    )
+}
 }

@@ -41,7 +41,7 @@ function getSidebarContent() {
 }
 
 function getAdminPage() {
-  return fetch('/api/sections').then(response => {
+  return fetch('/api/sections/possible').then(response => {
     if (response.status !== 200) {
       console.log('Looks like there was a problem. Status Code: ' + response.status);
       return response.status;
@@ -50,8 +50,8 @@ function getAdminPage() {
   });
 }
 
-function getSectionsList() {
-  return fetch('/api/sections').then(response => {
+function getSectionsList(param) {
+  return fetch('/api/sections/' + param).then(response => {
     if (response.status !== 200) {
       return response.status;
     }
@@ -60,8 +60,6 @@ function getSectionsList() {
 }
 
 function createNewSection(sectionData) {
-  console.log(typeof(sectionData), JSON.stringify(sectionData))
-
   return fetch('/api/section/new', {
     method: 'POST',
     headers: {

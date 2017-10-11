@@ -27,7 +27,6 @@ function getSidebarContentSuccess(data) {
 }
 
 function getSidebarContentError(error) {
-    console.log(error)
     return {type: GET_SIDE_BAR_CONTENT_ERROR, error};
 }
 
@@ -51,12 +50,11 @@ export function getExistingSectios() {
     return function (dispatch) {
         dispatch(getExistingSectiosStart())
         api
-            .getSectionsList()
+            .getSectionsList("existing")
             .then(data => {
                 data
                     .json()
                     .then(data => {
-                        console.log("GOT SECTIONS! ", data)
                         dispatch(getExistingSectiosSuccess(data))
                     })
             })

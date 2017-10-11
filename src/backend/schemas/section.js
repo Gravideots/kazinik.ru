@@ -15,7 +15,10 @@ const SectionSchema = mongoose.Schema({
         }
     ],
     Listing: {
-        Notes: [NoteSchema],
+        Notes: {
+            Available: Boolean,
+            Data: [NoteSchema]
+        },
         Media: [MediaSchema]
     }
 })

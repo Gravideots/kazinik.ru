@@ -34,26 +34,21 @@ export default class Admin extends Component {
 
     render() {
         let {content, dispatch} = this.props
+
         if (content) {
-            return (
-                <div className='AdminPage'>
-                    <NewSectionCreation content={content} dispatch={dispatch}/>
-                </div>
-            )
-        } else {
-            return (
-                <div className='AdminPage'>
-                    <h1>Тут Пусто!</h1>
-                </div>
-            )
-        }
+            if (content.PosibleSections) 
+                return <NewSectionCreation content={content.PosibleSections} dispatch={dispatch}/>
+            if (content.NewSection) 
+                return <CreateNewSection dispatch={dispatch}/>
+        } else 
+            return <AdminStartPage/>
 
     }
 }
 
 class NewSectionCreation extends Component {
     static propTypes = {
-        content: PropTypes.object,
+        content: PropTypes.arrayOf(PropTypes.object),
         dispatch: PropTypes.func
     }
 
@@ -63,32 +58,21 @@ class NewSectionCreation extends Component {
 
     render() {
         let {content, dispatch} = this.props
-        if (content.PosibleSections) 
-            return (
+        return (
+            <div className='AdminPage'>
                 <div className="container">
                     <div className="row">
                         < div className="col s12">
                             Здесь можно дабавить или удалить разделы
                         </div>
                         {content
-                            .PosibleSections
                             .map(function (element, i) {
                                 return <Element element={element} key={i} dispatch={dispatch}/>
                             }, this)}
                     </div>
                 </div>
-            )
-        else 
-            return (
-                <div className="container">
-                    <div className="row">
-                        <div className="col s12">
-                            <h5>Создание нового раздела</h5>
-                        </div>
-                        < CreateNewSection dispatch={dispatch}/>
-                    </div>
-                </div>
-            )
+            </div>
+        )
     }
 }
 
@@ -182,68 +166,90 @@ class CreateNewSection extends Component {
 
     render() {
         return (
-            <div className="row">
-                <form className="col s12" onSubmit={(e) => this.handleSubmit(e)}>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <input
-                                id="title"
-                                type="text"
-                                className="validate"
-                                value={this.state.title}
-                                onChange=
-                                { (e) => { this.handleChange(e) } }/>
-                            <label htmlFor="title">
-                                Название раздела
-                            </label>
+            <div className='AdminPage'>
+                <h5>Создание нового раздела</h5>
+                <div className="row">
+                    <form className="col s12" onSubmit={(e) => this.handleSubmit(e)}>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input
+                                    id="title"
+                                    type="text"
+                                    className="validate"
+                                    value={this.state.title}
+                                    onChange=
+                                    { (e) => { this.handleChange(e) } }/>
+                                <label htmlFor="title">
+                                    Название раздела
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <textarea
-                                id="description"
-                                className="materialize-textarea"
-                                value={this.state.description}
-                                onChange=
-                                { (e) => { this.handleChange(e) } }></textarea>
-                            < label htmlFor="description">
-                                Описание
-                            </label>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <textarea
+                                    id="description"
+                                    className="materialize-textarea"
+                                    value={this.state.description}
+                                    onChange=
+                                    { (e) => { this.handleChange(e) } }></textarea>
+                                < label htmlFor="description">
+                                    Описание
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <p>
-                        Добавить раздел
-                    </p>
-                    <div className="row">
-                        < div className='col s6'>
-                            <input
-                                type="checkbox"
-                                id="addToMain"
-                                onChange=
-                                {(e) => { this.handleChange(e) }}
-                                checked={this.state.addToMain}/>
-                            <label htmlFor="addToMain">
-                                На главную страницу
-                            </label>
+                        <p>
+                            Добавить раздел
+                        </p>
+                        <div className="row">
+                            < div className='col s6'>
+                                <input
+                                    type="checkbox"
+                                    id="addToMain"
+                                    onChange=
+                                    {(e) => { this.handleChange(e) }}
+                                    checked={this.state.addToMain}/>
+                                <label htmlFor="addToMain">
+                                    На главную страницу
+                                </label>
+                            </div>
+                            < div className='col s6'>
+                                <input
+                                    type="checkbox"
+                                    id="addToSidebar"
+                                    onChange=
+                                    {(e) => { this.handleChange(e) }}
+                                    checked={this.state.addToSidebar}/>
+                                <label htmlFor="addToSidebar">
+                                    На боковую панель
+                                </label>
+                            </div >
                         </div>
-                        < div className='col s6'>
-                            <input
-                                type="checkbox"
-                                id="addToSidebar"
-                                onChange=
-                                {(e) => { this.handleChange(e) }}
-                                checked={this.state.addToSidebar}/>
-                            <label htmlFor="addToSidebar">
-                                На боковую панель
-                            </label>
-                        </div >
-                    </div>
-                    <button className="btn waves-effect waves-light" type="submit" name="action">
-                        Добавить < i className = "material-icons right" > send
-                    </i>
-                </button >
-            </form>
+                        <button className="btn waves-effect waves-light" type="submit" name="action">
+                            Добавить < i className = "material-icons right" > send
+                        </i>
+                    </button >
+                </form>
+            </div>
         </div>
+        )
+    }
+}
+
+class AdminStartPage extends Component {
+
+    static propTypes = {
+        dispatch: PropTypes.func
+    }
+
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return (
+            <div className='AdminPage'>
+                <h1>Это стартовая страница</h1>
+                <h2>пока тут Пусто</h2>
+            </div>
         )
     }
 }

@@ -27,7 +27,7 @@ const actionsMap = {
         return state.merge(Map({asyncLoading: false, asyncLoaded: false, asyncError: action.data}));
     },
     [GET_ADMIN_PAGE_SUCCESS]: (state, action) => {
-        return state.merge(Map({asyncLoading: false, asyncLoaded: true, asyncData: action.data}));
+        return state.merge(Map({asyncLoading: false, asyncLoaded: true}));
     },
 
     [GET_POSSIBLE_SECTIONS_LIST_START]: (state, action) => {
