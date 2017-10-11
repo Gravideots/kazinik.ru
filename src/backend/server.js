@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3003
 
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
@@ -12,20 +12,16 @@ const dbConfig = require('./config/dbConfig')
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(dbConfig.appDB.url, {
-    useMongoClient: true,
-}).then(
-    () => {
+mongoose
+    .connect(dbConfig.appDB.url, {useMongoClient: true})
+    .then(() => {
         console.log("==> MongoDB connection ready to use.".info)
-    },
-    err => {
+    }, err => {
         console.error("!!!MongoDB connection error, please check mongod process, or configuration file".error)
-    }
-    )
-
+    })
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(cookieParser());
 app.use(require('./router/index'))
 

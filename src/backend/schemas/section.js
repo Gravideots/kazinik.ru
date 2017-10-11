@@ -7,10 +7,13 @@ const SectionSchema = mongoose.Schema({
     Active: Boolean,
     Title: String,
     Description: String,
-    Tags: [{
-        URL: String,
-        Text: String
-    }],
+    ShowInSadebar: Boolean,
+    Tags: [
+        {
+            URL: String,
+            Text: String
+        }
+    ],
     Listing: {
         Notes: [NoteSchema],
         Media: [MediaSchema]

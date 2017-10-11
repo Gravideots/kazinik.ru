@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router();
-
+var cors = require('cors')
 //PAGES
 const main = require('./routes/main')
 const article = require('./routes/article')
@@ -47,6 +47,14 @@ router.get('/section', function (req, res) {
 
 router.get('/special-event', function (req, res) {
     specialEvent(req, res)
+})
+
+router.get('/api/sections', cors(), function (req, res) {
+    section.getExistingSectionsList(req, res)
+})
+
+router.post('/api/section/new', cors(), function (req, res) {
+    section.createNewSection(req, res)
 })
 
 module.exports = router;

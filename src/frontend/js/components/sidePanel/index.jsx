@@ -1,30 +1,42 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {toggleSidebar} from './actions.js';
-import Text from '../text'
+
+import {toggleSidebar, getSidebarContent, getExistingSectios} from './actions.js';
+import {getPossibleSectiosList} from '../../pages/admin/actions.js';
+
+import FeedbackForm from '../feedbackForm'
+import Button from '../button';
 
 @connect(state => ({
-    showNav: state
+    show: state
         .sidepanel
-        .get('showNav')
+        .get('show'),
+    openFromRight: state
+        .sidepanel
+        .get('openFromRight'),
+    adminPageLoaded: state
+        .admin
+        .get('asyncLoaded'),
+    content: state
+        .sidepanel
+        .get('asyncData'),
+    SidebarAsyncError: state
+        .event
+        .get('SidebarAsyncError'),
+    SidebarAsyncLoading: state
+        .event
+        .get('SidebarAsyncLoading')
 }))
 
-export default class SideNav extends Component {
+export default class Sidebar extends Component {
 
     static propTypes = {
-        style: PropTypes.object,
-        navStyle: PropTypes.object,
-        titleStyle: PropTypes.object,
-        itemStyle: PropTypes.object,
-        itemHoverStyle: PropTypes.object,
-        title: PropTypes.node,
-        children: PropTypes.node,
-        items: PropTypes.arrayOf(PropTypes.node),
-        showNav: PropTypes.bool,
+        fixed: PropTypes.bool,
+        adminPageLoaded: PropTypes.bool,
+        show: PropTypes.bool,
         openFromRight: PropTypes.bool,
-        onHideNav: PropTypes.func,
-        onShowNav: PropTypes.func,
+        content: PropTypes.object,
         dispatch: PropTypes.func
     }
 
@@ -32,96 +44,218 @@ export default class SideNav extends Component {
         super(props)
     }
 
-    toggleSidebar() {
-        const {dispatch} = this.props
-        dispatch(toggleSidebar());
+    componentWillMount() {
+        let {dispatch} = this.props
+        dispatch(getExistingSectios())
     }
 
-    getDefaultContent() {
-        let styles = {
-            title: {
-                background: '#E91E63',
-                color: '#fff',
-                fontWeight: 400,
-                margin: 0,
-                lineHeight: '64px',
-                padding: 22
-            },
-            li: {
-                padding: 22,
-                cursor: 'pointer',
-                backgroundColor: '#fff'
-            }
-        };
+    render() {
 
-        Object.assign(styles.li, this.props.itemStyle);
-        Object.assign(styles.title, this.props.titleStyle);
+        let {adminPageLoaded, show, openFromRight, content, dispatch} = this.props;
 
-        return (
-            <div>
-                <h2 style={styles.title}>{this.props.title || 'Михаил Казиник'}</h2>
-                <ul>
-                    {this.props.items
-                        ? this
-                            .props
-                            .items
-                            .map((item, key) => <li
-                                key={'item' + key}
-                                style={styles.li}
-                                onMouseOver={(e) => handleItemHover(e, true)}
-                                onMouseOut={(e) => handleItemHover(e, false)}>{item}</li>)
-                        : <li key='item1' style={styles.li}>Item 1</li>
+        if (adminPageLoaded) 
+            return <AdminSidebar
+                adminPageLoaded={adminPageLoaded}
+                dispatch={dispatch}
+                content={content}/>
+        else 
+            return <UserSidebar show={show} openFromRight={openFromRight} dispatch={dispatch}/>
+    }
 }
-                </ul>
+
+class AdminSidebar extends Component {
+
+    static propTypes = {
+        fixed: PropTypes.bool,
+        adminPageLoaded: PropTypes.bool,
+        show: PropTypes.bool,
+        openFromRight: PropTypes.bool,
+        content: PropTypes.object,
+
+        dispatch: PropTypes.func
+    }
+
+    constructor(props) {
+        super(props)
+    }
+
+    getExistingSectios() {
+        const {dispatch} = this.props
+        dispatch(getExistingSectios());
+    }
+
+    render() {
+
+        let {adminPageLoaded, show, openFromRight, content, dispatch} = this.props;
+        return (
+            <div className='Sidebar SidebarAdmin'>
+                < div className='SidebarAdminContent Left '>
+                    <SidebarAdminContent
+                        title='Управление'
+                        fixed={true}
+                        content={content}
+                        dispatch={dispatch}/>
+                </div>
             </div>
         )
     }
+}
+
+class UserSidebar extends Component {
+
+    static propTypes = {
+        fixed: PropTypes.bool,
+        show: PropTypes.bool,
+        openFromRight: PropTypes.bool,
+        content: PropTypes.string,
+
+        dispatch: PropTypes.func
+    }
+
+    constructor(props) {
+        super(props)
+
+        this.toggleSidebar = this
+            .toggleSidebar
+            .bind(this);
+    }
+
+    toggleSidebar(openFromRight) {
+        const {dispatch} = this.props
+        dispatch(toggleSidebar(openFromRight));
+    }
 
     getStyle() {
-        let {showNav} = this.props;
-        let {openFromRight} = this.props;
+        let {show, openFromRight} = this.props;
+
         let styles = {
             root: {
-                pointerEvents: showNav
+                pointerEvents: show
                     ? 'auto'
                     : 'none'
             },
-            nav: {
-                transform: showNav
+            navLeft: {
+                transform: (show && !openFromRight)
                     ? 'none'
-                    : `translateX(${openFromRight
-                        ? 102
-                        : -102}%)`,
-                float: openFromRight
-                    ? 'right'
-                    : 'left'
+                    : 'translateX(-102%)'
+            },
+            navRight: {
+                transform: (show && openFromRight)
+                    ? 'none'
+                    : 'translateX(102%)'
             },
             overlay: {
-                opacity: 0
+                opacity: show
+                    ? 1
+                    : 0
             }
         };
-
-        Object.assign(styles.root, this.props.style);
-        Object.assign(styles.nav, this.props.nav);
         return styles;
     }
 
     render() {
         let styles = this.getStyle();
+        let {show, openFromRight} = this.props;
         return (
-            <div className='SideNav' style={styles.root} ref='aside'>
+            <div className='Sidebar' style={styles.root}>
                 <div
                     className='PageOverlay'
                     style={styles.overlay}
-                    onClick={() => this.toggleSidebar()}
-                    ref='overlay'></div>
-                <div
-                    className='SideNavContent'
-                    style={styles.nav}
-                    ref="nav"
                     onClick=
-                    { () => this.toggleSidebar() }>
-                    {this.props.children || this.getDefaultContent()}
+                    {() => this.toggleSidebar(openFromRight)}></div>
+                <div
+                    className='SideNavContent Left'
+                    style={styles.navLeft}
+                    onClick=
+                    {() => this.toggleSidebar(openFromRight)}>
+                    < SidebarUserContent title='Разделы'/>
+                </div>
+                <div
+                    className='SideNavContent Right'
+                    style={styles.navRight}
+                    onClick=
+                    {() => this.toggleSidebar(this.props.openFromRight)}>
+                    <FeedbackForm/>
+                </div>
+            </div>
+        )
+    }
+}
+
+class SidebarUserContent extends Component {
+
+    static propTypes = {
+        title: PropTypes.string,
+        fixed: PropTypes.bool,
+        content: PropTypes.arrayOf(PropTypes.node),
+        dispatch: PropTypes.func
+    }
+
+    constructor(props) {
+        super(props)
+    }
+
+    render() {
+        let {fixed, title} = this.props;
+        if (!fixed) 
+            return (
+                <div>
+                    <div className={'right-align'}>
+                        <i className={'close small material-icons col s12 l12 m12'}>
+                            close
+                        </i>
+                    </div>
+                    <p className="col s12 l12 m12 center-align">
+                        {this.props.title || 'Заглушка'}
+                    </p>
+                    <div >
+                        <Button text='Test Button' data='modal1' className='modal-trigger'/>
+                    </div>
+                </div >
+            )
+    }
+}
+
+class SidebarAdminContent extends Component {
+
+    static propTypes = {
+        title: PropTypes.string,
+        fixed: PropTypes.bool,
+        content: PropTypes.object,
+        dispatch: PropTypes.func
+    }
+
+    constructor(props) {
+        super(props)
+    }
+
+    getPossibleSectios() {
+        const {dispatch} = this.props
+        dispatch(getPossibleSectiosList());
+    }
+
+    render() {
+        let {title, content} = this.props;
+        return (
+            <div>
+                <div className='Title'>
+                    <h5>
+                        {this.props.title || 'Заглушка'}
+                    </h5>
+                </div>
+                <div>
+                    < Button onClick= { () => { this.getPossibleSectios() } } text='Добавить раздел'/> {content
+                        .sections
+                        .map(function (element, i) {
+                            return < Button
+                            text = {
+                                element.Title
+                            }
+                            key = {
+                                i
+                            } />
+                    }, this)
+}
                 </div>
             </div>
         )

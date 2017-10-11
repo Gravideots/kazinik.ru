@@ -10,7 +10,7 @@ const paths = {
   scss: path.join(__dirname, '../src/frontend/js'),
   images: path.join(__dirname, '../src/frontend/assets'),
   svg: path.join(__dirname, '../src/frontend/assets'),
-  build: path.join(__dirname, '../build'),
+  build: path.join(__dirname, '../build')
 };
 
 const outputFiles = require('./output-files').outputFiles;
@@ -20,11 +20,7 @@ const SERVER_RENDER = process.env.SERVER_RENDER === 'true';
 const IS_DEVELOPMENT = NODE_ENV === 'development';
 const IS_PRODUCTION = NODE_ENV === 'production';
 
-// ----------
-// PLUGINS
-// ----------
-
-// Shared plugins
+// ---------- PLUGINS ---------- Shared plugins
 const plugins = [
   // Extracts CSS to a file
   new ExtractTextPlugin(outputFiles.css),
@@ -32,100 +28,87 @@ const plugins = [
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify(NODE_ENV),
-      SERVER_RENDER: JSON.stringify(SERVER_RENDER) === 'true',
-    },
-  }),
+      SERVER_RENDER: JSON.stringify(SERVER_RENDER) === 'true'
+    }
+  })
 ];
 
 if (IS_PRODUCTION) {
   // Shared production plugins
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        comparisons: true,
-        conditionals: true,
-        dead_code: true,
-        drop_console: !SERVER_RENDER, // Keep server logs
-        drop_debugger: true,
-        evaluate: true,
-        if_return: true,
-        join_vars: true,
-        screw_ie8: true,
-        sequences: true,
-        unused: true,
-        warnings: false,
-      },
-      output: {
-        comments: false,
-      },
-    })
-  );
+  plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      comparisons: true,
+      conditionals: true,
+      dead_code: true,
+      drop_console: !SERVER_RENDER, // Keep server logs
+      drop_debugger: true,
+      evaluate: true,
+      if_return: true,
+      join_vars: true,
+      screw_ie8: true,
+      sequences: true,
+      unused: true,
+      warnings: false
+    },
+    output: {
+      comments: false
+    }
+  }));
 } else {
   // Shared development plugins
   plugins.push(
-    // Enables pretty names instead of index
-    new webpack.NamedModulesPlugin()
-  );
+  // Enables pretty names instead of index
+  new webpack.NamedModulesPlugin());
 }
 
-// ----------
-// RULES
-// ----------
-
-// Shared rules
+// ---------- RULES ---------- Shared rules
 const rules = [
-  // Babel loader without react hot loader
-  // react-hot-loader will is added in webpack.config.js for development only
+  // Babel loader without react hot loader react-hot-loader will is added in
+  // webpack.config.js for development only
   {
     test: /\.(js|jsx)$/,
     exclude: /node_modules/,
-    use: ['babel-loader'],
-  },
-  {
+    use: ['babel-loader']
+  }, {
     test: /\.svg$/,
     use: [
       {
-        loader: 'babel-loader',
-      },
-      {
+        loader: 'babel-loader'
+      }, {
         loader: 'react-svg-loader',
         options: {
           svgo: {
             plugins: [
               {
-                removeTitle: true,
-              },
+                removeTitle: true
+              }
             ],
-            floatPrecision: 2,
-          },
-        },
-      },
+            floatPrecision: 2
+          }
+        }
+      }
     ],
-    include: paths.svg,
-  },
-  {
+    include: paths.svg
+  }, {
     test: /\.(png|gif|jpg|svg)$/,
     include: paths.images,
     use: [
       {
         loader: 'file-loader',
         options: {
-          name: './client/assets/[name]-[hash].[ext]',
-        },
-      },
-    ],
-  },
+          name: './client/assets/[name]-[hash].[ext]'
+        }
+      }
+    ]
+  }
 ];
 
-// Almost the same rule is used in both development and production
-// only diffence is source map param and ExtractTextPlugin
-// so we are using this method to avoid redundant code
+// Almost the same rule is used in both development and production only diffence
+// is source map param and ExtractTextPlugin so we are using this method to
+// avoid redundant code
 const getSassRule = () => {
   const autoprefixerOptions = {
-    browsers: [
-      'last 3 version',
-      'ie >= 10',
-    ],
+    browsers: ['last 3 version', 'ie >= 10']
   };
 
   const sassLoaders = [
@@ -133,30 +116,26 @@ const getSassRule = () => {
       loader: 'css-loader',
       options: {
         sourceMap: IS_DEVELOPMENT,
-        minimize: IS_PRODUCTION,
-      },
-    },
-    {
+        minimize: IS_PRODUCTION
+      }
+    }, {
       loader: 'postcss-loader',
       options: {
         sourceMap: IS_DEVELOPMENT,
-        plugins: () => [
-          autoprefixer(autoprefixerOptions),
-        ],
-      },
-    },
-    {
+        plugins: () => [autoprefixer(autoprefixerOptions)]
+      }
+    }, {
       loader: 'sass-loader',
-      options: { sourceMap: IS_DEVELOPMENT },
-    },
+      options: {
+        sourceMap: IS_DEVELOPMENT
+      }
+    }
   ];
 
   if (IS_PRODUCTION || SERVER_RENDER) {
     return {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract({
-        use: sassLoaders,
-      }),
+      loader: ExtractTextPlugin.extract({use: sassLoaders})
     };
   }
 
@@ -164,26 +143,25 @@ const getSassRule = () => {
     test: /\.scss$/,
     use: [
       {
-        loader: 'style-loader',
-      },
-    ].concat(sassLoaders),
+        loader: 'style-loader'
+      }
+    ].concat(sassLoaders)
   };
 };
 
 // Add SASS rule to common rules
 rules.push(getSassRule());
 
-
-// ----------
-// RESOLVE
-// ----------
+// ---------- RESOLVE ----------
 
 const resolve = {
-  extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'],
+  extensions: [
+    '.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'
+  ],
   modules: [
     path.join(__dirname, '../node_modules'),
-    paths.javascript,
-  ],
+    paths.javascript
+  ]
 };
 
 module.exports = {
@@ -195,5 +173,5 @@ module.exports = {
   IS_DEVELOPMENT,
   IS_PRODUCTION,
   NODE_ENV,
-  SERVER_RENDER,
+  SERVER_RENDER
 };

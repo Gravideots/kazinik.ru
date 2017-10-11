@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import {Route, Switch} from 'react-router';
 
 import Main from '../pages/main';
 import Event from '../pages/event';
@@ -14,16 +14,16 @@ export const routeCodes = {
   SEARCH: `${publicPath}search`,
   SCHOOL: `${publicPath}school`,
   EVENT: `${publicPath}мероприятия`,
-  ADMIN: `${publicPath}Управление`
+  ADMIN: `${publicPath}admin`
 };
 
-export default () => (
+export default() => (
   <Switch>
-    <Route exact path={publicPath} component={Main} />
-    <Route path={routeCodes.ADMIN} component={Admin} />
-    <Route exact path={publicPath} component={Main} />
-    <Route path={routeCodes.SEARCH} component={Search} />
-    <Route path={routeCodes.EVENT + ':id'} component={Event} />
-    <Route path={routeCodes.SCHOOL + ':id'} component={School} />
+    <Route exact path={publicPath} component={Main}/>
+    <Route path={routeCodes.ADMIN} component={Admin}/>
+    <Route exact path={publicPath} component={Main}/>
+    <Route path={routeCodes.SEARCH} component={Search}/>
+    <Route path={routeCodes.EVENT + ':id'} component={Event}/>
+    <Route path={routeCodes.SCHOOL + ':id'} component={School}/>
   </Switch >
 );
