@@ -6,9 +6,7 @@ module.exports = function section(req, res) {
 }
 
 function getPossibleSectiosList(req, res) {
-    console.log("!!!getPossibleSectiosList")
-
-    res.send({
+    res.json({
         PosibleSections: [
             {
                 name: 'Интервью',
@@ -43,14 +41,14 @@ function getPossibleSectiosList(req, res) {
 }
 
 function getExistingSectionsList(req, res) {
-    console.log("---getExistingSectionsList")
-    section.getAllSections(function (err, sections) {
-        if (err) 
-            console.log('Error! Can not access DB'.error)
-        else {
-            res.json({ExistingSections: sections})
-        }
-    })
+    section
+        .getAllSections(function (err, sections) {
+            if (err) 
+                console.log('Error! Can not access DB'.error)
+            else {
+                res.json({ExistingSections: sections})
+            }
+        })
 }
 
 function createNewSection(req, res) {

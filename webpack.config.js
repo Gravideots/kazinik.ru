@@ -78,10 +78,5 @@ module.exports = {
   },
   resolve,
   plugins,
-  devServer: {
-    port: 3000,
-    proxy: {
-      '/api/*': 'http://localhost:3003'
-    }
-  }
+  devServer
 };
