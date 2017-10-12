@@ -13,7 +13,8 @@ module.exports = EventSchema = mongoose.Schema({
     },
     Text: [{
         Title: String,
-        Info: String
+        Info: String,
+        Img: String
     }],
     Button: [{
         Url: String,
