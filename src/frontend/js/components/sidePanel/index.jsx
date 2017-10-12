@@ -260,7 +260,7 @@ class SidebarAdminContent extends Component {
                     onClick={() => {
                     this.getPossibleSectios()
                 }}
-                    text='Добавить раздел'/> {ExistingSections}
+                    text='Управление разделами'/> {ExistingSections}
             </div>
         </div>
     )
