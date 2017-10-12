@@ -63,7 +63,7 @@ class NewSectionCreation extends Component {
                 <div className="container">
                     <div className="row">
                         < div className="col s12">
-                            Здесь можно дабавить или удалить разделы
+                            <h5>Создание нового раздела</h5>
                         </div>
                         {content
                             .map(function (element, i) {
