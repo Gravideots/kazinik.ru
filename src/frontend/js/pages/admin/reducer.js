@@ -44,20 +44,14 @@ const actionsMap = {
         return state.merge(Map({
             asyncLoading: false,
             asyncData: {
-                NewSection: action
+                NewSection: action.data
             },
             asyncError: null
         }));
     },
 
     [CREATE_NEW_SECTION_START]: (state, action) => {
-        return state.merge(Map({
-            asyncLoading: true,
-            asyncData: {
-                NewSection: action
-            },
-            asyncError: null
-        }));
+        return state.merge(Map({asyncLoading: true, asyncData: null, asyncError: null}));
     },
     [CREATE_NEW_SECTION_ERROR]: (state, action) => {
         return state.merge(Map({asyncLoading: false, asyncData: null, asyncError: action.data}));

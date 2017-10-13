@@ -6,37 +6,64 @@ module.exports = function section(req, res) {
 }
 
 function getPossibleSectiosList(req, res) {
-    res.json({
-        PosibleSections: [
-            {
-                name: 'Интервью',
-                type: 'interview'
-            }, {
-                name: 'Медиа',
-                type: 'media'
-            }, {
-                name: 'События',
-                type: 'event'
-            }, {
-                name: 'Школы',
-                type: 'media'
-            }, {
-                name: 'Гостевая Книга',
-                type: 'event'
-            }, {
-                name: 'Статья',
-                type: 'media'
-            }, {
-                name: 'Школы',
-                type: 'media'
-            }, {
-                name: 'Гостевая Книга',
-                type: 'event'
-            }, {
-                name: 'Статья',
-                type: 'media'
-            }
-        ]
+
+    let PosibleSections = [
+        {
+            name: 'Интервью',
+            type: 'Interviews',
+            exists: false,
+            id: null
+        }, {
+            name: 'Статьи',
+            type: 'Articles',
+            exists: false,
+            id: null
+        }, {
+            name: 'Медиа',
+            type: 'Media',
+            exists: false,
+            id: null
+        }, {
+            name: 'События',
+            type: 'Events',
+            exists: false,
+            id: null
+        }, {
+            name: 'Школы',
+            type: 'Schools',
+            exists: false,
+            id: null
+        }, {
+            name: 'Гостевая Книга',
+            type: 'GuestBook',
+            exists: false,
+            id: null
+        }
+    ]
+
+    section.getAllSections(function (err, sections) {
+        if (err) 
+            console.log('Error! Can not access DB'.error)
+        else {
+            if (sections.length > 0) {
+                let processedPosibleSections;
+                sections.map(function (existingSection) {
+                    processedPosibleSections = PosibleSections.map(function (section) {
+                        if (existingSection.Listing[section.type] && existingSection.Listing[section.type].Available) {
+                            let processedSection = section
+                            processedSection.name = existingSection.Title
+                            processedSection.exists = true
+                            processedSection.id = existingSection._id
+                            return processedSection
+                        } else {
+                            return section
+                        }
+                    })
+                })
+                res.json({PosibleSections: processedPosibleSections})
+            } else 
+                res.json({PosibleSections: PosibleSections})
+        }
     })
 }
 
@@ -52,19 +79,31 @@ function getExistingSectionsList(req, res) {
 }
 
 function createNewSection(req, res) {
-    let newSection = req.body.sectionData
 
-    section.createNewSection(newSection, function (err, section) {
+    let newSection = req.body.sectionData
+    let newSectionType = req.body.sectionType
+    section.createNewSection(newSection, newSectionType, function (err, section) {
         if (err) 
-            res.status(500).send('Что то пошло не так');
+            res.status(500).send('Что то пошло не так')
         else 
             res.send({data: 'OK'})
     })
 
 }
 
+function deleteSection(req, res) {
+    section
+        .dropSectionByID(req.params.id, function (error, result) {
+            if (error) 
+                res.status(500).send('Что то пошло не так')
+            else 
+                res.send({data: 'OK'})
+        })
+}
+
 module.exports = {
     getExistingSectionsList,
     getPossibleSectiosList,
-    createNewSection
+    createNewSection,
+    deleteSection
 }
