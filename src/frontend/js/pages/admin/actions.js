@@ -18,38 +18,36 @@ export const CREATE_NEW_SECTION_START = 'CREATE_NEW_SECTION_START'
 export const CREATE_NEW_SECTION_ERROR = 'CREATE_NEW_SECTION_ERROR'
 export const CREATE_NEW_SECTION_SUCCESS = 'CREATE_NEW_SECTION_SUCCESS'
 
+export const DELETE_SECTION_START = 'DELETE_SECTION_START'
+export const DELETE_SECTION_ERROR = 'DELETE_SECTION_ERROR'
+export const DELETE_SECTION_SUCCESS = 'DELETE_SECTION_SUCCESS'
+
 function getAdminPageStart() {
     return {type: GET_ADMIN_PAGE_START}
 }
-
 function getAdminPageSuccess(data) {
     return {type: GET_ADMIN_PAGE_SUCCESS, data}
 }
-
 function getAdminPageError(error) {
     return {type: GET_ADMIN_PAGE_ERROR, error}
 }
-
 export function getAdminPage() {
     return function (dispatch) {
         dispatch(getAdminPageSuccess());
-
-        // api     .getAdminPage()     .then(data => {         data             .json()
-        //     .then(data => { dispatch(getAdminPageSuccess(data.body))  });     })
-        // .catch(error => dispatch(getAdminPageError(error)));
     };
 }
 
-export function getPossibleSectionsListStart(data) {
+function getPossibleSectionsListStart(data) {
     return {type: GET_POSSIBLE_SECTIONS_LIST_START};
 }
-export function getPossibleSectionsListSuccess(data) {
+function getPossibleSectionsListSuccess(data) {
     return {type: GET_POSSIBLE_SECTIONS_LIST_SUCCESS, data};
 }
-export function getPossibleSectionsListError(data) {
+function getPossibleSectionsListError(data) {
     return {type: GET_POSSIBLE_SECTIONS_LIST_ERROR};
 }
 export function getPossibleSectiosList() {
+    console.log("getPossibleSectiosList")
     return function (dispatch) {
         dispatch(getPossibleSectionsListStart())
         api
@@ -65,16 +63,17 @@ export function getPossibleSectiosList() {
     };
 }
 
-export function selectSectionToCreate(sectionType) {
-    return {type: SELECT_SECTION_TO_CREATE, sectionType}
+export function selectSectionToCreate(data) {
+    return {type: SELECT_SECTION_TO_CREATE, data}
 }
 
-export function createNewSection(sectionData) {
+export function createNewSection(sectionData, sectionType) {
     return function (dispatch) {
         dispatch(createNewSectionStart());
 
         let newSectionData = {
-            sectionData
+            sectionData,
+            sectionType
         }
 
         api
@@ -85,6 +84,7 @@ export function createNewSection(sectionData) {
                     .then(data => {
                         dispatch(createNewSectionSuccess(data.body))
                         dispatch(getExistingSectios())
+                        dispatch(getPossibleSectiosList())
                     });
             })
             .catch(error => {
@@ -92,15 +92,12 @@ export function createNewSection(sectionData) {
             });
     };
 }
-
 function createNewSectionStart() {
     return {type: CREATE_NEW_SECTION_START}
 }
-
 function createNewSectionSuccess(sectionType) {
     return {type: CREATE_NEW_SECTION_SUCCESS, sectionType}
 }
-
 function createNewSectionError(error) {
     return {type: CREATE_NEW_SECTION_ERROR, error}
 }
@@ -128,4 +125,33 @@ function getExistingSectiosSuccess(data) {
 }
 function getExistingSectiosError(error) {
     return {type: GET_EXISTING_SECTIONS_LIST_ERROR, error};
+}
+
+export function deleteSection(sectionID) {
+    return function (dispatch) {
+        dispatch(deleteSectionStart())
+        api
+            .deleteSection(sectionID)
+            .then(data => {
+                data
+                    .json()
+                    .then(data => {
+                        dispatch(deleteSectionSuccess(data))
+                        dispatch(getExistingSectios())
+                        dispatch(getPossibleSectiosList())
+                    })
+            })
+            .catch(error => dispatch(deleteSectionError(error)))
+    }
+}
+function deleteSectionStart() {
+    return {type: DELETE_SECTION_START}
+}
+
+function deleteSectionError() {
+    return {type: DELETE_SECTION_ERROR}
+}
+
+function deleteSectionSuccess() {
+    return {type: DELETE_SECTION_SUCCESS}
 }

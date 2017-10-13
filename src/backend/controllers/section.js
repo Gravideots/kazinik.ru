@@ -4,13 +4,17 @@ const Section = require('../schemas/section')
 const Note = require('../schemas/note')
 const Media = require('../schemas/media')
 
-const createNewSection = function (sectionToCreate, done) {
+const createNewSection = function (sectionData, sectionType, done) {
 
     let newSection = new Section()
 
-    newSection.Title = sectionToCreate.title
-    newSection.Description = sectionToCreate.description
-    newSection.ShowInSadebar = sectionToCreate.addToSidebar
+    if (!newSection.Listing[sectionType.type]) 
+        return done('ERROR')
+
+    newSection.Listing[sectionType.type].Available = true
+    newSection.Title = sectionData.title
+    newSection.Description = sectionData.description
+    newSection.ShowInSadebar = sectionData.addToSidebar
     newSection.Tags = new Array()
 
     newSection.save(function (err) {

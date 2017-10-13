@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getAdminPage, selectSectionToCreate, createNewSection} from './actions.js';
+import {getAdminPage, selectSectionToCreate, createNewSection, deleteSection} from './actions.js';
 
 import Sidebar from 'components/sidePanel';
 
@@ -37,16 +37,16 @@ export default class Admin extends Component {
 
         if (content) {
             if (content.PosibleSections) 
-                return <NewSectionCreation content={content.PosibleSections} dispatch={dispatch}/>
+                return <SectionManagement content={content.PosibleSections} dispatch={dispatch}/>
             if (content.NewSection) 
-                return <CreateNewSection dispatch={dispatch}/>
+                return <CreateNewSection content={content} dispatch={dispatch}/>
         } else 
             return <AdminStartPage/>
 
     }
 }
 
-class NewSectionCreation extends Component {
+class SectionManagement extends Component {
     static propTypes = {
         content: PropTypes.arrayOf(PropTypes.object),
         dispatch: PropTypes.func
@@ -60,17 +60,15 @@ class NewSectionCreation extends Component {
         let {content, dispatch} = this.props
         return (
             <div className='AdminPage'>
-                <div className="container">
-                    <div className="row">
-                        < div className="col s12">
-                            <h5>Создание нового раздела</h5>
-                        </div>
-                        {content
-                            .map(function (element, i) {
-                                return <Element element={element} key={i} dispatch={dispatch}/>
-                            }, this)}
-                    </div>
+                <h5>Панель управления разделами</h5>
+                <div className="row">
+                    < div className="col s12"></div>
+                    {content
+                        .map(function (element, i) {
+                            return <Element element={element} key={i} dispatch={dispatch}/>
+                        }, this)}
                 </div>
+
             </div>
         )
     }
@@ -87,13 +85,47 @@ class Element extends Component {
         super(props)
     }
 
-    selectSectionToCreate(type) {
+    selectSectionToCreate(event, element) {
+        event.preventDefault()
         const {dispatch} = this.props
-        dispatch(selectSectionToCreate(type))
+        dispatch(selectSectionToCreate(element))
+    }
+
+    deleteSection(event, sectionID) {
+        event.preventDefault()
+        const {dispatch} = this.props
+        dispatch(deleteSection(sectionID))
     }
 
     render() {
         let {element} = this.props
+        let actions
+
+        if (element.exists && element.id) {
+            actions = (
+                <div className="card-action">
+                    <a
+                        href="#"
+                        onClick=
+                        { (event) => { this.selectSectionToCreate(event, element) } }>Редактировать</a>
+                    <a href="#" onClick= { (event) => { this.deleteSection(event, element.id) } }>
+                        Удалить
+                    </a>
+                </div>
+            )
+        } else {
+            actions = (
+                <div className="card-action">
+                    <a
+                        href="#"
+                        onClick=
+                        { (event) => { this.selectSectionToCreate(event, element) } }>
+                        Создать
+                    </a>
+                </div>
+            )
+        }
+
         return (
             <div className="element col s12 m6">
                 <div className="card blue-grey darken-1">
@@ -104,11 +136,7 @@ class Element extends Component {
                         <p>I am a very simple card. I am good at containing small bits of information. I
                             am convenient because I require little markup to use effectively.</p>
                     </div>
-                    <div className="card-action">
-                        < a onClick= { () => { this.selectSectionToCreate(element.type) } }>
-                            Создать
-                        </a>
-                    </div>
+                    {actions}
                 </div>
             </div>
         )
@@ -117,6 +145,7 @@ class Element extends Component {
 
 class CreateNewSection extends Component {
     static propTypes = {
+        content: PropTypes.object,
         dispatch: PropTypes.func
     }
 
@@ -141,8 +170,8 @@ class CreateNewSection extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const {dispatch} = this.props;
-        dispatch(createNewSection(this.state))
+        const {dispatch, content} = this.props;
+        dispatch(createNewSection(this.state, content.NewSection))
     }
 
     handleChange(event) {

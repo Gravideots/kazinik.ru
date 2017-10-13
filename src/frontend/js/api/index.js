@@ -1,7 +1,7 @@
 import promisePolyfill from 'es6-promise';
 import 'isomorphic-fetch';
 
-import { MainPage, EventPage, SchoolPage, NotePage } from './pseudoserver.js';
+import {MainPage, EventPage, SchoolPage, NotePage} from './pseudoserver.js';
 
 promisePolyfill.polyfill();
 
@@ -31,11 +31,10 @@ function schoolPage(id) {
 }
 
 function notePage(id) {
-  return fetch('https://jsonplaceholder.typicode.com/posts/1')
-    .then(response => {
-      console.log('NotePage async', NotePage)
-      return NotePage[id];
-    });
+  return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
+    console.log('NotePage async', NotePage)
+    return NotePage[id];
+  });
 }
 function getSidebarContent() {
   return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
@@ -66,21 +65,6 @@ function getSectionsList(param) {
   })
 }
 
-function createNewSection(sectionData) {
-  return fetch('/api/section/new', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(sectionData)
-  }).then(response => {
-    if (response.status !== 200) {
-      return response.status;
-    }
-    return response;
-  })
-}
-
 function getAdminPage() {
   return fetch('/api/sections/possible').then(response => {
     if (response.status !== 200) {
@@ -101,12 +85,26 @@ function getSectionsList(param) {
 }
 
 function createNewSection(sectionData) {
-  return fetch('/api/section/new', {
+  return fetch('/api/section/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(sectionData)
+  }).then(response => {
+    if (response.status !== 200) {
+      return response.status;
+    }
+    return response;
+  })
+}
+
+function deleteSection(sectionID) {
+  return fetch('/api/section/' + sectionID, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
   }).then(response => {
     if (response.status !== 200) {
       return response.status;
@@ -124,5 +122,6 @@ export default {
   getAdminPage,
   getSidebarContent,
   getSectionsList,
-  createNewSection
+  createNewSection,
+  deleteSection
 };

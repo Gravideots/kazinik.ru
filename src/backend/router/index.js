@@ -56,8 +56,12 @@ router.get('/api/sections/:param', function (req, res) {
         section.getPossibleSectiosList(req, res)
 })
 
-router.post('/api/section/new', function (req, res) {
+router.post('/api/section/', function (req, res) {
     section.createNewSection(req, res)
+})
+
+router.delete('/api/section/:id', function (req, res) {
+    section.deleteSection(req, res)
 })
 
 module.exports = router;
