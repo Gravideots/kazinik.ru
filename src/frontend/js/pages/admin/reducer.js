@@ -11,6 +11,10 @@ import {
 
     SELECT_SECTION_TO_CREATE,
 
+    SELECT_SECTION_TO_EDIT_START,
+    SELECT_SECTION_TO_EDIT_SUCCESS,
+    SELECT_SECTION_TO_EDIT_ERROR,
+
     CREATE_NEW_SECTION_START,
     CREATE_NEW_SECTION_SUCCESS,
     CREATE_NEW_SECTION_ERROR
@@ -54,6 +58,16 @@ const actionsMap = {
         return state.merge(Map({asyncLoading: true, asyncData: null, asyncError: null}));
     },
     [CREATE_NEW_SECTION_ERROR]: (state, action) => {
+        return state.merge(Map({asyncLoading: false, asyncData: null, asyncError: action.data}));
+    },
+
+    [SELECT_SECTION_TO_EDIT_START]: (state, action) => {
+        return state.merge(Map({asyncLoading: true, asyncData: null, asyncError: false}));
+    },
+    [SELECT_SECTION_TO_EDIT_SUCCESS]: (state, action) => {
+        return state.merge(Map({asyncLoading: false, asyncData: action.data, asyncError: null}));
+    },
+    [SELECT_SECTION_TO_EDIT_ERROR]: (state, action) => {
         return state.merge(Map({asyncLoading: false, asyncData: null, asyncError: action.data}));
     }
 }

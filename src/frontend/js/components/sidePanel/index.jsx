@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
 import {toggleSidebar, getSidebarContent, getExistingSectios} from './actions.js';
-import {getPossibleSectiosList} from '../../pages/admin/actions.js';
+import {getPossibleSectiosList, selectSectionToEdit} from '../../pages/admin/actions.js';
 
 import FeedbackForm from '../feedbackForm'
 import Button from '../button';
@@ -233,36 +233,42 @@ class SidebarAdminContent extends Component {
         dispatch(getPossibleSectiosList());
     }
 
+    selectSectionToEdit(event, sectionID) {
+        event.preventDefault()
+        const {dispatch} = this.props
+        dispatch(selectSectionToEdit(sectionID))
+    }
+
     render() {
         let {title, content} = this.props;
 
         let ExistingSections
         if (content && content.ExistingSections) {
             ExistingSections = (content.ExistingSections.map(function (element, i) {
-                return < Button text = {
-                    element.Title
-                }
-                key = {
-                    i
-                } />
-        }, this))
-    }
+                console.log(element)
+                return <Button
+                    text={element.Title}
+                    onClick=
+                    {(event) => {this.selectSectionToEdit(event, element._id) }}
+                    key={i}/>
+            }, this))
+        }
 
-    return (
-        <div>
-            <div className='Title'>
-                <h5>
-                    {this.props.title || 'Заглушка'}
-                </h5>
-            </div>
+        return (
             <div>
-                <Button
-                    onClick={() => {
-                    this.getPossibleSectios()
-                }}
-                    text='Управление разделами'/> {ExistingSections}
+                <div className='Title'>
+                    <h5>
+                        {this.props.title || 'Заглушка'}
+                    </h5>
+                </div>
+                <div>
+                    <Button
+                        onClick={() => {
+                        this.getPossibleSectios()
+                    }}
+                        text='Управление разделами'/> {ExistingSections}
+                </div>
             </div>
-        </div>
-    )
-}
+        )
+    }
 }

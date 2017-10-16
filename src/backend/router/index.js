@@ -41,10 +41,6 @@ router.get('/search', function (req, res) {
     search(req, res)
 })
 
-router.get('/section', function (req, res) {
-    section(req, res)
-})
-
 router.get('/special-event', function (req, res) {
     specialEvent(req, res)
 })
@@ -58,6 +54,14 @@ router.get('/api/sections/:param', function (req, res) {
 
 router.post('/api/section/', function (req, res) {
     section.createNewSection(req, res)
+})
+
+router.get('/api/section/:id', function (req, res) {
+    section.getSection(req, res)
+})
+
+router.put('/api/section/:id', function (req, res) {
+    section.updateSection(req, res)
 })
 
 router.delete('/api/section/:id', function (req, res) {

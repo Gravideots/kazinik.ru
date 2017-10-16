@@ -11,31 +11,43 @@ function getPossibleSectiosList(req, res) {
         {
             name: 'Интервью',
             type: 'Interviews',
+            description: 'Тестовое описание',
+            active: false,
             exists: false,
             id: null
         }, {
             name: 'Статьи',
             type: 'Articles',
+            description: 'Тестовое описание',
+            active: false,
             exists: false,
             id: null
         }, {
             name: 'Медиа',
             type: 'Media',
+            description: 'Тестовое описание',
+            active: false,
             exists: false,
             id: null
         }, {
             name: 'События',
             type: 'Events',
+            description: 'Тестовое описание',
+            active: false,
             exists: false,
             id: null
         }, {
             name: 'Школы',
             type: 'Schools',
+            description: 'Тестовое описание',
+            active: false,
             exists: false,
             id: null
         }, {
             name: 'Гостевая Книга',
             type: 'GuestBook',
+            description: 'Тестовое описание',
+            active: false,
             exists: false,
             id: null
         }
@@ -54,6 +66,7 @@ function getPossibleSectiosList(req, res) {
                             processedSection.name = existingSection.Title
                             processedSection.exists = true
                             processedSection.id = existingSection._id
+                            processedSection.description = existingSection.Description
                             return processedSection
                         } else {
                             return section
@@ -101,9 +114,31 @@ function deleteSection(req, res) {
         })
 }
 
+function getSection(req, res) {
+    section
+        .getSectionByID(req.params.id, function (error, result) {
+            if (error) 
+                res.status(500).send('Что то пошло не так')
+            else 
+                res.send({Section: result})
+        })
+}
+
+function updateSection(req, res) {
+    section
+        .updateSectionByID(req.params.id, req.body, function (error, result) {
+            if (error) 
+                res.status(500).send('Что то пошло не так')
+            else 
+                res.send({Section: result})
+        })
+}
+
 module.exports = {
     getExistingSectionsList,
     getPossibleSectiosList,
     createNewSection,
+    getSection,
+    updateSection,
     deleteSection
 }

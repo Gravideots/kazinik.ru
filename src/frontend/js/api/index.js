@@ -99,12 +99,42 @@ function createNewSection(sectionData) {
   })
 }
 
+function getSection(sectionID) {
+  return fetch('/api/section/' + sectionID, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(response => {
+    if (response.status !== 200) {
+      return response.status;
+    }
+    return response;
+  })
+}
+
 function deleteSection(sectionID) {
   return fetch('/api/section/' + sectionID, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
     }
+  }).then(response => {
+    if (response.status !== 200) {
+      return response.status;
+    }
+    return response;
+  })
+}
+
+function updateSection(sectionData) {
+  console.log(sectionData)
+  return fetch('/api/section/' + sectionData.id, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(sectionData)
   }).then(response => {
     if (response.status !== 200) {
       return response.status;
@@ -123,5 +153,7 @@ export default {
   getSidebarContent,
   getSectionsList,
   createNewSection,
-  deleteSection
+  getSection,
+  deleteSection,
+  updateSection
 };
