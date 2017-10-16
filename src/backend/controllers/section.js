@@ -11,6 +11,7 @@ const createNewSection = function (sectionData, sectionType, done) {
     if (!newSection.Listing[sectionType.type]) 
         return done('ERROR')
 
+    newSection.Active = sectionData.addToMain
     newSection.Listing[sectionType.type].Available = true
     newSection.Title = sectionData.title
     newSection.Description = sectionData.description
@@ -37,9 +38,9 @@ const getAllSections = function (done) {
 
 const getSectionByID = function (sectionID, done) {
     Section
-        .findOne({_id: sectionID})
-        .populate({path: 'Listing', model: Note})
-        .exec(function (err, section) {
+        .findOne({
+            _id: sectionID
+        }, function (err, section) {
             if (err) 
                 throw err
             else 
@@ -59,9 +60,30 @@ const dropSectionByID = function (sectionID, done) {
         })
 }
 
+const updateSectionByID = function (sectionID, data, done) {
+    Section
+        .findByIdAndUpdate({
+            _id: sectionID
+        }, {
+            $set: {
+                Title: data.title,
+                Description: data.description,
+                ShowInSadebar: data.addToSidebar,
+                Active: data.addToMain
+            }
+        }, function (err, updatedSection) {
+            if (err) 
+                throw err
+            else {
+                return done(null, updatedSection)
+            }
+        })
+}
+
 module.exports = {
     createNewSection,
     getAllSections,
     getSectionByID,
-    dropSectionByID
+    dropSectionByID,
+    updateSectionByID
 }
