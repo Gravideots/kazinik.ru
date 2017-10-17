@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const dbConfig = require('../config/dbConfig')
+
 const NoteSchema = require('./note')
 const MediaSchema = require('./media')
 
@@ -7,13 +8,26 @@ const SectionSchema = mongoose.Schema({
     Active: Boolean,
     Title: String,
     Description: String,
-    Tags: [{
-        URL: String,
-        Text: String
-    }],
+    ShowInSadebar: Boolean,
+    Tags: [
+        {
+            URL: String,
+            Text: String
+        }
+    ],
     Listing: {
-        Notes: [NoteSchema],
-        Media: [MediaSchema]
+        Interviews: {
+            Available: Boolean,
+            Data: [NoteSchema]
+        },
+        Articles: {
+            Available: Boolean,
+            Data: [MediaSchema]
+        },
+        Media: {
+            Available: Boolean,
+            Data: [MediaSchema]
+        }
     }
 })
 

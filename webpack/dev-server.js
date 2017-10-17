@@ -2,7 +2,9 @@ const paths = require('./config').paths;
 const IS_PRODUCTION = require('./config').IS_PRODUCTION;
 
 const devServer = {
-  contentBase: IS_PRODUCTION ? paths.build : paths.source,
+  contentBase: IS_PRODUCTION
+    ? paths.build
+    : paths.source,
   historyApiFallback: true,
   port: 3000,
   compress: IS_PRODUCTION,
@@ -21,13 +23,16 @@ const devServer = {
     timings: true,
     version: false,
     warnings: true,
-    colors: true,
+    colors: true
+  },
+  proxy: {
+    '/api/*': 'http://localhost:3003'
   },
   headers: {
-    'Access-Control-Allow-Origin': '*',
-  },
+    'Access-Control-Allow-Origin': '*'
+  }
 };
 
 module.exports = {
-  devServer,
+  devServer
 };

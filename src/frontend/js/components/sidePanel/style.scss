@@ -1,0 +1,63 @@
+.Sidebar {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+    z-Index: 8;
+    &.SidebarAdmin {
+        transform: none;
+        width: 20%;
+        background: black
+    }
+    .PageOverlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.4);
+        transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1);
+    }
+    .SideNavContent {
+        position: relative;
+        width: 90%;
+        max-width: 400px;
+        height: 100%;
+        background: #FFF;
+        box-Shadow: 2px 0 12px rgba(0, 0, 0, 0.4);
+        display: flex;
+        will-Change: transform;
+        flex-Direction: column;
+        transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
+        i {
+            padding: 0rem;
+        }
+    }
+    .SidebarAdminContent {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        height: 100%;
+        background: black;
+        box-Shadow: 2px 0 12px rgba(0, 0, 0, 0.4);
+        display: flex;
+        will-Change: transform;
+        flex-Direction: column;
+        transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
+        i {
+            padding: 0rem;
+        }
+        .Title {
+            background: white;
+            padding-left: 0.7rem;
+        }
+    }
+    .Right {
+        float: right
+    }
+    .Left {
+        float: left
+    }
+}
