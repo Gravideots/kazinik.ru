@@ -1,0 +1,16 @@
+.List {
+
+  margin: 1rem 0;
+
+  .NoteListElement {
+      border: 2px solid #E6E5D1;
+      padding: 5px;
+      position: relative;
+
+      .Button{
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 15px;
+      }
+  }
+}

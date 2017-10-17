@@ -19,8 +19,15 @@ html {
     .UnderConstr {
         display: none;
         text-align: center;
+        background-image: url('../assets/img/underconstruction.jpg');
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+
         @media #{$media} and ($feature: $value) {
             display: block;
+            height: 100vh;
+            width: 100vw;
         }
     }
 }
@@ -34,7 +41,10 @@ html {
 @import '../js/components/slide/style.scss';
 @import '../js/components/image/style.scss';
 @import '../js/components/sectionBlock/style.scss';
+@import '../js/components/tagCloud/style.scss';
+@import '../js/components/list/style.scss';
 @import '../js/components/sidePanel/style.scss';
+
 //Pages
 @import '../js/pages/event/style.scss';
 @import '../js/pages/school/style.scss';

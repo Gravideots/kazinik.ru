@@ -1,4 +1,4 @@
-.Note {
+.SchoolPage {
     .imageCoverBlock {
         position: relative;
         height: 432px;
@@ -10,17 +10,16 @@
             height: 100%;
             left: 0;
         }
-    }
-    .Text {
-        .question,
-        .answer {
-            text-indent: 2rem;
-            margin: 1rem 0;
-
+        img.Image {
+            opacity: 0.5;
         }
+        .valign-wrapper {
+            height: 100%;
+            flex-wrap: wrap;
 
-        img{
-            margin: 1rem 0;
+            .Text{
+                z-index: 3
+            }
         }
     }
 }

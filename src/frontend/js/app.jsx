@@ -1,8 +1,7 @@
 import React from 'react';
-import {HashRouter} from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import Routes from 'config/routes';
 
-import Menu from 'components/menu';
 import Navbar from 'components/navbar';
 import Sidebar from 'components/sidePanel';
 
@@ -10,13 +9,13 @@ import Sidebar from 'components/sidePanel';
 // http://prgssr.ru/development/pogruzhenie-v-react-router.html
 
 export default() => (
-    <HashRouter >
-        <div className='Main'>
-            <Navbar/>
-            <Sidebar/>
-            <div className='Page'>
-                <Routes/>
-            </div>
-        </div>
-    </HashRouter>
+  <HashRouter >
+    <div className='Main'>
+      <Navbar />
+      <Sidebar />
+      <div className='Page'>
+        <Routes />
+      </div>
+    </div>
+  </HashRouter>
 );

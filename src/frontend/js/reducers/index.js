@@ -7,6 +7,7 @@ import event from '../pages/event/reducer.js';
 import school from '../pages/school/reducer.js';
 import admin from '../pages/admin/reducer.js';
 import note from '../pages/note/reducer.js';
+import section from '../pages/section/reducer.js';
 
 export default combineReducers({
   main,
@@ -14,5 +15,6 @@ export default combineReducers({
   school,
   note,
   admin,
+  section,
   sidepanel
 });

@@ -7,6 +7,7 @@ import School from '../pages/school';
 import Search from '../pages/search';
 import Admin from '../pages/admin';
 import Note from '../pages/note';
+import Section from '../pages/section';
 
 const publicPath = '/';
 
@@ -17,6 +18,7 @@ export const routeCodes = {
   EVENT: `${ publicPath }event/`,
   ADMIN: `${ publicPath }admin`,
   NOTE: `${ publicPath }note/`,
+  SECTION: `${ publicPath }section/`,
 };
 
 export default() => (
@@ -27,5 +29,6 @@ export default() => (
     <Route path={ routeCodes.EVENT + ':id' } component={ Event } />
     <Route path={ routeCodes.SCHOOL + ':id' } component={ School } />
     <Route path={ routeCodes.NOTE + ':id' } component={ Note } />
+    <Route path={ routeCodes.SECTION + ':key' } component={ Section } />
   </Switch>
 );
