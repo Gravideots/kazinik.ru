@@ -14,8 +14,8 @@ export default class TagsCloud extends Component {
         {tags.map((tag, key)=>{
           return(
             <div key={key} className='col s1'>
-              <Button  onClick={()=>{this.props.click(tag.Text)}}>
-                <div className={(selected === tag.Text)?'chip active': 'chip'}>{tag.Text}</div>
+              <Button  onClick={()=>{this.props.click(tag.URL)}}>
+                <div className={(selected === tag.URL)?'chip active': 'chip'}>{tag.Text}</div>
               </Button>
             </div>
           )

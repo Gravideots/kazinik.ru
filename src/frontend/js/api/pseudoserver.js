@@ -333,12 +333,10 @@ export const SectionPage = {
                 Text: 'Статья5'
             },
         ],
-        Listing: {
-            Notes: [
-                NotePage[0],
-                NotePage[1]
-            ]
-        }
+        Listing: [
+            NotePage[0],
+            NotePage[1]
+        ]
     },
     Media: {
         Active: Boolean,
@@ -346,30 +344,109 @@ export const SectionPage = {
         Description: 'Это дополнительное описание секции, можно уточнить что именно можно найти в этом разделе.',
         Tags: [
             {
-                URL: 'Notes',
-                Text: 'Статья'
+                URL: 'Video',
+                Text: 'Видео'
             },
             {
-                URL: 'Notes',
-                Text: 'Статья'
-            },
-            {
-                URL: 'Notes',
-                Text: 'Статья'
-            },
-            {
-                URL: 'Notes',
-                Text: 'Статья'
-            },
-            {
-                URL: 'Notes',
-                Text: 'Статья'
+                URL: 'Audio',
+                Text: 'Аудио'
             },
         ],
-        Listing: {
-            Media: [
-
-            ]
-        }
+        Listing: [
+            {
+                Active: Boolean,
+                Title: 'Media',
+                Tags: [{
+                    URL: 'Video',
+                    Text: 'Видео'
+                }],
+                Type: 'VIDEO',
+                URL: 'https://www.youtube.com/watch?v=YlaWGd1cUms',
+            },
+            {
+                Active: Boolean,
+                Title: 'Media',
+                Tags: [{
+                    URL: 'Video',
+                    Text: 'Видео'
+                }],
+                Type: 'VIDEO',
+                URL: 'https://www.youtube.com/watch?v=YlaWGd1cUms',
+            }, 
+            {
+                Active: Boolean,
+                Title: 'Media',
+                Tags: [{
+                    URL: 'Audio',
+                    Text: 'Аудио'
+                }],
+                Type: 'VIDEO',
+                URL: 'https://soundcloud.com/wavey-hefner/lil-pump-gucci-gang-prod-bighead-gnealz',
+            },
+        ]
+    },
+    Video: {
+        Active: Boolean,
+        Title: "Заголовок секции MEDIA.",
+        Description: 'Это дополнительное описание секции, можно уточнить что именно можно найти в этом разделе.',
+        Tags: [
+            {
+                URL: 'Video',
+                Text: 'Видео'
+            },
+            {
+                URL: 'Audio',
+                Text: 'Аудио'
+            },
+        ],
+        Listing: [
+            {
+                Active: Boolean,
+                Title: 'Media',
+                Tags: [{
+                    URL: 'Video',
+                    Text: 'Видео'
+                }],
+                Type: 'VIDEO',
+                URL: 'https://www.youtube.com/watch?v=YlaWGd1cUms',
+            },
+            {
+                Active: Boolean,
+                Title: 'Media',
+                Tags: [{
+                    URL: 'Video',
+                    Text: 'Видео'
+                }],
+                Type: 'VIDEO',
+                URL: 'https://www.youtube.com/watch?v=YlaWGd1cUms',
+            },
+        ]
+    },
+    Audio: {
+        Active: Boolean,
+        Title: "Заголовок секции MEDIA.",
+        Description: 'Это дополнительное описание секции, можно уточнить что именно можно найти в этом разделе.',
+        Tags: [
+            {
+                URL: 'Video',
+                Text: 'Видео'
+            },
+            {
+                URL: 'Audio',
+                Text: 'Аудио'
+            },
+        ],
+        Listing: [ 
+            {
+                Active: Boolean,
+                Title: 'Media',
+                Tags: [{
+                    URL: 'Audio',
+                    Text: 'Аудио'
+                }],
+                Type: 'VIDEO',
+                URL: 'https://soundcloud.com/wavey-hefner/lil-pump-gucci-gang-prod-bighead-gnealz',
+            },
+        ]
     },
 }

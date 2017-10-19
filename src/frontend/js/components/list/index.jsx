@@ -9,9 +9,9 @@ export default class List extends Component {
     const {listData, type} = this.props;
 
     if(listData){
-      if (type == 'Media')
+      if (type && type === 'Media')
         return (
-          <div className='List'>
+          <div className='List row'>
             {listData.map((listElement, key) => {
               return <MediaListElement key={key} data={listElement}/>
             })}
