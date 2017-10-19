@@ -4,7 +4,7 @@
   "description": "Personal site",
   "main": "server.js",
   "scripts": {
-    "start-server": "nodemon src/backend/server.js",
+    "server": "nodemon src/backend/server.js",
     "init-db": "node src/backend/initialization/InitDB.js",
     "start": "webpack-dev-server",
     "build": "npm run clean && set NODE_ENV=production && webpack",
@@ -76,6 +76,7 @@
     "mongoose": "^4.11.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-player": "^0.25.2",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",

@@ -34,8 +34,6 @@ function notePage(id) {
   return fetch('https://jsonplaceholder.typicode.com/posts/1')
     .then(response => {
       for(var note in NotePage){
-        console.log('NotePage[note]', NotePage[note])
-        console.log('id', id)
         if(NotePage[note].Id == id)
          return NotePage[note];
       }
@@ -51,10 +49,15 @@ function getSidebarContent() {
   });
 }
 
-function sectionPage(type, tag) {
+function sectionPage(type, tag=null) {
   return fetch('https://jsonplaceholder.typicode.com/posts/1')
     .then(response => {
-      return SectionPage[type];
+      var listing = [];
+      if(tag !== null){
+        return SectionPage[tag];
+      }
+      else
+        return SectionPage[type];
     });
 }
 

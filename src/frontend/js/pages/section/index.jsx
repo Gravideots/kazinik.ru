@@ -63,14 +63,13 @@ export default class Section extends Component {
       match
     } = this.props;
 
-
     if (sectionPageAsyncData){
       return (
         <div className='Section container'>
           <Text type='superHeader bold center'>{sectionPageAsyncData.Title}</Text>
           <TagCloud tags={sectionPageAsyncData.Tags} click={this.clickOnTag} selected={sectionPageSelectedTag} />
           <Text type='main'>{sectionPageAsyncData.Description}</Text>
-          <List listData={sectionPageAsyncData.Listing[match.params.key]} type={match.params.key}/>
+          <List listData={sectionPageAsyncData.Listing} type={match.params.key}/>
         </div>
       );
     }
