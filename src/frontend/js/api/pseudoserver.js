@@ -483,26 +483,6 @@ export const SectionPage = {
     }
 }
 
-export const GuestRoom = {
-    GuestAnswerSchema: {
-        Username: String,
-        ShowImage: Boolean,
-        Date: Date,
-        Message: String
-    },
-    GuestQuestionSchema: {
-        ID: Number,
-        Username: String,
-        UserEmail: String,
-        Date: Date,
-        Message: String,
-        Answers: [GuestAnswerSchema]
-    },
-    GuestBookSchema: {
-        Active: Boolean,
-        Title: String,
-        QuestionsCounter: Number,
-        AnswersCounter: Number,
-        Messages: [GuestQuestionSchema]
-    }
+export var GuestRoom = {
+    CaptchaKey: '6Ld7UTUUAAAAAJ43uq19kCKb1XtvlamkFakgXGou'
 }
