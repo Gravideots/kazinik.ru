@@ -449,4 +449,60 @@ export const SectionPage = {
             },
         ]
     },
+    Event: {
+        Active: Boolean,
+        Title: "Заголовок секции Event.",
+        Description: 'Это дополнительное описание секции, можно уточнить что именно можно найти в этом разделе.',
+        Tags: [
+            {
+                URL: 'Video',
+                Text: 'Видео'
+            },
+            {
+                URL: 'Audio',
+                Text: 'Аудио'
+            },
+        ],
+        Listing : MainPage.slideShowEvents
+    },
+    School: {
+        Active: Boolean,
+        Title: "Заголовок секции Event.",
+        Description: 'Это дополнительное описание секции, можно уточнить что именно можно найти в этом разделе.',
+        Tags: [
+            {
+                URL: 'Video',
+                Text: 'Видео'
+            },
+            {
+                URL: 'Audio',
+                Text: 'Аудио'
+            },
+        ],
+        Listing : MainPage.slideShowEvents
+    }
+}
+
+export const GuestRoom = {
+    GuestAnswerSchema: {
+        Username: String,
+        ShowImage: Boolean,
+        Date: Date,
+        Message: String
+    },
+    GuestQuestionSchema: {
+        ID: Number,
+        Username: String,
+        UserEmail: String,
+        Date: Date,
+        Message: String,
+        Answers: [GuestAnswerSchema]
+    },
+    GuestBookSchema: {
+        Active: Boolean,
+        Title: String,
+        QuestionsCounter: Number,
+        AnswersCounter: Number,
+        Messages: [GuestQuestionSchema]
+    }
 }

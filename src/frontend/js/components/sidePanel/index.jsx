@@ -88,7 +88,7 @@ class AdminSidebar extends Component {
         let {adminPageLoaded, show, openFromRight, content, dispatch} = this.props;
         return (
             <div className='Sidebar SidebarAdmin'>
-                < div className='SidebarAdminContent Left '>
+                <div className='SidebarAdminContent Left '>
                     <SidebarAdminContent
                         title='Управление'
                         fixed={true}
