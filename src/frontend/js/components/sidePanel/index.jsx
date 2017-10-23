@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
 import {toggleSidebar, getSidebarContent, getExistingSectios} from './actions.js';
-import {getPossibleSectiosList, selectSectionToEdit} from '../../pages/admin/actions.js';
+import {getPossibleSectiosList, selectSectionToEdit, selectSectionToAddContent} from '../../pages/admin/actions.js';
 
 import FeedbackForm from '../feedbackForm'
 import Button from '../button';
@@ -239,17 +239,22 @@ class SidebarAdminContent extends Component {
         dispatch(selectSectionToEdit(sectionID))
     }
 
+    selectSectionToAddContent(event, sectionID) {
+        event.preventDefault()
+        const {dispatch} = this.props
+        dispatch(selectSectionToAddContent(sectionID))
+    }
+
     render() {
         let {title, content} = this.props;
 
         let ExistingSections
         if (content && content.ExistingSections) {
             ExistingSections = (content.ExistingSections.map(function (element, i) {
-                console.log(element)
                 return <Button
                     text={element.Title}
                     onClick=
-                    {(event) => {this.selectSectionToEdit(event, element._id) }}
+                    { (event) => { this.selectSectionToAddContent(event, element._id) } }
                     key={i}/>
             }, this))
         }

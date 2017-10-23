@@ -30,6 +30,20 @@ export const DELETE_SECTION_START = 'DELETE_SECTION_START'
 export const DELETE_SECTION_ERROR = 'DELETE_SECTION_ERROR'
 export const DELETE_SECTION_SUCCESS = 'DELETE_SECTION_SUCCESS'
 
+export const SELECT_ADD_CONTENT_TO_SECTION_START = 'SELECT_ADD_CONTENT_TO_SECTION_START'
+export const SELECT_ADD_CONTENT_TO_SECTION_ERROR = 'SELECT_ADD_CONTENT_TO_SECTION_ERROR'
+export const SELECT_ADD_CONTENT_TO_SECTION_SUCCESS = 'SELECT_ADD_CONTENT_TO_SECTION_SUCCESS'
+
+export const OPEN_CONTENT_CREATION = 'OPEN_CONTENT_CREATION'
+
+export const ADD_MEDIA_CONTENT_START = 'ADD_MEDIA_CONTENT_START'
+export const ADD_MEDIA_CONTENT_ERROR = 'ADD_MEDIA_CONTENT_ERROR'
+export const ADD_MEDIA_CONTENT_SUCCESS = 'ADD_MEDIA_CONTENT_SUCCESS'
+
+export const DELETE_MEDIA_CONTENT_START = 'DELETE_MEDIA_CONTENT_START'
+export const DELETE_MEDIA_CONTENT_ERROR = 'DELETE_MEDIA_CONTENT_ERROR'
+export const DELETE_MEDIA_CONTENT_SUCCESS = 'DELETE_MEDIA_CONTENT_SUCCESS'
+
 function getAdminPageStart() {
     return {type: GET_ADMIN_PAGE_START}
 }
@@ -213,4 +227,88 @@ function updateSectionError(error) {
 }
 function updateSectionSuccess(data) {
     return {type: UPDATE_SECTION_SUCCESS, data}
+}
+
+export function selectSectionToAddContent(sectionID) {
+    return function (dispatch) {
+        dispatch(selectSectionToAddContentStart())
+        api
+            .getSection(sectionID)
+            .then(data => {
+                data
+                    .json()
+                    .then(data => {
+                        dispatch(selectSectionToAddContentSuccess({ContentManagement: data}))
+                    })
+            })
+            .catch(error => dispatch(selectSectionToAddContentError(error)))
+    }
+}
+function selectSectionToAddContentStart() {
+    return {type: SELECT_ADD_CONTENT_TO_SECTION_START}
+}
+function selectSectionToAddContentError(error) {
+    return {type: SELECT_ADD_CONTENT_TO_SECTION_ERROR, error}
+}
+function selectSectionToAddContentSuccess(data) {
+    return {type: SELECT_ADD_CONTENT_TO_SECTION_SUCCESS, data}
+}
+
+export function openContentCreation(data) {
+    return {type: OPEN_CONTENT_CREATION, data}
+}
+
+export function addMedia(media) {
+    return function (dispatch) {
+        dispatch(addMediaStart())
+        api
+            .addMedia(media)
+            .then(data => {
+                data
+                    .json()
+                    .then(data => {
+                        dispatch(addMediaSuccess({ContentManagement: data}))
+                        dispatch(selectSectionToAddContent(data.data))
+                    })
+            })
+            .catch(error => dispatch(addMediaError(error)))
+    }
+}
+function addMediaStart() {
+    return {type: ADD_MEDIA_CONTENT_START}
+}
+function addMediaSuccess() {
+    return {type: ADD_MEDIA_CONTENT_SUCCESS}
+}
+function addMediaError() {
+    return {type: ADD_MEDIA_CONTENT_ERROR}
+}
+
+export function deleteMedia(sectionID, mediaID) {
+
+    console.log(sectionID, mediaID)
+
+    return function (dispatch) {
+        dispatch(deleteMediaStart())
+        api
+            .deleteMedia(sectionID, mediaID)
+            .then(data => {
+                data
+                    .json()
+                    .then(data => {
+                        dispatch(deleteMediaSuccess({ContentManagement: data}))
+                        dispatch(selectSectionToAddContent(data.data))
+                    })
+            })
+            .catch(error => dispatch(deleteMediaError(error)))
+    }
+}
+function deleteMediaStart() {
+    return {type: DELETE_MEDIA_CONTENT_START}
+}
+function deleteMediaSuccess() {
+    return {type: DELETE_MEDIA_CONTENT_SUCCESS}
+}
+function deleteMediaError() {
+    return {type: DELETE_MEDIA_CONTENT_ERROR}
 }

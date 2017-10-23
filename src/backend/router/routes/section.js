@@ -1,10 +1,6 @@
 const express = require('express')
 const section = require('../../controllers/section')
 
-module.exports = function section(req, res) {
-    res.send({sections: "Sections"})
-}
-
 function getPossibleSectiosList(req, res) {
 
     let PosibleSections = [
