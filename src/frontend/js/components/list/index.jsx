@@ -10,26 +10,30 @@ export default class List extends Component {
   render() {
     const {listData, type} = this.props;
 
-    if(listData && type){
-      switch(type){
-        case 'Media': 
+    if (listData && type) {
+      switch (type) {
+        case 'Media':
           return (
             <div className='List row'>
               {listData.map((listElement, key) => {
-                return <MediaListElement key={key} data={listElement}/>
+                return (
+                  <div className='col l6'>
+                    <MediaListElement key={key} data={listElement}/>
+                  </div>
+                );
               })}
             </div>
-          )
-        break;
-        case 'Notes': 
+          );
+          break;
+        case 'Notes':
           return (
             <div className='List'>
               {listData.map((listElement, key) => {
                 return <NoteListElement key={key} data={listElement}/>
               })}
             </div>
-          )
-        break;
+          );
+          break;
         case 'Special':
         case 'Event':
           return (
@@ -38,21 +42,22 @@ export default class List extends Component {
                 return <EventListElement key={key} data={listElement}/>
               })}
             </div>
-          )
-        break;
+          );
+          break;
         case 'School':
-        return (
-          <div className='List row'>
-            {listData.map((listElement, key) => {
-              return <SchoolListElement key={key} data={listElement}/>
-            })}
-          </div>
-        )
-        break;
-        default: return null;
+          return (
+            <div className='List row'>
+              {listData.map((listElement, key) => {
+                return <SchoolListElement key={key} data={listElement}/>
+              })}
+            </div>
+          );
+          break;
+        default:
+          return null;
       }
+    } else 
+      return null;
     }
-    else return null;
-  }
-
+  
 }

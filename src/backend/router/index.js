@@ -10,6 +10,7 @@ const interview = require('./routes/interview')
 const search = require('./routes/search')
 const section = require('./routes/section')
 const specialEvent = require('./routes/specialEvent')
+const media = require('./routes/media')
 //
 
 router.use(function (req, res, next) {
@@ -51,21 +52,24 @@ router.get('/api/sections/:param', function (req, res) {
     if (req.params.param == 'possible') 
         section.getPossibleSectiosList(req, res)
 })
-
 router.post('/api/section/', function (req, res) {
     section.createNewSection(req, res)
 })
-
 router.get('/api/section/:id', function (req, res) {
     section.getSection(req, res)
 })
-
 router.put('/api/section/:id', function (req, res) {
     section.updateSection(req, res)
 })
-
 router.delete('/api/section/:id', function (req, res) {
     section.deleteSection(req, res)
+})
+
+router.post('/api/media', function (req, res) {
+    media.createMedia(req, res)
+})
+router.delete('/api/media/:sectionID/:mediaID', function (req, res) {
+    media.deleteMedia(req, res)
 })
 
 module.exports = router;

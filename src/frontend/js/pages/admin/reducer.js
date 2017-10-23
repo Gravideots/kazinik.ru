@@ -17,7 +17,13 @@ import {
 
     CREATE_NEW_SECTION_START,
     CREATE_NEW_SECTION_SUCCESS,
-    CREATE_NEW_SECTION_ERROR
+    CREATE_NEW_SECTION_ERROR,
+
+    SELECT_ADD_CONTENT_TO_SECTION_START,
+    SELECT_ADD_CONTENT_TO_SECTION_ERROR,
+    SELECT_ADD_CONTENT_TO_SECTION_SUCCESS,
+
+    OPEN_CONTENT_CREATION
 } from './actions.js';
 
 const initialState = Map({asyncLoading: false, asyncLoaded: false, asyncError: null, asyncData: null});
@@ -69,6 +75,18 @@ const actionsMap = {
     },
     [SELECT_SECTION_TO_EDIT_ERROR]: (state, action) => {
         return state.merge(Map({asyncLoading: false, asyncData: null, asyncError: action.data}));
+    },
+    [SELECT_ADD_CONTENT_TO_SECTION_START]: (state, action) => {
+        return state.merge(Map({asyncLoading: true, asyncData: null, asyncError: null}));
+    },
+    [SELECT_ADD_CONTENT_TO_SECTION_SUCCESS]: (state, action) => {
+        return state.merge(Map({asyncLoading: true, asyncData: action.data, asyncError: null}));
+    },
+    [SELECT_ADD_CONTENT_TO_SECTION_ERROR]: (state, action) => {
+        return state.merge(Map({asyncLoading: false, asyncData: null, asyncError: action.error}));
+    },
+    [OPEN_CONTENT_CREATION]: (state, action) => {
+        return state.merge(Map({asyncLoading: false, asyncData: action.data, asyncError: null}));
     }
 }
 

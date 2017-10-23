@@ -7,6 +7,15 @@
     overflow: auto;
     background: white;
     z-index: 10;
+    .add-content {
+        height: 170px;
+        border-width: 2px;
+        border-style: dashed;
+        border-color: gray;
+    }
+    .edit-button {
+        margin-top: 1.5rem
+    }
 }
 
 .element {
