@@ -10,7 +10,6 @@ import 'isomorphic-fetch';
 import configureStore from 'config/store';
 import App from './app';
 
-
 // Load SCSS
 import '../style/app.scss';
 

@@ -1,7 +1,7 @@
 import promisePolyfill from 'es6-promise';
 import 'isomorphic-fetch';
 
-import { MainPage, EventPage, SchoolPage, NotePage, SectionPage } from './pseudoserver.js';
+import { MainPage, EventPage, SchoolPage, NotePage, SectionPage, GuestRoom } from './pseudoserver.js';
 
 promisePolyfill.polyfill();
 
@@ -39,6 +39,15 @@ function notePage(id) {
       }
     });
 }
+
+function getGuestRoom(param) {
+  return fetch('https://jsonplaceholder.typicode.com/posts/1')
+  .then(response => {
+    console.log(GuestRoom)
+    return GuestRoom;
+  });
+}
+
 function getSidebarContent() {
   return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
     if (response.status !== 200) {
@@ -165,6 +174,7 @@ export default {
   schoolPage,
   notePage,
   sectionPage,
+  getGuestRoom,
   getAdminPage,
   getSidebarContent,
   getSectionsList,

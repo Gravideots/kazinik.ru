@@ -44,9 +44,12 @@ html {
 @import '../js/components/tagCloud/style.scss';
 @import '../js/components/list/style.scss';
 @import '../js/components/sidePanel/style.scss';
+@import '../js/components/textArea/style.scss';
 
 //Pages
 @import '../js/pages/event/style.scss';
 @import '../js/pages/school/style.scss';
-@import '../js/pages/admin/style.scss';@import '../js/pages/school/style.scss';
+@import '../js/pages/admin/style.scss';
+@import '../js/pages/section/style.scss';
 @import '../js/pages/note/style.scss';
+@import '../js/pages/guestRoom/style.scss';
