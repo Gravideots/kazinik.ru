@@ -5,6 +5,7 @@ import NoteListElement from './note';
 import MediaListElement from './media';
 import EventListElement from './event';
 import SchoolListElement from './school';
+import GuestBook from 'components/guestBook';
 
 export default class List extends Component {
   render() {
@@ -49,6 +50,15 @@ export default class List extends Component {
             <div className='List row'>
               {listData.map((listElement, key) => {
                 return <SchoolListElement key={key} data={listElement}/>
+              })}
+            </div>
+          );
+          break;
+        case 'Guest':
+          return (
+            <div className='List row'>
+              {listData.map((listElement, key) => {
+                return <GuestBook key={key} data={listElement}/>
               })}
             </div>
           );
