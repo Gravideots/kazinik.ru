@@ -42,3 +42,11 @@ export function getGuestRoom(type) {
       .catch(error => dispatch(getGuestRoomError(error)));
   };
 }
+
+export function sendMessage(message) {
+  return function (dispatch) {
+    api.sendGuestMessage(message)
+      .then(data => dispatch(getGuestRoomSuccess(data)))
+      .catch(error => dispatch(getGuestRoomError(error)));
+  };
+}

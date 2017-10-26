@@ -5,12 +5,12 @@ import GuestComment from 'components/guestComment';
 
 export default class GuestBook extends Component {
   render() {
-    const {data} = this.props;
+    const {data, action} = this.props;
 
     return(
       <div className='GuestBook'>
-          <GuestPost/>
-          <GuestComment data={data}/>
+          <GuestPost data={data} action={action}/>
+          <GuestComment data={data.Answers}/>
       </div>
     );
   }

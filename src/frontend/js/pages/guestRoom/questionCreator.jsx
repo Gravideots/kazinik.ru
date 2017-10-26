@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 import Recaptcha from 'react-google-recaptcha';
-
-import {getGuestRoom} from './actions.js';
 
 import Text from 'components/text';
 import List from 'components/list';
@@ -13,16 +9,18 @@ import TextArea from 'components/textArea';
 import Modal from 'components/modal';
 
 export default class QuestionCreator extends Component {
-  static propTypes = {
-    dispatch: PropTypes.func
-  }
 
   constructor() {
     super();
+
     this.state = {
       recaptchaInstance: null,
-      captchaCheck: false
+      captchaCheck: false,
+      mail: null,
+      name: null,
+      message: null
     }
+
     // CAPTCHA
     this.verifyCallback = this
       .verifyCallback
@@ -73,18 +71,36 @@ export default class QuestionCreator extends Component {
   }
 
   inputNameHandler(val){
-    console.log('inputNameHandler', val);
+    this.setState({
+      name: val
+    })
   }
 
   inputMailHandler(val){
-    console.log('inputMailHandler', val);
+    this.setState({
+      mail: val
+    })
   }
 
   inputMessageHandler(val){
-    console.log('inputMessageHandler', val);
+    this.setState({
+      message: val
+    })
   }
 
   sendQuestion(){
+    const {
+      mail,
+      name,
+      message
+    } = this.state;
+
+    this.props.action({
+      mail: mail,
+      name: name,
+      message: message,
+      postId: (this.props.postId)? this.props.postId : null
+    });
     console.log('sendQuestion');
     this.resetRecaptcha();
   }
@@ -103,7 +119,6 @@ export default class QuestionCreator extends Component {
   }
 
   render() {
-    var list = [{comments: [{imgUrl: true}, {imgUrl: false}, {imgUrl: false}, {imgUrl: false}]}];
     
     const {
       captchaCheck

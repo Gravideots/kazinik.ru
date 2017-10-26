@@ -21,7 +21,7 @@ export default class Comment extends Component {
                     <Text type='footnote'>Имя:</Text>
                   </div>
                   <div className='col l10'>
-                    <Text type='footnote bold'>Алиса</Text>
+                    <Text type='footnote bold'>{data.Username}</Text>
                   </div>
                 </div>
                 <div className='col l6'>
@@ -29,12 +29,11 @@ export default class Comment extends Component {
                     <Text type='footnote'>Дата:</Text>
                   </div>
                   <div className='col l6'>
-                    <Text type='footnote bold'>27,06,1992</Text>
+                    <Text type='footnote bold'>{data.Date.toLocaleString('ru')}</Text>
                   </div>
                 </div>
               </div>
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
+              <p>{data.Message}</p>
             </div>
           </div>
         </div>

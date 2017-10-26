@@ -173,6 +173,21 @@ function deleteMedia(sectionID, mediaID) {
   })
 }
 
+function sendGuestMessage(message){
+  return fetch('/api/guest/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(message)
+  }).then(response => {
+    if (response.status !== 200) {
+      return response.status;
+    }
+    return response;
+  })
+}
+
 export default {
   testAsync,
   mainPage,
@@ -190,6 +205,8 @@ export default {
   deleteSection,
   updateSection,
 
+  sendGuestMessage,
+  
   addMedia,
   deleteMedia
 };

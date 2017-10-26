@@ -19,18 +19,18 @@ export default class GuestComment extends Component {
   render() {
     const {data} = this.props;
 
-    if(data.comments)
+    if(data)
       return(
         <div className='GuestComment'>
           <ul className="collapsible" data-collapsible="accordion">
             <li>
-              <div className="collapsible-header"><i className="material-icons">chat_bubble_outline</i>Коментарии {data.comments.length}</div>
+              <div className="collapsible-header"><i className="material-icons">chat_bubble_outline</i>Коментарии {data.length}</div>
               <div className="collapsible-body">
-                {data.comments.map((coment, i)=> {
-                    if(coment.imgUrl)
-                      return <AuthorComment key={i}/>
+                {data.map((comment, i)=> {
+                    if(comment.ShowImage)
+                      return <AuthorComment key={i} data={comment}/>
                     else
-                      return <Comment key={i}/>
+                      return <Comment key={i} data={comment}/>
                   })
                 }
               </div>

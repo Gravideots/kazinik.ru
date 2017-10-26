@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const GuestAnswerSchema = mongoose.Schema({
+    ID: Number,
     Username: String,
     ShowImage: Boolean,
     Date: Date,
@@ -22,6 +23,7 @@ const GuestBookSchema = mongoose.Schema({
     Title: String,
     QuestionsCounter: Number,
     AnswersCounter: Number,
+    CaptchaKey: String,
     Messages: [GuestQuestionSchema]
 })
 

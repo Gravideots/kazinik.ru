@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {getGuestRoom} from './actions.js';
+import {getGuestRoom, sendMessage} from './actions.js';
 
 import QuestionCreator from './questionCreator';
 
@@ -21,7 +21,6 @@ import Modal from 'components/modal';
   guestRoomAsyncLoading: state
     .guestRoom
     .get('guestRoomAsyncLoading'),
-
 }))
 export default class GuestRoom extends Component {
   static propTypes = {
@@ -34,18 +33,23 @@ export default class GuestRoom extends Component {
   constructor() {
     super();
     this.state = {
-      modal: null
+      modal: null,
+      postId: null
     }
 
     //Modal
     this.openModal = this
       .openModal
       .bind(this);
+
+    this.sendMessage = this
+      .sendMessage
+      .bind(this);
   }
 
 
 
-  openModal(){
+  openModal(e, id){
     const {
       modal
     } = this.state;
@@ -53,8 +57,18 @@ export default class GuestRoom extends Component {
     if(modal){
       modal.open();
     }
+
+    if(id)
+      this.setState({
+        postId: id
+      });
   }
 
+  sendMessage(messageData){
+    const {dispatch} = this.props;
+    
+    dispatch(sendMessage(messageData));
+  }
 
   componentWillMount() {
     const {dispatch} = this.props;
@@ -73,16 +87,16 @@ export default class GuestRoom extends Component {
     if (guestRoomAsyncData){
       return (
         <div className='GuestRoom container'>
-          <Text type='superHeader center'>Гостевая</Text>
+          <Text type='superHeader center'>{guestRoomAsyncData.Title}</Text>
           <Button text='Open Modal' onClick={this.openModal}>
             <p className="waves-effect waves-light btn black">Написать сообщение</p>
           </Button>
-          <List listData={list} type='Guest'/>
+          <List listData={guestRoomAsyncData.Messages} type='Guest' action={this.openModal}/>
           <Modal
             headerText=''
             ref={e => this.state.modal = e}
           >
-            <QuestionCreator sitekey={guestRoomAsyncData.CaptchaKey}/>
+            <QuestionCreator action={this.sendMessage} sitekey={guestRoomAsyncData.CaptchaKey} postId={this.state.postId}/>
           </Modal>
         </div>
       );

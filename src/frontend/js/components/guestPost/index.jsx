@@ -7,6 +7,24 @@ import Image from 'components/image';
 import Button from 'components/button';
 
 export default class GuestPost extends Component {
+  constructor(){
+    super()
+
+    this.requestModal = 
+      this.requestModal
+      .bind(this);
+  }
+
+  requestModal(e){
+    const {
+      data,
+      action
+    } = this.props;
+
+    if(action && data)
+      action(e, data.ID)
+  }
+
   render() {
     const {data} = this.props;
 
@@ -22,7 +40,7 @@ export default class GuestPost extends Component {
                       <Text type='footnote'>Сообщение №</Text>
                     </div>
                     <div className='col s7'>
-                      <Text type='footnote bold'>6546546</Text>
+                      <Text type='footnote bold'>{data.ID}</Text>
                     </div>
                   </div>
                   <div className='col s4'>
@@ -30,7 +48,7 @@ export default class GuestPost extends Component {
                       <Text type='footnote'>Имя:</Text>
                     </div>
                     <div className='col s9'>
-                      <Text type='footnote bold'>Алиса</Text>
+                      <Text type='footnote bold'>{data.Username}</Text>
                     </div>
                   </div>
                   <div className='col s4'>
@@ -38,15 +56,14 @@ export default class GuestPost extends Component {
                       <Text type='footnote'>Дата:</Text>
                     </div>
                     <div className='col s9'>
-                      <Text type='footnote bold'>27,06,1992</Text>
+                      <Text type='footnote bold'>{data.Date.toLocaleString('ru')}</Text>
                     </div>
                   </div>
                 </div>
-                <p>I am a very simple card. I am good at containing small bits of information.
-                I am convenient because I require little markup to use effectively.</p>
+                <p>{data.Message}</p>
               </div>
               <div className="card-action">
-                  <Button text='Ответить'/>
+                  <Button text='Ответить' onClick={this.requestModal}/>
               </div>
             </div>
           </div>
