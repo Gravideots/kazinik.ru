@@ -72,4 +72,11 @@ router.delete('/api/media/:sectionID/:mediaID', function (req, res) {
     media.deleteMedia(req, res)
 })
 
+router.get('/api/guest', function (req, res) {
+    guest.createMedia(req, res)
+})
+router.post('/api/guest', function (req, res) {
+    guest.createMessage(req, res)
+})
+
 module.exports = router;

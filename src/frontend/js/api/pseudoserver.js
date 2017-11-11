@@ -483,6 +483,105 @@ export const SectionPage = {
     }
 }
 
+
+
+const Names = [
+    'Виссарион',
+    'Виталий',
+    'Виталия',
+    'Витаутас',
+    'Витольд',
+    'Владимир',
+    'Владислав',
+    'Владислава',
+    'Владлен',
+    'Владлена',
+    'Влас',
+    'Володар',
+    'Вольдемар',
+    'Всеволод',
+    'Вячеслав',
+    'Венера',
+    'Вениамин',
+    'Вера',
+    'Вероника',
+    'Веселина',
+    'Весна',
+    'Веста',
+    'Вета',
+    'Вида',
+    'Викентий',
+    'Виктор',
+    'Виктория',
+    'Вилен',
+    'Вилли',
+    'Вилора',
+    'Вильгельм',
+    'Виолетта',
+    'Виргиния',
+]
+
 export var GuestRoom = {
-    CaptchaKey: '6Ld7UTUUAAAAAJ43uq19kCKb1XtvlamkFakgXGou'
+    CaptchaKey: '6Ld7UTUUAAAAAJ43uq19kCKb1XtvlamkFakgXGou',
+    Active: true,
+    Title: 'Гостевая',
+    QuestionsCounter: 1,
+    AnswersCounter: 5,
+    Messages: [
+        {
+            ID: Math.floor(Math.random() * 3000) + 20,
+            Username: Names[Math.floor(Math.random() * Names.length - 1)],
+            UserEmail: 'String@saam.ru',
+            Date: new Date(),
+            Message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt erat cursus viverra ultrices. Aliquam augue augue, mollis ut pretium id, aliquet a risus. Quisque eleifend aliquet arcu. Etiam ac viverra diam, id scelerisque ipsum. Maecenas et pharetra felis.',
+            Answers: [
+                {
+                    Username: Names[Math.floor(Math.random() * Names.length - 1)],
+                    ShowImage: false,
+                    Date: new Date(),
+                    Message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt erat cursus viverra ultrices. Aliquam augue augue, mollis ut pretium id, aliquet a risus.'
+                },
+                {
+                    Username: Names[Math.floor(Math.random() * Names.length - 1)],
+                    ShowImage: false,
+                    Date: new Date(),
+                    Message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt erat cursus viverra ultrices. Aliquam augue augue, mollis ut pretium id, aliquet a risus.'
+                },
+                {
+                    Username: Names[Math.floor(Math.random() * Names.length - 1)],
+                    ShowImage: false,
+                    Date: new Date(),
+                    Message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt erat cursus viverra ultrices. Aliquam augue augue, mollis ut pretium id, aliquet a risus.'
+                }
+            ]
+        },
+        {
+            ID: Math.floor(Math.random() * 3000) + 20,
+            Username: Names[Math.floor(Math.random() * Names.length - 1)],
+            UserEmail: 'String@saam.ru',
+            Date: new Date(),
+            Message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt erat cursus viverra ultrices. Aliquam augue augue, mollis ut pretium id, aliquet a risus. Quisque eleifend aliquet arcu. Etiam ac viverra diam, id scelerisque ipsum. Maecenas et pharetra felis.',
+            Answers: [
+                {
+                    Username: Names[Math.floor(Math.random() * Names.length - 1)],
+                    ShowImage: true,
+                    imgUrl: 'https://avatars.mds.yandex.net/get-afishanew/23222/968bfc7595947f59cbbe132035e09ced/orig',
+                    Date: new Date(),
+                    Message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt erat cursus viverra ultrices. Aliquam augue augue, mollis ut pretium id, aliquet a risus.'
+                },
+                {
+                    Username: Names[Math.floor(Math.random() * Names.length - 1)],
+                    ShowImage: false,
+                    Date: new Date(),
+                    Message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt erat cursus viverra ultrices. Aliquam augue augue, mollis ut pretium id, aliquet a risus.'
+                },
+                {
+                    Username: Names[Math.floor(Math.random() * Names.length - 1)],
+                    ShowImage: false,
+                    Date: new Date(),
+                    Message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tincidunt erat cursus viverra ultrices. Aliquam augue augue, mollis ut pretium id, aliquet a risus.'
+                }
+            ]
+        }
+    ]
 }

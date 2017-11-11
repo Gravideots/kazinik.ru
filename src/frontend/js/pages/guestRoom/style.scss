@@ -1,6 +1,17 @@
 .GuestRoom {
-    .questionCreator{
-        background-color: #e9e8d5;
+    .QuestionCreator{
+        background-color: #FFFFFF;
         padding: 0.5rem;
+    }
+    >.Button{
+        position: fixed;
+        max-width: 9rem;
+        top: 5rem;
+        left: 0;
+        z-index: 999999;
+
+        p{
+            height: auto;
+        }
     }
 }

@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import Recaptcha from 'react-google-recaptcha';
 
-import {getGuestRoom} from './actions.js';
+import {getGuestRoom, sendMessage} from './actions.js';
+
+import QuestionCreator from './questionCreator';
 
 import Text from 'components/text';
 import List from 'components/list';
 import Button from 'components/button';
-import Input from 'components/input';
-import TextArea from 'components/textArea';
-
+import Modal from 'components/modal';
 
 @connect(state => ({
   guestRoomAsyncData: state
@@ -22,7 +21,6 @@ import TextArea from 'components/textArea';
   guestRoomAsyncLoading: state
     .guestRoom
     .get('guestRoomAsyncLoading'),
-
 }))
 export default class GuestRoom extends Component {
   static propTypes = {
@@ -35,73 +33,41 @@ export default class GuestRoom extends Component {
   constructor() {
     super();
     this.state = {
-      recaptchaInstance: null,
-      captchaCheck: false
+      modal: null,
+      postId: null
     }
-    // CAPTCHA
-    this.verifyCallback = this
-      .verifyCallback
-      .bind(this);
-    this.expiredCallback = this
-      .expiredCallback
-      .bind(this);
-    this.resetRecaptcha = this
-      .resetRecaptcha
+
+    //Modal
+    this.openModal = this
+      .openModal
       .bind(this);
 
-    // Question
-    this.inputNameHandler = this
-      .inputNameHandler
-      .bind(this);
-    this.inputMailHandler = this
-      .inputMailHandler
-      .bind(this);
-    this.inputMessageHandler = this
-      .inputMessageHandler
-      .bind(this);
-    this.sendQuestion = this
-      .sendQuestion
+    this.sendMessage = this
+      .sendMessage
       .bind(this);
   }
 
-  verifyCallback(response){
-    console.log('NOT A ROBOT', response);
-    this.setState({
-      captchaCheck: true
-    })
+
+
+  openModal(e, id){
+    const {
+      modal
+    } = this.state;
+
+    if(modal){
+      modal.open();
+    }
+
+    if(id)
+      this.setState({
+        postId: id
+      });
   }
 
-  expiredCallback(){
-    console.log('Recaptcha expired');
-    this.setState({
-      captchaCheck: false
-    })
-  }
-
-  // handle reset
-  resetRecaptcha(){
-    //this.state.recaptchaInstance.reset();
-    this.setState({
-      captchaCheck: false
-    })
-    this.removeCaptchaGarbage();
-  }
-
-  inputNameHandler(val){
-    console.log('inputNameHandler', val);
-  }
-
-  inputMailHandler(val){
-    console.log('inputMailHandler', val);
-  }
-
-  inputMessageHandler(val){
-    console.log('inputMessageHandler', val);
-  }
-
-  sendQuestion(){
-    console.log('sendQuestion');
-    this.resetRecaptcha();
+  sendMessage(messageData){
+    const {dispatch} = this.props;
+    
+    dispatch(sendMessage(messageData));
   }
 
   componentWillMount() {
@@ -110,82 +76,28 @@ export default class GuestRoom extends Component {
     dispatch(getGuestRoom());
   }
 
-  componentWillUnmount() {
-    this.removeCaptchaGarbage();
-  }
-
-  removeCaptchaGarbage(){
-    var child = document.querySelector('.g-recaptcha-bubble-arrow').parentNode;
-    var parent = document.querySelector('.g-recaptcha-bubble-arrow').parentNode.parentNode;
-    parent.removeChild(child);
-  }
-
   render() {
+    var list = [{comments: [{imgUrl: true}, {imgUrl: false}, {imgUrl: false}, {imgUrl: false}]},{},{},{},{}];
     const {
       guestRoomAsyncData,
       guestRoomAsyncError,
       guestRoomAsyncLoading,
     } = this.props;
 
-    const {
-      recaptchaInstance,
-      captchaCheck
-    } = this.state;
-
-    const {
-      verifyCallback,
-      expiredCallback,
-      resetRecaptcha,
-      inputNameHandler,
-      inputMailHandler,
-      inputMessageHandler,
-      sendQuestion
-    } = this;
-
     if (guestRoomAsyncData){
       return (
         <div className='GuestRoom container'>
-          <Text type='superHeader center'>Гостевая</Text>
-
-          <div className='questionCreator'>
-            <div className='topPart row'>
-              <div className='col l6'>
-                <div className='col l3'>
-                  <Text>ФИО:</Text>
-                </div>
-                <div className='col l8'>
-                  <Input placeholder='Ваше имя' type='text' onChange={inputNameHandler}/>
-                </div>
-              </div>
-              <div className='col l6'>
-                <div className='col l3'>
-                  <Text>E-mail:</Text>
-                </div>
-                <div className='col l8'>
-                  <Input placeholder='Ваш E-mail' type='text' onChange={inputMailHandler}/>
-                </div>
-              </div>
-            </div>
-            <div className='midlePart row'>
-              <TextArea className='col s12' onChange={inputMessageHandler}/>
-            </div>
-            <div className='bottomPart row'>
-              {(!captchaCheck ?
-                <div className='col offset-s4 s3'>
-                  <Recaptcha
-                    ref={e => this.state.recaptchaInstance = e}
-                    sitekey={guestRoomAsyncData.CaptchaKey}
-                    onChange={verifyCallback}
-                    onExpired={expiredCallback}
-                  />
-                </div>
-                :
-                <div className='col l12 center'>
-                  <Button text='ОТПРАВИТЬ' onClick={sendQuestion}/>
-                </div>
-               )}
-            </div>
-          </div>
+          <Text type='superHeader center'>{guestRoomAsyncData.Title}</Text>
+          <Button text='Open Modal' onClick={this.openModal}>
+            <p className="waves-effect waves-light btn black">Написать сообщение</p>
+          </Button>
+          <List listData={guestRoomAsyncData.Messages} type='Guest' action={this.openModal}/>
+          <Modal
+            headerText=''
+            ref={e => this.state.modal = e}
+          >
+            <QuestionCreator action={this.sendMessage} sitekey={guestRoomAsyncData.CaptchaKey} postId={this.state.postId}/>
+          </Modal>
         </div>
       );
     }

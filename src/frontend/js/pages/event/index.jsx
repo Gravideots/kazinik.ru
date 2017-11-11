@@ -54,7 +54,7 @@ export default class Event extends Component {
         window.open(url)
     }
     openDropDown() {
-        $('#modal1').modal('open');
+        $('#salersModal').modal('open');
     }
     render() {
         const {eventPageAsyncData, eventPageAsyncError, eventPageAsyncLoading} = this.props;
@@ -112,9 +112,9 @@ export default class Event extends Component {
                                 this.openDropDown()
                             }}
                                 text='Купить билет'
-                                data='modal1'
+                                data='salersModal'
                                 className='modal-trigger'/>
-                            <div id="modal1" className="modal bottom-sheet">
+                            <div id="salersModal" className="modal bottom-sheet">
                                 <div className="modal-header">
                                     <Text type='header center'>
                                         Выберете продавца
