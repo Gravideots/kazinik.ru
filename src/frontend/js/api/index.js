@@ -79,7 +79,7 @@ function getAdminPage() {
 }
 
 function getSectionsList(param) {
-  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/sections/' + param, {mode: 'no-cors',}).then(response => {
+  return fetch( apiPrefix + '/api/sections/' + param, {mode: 'no-cors',}).then(response => {
     if (response.status !== 200) {
       return response.status;
     }
@@ -87,7 +87,7 @@ function getSectionsList(param) {
   })
 }
 function createNewSection(sectionData) {
-  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/section/', {
+  return fetch( apiPrefix + '/api/section/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -102,7 +102,7 @@ function createNewSection(sectionData) {
   })
 }
 function getSection(sectionID) {
-  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/section/' + sectionID, {
+  return fetch( apiPrefix + '/api/section/' + sectionID, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -116,7 +116,7 @@ function getSection(sectionID) {
   })
 }
 function deleteSection(sectionID) {
-  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/section/' + sectionID, {
+  return fetch( apiPrefix + '/api/section/' + sectionID, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -131,7 +131,7 @@ function deleteSection(sectionID) {
 }
 
 function updateSection(sectionData) {
-  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/section/' + sectionData.id, {
+  return fetch( apiPrefix + '/api/section/' + sectionData.id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -147,7 +147,7 @@ function updateSection(sectionData) {
 }
 
 function addMedia(mediaData) {
-  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/media/', {
+  return fetch( apiPrefix + '/api/media/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -163,7 +163,7 @@ function addMedia(mediaData) {
 }
 
 function deleteMedia(sectionID, mediaID) {
-  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/media/' + sectionID + '/' + mediaID, {
+  return fetch( apiPrefix + '/api/media/' + sectionID + '/' + mediaID, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -178,7 +178,7 @@ function deleteMedia(sectionID, mediaID) {
 }
 
 function sendGuestMessage(message){
-  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/guest/', {
+  return fetch( apiPrefix + '/api/guest/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
