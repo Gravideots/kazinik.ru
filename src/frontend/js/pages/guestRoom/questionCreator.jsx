@@ -102,7 +102,7 @@ export default class QuestionCreator extends Component {
       postId: (this.props.postId)? this.props.postId : null
     });
     console.log('sendQuestion');
-    this.resetRecaptcha();
+    //this.resetRecaptcha();
   }
 
   componentWillUnmount() {
@@ -160,12 +160,17 @@ export default class QuestionCreator extends Component {
             </div>
           </div>
           <div className='col s6'>
-            <Recaptcha
-              ref={e => this.state.recaptchaInstance = e}
-              sitekey={sitekey}
-              onChange={verifyCallback}
-              onExpired={expiredCallback}
-            />
+            {
+              sitekey?
+              <Recaptcha
+                ref={e => this.state.recaptchaInstance = e}
+                sitekey={sitekey}
+                onChange={verifyCallback}
+                onExpired={expiredCallback}
+              />
+              :
+              null
+            }
           </div>
           <div className='col s12'>
             <Button text='ОТПРАВИТЬ' onClick={sendQuestion}/>

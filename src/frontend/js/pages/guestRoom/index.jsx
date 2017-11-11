@@ -77,7 +77,6 @@ export default class GuestRoom extends Component {
   }
 
   render() {
-    var list = [{comments: [{imgUrl: true}, {imgUrl: false}, {imgUrl: false}, {imgUrl: false}]},{},{},{},{}];
     const {
       guestRoomAsyncData,
       guestRoomAsyncError,

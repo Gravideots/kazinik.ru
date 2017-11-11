@@ -43,13 +43,6 @@ function notePage(id) {
     });
 }
 
-function getGuestRoom(param) {
-  return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
-    console.log(GuestRoom)
-    return GuestRoom;
-  });
-}
-
 function getSidebarContent() {
   return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
     if (response.status !== 200) {
@@ -72,7 +65,7 @@ function sectionPage(type, tag = null) {
 }
 
 function getAdminPage() {
-  return fetch('/api/sections/possible').then(response => {
+  return fetch('https://mighty-ravine-31476.herokuapp.com/api/sections/possible').then(response => {
     if (response.status !== 200) {
       console.log('Looks like there was a problem. Status Code: ' + response.status);
       return response.status;
@@ -82,7 +75,7 @@ function getAdminPage() {
 }
 
 function getSectionsList(param) {
-  return fetch('/api/sections/' + param).then(response => {
+  return fetch('https://mighty-ravine-31476.herokuapp.com/api/sections/' + param).then(response => {
     if (response.status !== 200) {
       return response.status;
     }
@@ -90,7 +83,7 @@ function getSectionsList(param) {
   })
 }
 function createNewSection(sectionData) {
-  return fetch('/api/section/', {
+  return fetch('https://mighty-ravine-31476.herokuapp.com/api/section/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -104,7 +97,7 @@ function createNewSection(sectionData) {
   })
 }
 function getSection(sectionID) {
-  return fetch('/api/section/' + sectionID, {
+  return fetch('https://mighty-ravine-31476.herokuapp.com/api/section/' + sectionID, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -117,7 +110,7 @@ function getSection(sectionID) {
   })
 }
 function deleteSection(sectionID) {
-  return fetch('/api/section/' + sectionID, {
+  return fetch('https://mighty-ravine-31476.herokuapp.com/api/section/' + sectionID, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -129,8 +122,9 @@ function deleteSection(sectionID) {
     return response;
   })
 }
+
 function updateSection(sectionData) {
-  return fetch('/api/section/' + sectionData.id, {
+  return fetch('https://mighty-ravine-31476.herokuapp.com/api/section/' + sectionData.id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -145,7 +139,7 @@ function updateSection(sectionData) {
 }
 
 function addMedia(mediaData) {
-  return fetch('/api/media/', {
+  return fetch('https://mighty-ravine-31476.herokuapp.com/api/media/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -160,7 +154,7 @@ function addMedia(mediaData) {
 }
 
 function deleteMedia(sectionID, mediaID) {
-  return fetch('/api/media/' + sectionID + '/' + mediaID, {
+  return fetch('https://mighty-ravine-31476.herokuapp.com/api/media/' + sectionID + '/' + mediaID, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -174,17 +168,30 @@ function deleteMedia(sectionID, mediaID) {
 }
 
 function sendGuestMessage(message){
-  return fetch('/api/guest/', {
+  return fetch('https://mighty-ravine-31476.herokuapp.com/api/guest/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(message)
-  }).then(response => {
-    if (response.status !== 200) {
-      return response.status;
-    }
-    return response;
+  }).then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
+
+
+function getGuestRoom() {
+  return fetch('https://mighty-ravine-31476.herokuapp.com/api/guest/')
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
   })
 }
 
@@ -206,7 +213,7 @@ export default {
   updateSection,
 
   sendGuestMessage,
-  
+
   addMedia,
   deleteMedia
 };

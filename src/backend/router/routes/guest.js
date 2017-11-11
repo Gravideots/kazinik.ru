@@ -1,28 +1,42 @@
 const express = require('express')
-const guest = require('../../controllers/media')
+const guest = require('../../controllers/guest')
 
 function createMessage(req, res) {
     
     let message = req.body
 
-    console.log('messaage', message);
-        // guest.createNewPost(, function (err, media) {
-        //     if (err)
-        //         res.status(500).send('Что то пошло не так')
-        //     else
-        //         res.send({data: media._id})
-        // })
+    if(message.postId)
+        guest.createAnswer(message, function (err, guest) {
+            if (err)
+                res.status(500).send('Что то пошло не так')
+            else
+                res.send(guest)
+        })
+    else
+        guest.createQuestion(message, function (err, guest) {
+            if (err)
+                res.status(500).send('Что то пошло не так')
+            else
+                res.send(guest)
+        })
 }
-    
+
 function deleteMessage(req, res) {
 
 }
 
 function getGuestPage(req, res) {
-
+    guest.getPage((err, pageData)=>{
+        if (err) 
+            res.status(500).send('Что то пошло не так')
+        else {
+            res.send(pageData)
+        }
+    })
 }
 
 module.exports = {
     createMessage,
-    deleteMessage
+    deleteMessage,
+    getGuestPage
 }
