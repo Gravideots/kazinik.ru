@@ -33,11 +33,9 @@ function getGuestRoomTag(data) {
   };
 }
 
-export function getGuestRoom(type) {
+export function getGuestRoom() {
   return function (dispatch) {
-    dispatch(getGuestRoomStart());
-
-    api.getGuestRoom(type)
+    api.getGuestRoom()
       .then(data => dispatch(getGuestRoomSuccess(data)))
       .catch(error => dispatch(getGuestRoomError(error)));
   };

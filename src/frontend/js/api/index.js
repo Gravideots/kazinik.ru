@@ -12,8 +12,9 @@ import {
 
 promisePolyfill.polyfill();
 
+var API = 'local';
 
-let apiPrefix = (process.env.API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
+let apiPrefix = (API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
 
 function testAsync() {
   return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => response.json());
@@ -44,13 +45,6 @@ function notePage(id) {
         return NotePage[note];
       }
     });
-}
-
-function getGuestRoom(param) {
-  return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
-    console.log(GuestRoom)
-    return GuestRoom;
-  });
 }
 
 function getSidebarContent() {
@@ -135,6 +129,7 @@ function deleteSection(sectionID) {
     return response;
   })
 }
+
 function updateSection(sectionData) {
   return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/section/' + sectionData.id, {
     method: 'PUT',
@@ -190,11 +185,24 @@ function sendGuestMessage(message){
     },
     mode: 'no-cors',
     body: JSON.stringify(message)
-  }).then(response => {
-    if (response.status !== 200) {
-      return response.status;
-    }
-    return response;
+  }).then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
+
+
+function getGuestRoom() {
+  return fetch( apiPrefix + '/api/guest/',{mode: 'no-cors',})
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
   })
 }
 
@@ -216,7 +224,7 @@ export default {
   updateSection,
 
   sendGuestMessage,
-  
+
   addMedia,
   deleteMedia
 };

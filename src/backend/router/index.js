@@ -30,9 +30,9 @@ router.get('/event', function (req, res) {
     event(req, res)
 })
 
-router.get('/guest', function (req, res) {
-    guest(req, res)
-})
+// router.get('/guest', function (req, res) {
+//     guest(req, res)
+// })
 
 router.get('/interview', function (req, res) {
     interview(req, res)
@@ -73,8 +73,9 @@ router.delete('/api/media/:sectionID/:mediaID', function (req, res) {
 })
 
 router.get('/api/guest', function (req, res) {
-    guest.createMedia(req, res)
+    guest.getGuestPage(req, res)
 })
+
 router.post('/api/guest', function (req, res) {
     guest.createMessage(req, res)
 })

@@ -13,7 +13,6 @@ const createGuestSection = function (Title, done) {
             if (guestSection == null) {
                 let newGuestSection = new guestBookSchema()
                 newGuestSection.Title = Title
-                newGuestSection.Messages = new Array()
 
                 newGuestSection.save(function (err) {
                     if (err)
@@ -27,7 +26,7 @@ const createGuestSection = function (Title, done) {
     })
 }
 
-const getGuestSection = function (done) {
+const getPage = function (done) {
     guestBookSchema.findOne(function (err, guestSection) {
         if (err)
             throw err
@@ -37,35 +36,40 @@ const getGuestSection = function (done) {
     })
 }
 
-const createQuestion = function (id, question, done) {
+const createQuestion = function (question, done) {
 
     let newQuestion = mongoose.model("Question", GuestSchema.GuestQuestionSchema)
     let questionSchema = new newQuestion()
 
-    questionSchema.Username = "USER"
-    questionSchema.Message = "TEST MESSAGE"
-    questionSchema.Answers = new Array()
+    questionSchema.Username = question.name;
+    questionSchema.UserEmail = question.mail;
+    questionSchema.Message = question.message;
+    questionSchema.Date = new Date();
 
-    guestBookSchema.findOneAndUpdate({ _id: id }, { $push: { "Messages": questionSchema } }, function (err, section) {
-        if (err)
-            throw err
-        else
-            return done(null, section)
+    guestBookSchema.findOne({}, function (err, res) {
+        questionSchema.ID = res.Messages.length + 1;
+        res.Messages.push(questionSchema)
+        res.save()
+        return done(null, res)
     })
 }
 
-const createAnswer = function (id, questionID, answer, done) {
+const createAnswer = function (answer, done) {
     let newAnswer = mongoose.model("Answer", GuestSchema.GuestAnswerSchema)
     let answerSchema = new newAnswer()
 
-    answerSchema.Username = "Answer USERNAME"
+    answerSchema.Username = answer.name;
+    answerSchema.UserEmail = answer.mail;
+    answerSchema.Message = answer.message;
+    answerSchema.Date = new Date();
+    answerSchema.ShowImage = false;
 
-    guestBookSchema.findOne({ _id: id }, function (err, res) {
-        var quest = res.Messages.id(questionID)
+    guestBookSchema.findOne({}, function (err, res) {
+        var quest = res.Messages[answer.postId -1]
         quest.Answers.push(answerSchema)
         res.save()
         return done(null, res)
     })
 }
 
-module.exports = { createGuestSection, getGuestSection, createQuestion, createAnswer }
+module.exports = { createGuestSection, getPage, createQuestion, createAnswer }
