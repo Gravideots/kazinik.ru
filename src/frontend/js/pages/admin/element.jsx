@@ -70,7 +70,7 @@ export default class Element extends Component {
         }
         return (
             <div className='element col s12 m6'>
-                <div className='card blue-grey darken-1'>
+                <div className='card black darken-1'>
                     <div className='card-content white-text'>
                         <span className='card-title'>
                             {element.name}

@@ -1,32 +1,36 @@
 const Section = require('../schemas/section')
 const MediaSchema = require('../schemas/media')
 const mongoose = require('mongoose');
+const {transliterate, slugify} = require('transliteration')
 
-const createNewMedia = function (sectionID, mediaURL, Title, Tags, done) {
+const createNewMedia = function (sectionID, mediaURL, Tags, done) {
 
     let mediaSchema = mongoose.model('Media', MediaSchema);
     let newMedia = new mediaSchema()
 
-    newMedia.Title = Title || "DEFAULT TITLE"
-
-    newMedia.Tags = [
-        {
-            URL: 'MEDIA-1',
-            Text: 'MEDIA-TAG-1'
-        }, {
-            URL: 'MEDIA-2',
-            Text: 'MEDIA-TAG-2'
-        }
-    ]
+    let arrayOfTags = Tags
+        .replace(/ /g, '')
+        .split(',')
+        .map(function (tag) {
+            return {URL: transliterate(tag), Text: tag}
+        });
+    
     newMedia.URL = mediaURL
-    newMedia.Type = 'VIDEO'
+    newMedia.Tags = arrayOfTags
+   
 
     Section.findOneAndUpdate({
         _id: sectionID
     }, {
         $push: {
             "Listing.Media.Data": newMedia
-        }
+        },
+        $addToSet: {
+            Tags: {$each: newMedia.Tags}
+        },
+        upsert: true
+    }, {
+        new: true
     }, function (err, section) {
         if (err) 
             throw err
