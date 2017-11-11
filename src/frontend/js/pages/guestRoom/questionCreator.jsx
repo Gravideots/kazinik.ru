@@ -8,6 +8,8 @@ import Input from 'components/input';
 import TextArea from 'components/textArea';
 import Modal from 'components/modal';
 
+import validator from 'email-validator';
+
 export default class QuestionCreator extends Component {
 
   constructor() {
@@ -15,6 +17,9 @@ export default class QuestionCreator extends Component {
 
     this.state = {
       recaptchaInstance: null,
+      nameInputInstance: null,
+      mailInputInstance: null,
+      textAreaInstance: null,
       captchaCheck: false,
       mail: null,
       name: null,
@@ -61,22 +66,20 @@ export default class QuestionCreator extends Component {
     })
   }
 
-  // handle reset
-  resetRecaptcha(){
-    //this.state.recaptchaInstance.reset();
-    this.setState({
-      captchaCheck: false
-    })
-    this.removeCaptchaGarbage();
-  }
 
-  inputNameHandler(val){
+  inputNameHandler(val, status){
+    
+    console.log('Name value', val);
+    console.log('Name validation', status);
+
     this.setState({
       name: val
     })
   }
 
-  inputMailHandler(val){
+  inputMailHandler(val, status){
+    console.log('Email value', val);
+    console.log('Email validation', status);
     this.setState({
       mail: val
     })
@@ -89,20 +92,47 @@ export default class QuestionCreator extends Component {
   }
 
   sendQuestion(){
+
     const {
       mail,
       name,
       message
     } = this.state;
 
+    if(mail)
     this.props.action({
       mail: mail,
       name: name,
       message: message,
       postId: (this.props.postId)? this.props.postId : null
     });
-    console.log('sendQuestion');
-    //this.resetRecaptcha();
+
+    this.resetRecaptcha();
+  }
+  
+  // handle reset
+  resetRecaptcha(){
+
+    const {
+      recaptchaInstance,
+      nameInputInstance,
+      mailInputInstance,
+      textAreaInstance,
+    } = this.state;
+
+    recaptchaInstance.reset();
+    nameInputInstance.reset();
+    mailInputInstance.reset();
+    textAreaInstance.reset();
+
+    this.setState({
+      captchaCheck: false,
+      name: '',
+      mail: '',
+      message: '',
+      postId: null
+    })
+    this.removeCaptchaGarbage();
   }
 
   componentWillUnmount() {
@@ -131,7 +161,6 @@ export default class QuestionCreator extends Component {
     const {
       verifyCallback,
       expiredCallback,
-      resetRecaptcha,
       inputNameHandler,
       inputMailHandler,
       inputMessageHandler,
@@ -147,7 +176,7 @@ export default class QuestionCreator extends Component {
                 <Text>ФИО:</Text>
               </div>
               <div className='col l8'>
-                <Input placeholder='Ваше имя' type='text' onChange={inputNameHandler}/>
+                <Input ref={e => this.state.nameInputInstance = e} placeholder='Ваше имя' type='text' onChange={inputNameHandler}/>
               </div>
             </div>
             <div className='col s12'>
@@ -155,7 +184,7 @@ export default class QuestionCreator extends Component {
                 <Text>E-mail:</Text>
               </div>
               <div className='col l8'>
-                <Input placeholder='Ваш E-mail' type='text' onChange={inputMailHandler}/>
+                <Input ref={e => this.state.mailInputInstance = e} placeholder='Ваш E-mail' type='text' onChange={inputMailHandler} validate={validator.validate}/>
               </div>
             </div>
           </div>
@@ -177,7 +206,7 @@ export default class QuestionCreator extends Component {
           </div>
         </div>
         <div className='rigthPart col s6'>
-          <TextArea className='col s12' onChange={inputMessageHandler}/>
+          <TextArea  ref={e => this.state.textAreaInstance = e} className='col s12' onChange={inputMessageHandler}/>
         </div>
       </div>
     );

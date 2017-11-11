@@ -183,7 +183,6 @@ function sendGuestMessage(message){
     headers: {
       'Content-Type': 'application/json',
     },
-    mode: 'no-cors',
     body: JSON.stringify(message)
   }).then(function(response) {
     return response.json()

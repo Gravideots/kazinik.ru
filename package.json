@@ -67,6 +67,7 @@
     "colors": "^1.1.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
+    "email-validator": "^1.1.1",
     "eslint": "^4.6.1",
     "express": "^4.15.4",
     "file-loader": "^0.11.2",
@@ -84,6 +85,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-slick": "^0.15.4",
+    "react-validation": "^3.0.7",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   }

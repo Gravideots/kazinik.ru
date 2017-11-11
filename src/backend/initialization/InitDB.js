@@ -20,9 +20,9 @@ function createSection(Title, Description) {
     })
 }
 
-function createGuestSection(Title) {
+function createGuestSection(Title, Captcha) {
 
-    guest.createGuestSection(Title, function (err, guestSection) {
+    guest.createGuestSection(Title, Captcha, function (err, guestSection) {
         if (err)
             console.log('Error! Guest section was not created'.error)
         else
@@ -246,7 +246,7 @@ function dropSchoolByID(id, done) {
 //dropSchoolByID('59ca689fa7156b094154b440')
 
 //createSection(Title, Description)
-createGuestSection('Гостевая')
+createGuestSection('Гостевая', '6Ld7UTUUAAAAAJ43uq19kCKb1XtvlamkFakgXGou')
 //addNoteToSection('59b9400d427b0b242db852e3')
 //addMediaToSection('59b9400d427b0b242db852e3');
 

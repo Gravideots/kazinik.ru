@@ -15,7 +15,6 @@ const GuestQuestionSchema = mongoose.Schema({
     Date: Date,
     Message: String,
     Answers: [GuestAnswerSchema]
-
 })
 
 const GuestBookSchema = mongoose.Schema({

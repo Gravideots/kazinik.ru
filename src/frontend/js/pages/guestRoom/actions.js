@@ -26,13 +26,6 @@ function getGuestRoomError(error) {
   };
 }
 
-function getGuestRoomTag(data) {
-  return {
-    type: SET_ACTIVE_TAG,
-    data,
-  };
-}
-
 export function getGuestRoom() {
   return function (dispatch) {
     api.getGuestRoom()

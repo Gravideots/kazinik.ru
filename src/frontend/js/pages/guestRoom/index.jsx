@@ -45,6 +45,10 @@ export default class GuestRoom extends Component {
     this.sendMessage = this
       .sendMessage
       .bind(this);
+
+    this.resetSendForm = this
+      .resetSendForm
+      .bind(this);
   }
 
 
@@ -66,8 +70,20 @@ export default class GuestRoom extends Component {
 
   sendMessage(messageData){
     const {dispatch} = this.props;
-    
     dispatch(sendMessage(messageData));
+
+    this.resetSendForm();
+  }
+
+  resetSendForm(){
+
+    const {
+      modal
+    } = this.state;
+
+    if(modal){
+      modal.close();
+    }
   }
 
   componentWillMount() {
@@ -95,7 +111,7 @@ export default class GuestRoom extends Component {
             headerText=''
             ref={e => this.state.modal = e}
           >
-            <QuestionCreator action={this.sendMessage} sitekey={guestRoomAsyncData.CaptchaKey} postId={this.state.postId}/>
+            <QuestionCreator action={this.sendMessage} sitekey={guestRoomAsyncData.CaptchaKey} postId={this.state.postId} reset={this.state.reset}/>
           </Modal>
         </div>
       );

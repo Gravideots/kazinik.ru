@@ -8,11 +8,16 @@ export default class TextArea extends Component {
     this.state = {value: ''};
 
     this.handleChange = this.handleChange.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   handleChange(event) {
     this.setState({value: event.target.value});
     this.props.onChange(event.target.value);
+  }
+
+  reset(){
+    this.setState({value: ''});
   }
 
   render() {

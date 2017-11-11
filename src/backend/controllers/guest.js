@@ -5,7 +5,7 @@ const dbConfig = require('../config/dbConfig');
 const db = mongoose.createConnection(dbConfig.appDB.url);
 let guestBookSchema = db.model('Guest', GuestSchema.GuestBookSchema);
 
-const createGuestSection = function (Title, done) {
+const createGuestSection = function (Title, CaptchaKey, done) {
     guestBookSchema.findOne(function (err, guestSection) {
         if (err)
             throw err
@@ -13,6 +13,7 @@ const createGuestSection = function (Title, done) {
             if (guestSection == null) {
                 let newGuestSection = new guestBookSchema()
                 newGuestSection.Title = Title
+                newGuestSection.CaptchaKey = CaptchaKey
 
                 newGuestSection.save(function (err) {
                     if (err)
