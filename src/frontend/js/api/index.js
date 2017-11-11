@@ -12,8 +12,9 @@ import {
 
 promisePolyfill.polyfill();
 
+var API = 'local';
 
-let apiPrefix = (process.env.API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
+let apiPrefix = (API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
 
 function testAsync() {
   return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => response.json());
@@ -195,7 +196,7 @@ function sendGuestMessage(message){
 
 
 function getGuestRoom() {
-  return fetch('https://mighty-ravine-31476.herokuapp.com/api/guest/')
+  return fetch( apiPrefix + '/api/guest/',{mode: 'no-cors',})
   .then(function(response) {
     return response.json()
   }).then(function(json) {
