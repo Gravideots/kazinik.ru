@@ -12,6 +12,9 @@ import {
 
 promisePolyfill.polyfill();
 
+
+let apiPrefix = (process.env.API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
+
 function testAsync() {
   return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => response.json());
 }
@@ -65,7 +68,7 @@ function sectionPage(type, tag = null) {
 }
 
 function getAdminPage() {
-  return fetch('https://mighty-ravine-31476.herokuapp.com/api/sections/possible').then(response => {
+  return fetch( apiPrefix + '/api/sections/possible', {mode: 'no-cors',}).then(response => {
     if (response.status !== 200) {
       console.log('Looks like there was a problem. Status Code: ' + response.status);
       return response.status;
@@ -75,7 +78,7 @@ function getAdminPage() {
 }
 
 function getSectionsList(param) {
-  return fetch('https://mighty-ravine-31476.herokuapp.com/api/sections/' + param).then(response => {
+  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/sections/' + param, {mode: 'no-cors',}).then(response => {
     if (response.status !== 200) {
       return response.status;
     }
@@ -83,11 +86,12 @@ function getSectionsList(param) {
   })
 }
 function createNewSection(sectionData) {
-  return fetch('https://mighty-ravine-31476.herokuapp.com/api/section/', {
+  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/section/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
+    mode: 'no-cors',
     body: JSON.stringify(sectionData)
   }).then(response => {
     if (response.status !== 200) {
@@ -97,11 +101,12 @@ function createNewSection(sectionData) {
   })
 }
 function getSection(sectionID) {
-  return fetch('https://mighty-ravine-31476.herokuapp.com/api/section/' + sectionID, {
+  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/section/' + sectionID, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
-    }
+    },
+    mode: 'no-cors',
   }).then(response => {
     if (response.status !== 200) {
       return response.status;
@@ -110,11 +115,12 @@ function getSection(sectionID) {
   })
 }
 function deleteSection(sectionID) {
-  return fetch('https://mighty-ravine-31476.herokuapp.com/api/section/' + sectionID, {
+  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/section/' + sectionID, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
-    }
+    },
+    mode: 'no-cors',
   }).then(response => {
     if (response.status !== 200) {
       return response.status;
@@ -124,11 +130,12 @@ function deleteSection(sectionID) {
 }
 
 function updateSection(sectionData) {
-  return fetch('https://mighty-ravine-31476.herokuapp.com/api/section/' + sectionData.id, {
+  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/section/' + sectionData.id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
+    mode: 'no-cors',
     body: JSON.stringify(sectionData)
   }).then(response => {
     if (response.status !== 200) {
@@ -139,11 +146,12 @@ function updateSection(sectionData) {
 }
 
 function addMedia(mediaData) {
-  return fetch('https://mighty-ravine-31476.herokuapp.com/api/media/', {
+  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/media/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
+    mode: 'no-cors',
     body: JSON.stringify(mediaData)
   }).then(response => {
     if (response.status !== 200) {
@@ -154,11 +162,12 @@ function addMedia(mediaData) {
 }
 
 function deleteMedia(sectionID, mediaID) {
-  return fetch('https://mighty-ravine-31476.herokuapp.com/api/media/' + sectionID + '/' + mediaID, {
+  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/media/' + sectionID + '/' + mediaID, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
-    }
+    },
+    mode: 'no-cors',
   }).then(response => {
     if (response.status !== 200) {
       return response.status;
@@ -168,11 +177,12 @@ function deleteMedia(sectionID, mediaID) {
 }
 
 function sendGuestMessage(message){
-  return fetch('https://mighty-ravine-31476.herokuapp.com/api/guest/', {
+  return fetch( apiPrefix + 'https://mighty-ravine-31476.herokuapp.com/api/guest/', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
+    mode: 'no-cors',
     body: JSON.stringify(message)
   }).then(function(response) {
     return response.json()
