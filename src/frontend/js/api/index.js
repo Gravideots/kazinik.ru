@@ -12,6 +12,7 @@ import {
 
 promisePolyfill.polyfill();
 
+
 let apiPrefix = (process.env.API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
 
 function testAsync() {
