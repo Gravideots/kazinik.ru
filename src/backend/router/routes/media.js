@@ -3,11 +3,9 @@ const media = require('../../controllers/media')
 
 function createMedia(req, res) {
 
-    let sectionID = req.body.sectionID,
-        mediaURL = req.body.URL,
-        mediaTags = req.body.tags
-
-    media.createNewMedia(sectionID, mediaURL, '', mediaTags, function (err, media) {
+    let {sectionID, URL,  tags} = req.body
+    
+    media.createNewMedia(sectionID, URL, tags, function (err, media) {
         if (err) 
             res.status(500).send('Что то пошло не так')
         else 

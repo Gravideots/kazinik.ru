@@ -90,15 +90,15 @@ function createNewSection(sectionData) {
   return fetch( apiPrefix + '/api/section/', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    mode: 'no-cors',
     body: JSON.stringify(sectionData)
-  }).then(response => {
-    if (response.status !== 200) {
-      return response.status;
-    }
-    return response;
+  }).then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
   })
 }
 function getSection(sectionID) {
@@ -107,7 +107,6 @@ function getSection(sectionID) {
     headers: {
       'Content-Type': 'application/json'
     },
-    mode: 'no-cors',
   }).then(response => {
     if (response.status !== 200) {
       return response.status;
@@ -121,7 +120,6 @@ function deleteSection(sectionID) {
     headers: {
       'Content-Type': 'application/json'
     },
-    mode: 'no-cors',
   }).then(response => {
     if (response.status !== 200) {
       return response.status;
@@ -136,7 +134,6 @@ function updateSection(sectionData) {
     headers: {
       'Content-Type': 'application/json'
     },
-    mode: 'no-cors',
     body: JSON.stringify(sectionData)
   }).then(response => {
     if (response.status !== 200) {
@@ -152,13 +149,13 @@ function addMedia(mediaData) {
     headers: {
       'Content-Type': 'application/json'
     },
-    mode: 'no-cors',
     body: JSON.stringify(mediaData)
-  }).then(response => {
-    if (response.status !== 200) {
-      return response.status;
-    }
-    return response;
+  }).then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
   })
 }
 
@@ -168,7 +165,6 @@ function deleteMedia(sectionID, mediaID) {
     headers: {
       'Content-Type': 'application/json'
     },
-    mode: 'no-cors',
   }).then(response => {
     if (response.status !== 200) {
       return response.status;

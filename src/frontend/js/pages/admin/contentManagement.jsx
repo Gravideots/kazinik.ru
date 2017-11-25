@@ -229,7 +229,6 @@ class CreateMedia extends Component {
         this.state = {
             URL: '',
             tags: '',
-            Type: 'VIDEO',
             sectionID: this.props.sectionID
         }
     }
@@ -286,7 +285,7 @@ class CreateMedia extends Component {
                                 onChange=
                                 {(e) => {this.handleChange(e)}}/>
                             < label htmlFor='title'>
-                                Теги (через пробел, например: видео выступление конференция)
+                                Теги (через запятую, например: видео, выступление, конференция)
                             </label>
                         </div >
                         < div className='col s12'>

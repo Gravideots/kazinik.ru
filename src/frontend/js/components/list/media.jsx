@@ -7,7 +7,7 @@ export default class MediaListElement extends Component {
   render() {
     const {data} = this.props;
 
-    if (data !== undefined && data.Type === 'VIDEO') 
+    if (data !== undefined) 
       return (<ReactPlayer
         url={data.URL}
         height='300px'

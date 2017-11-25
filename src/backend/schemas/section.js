@@ -12,7 +12,8 @@ const SectionSchema = mongoose.Schema({
     Tags: [
         {
             URL: String,
-            Text: String
+            Text: String,
+            _id: false 
         }
     ],
     Listing: {

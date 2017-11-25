@@ -16,7 +16,6 @@ const createNewSection = function (sectionData, sectionType, done) {
     newSection.Title = sectionData.title
     newSection.Description = sectionData.description
     newSection.ShowInSadebar = sectionData.addToSidebar
-    newSection.Tags = new Array()
 
     newSection.save(function (err) {
         if (err) 

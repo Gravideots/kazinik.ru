@@ -89,9 +89,9 @@ function getExistingSectionsList(req, res) {
 
 function createNewSection(req, res) {
 
-    let newSection = req.body.sectionData
-    let newSectionType = req.body.sectionType
-    section.createNewSection(newSection, newSectionType, function (err, section) {
+    let {sectionData, sectionType } = req.body
+    
+    section.createNewSection(sectionData, sectionType, function (err, section) {
         if (err) 
             res.status(500).send('Что то пошло не так')
         else 
