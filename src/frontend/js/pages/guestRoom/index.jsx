@@ -7,6 +7,7 @@ import {getGuestRoom, sendMessage} from './actions.js';
 import QuestionCreator from './questionCreator';
 
 import Text from 'components/text';
+import Icon from 'components/icon';
 import List from 'components/list';
 import Button from 'components/button';
 import Modal from 'components/modal';
@@ -34,7 +35,8 @@ export default class GuestRoom extends Component {
     super();
     this.state = {
       modal: null,
-      postId: null
+      postId: null,
+      sticky: '',
     }
 
     //Modal
@@ -51,7 +53,19 @@ export default class GuestRoom extends Component {
       .bind(this);
   }
 
-
+  componentDidMount(){
+    var self = this;
+    document.addEventListener('scroll', (e)=>{
+      if(scrollY >= 216)
+        self.setState({
+          sticky: true
+        })
+      else
+        self.setState({
+          sticky: false
+        })
+    })
+  }
 
   openModal(e, id){
     const {
@@ -103,9 +117,22 @@ export default class GuestRoom extends Component {
       return (
         <div className='GuestRoom container'>
           <Text type='superHeader center'>{guestRoomAsyncData.Title}</Text>
-          <Button text='Open Modal' onClick={this.openModal}>
-            <p className="waves-effect waves-light btn black">Написать сообщение</p>
-          </Button>
+          <div className='row'>
+            <div className='col s6'>
+              <Text type='footnote center bold'>Задано вопросов: <span>{guestRoomAsyncData.Messages.length}</span></Text>
+            </div>
+            <div className='col s6'>
+              <Text type='footnote center bold'>Ответов: <span>{guestRoomAsyncData.Messages.length}</span></Text>
+            </div>
+          </div>
+          <div className={(this.state.sticky)?'ButtonContainer sticky':'ButtonContainer'}>
+            <Button text='Open Modal' onClick={this.openModal}>
+              <div className="bigBlackBtn">
+                <Icon iconName="help_outline"/>
+                <p className="waves-effect waves-light btn black">задать вопрос</p>
+              </div>
+            </Button>
+          </div>
           <List listData={guestRoomAsyncData.Messages} type='Guest' action={this.openModal}/>
           <Modal
             headerText=''

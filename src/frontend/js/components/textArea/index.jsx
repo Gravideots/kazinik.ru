@@ -11,6 +11,14 @@ export default class TextArea extends Component {
     this.reset = this.reset.bind(this);
   }
 
+  componentDidMount(){
+    const name = this.props.name;
+    
+    if(name){
+      //$('.' + name).tooltip();
+    }
+  }
+
   handleChange(event) {
     this.setState({value: event.target.value});
     this.props.onChange(event.target.value);
@@ -20,15 +28,28 @@ export default class TextArea extends Component {
     this.setState({value: ''});
   }
 
+  showRequiredTooltip(){
+    let name = this.props.name;
+    if(name){
+      $('.' + name).tooltip().trigger("mouseenter");
+      setTimeout(function(){$("."+ name).trigger("mouseleave");}, 3000);
+    }
+  }
+
   render() {
     const {
         placeholder,
-        className
+        className,
+        name,
+        tooltipPosition
     } = this.props;
+
+    let areaName = name? name: '';
+    let position = tooltipPosition? tooltipPosition: 'bottom';
 
     return (
       <div className={ className? 'TextArea ' + className:'TextArea'}>
-        <textarea placeholder={placeholder} value={this.state.value} onChange={this.handleChange} rows={6}/>
+        <textarea className={areaName} placeholder={placeholder} data-position={position} data-tooltip='Обязательное поле' value={this.state.value} onChange={this.handleChange} rows={6}/>
       </div>
     );
   }

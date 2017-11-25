@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Recaptcha from 'react-google-recaptcha';
 
+import Captcha from 'components/captcha';
 import Text from 'components/text';
 import List from 'components/list';
 import Button from 'components/button';
@@ -22,6 +22,7 @@ export default class QuestionCreator extends Component {
       textAreaInstance: null,
       captchaCheck: false,
       mail: null,
+      mailValid: false,
       name: null,
       message: null
     }
@@ -33,8 +34,8 @@ export default class QuestionCreator extends Component {
     this.expiredCallback = this
       .expiredCallback
       .bind(this);
-    this.resetRecaptcha = this
-      .resetRecaptcha
+    this.resetStatements = this
+      .resetStatements
       .bind(this);
 
     // Question
@@ -50,6 +51,10 @@ export default class QuestionCreator extends Component {
     this.sendQuestion = this
       .sendQuestion
       .bind(this);
+
+    this.showRequiredField = this
+      .showRequiredField
+      .bind(this);
   }
 
   verifyCallback(response){
@@ -60,7 +65,7 @@ export default class QuestionCreator extends Component {
   }
 
   expiredCallback(){
-    console.log('Recaptcha expired');
+    console.log('Captcha expired');
     this.setState({
       captchaCheck: false
     })
@@ -81,7 +86,8 @@ export default class QuestionCreator extends Component {
     console.log('Email value', val);
     console.log('Email validation', status);
     this.setState({
-      mail: val
+      mail: val,
+      mailValid: status
     })
   }
 
@@ -96,22 +102,41 @@ export default class QuestionCreator extends Component {
     const {
       mail,
       name,
-      message
+      message,
+      captchaCheck
     } = this.state;
 
-    if(mail)
-    this.props.action({
-      mail: mail,
-      name: name,
-      message: message,
-      postId: (this.props.postId)? this.props.postId : null
-    });
+    if(mail && name && message && captchaCheck){
+      this.props.action({
+        mail: mail,
+        name: name,
+        message: message,
+        postId: (this.props.postId)? this.props.postId : null
+      });
 
-    this.resetRecaptcha();
+      this.resetStatements();
+    }
+    else{
+      this.showRequiredField();
+    }
   }
   
+  showRequiredField(){
+    const {
+      nameInputInstance,
+      mailInputInstance,
+      recaptchaInstance,
+      textAreaInstance
+    } = this.state;
+
+    //recaptchaInstance.showRequired();
+    nameInputInstance.showRequiredTooltip();
+    mailInputInstance.showRequiredTooltip();
+    textAreaInstance.showRequiredTooltip();
+  }
+
   // handle reset
-  resetRecaptcha(){
+  resetStatements(){
 
     const {
       recaptchaInstance,
@@ -132,20 +157,6 @@ export default class QuestionCreator extends Component {
       message: '',
       postId: null
     })
-    this.removeCaptchaGarbage();
-  }
-
-  componentWillUnmount() {
-    this.removeCaptchaGarbage();
-  }
-
-  removeCaptchaGarbage(){
-
-    if(!document.querySelector('.g-recaptcha-bubble-arrow')) return;
-    
-    var child = document.querySelector('.g-recaptcha-bubble-arrow').parentNode;
-    var parent = document.querySelector('.g-recaptcha-bubble-arrow').parentNode.parentNode;
-    parent.removeChild(child);
   }
 
   render() {
@@ -167,48 +178,50 @@ export default class QuestionCreator extends Component {
       sendQuestion
     } = this;
 
-    return (
-      <div className='QuestionCreator row'>
-        <div className='leftPart col s6'>
-          <div className='col s6'>
-            <div className='col s12'>
-              <div className='col l3'>
-                <Text>ФИО:</Text>
+    if(!sitekey) return null;
+    else
+      return (
+        <div className='QuestionCreator row'>
+          <div className='Container col s12'>
+            <div className='col s7'>
+              <div className='col s6'>
+                <div className='col l3'>
+                  <Text>ФИО:</Text>
+                </div>
+                <div className='col l8'>
+                  <Input ref={e => this.state.nameInputInstance = e} placeholder='Ваше имя' name='name' type='text' onChange={inputNameHandler}/>
+                </div>
               </div>
-              <div className='col l8'>
-                <Input ref={e => this.state.nameInputInstance = e} placeholder='Ваше имя' type='text' onChange={inputNameHandler}/>
+              <div className='col s6'>
+                <div className='col l3'>
+                  <Text>E-mail:</Text>
+                </div>
+                <div className='col l8'>
+                  <Input ref={e => this.state.mailInputInstance = e} placeholder='Ваш E-mail' type='text' name='mail' onChange={inputMailHandler} validate={validator.validate}/>
+                </div>
               </div>
             </div>
             <div className='col s12'>
-              <div className='col l3'>
-                <Text>E-mail:</Text>
-              </div>
-              <div className='col l8'>
-                <Input ref={e => this.state.mailInputInstance = e} placeholder='Ваш E-mail' type='text' onChange={inputMailHandler} validate={validator.validate}/>
-              </div>
+              <TextArea ref={e => this.state.textAreaInstance = e} name='textArea' tooltipPosition='right' onChange={inputMessageHandler}/>
+            </div>
+            <div className='col s5'>
+              {
+                sitekey?
+                <Captcha
+                  ref={e => this.state.recaptchaInstance = e}
+                  siteKey={sitekey}
+                  verifyCallback={verifyCallback}
+                  expiredCallback={expiredCallback}
+                />
+                :
+                null
+              }
+            </div>
+            <div className='col s2'>
+              <Button text='ОТПРАВИТЬ' onClick={sendQuestion}/>
             </div>
           </div>
-          <div className='col s6'>
-            {
-              sitekey?
-              <Recaptcha
-                ref={e => this.state.recaptchaInstance = e}
-                sitekey={sitekey}
-                onChange={verifyCallback}
-                onExpired={expiredCallback}
-              />
-              :
-              null
-            }
-          </div>
-          <div className='col s12'>
-            <Button text='ОТПРАВИТЬ' onClick={sendQuestion}/>
-          </div>
         </div>
-        <div className='rigthPart col s6'>
-          <TextArea  ref={e => this.state.textAreaInstance = e} className='col s12' onChange={inputMessageHandler}/>
-        </div>
-      </div>
-    );
+      );
   }
 }
