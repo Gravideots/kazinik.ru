@@ -12,7 +12,7 @@ import {
 
 promisePolyfill.polyfill();
 
-var API = 'local';
+var API = 'locdal';
 
 let apiPrefix = (API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
 
@@ -191,7 +191,13 @@ function sendGuestMessage(message){
 
 
 function getGuestRoom() {
-  return fetch( apiPrefix + '/api/guest/',{mode: 'no-cors',})
+  return fetch( apiPrefix + '/api/guest/',{
+    mode: 'cors',
+    header: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'multipart/form-data'
+    }
+  })
   .then(function(response) {
     return response.json()
   }).then(function(json) {
