@@ -187,7 +187,7 @@ class ContentList extends Component {
                         <div className='row'>
                             {data.map((listElement, key) => {
                                 return <div className='row grey lighten-5 ' key={key}>
-                                    < div className="col s12">
+                                    <div className="col s12">
                                         <div className='col l10'>
                                             <MediaListElement data={listElement}/>
                                         </div>
@@ -274,9 +274,9 @@ class CreateMedia extends Component {
                             <label htmlFor='title'>
                                 Ссылка на источник(YouTube / SoundCloud /Vimeo)
                             </label>
-                        </div >
+                        </div>
                         {media}
-                        < div className='input-field col s12'>
+                        <div className='input-field col s12'>
                             <input
                                 id='tags'
                                 type='text'
@@ -284,11 +284,11 @@ class CreateMedia extends Component {
                                 value={this.state.tags}
                                 onChange=
                                 {(e) => {this.handleChange(e)}}/>
-                            < label htmlFor='title'>
+                            <label htmlFor='title'>
                                 Теги (через запятую, например: видео, выступление, конференция)
                             </label>
-                        </div >
-                        < div className='col s12'>
+                        </div>
+                        <div className='col s12'>
                             <button className='btn waves-effect waves-light' type='submit' name='action'>
                                 Сохранить
                                 <i className='material-icons right'>

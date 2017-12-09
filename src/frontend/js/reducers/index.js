@@ -9,6 +9,7 @@ import admin from '../pages/admin/reducer.js';
 import note from '../pages/note/reducer.js';
 import section from '../pages/section/reducer.js';
 import guestRoom from '../pages/guestRoom/reducer.js';
+import login from '../pages/login/reducer.js';
 
 export default combineReducers({
   main,
@@ -19,4 +20,5 @@ export default combineReducers({
   section,
   sidepanel,
   guestRoom,
+  login
 });

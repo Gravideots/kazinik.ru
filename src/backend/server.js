@@ -1,4 +1,5 @@
 const express = require('express')
+const passport = require('passport')
 const app = express()
 const port = process.env.PORT || 3003
 
@@ -28,8 +29,15 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cookieParser());
+app.use(passport.initialize());
 app.use(require('./router/index'))
+app.use(redirectUnmatched);
+require('./config/passport')
 
+function redirectUnmatched(req, res) {
+    res.status(418).redirect('kazinik.ru');
+}
+  
 app.listen(port, function (error) {
     if (error) {
         console.error(error.error)

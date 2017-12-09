@@ -15,6 +15,11 @@ nav{
 
             &.tiny{
                 font-size: 1rem;
+                line-height: 2.5rem;
+                top: 0.2667rem;
+                left: 0.1rem;
+                transform: rotateY(180deg);
+                margin: 0;
             }
             &.small{
                 font-size: 2rem;

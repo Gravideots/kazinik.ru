@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
 
 import Main from '../pages/main';
 import Event from '../pages/event';
@@ -9,6 +9,7 @@ import Admin from '../pages/admin';
 import Note from '../pages/note';
 import Section from '../pages/section';
 import GuestRoom from '../pages/guestRoom';
+import Login from '../pages/login';
 
 const publicPath = '/';
 
@@ -21,17 +22,36 @@ export const routeCodes = {
   NOTE: `${ publicPath }note/`,
   SECTION: `${ publicPath }section/`,
   GUEST: `${ publicPath }guest`,
+  LOGIN: `${ publicPath }login`,
 };
 
 export default() => (
   <Switch>
     <Route exact path={ publicPath } component={ Main } />
     <Route path={ routeCodes.SEARCH } component={ Search } />
-    <Route path={ routeCodes.ADMIN } component={ Admin } />
+    <PrivateRoute  path={ routeCodes.ADMIN } component={ Admin }/>
     <Route path={ routeCodes.EVENT + ':id' } component={ Event } />
     <Route path={ routeCodes.SCHOOL + ':id' } component={ School } />
     <Route path={ routeCodes.NOTE + ':id' } component={ Note } />
     <Route path={ routeCodes.SECTION + ':key' } component={ Section } />
     <Route path={ routeCodes.GUEST } component={ GuestRoom } />
+    <Route path={ routeCodes.LOGIN } component={ Login } />
+    <Route component={ Main } />
   </Switch>
 );
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  let isAuthenticated = localStorage.getItem('userToken');
+  return(
+    <Route {...rest} render={props => (
+      isAuthenticated ? (
+        <Component token={isAuthenticated} {...props}/>
+      ) : (
+        <Redirect to={{
+          pathname: '/login',
+          state: { from: props.location }
+        }}/>
+      )
+    )}/>
+  )
+}

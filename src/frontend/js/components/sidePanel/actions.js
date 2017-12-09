@@ -51,13 +51,14 @@ export function getExistingSectios() {
         dispatch(getExistingSectiosStart())
         api
             .getSectionsList("existing")
-            .then(data => {
-                data
-                    .json()
-                    .then(data => {
-                        dispatch(getExistingSectiosSuccess(data))
-                    })
-            })
+            // .then(data => {
+            //     data
+            //         .json()
+            //         .then(data => {
+            //             dispatch(getExistingSectiosSuccess(data))
+            //         })
+            // })
+            .then(data => dispatch(getExistingSectiosSuccess(data)))
             .catch(error => dispatch(getExistingSectiosError(error)))
     }
 }

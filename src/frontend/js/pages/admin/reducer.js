@@ -4,6 +4,7 @@ import {
     GET_ADMIN_PAGE_START,
     GET_ADMIN_PAGE_ERROR,
     GET_ADMIN_PAGE_SUCCESS,
+    ADMIN_PAGE_UNLOAD,
 
     GET_POSSIBLE_SECTIONS_LIST_START,
     GET_POSSIBLE_SECTIONS_LIST_SUCCESS,
@@ -38,6 +39,9 @@ const actionsMap = {
     },
     [GET_ADMIN_PAGE_SUCCESS]: (state, action) => {
         return state.merge(Map({asyncLoading: false, asyncLoaded: true}));
+    },
+    [ADMIN_PAGE_UNLOAD]: (state, action) => {
+        return state.merge(Map({asyncLoading: false, asyncLoaded: false, asyncError: null, asyncData: null}));
     },
 
     [GET_POSSIBLE_SECTIONS_LIST_START]: (state, action) => {

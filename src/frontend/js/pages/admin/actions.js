@@ -3,6 +3,7 @@ import api from '../../api'
 export const GET_ADMIN_PAGE_START = 'GET_ADMIN_PAGE_START'
 export const GET_ADMIN_PAGE_ERROR = 'GET_ADMIN_PAGE_ERROR'
 export const GET_ADMIN_PAGE_SUCCESS = 'GET_ADMIN_PAGE_SUCCESS'
+export const ADMIN_PAGE_UNLOAD = 'ADMIN_PAGE_UNLOAD'
 
 export const GET_POSSIBLE_SECTIONS_LIST_START = 'GET_POSSIBLE_SECTIONS_LIST_START'
 export const GET_POSSIBLE_SECTIONS_LIST_SUCCESS = 'GET_POSSIBLE_SECTIONS_LIST_SUCCESS'
@@ -53,12 +54,19 @@ function getAdminPageSuccess(data) {
 function getAdminPageError(error) {
     return {type: GET_ADMIN_PAGE_ERROR, error}
 }
+function closeAdminPage() {
+    return {type: ADMIN_PAGE_UNLOAD}
+}
 export function getAdminPage() {
     return function (dispatch) {
         dispatch(getAdminPageSuccess());
     };
 }
-
+export function leaveAdminPage(){
+    return function (dispatch) {
+        dispatch(closeAdminPage());
+    };
+}
 function getPossibleSectionsListStart(data) {
     return {type: GET_POSSIBLE_SECTIONS_LIST_START};
 }
@@ -73,13 +81,14 @@ export function getPossibleSectiosList() {
         dispatch(getPossibleSectionsListStart())
         api
             .getSectionsList("possible")
-            .then(data => {
-                data
-                    .json()
-                    .then(data => {
-                        dispatch(getPossibleSectionsListSuccess(data))
-                    });
-            })
+            .then(data => dispatch(getPossibleSectionsListSuccess(data)))
+            // .then(data => {
+            //     data
+            //         .json()
+            //         .then(data => {
+            //             dispatch(getPossibleSectionsListSuccess(data))
+            //         });
+            // })
             .catch(error => dispatch(getPossibleSectionsListError(error)));
     };
 }
@@ -156,13 +165,14 @@ export function getExistingSectios() {
         dispatch(getExistingSectiosStart())
         api
             .getSectionsList('existing')
-            .then(data => {
-                data
-                    .json()
-                    .then(data => {
-                        dispatch(getExistingSectiosSuccess(data))
-                    })
-            })
+            // .then(data => {
+            //     data
+            //         .json()
+            //         .then(data => {
+            //             dispatch(getExistingSectiosSuccess(data))
+            //         })
+            // })
+            .then(data => dispatch(getExistingSectiosSuccess(data)))
             .catch(error => dispatch(getExistingSectiosError(error)))
     }
 }

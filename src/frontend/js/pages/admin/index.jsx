@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-import {getAdminPage} from './actions.js';
+import {getAdminPage, leaveAdminPage} from './actions.js';
 
 import {GetSectionsList, CreateNewSection, EditSection} from './sectionManagement'
 import {AddContent, ContentCreation} from './contentManagement'
@@ -32,12 +33,22 @@ export default class Admin extends Component {
   }
 
   componentWillMount() {
-    const {dispatch} = this.props;
-    dispatch(getAdminPage());
+    const {dispatch, token, location} = this.props;
+
+    if(token)
+      dispatch(getAdminPage());
   }
 
+  componentWillUnmount() {
+    const {dispatch} = this.props;
+    dispatch(leaveAdminPage());
+  }
   render() {
-    const {content, dispatch} = this.props;
+    const {content, dispatch, token} = this.props;
+    
+    if(!token){
+      return <Redirect to='/login'/>
+    }
 
     if (content) {
       if (content.PosibleSections) {

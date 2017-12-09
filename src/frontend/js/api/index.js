@@ -12,9 +12,14 @@ import {
 
 promisePolyfill.polyfill();
 
-var API = 'locdal';
+var API = 'local';
 
 let apiPrefix = (API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
+
+
+function getToken(){
+  return localStorage.getItem('userToken');
+}
 
 function testAsync() {
   return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => response.json());
@@ -69,28 +74,47 @@ function sectionPage(type, tag = null) {
 }
 
 function getAdminPage() {
-  return fetch( apiPrefix + '/api/sections/possible', {mode: 'no-cors',}).then(response => {
-    if (response.status !== 200) {
-      console.log('Looks like there was a problem. Status Code: ' + response.status);
-      return response.status;
+  return fetch( apiPrefix + '/api/sections/possible',{
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
     }
-    return response;
-  });
+  })
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
 }
 
 function getSectionsList(param) {
-  return fetch( apiPrefix + '/api/sections/' + param, {mode: 'no-cors',}).then(response => {
-    if (response.status !== 200) {
-      return response.status;
+  return fetch( apiPrefix + '/api/sections/' + param,{
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
     }
-    return response;
+  })
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
   })
 }
+
 function createNewSection(sectionData) {
   return fetch( apiPrefix + '/api/section/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': getToken()
     },
     body: JSON.stringify(sectionData)
   }).then(function(response) {
@@ -114,11 +138,13 @@ function getSection(sectionID) {
     return response;
   })
 }
+
 function deleteSection(sectionID) {
   return fetch( apiPrefix + '/api/section/' + sectionID, {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
     },
   }).then(response => {
     if (response.status !== 200) {
@@ -132,7 +158,8 @@ function updateSection(sectionData) {
   return fetch( apiPrefix + '/api/section/' + sectionData.id, {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
     },
     body: JSON.stringify(sectionData)
   }).then(response => {
@@ -147,7 +174,8 @@ function addMedia(mediaData) {
   return fetch( apiPrefix + '/api/media/', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
     },
     body: JSON.stringify(mediaData)
   }).then(function(response) {
@@ -163,7 +191,8 @@ function deleteMedia(sectionID, mediaID) {
   return fetch( apiPrefix + '/api/media/' + sectionID + '/' + mediaID, {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
     },
   }).then(response => {
     if (response.status !== 200) {
@@ -178,6 +207,7 @@ function sendGuestMessage(message){
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': getToken()
     },
     body: JSON.stringify(message)
   }).then(function(response) {
@@ -193,7 +223,7 @@ function sendGuestMessage(message){
 function getGuestRoom() {
   return fetch( apiPrefix + '/api/guest/',{
     mode: 'cors',
-    header: {
+    headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'multipart/form-data'
     }
@@ -207,6 +237,25 @@ function getGuestRoom() {
   })
 }
 
+
+function authenticate(payload){
+  return fetch( apiPrefix + '/api/login',{
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify( payload )
+  })
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
 export default {
   testAsync,
   mainPage,
@@ -227,5 +276,7 @@ export default {
   sendGuestMessage,
 
   addMedia,
-  deleteMedia
+  deleteMedia,
+
+  authenticate,
 };
