@@ -57,7 +57,7 @@ function getPossibleSectiosList(req, res) {
                 let processedPosibleSections;
                 sections.map(function (existingSection) {
                     processedPosibleSections = PosibleSections.map(function (section) {
-                        if (existingSection.Listing[section.type] && existingSection.Listing[section.type].Available) {
+                        if (existingSection.Type == section.type) {
                             let processedSection = section
                             processedSection.name = existingSection.Title
                             processedSection.exists = true
@@ -79,7 +79,7 @@ function getPossibleSectiosList(req, res) {
 function getExistingSectionsList(req, res) {
     section
         .getAllSections(function (err, sections) {
-            if (err) 
+            if (err)
                 console.log('Error! Can not access DB'.error)
             else {
                 res.json({ExistingSections: sections})
@@ -90,11 +90,13 @@ function getExistingSectionsList(req, res) {
 function createNewSection(req, res) {
 
     let {sectionData, sectionType } = req.body
-    
+
     section.createNewSection(sectionData, sectionType, function (err, section) {
-        if (err) 
-            res.status(500).send('Что то пошло не так')
-        else 
+        if (err){
+            console.log(err)
+            res.status(500).send('Что то пошло не так ' + err.message)
+        }
+        else
             res.send({data: 'OK'})
     })
 

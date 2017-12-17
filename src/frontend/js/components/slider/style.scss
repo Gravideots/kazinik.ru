@@ -1,4 +1,9 @@
 .Slider{
+    &.slick-slider .slick-list, &.slick-slider .slick-track{
+        width: 98%;
+        left: 0;
+        margin: auto; 
+    }
     .Button{
         position: absolute;
         top: calc(50% - 2rem);

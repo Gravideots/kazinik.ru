@@ -12,7 +12,7 @@ import {
 
 promisePolyfill.polyfill();
 
-var API = 'local';
+var API = 'loal';
 
 let apiPrefix = (API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
 
@@ -73,139 +73,14 @@ function sectionPage(type, tag = null) {
   );
 }
 
-function getAdminPage() {
-  return fetch( apiPrefix + '/api/sections/possible',{
-    mode: 'cors',
-    headers: {
-      'Access-Control-Allow-Origin':'*',
-      'Content-Type': 'application/json',
-      'Authorization': getToken()
-    }
-  })
-  .then(function(response) {
-    return response.json()
-  }).then(function(json) {
-    return json
-  }).catch(function(ex) {
-    console.log('parsing failed', ex)
-  })
-}
 
-function getSectionsList(param) {
-  return fetch( apiPrefix + '/api/sections/' + param,{
-    mode: 'cors',
-    headers: {
-      'Access-Control-Allow-Origin':'*',
-      'Content-Type': 'application/json',
-      'Authorization': getToken()
-    }
-  })
-  .then(function(response) {
-    return response.json()
-  }).then(function(json) {
-    return json
-  }).catch(function(ex) {
-    console.log('parsing failed', ex)
-  })
-}
 
-function createNewSection(sectionData) {
-  return fetch( apiPrefix + '/api/section/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': getToken()
-    },
-    body: JSON.stringify(sectionData)
-  }).then(function(response) {
-    return response.json()
-  }).then(function(json) {
-    return json
-  }).catch(function(ex) {
-    console.log('parsing failed', ex)
-  })
-}
-function getSection(sectionID) {
-  return fetch( apiPrefix + '/api/section/' + sectionID, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-  }).then(response => {
-    if (response.status !== 200) {
-      return response.status;
-    }
-    return response;
-  })
-}
-
-function deleteSection(sectionID) {
-  return fetch( apiPrefix + '/api/section/' + sectionID, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': getToken()
-    },
-  }).then(response => {
-    if (response.status !== 200) {
-      return response.status;
-    }
-    return response;
-  })
-}
-
-function updateSection(sectionData) {
-  return fetch( apiPrefix + '/api/section/' + sectionData.id, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': getToken()
-    },
-    body: JSON.stringify(sectionData)
-  }).then(response => {
-    if (response.status !== 200) {
-      return response.status;
-    }
-    return response;
-  })
-}
-
-function addMedia(mediaData) {
-  return fetch( apiPrefix + '/api/media/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': getToken()
-    },
-    body: JSON.stringify(mediaData)
-  }).then(function(response) {
-    return response.json()
-  }).then(function(json) {
-    return json
-  }).catch(function(ex) {
-    console.log('parsing failed', ex)
-  })
-}
-
-function deleteMedia(sectionID, mediaID) {
-  return fetch( apiPrefix + '/api/media/' + sectionID + '/' + mediaID, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': getToken()
-    },
-  }).then(response => {
-    if (response.status !== 200) {
-      return response.status;
-    }
-    return response;
-  })
-}
 
 function sendGuestMessage(message){
   return fetch( apiPrefix + '/api/guest/', {
     method: 'POST',
     headers: {
+      'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
       'Authorization': getToken()
     },
@@ -237,6 +112,7 @@ function getGuestRoom() {
   })
 }
 
+//AUTHENTICATE
 
 function authenticate(payload){
   return fetch( apiPrefix + '/api/login',{
@@ -256,6 +132,172 @@ function authenticate(payload){
     console.log('parsing failed', ex)
   })
 }
+
+//================================================
+//================START ADMIN PAGE================
+//================================================
+
+function getUsersList(){
+  return fetch( apiPrefix + '/admin/api/users',{
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Authorization': getToken()
+    }
+  })
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
+
+
+function deleteMedia(sectionID, mediaID) {
+  return fetch( apiPrefix + '/admin/api/media/' + sectionID + '/' + mediaID, {
+    method: 'DELETE',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
+    },
+  }).then(response => {
+    if (response.status !== 200) {
+      return response.status;
+    }
+    return response;
+  })
+}
+
+
+function addMedia(mediaData) {
+  return fetch( apiPrefix + '/admin/api/media/', {
+    method: 'POST',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
+    },
+    body: JSON.stringify(mediaData)
+  }).then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
+
+
+function getAdminPage() {
+  return fetch( apiPrefix + '/admin/api/sections/possible',{
+    mode: 'no-cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
+    }
+  })
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
+
+function getSectionsList(param) {
+  return fetch( apiPrefix + '/admin/api/sections/' + param,{
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
+    }
+  })
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
+
+function createNewSection(sectionData) {
+  return fetch( apiPrefix + '/admin/api/section/', {
+    method: 'POST',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
+    },
+    body: JSON.stringify(sectionData)
+  }).then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
+function getSection(sectionID) {
+  return fetch( apiPrefix + '/admin/api/section/' + sectionID, {
+    method: 'GET',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json'
+    },
+  }).then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
+
+function deleteSection(sectionID) {
+  return fetch( apiPrefix + '/admin/api/section/' + sectionID, {
+    method: 'DELETE',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
+    },
+  }).then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
+
+function updateSection(sectionData) {
+  return fetch( apiPrefix + '/admin/api/section/' + sectionData.id, {
+    method: 'PUT',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
+    },
+    body: JSON.stringify(sectionData)
+  }).then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
+
+//==============================================
+//================END ADMIN PAGE================
+//==============================================
+
 export default {
   testAsync,
   mainPage,
@@ -264,19 +306,26 @@ export default {
   notePage,
   sectionPage,
   getGuestRoom,
-  getAdminPage,
   getSidebarContent,
 
+  sendGuestMessage,
+  authenticate,
+
+  //================================================
+  //================START ADMIN PAGE================
+  //================================================
+  
+  getAdminPage,
   getSectionsList,
   getSection,
   createNewSection,
   deleteSection,
   updateSection,
-
-  sendGuestMessage,
-
   addMedia,
   deleteMedia,
+  getUsersList
 
-  authenticate,
+  //==============================================
+  //================END ADMIN PAGE================
+  //==============================================
 };

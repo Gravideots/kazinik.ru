@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import Element from './element'
+import Element from './sections/element'
 
 import {createNewSection, updateSection, deleteSection} from './actions.js';
+import Users from './sections/users'
 
-export class GetSectionsList extends Component {
+export class SectionsList extends Component {
     static propTypes = {
         content: PropTypes.arrayOf(PropTypes.object),
         dispatch: PropTypes.func
@@ -109,8 +110,8 @@ export class CreateNewSection extends Component {
                                     className='materialize-textarea'
                                     value={this.state.description}
                                     onChange={(e) => {
-                                    this.handleChange(e);
-                                }}></textarea>
+                                        this.handleChange(e);
+                                    }}/>
                                 <label htmlFor='description'>
                                     Описание
                                 </label>
@@ -125,8 +126,8 @@ export class CreateNewSection extends Component {
                                     type='checkbox'
                                     id='addToMain'
                                     onChange={(e) => {
-                                    this.handleChange(e);
-                                }}
+                                        this.handleChange(e);
+                                    }}
                                     checked={this.state.addToMain}/>
                                 <label htmlFor='addToMain'>
                                     На главную страницу
@@ -137,26 +138,26 @@ export class CreateNewSection extends Component {
                                     type='checkbox'
                                     id='addToSidebar'
                                     onChange={(e) => {
-                                    this.handleChange(e);
-                                }}
+                                        this.handleChange(e);
+                                    }}
                                     checked={this.state.addToSidebar}/>
                                 <label htmlFor='addToSidebar'>
                                     На боковую панель
                                 </label>
-                            </div >
+                            </div>
                         </div>
                         <button className='btn waves-effect waves-light' type='submit' name='action'>
                             Добавить
                             <i className='material-icons right'>
                                 send
                             </i>
-                        </button >
+                        </button>
                     </form>
                 </div>
             </div>
         );
     }
-}
+};
 
 export class EditSection extends Component {
     static propTypes = {
@@ -204,7 +205,7 @@ export class EditSection extends Component {
     render() {
         return (
             <div className='AdminPage'>
-                <h5 >
+                <h5>
                     Редактирование раздела
                 </h5>
                 <div className='row'>
@@ -220,7 +221,7 @@ export class EditSection extends Component {
                                     this.handleChange(e);
                                 }}/>
                             </div>
-                        </div >
+                        </div>
                         <div className='row'>
                             <div className='input-field col s12'>
                                 <textarea
@@ -232,7 +233,7 @@ export class EditSection extends Component {
                                 }}></textarea>
                             </div>
                         </div>
-                        <p >
+                        <p>
                             Добавить раздел
                         </p>
                         <div className='row'>
@@ -259,18 +260,39 @@ export class EditSection extends Component {
                                 <label htmlFor='addToSidebar'>
                                     На боковую панель
                                 </label>
-                            </div >
-                        </div >
+                            </div>
+                        </div>
                         <button className='btn waves-effect waves-light' type='submit' name='action'>
                             Обновить
                             <i className='material-icons right'>
                                 send
                             </i>
-                        </button >
+                        </button>
                     </form>
-                </div >
+                </div>
                 <hr/>
             </div>
         )
+    }
+}
+
+export class UsersSection extends Component{
+    static propTypes = {
+        users: PropTypes.arrayOf(PropTypes.object),
+        dispatch: PropTypes.func
+    }
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const {users, dispatch} = this.props;
+        return (
+            <div className='AdminPage'>
+                <h5>Панель управления пользователями</h5>
+                <Users list={users} dispatch={dispatch}/>
+            </div>
+        );
     }
 }

@@ -13,7 +13,7 @@ export default class Sections extends Component {
             return null;
 
         return (
-            <div className='Sections row'>
+            <div className='Sections'>
                 {sections.map((section, key) => {
                     return <SectionBlock key={key} sectionsData={section}/>
                 })}

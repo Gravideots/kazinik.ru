@@ -8,11 +8,11 @@ const createNewSection = function (sectionData, sectionType, done) {
 
     let newSection = new Section()
 
-    if (!newSection.Listing[sectionType.type]) 
-        return done('ERROR')
+    // if (!newSection.Listing[sectionType.type]) 
+    //     return done('ERROR')
 
     newSection.Active = sectionData.addToMain
-    newSection.Listing[sectionType.type].Available = true
+    newSection.Type = sectionType.type
     newSection.Title = sectionData.title
     newSection.Description = sectionData.description
     newSection.ShowInSadebar = sectionData.addToSidebar
@@ -27,7 +27,7 @@ const createNewSection = function (sectionData, sectionType, done) {
 
 const getAllSections = function (done) {
     Section
-        .find(function (err, sections) {
+        .find({}, function (err, sections) {
             if (err) 
                 throw err
             else 

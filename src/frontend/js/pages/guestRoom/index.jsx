@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {getGuestRoom, sendMessage} from './actions.js';
+import {getGuestRoom, sendMessage, resizeQuestionButton} from './actions.js';
 
 import QuestionCreator from './questionCreator';
 
@@ -22,12 +22,16 @@ import Modal from 'components/modal';
   guestRoomAsyncLoading: state
     .guestRoom
     .get('guestRoomAsyncLoading'),
+  questionButtonState: state
+    .guestRoom
+    .get('questionButtonState')
 }))
 export default class GuestRoom extends Component {
   static propTypes = {
     guestRoomAsyncData: PropTypes.object,
     guestRoomAsyncError: PropTypes.object,
     guestRoomAsyncLoading: PropTypes.bool,
+    questionButtonState: PropTypes.bool,
     dispatch: PropTypes.func
   }
 
@@ -36,7 +40,7 @@ export default class GuestRoom extends Component {
     this.state = {
       modal: null,
       postId: null,
-      sticky: '',
+      sticky: false,
     }
 
     //Modal
@@ -51,20 +55,45 @@ export default class GuestRoom extends Component {
     this.resetSendForm = this
       .resetSendForm
       .bind(this);
+
+    this.handleScroll = this
+      .handleScroll
+      .bind(this);
   }
 
+  
+  componentWillMount() {
+    const {dispatch} = this.props;
+
+    dispatch(getGuestRoom());
+  }
+  
   componentDidMount(){
     var self = this;
-    document.addEventListener('scroll', (e)=>{
-      if(scrollY >= 216)
-        self.setState({
-          sticky: true
-        })
-      else
-        self.setState({
-          sticky: false
-        })
-    })
+    document.addEventListener('scroll', this.handleScroll)
+  }
+
+  handleScroll(event) {
+    if(scrollY >= 200)
+      {
+        if(!this.props.questionButtonState)
+          this.props.dispatch(resizeQuestionButton(!this.props.questionButtonState))
+        // this.state.sticky = !this.state.sticky;
+        // this.setState({
+        //   sticky: true
+        // })
+      }
+    else
+      {
+        if(this.props.questionButtonState)
+          this.props.dispatch(resizeQuestionButton(!this.props.questionButtonState))
+        // this.setState({
+        //   sticky: false
+        // })
+        
+        // this.state.sticky = !this.state.sticky;
+      }
+    
   }
 
   openModal(e, id){
@@ -100,17 +129,12 @@ export default class GuestRoom extends Component {
     }
   }
 
-  componentWillMount() {
-    const {dispatch} = this.props;
-
-    dispatch(getGuestRoom());
-  }
-
   render() {
     const {
       guestRoomAsyncData,
       guestRoomAsyncError,
       guestRoomAsyncLoading,
+      questionButtonState
     } = this.props;
 
     if (guestRoomAsyncData){
@@ -125,7 +149,7 @@ export default class GuestRoom extends Component {
               <Text type='footnote center bold'>Ответов: <span>{guestRoomAsyncData.Messages.length}</span></Text>
             </div>
           </div>
-          <div className={(this.state.sticky)?'ButtonContainer sticky':'ButtonContainer'}>
+          <div className={(questionButtonState)?'ButtonContainer sticky':'ButtonContainer'}>
             <Button text='Open Modal' onClick={this.openModal}>
               <div className="bigBlackBtn">
                 <Icon iconName="help_outline"/>

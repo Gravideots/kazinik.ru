@@ -1,32 +1,78 @@
+.navbar-fixed{
+    margin-bottom: 0.6rem;
+}
 nav{
     &.Navbar{
         background-color: #E6E5D1;
         color: black;
+        line-height: 2.6rem;
+        
+        .nav-wrapper{
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
 
-        .row{
-            margin-bottom: 0;
+            >div{
+                &:nth-child(1){
+                    width: 5%;
+                    text-align: center;
+                }
+                width: 95%;
+                display: flex;
+                justify-content: space-around;
+            }
+
+            .Button{
+                i.material-icons{
+                    &.small{
+                        height: 3rem;
+                        line-height: 3rem;
+                        font-size: 2rem;
+                    }
+                }
+            }
+            .SearchInput{
+                i.material-icons{
+                    &.tiny{
+                        font-size: 1rem;
+                        line-height: 2.5rem;
+                        top: 0.2667rem;
+                        left: 0.1rem;
+                        transform: rotateY(180deg);
+                        margin: 0;
+                    }
+                    &.small{
+                        font-size: 2rem;
+                    }
+                    &.medium{
+                        font-size: 4rem;
+                    }
+                }
+            }
+            .IconBlock{
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: nowrap;   
+                width: 10%; 
+                
+                .material-icons{
+                    &.tiny{
+                        height: 1rem;
+                        line-height: 3rem;
+                        font-size: 1rem;
+                    }
+                }
+            }
         }
         a{
             color: #039be5;
             font-size: 0.6667rem;
         }
+    }
+}
 
-        i.material-icons{
-
-            &.tiny{
-                font-size: 1rem;
-                line-height: 2.5rem;
-                top: 0.2667rem;
-                left: 0.1rem;
-                transform: rotateY(180deg);
-                margin: 0;
-            }
-            &.small{
-                font-size: 2rem;
-            }
-            &.medium{
-                font-size: 4rem;
-            }
-        }
+@media only screen and (min-width: 601px){
+    .navbar-fixed {
+        height: 3.23rem;
     }
 }

@@ -17,7 +17,8 @@ export default class Slider extends Component {
         internal,
         show,
         dots,
-        arrow
+        arrow,
+        big
     } = this.props;
 
     var settings = {
@@ -42,7 +43,7 @@ export default class Slider extends Component {
                                         <Link to={{
                                             pathname: routeCodes[navigation] + slideInfo.URL
                                         }}>
-                                            <Slide data={slideInfo}/>
+                                            <Slide big={big} data={slideInfo}/>
                                         </Link>
                                     </div>
                     else

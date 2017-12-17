@@ -12,7 +12,7 @@ export default class SectionBlock extends Component {
         } = this.props;
 
         return (
-            <Link className='SectionBlock col s3'
+            <Link className='SectionBlock'
             to={{ pathname: (sectionsData.Listed)? routeCodes['SECTION'] + sectionsData.URL : routeCodes[ sectionsData.URL ] }}>
                 <div>
                     <Image src={ sectionsData.BackgroundImage } alt={ sectionsData.Title }/>

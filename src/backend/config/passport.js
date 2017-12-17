@@ -3,7 +3,7 @@ const LocalStrategy = require('passport-local'); //локальная страт
 const JwtStrategy = require('passport-jwt').Strategy; // авторизация через JWT
 const ExtractJwt = require('passport-jwt').ExtractJwt; // авторизация через JWT
 
-const User = require('../schemas/user')
+const User = require('../controllers/user')
 const jwtsecret = 'test'
 
 const jwtOptions = {
@@ -17,7 +17,7 @@ passport.use(new LocalStrategy({
       session: false
     },
     function (email, password, done) {
-      User.findOne({email}, (err, user) => {
+      User.FindByMail({email}, (err, user) => {
         if (err) {
           return done(err);
         }
@@ -30,8 +30,9 @@ passport.use(new LocalStrategy({
   )
 );
 
-passport.use(new JwtStrategy(jwtOptions, function (payload, done) {
-    User.findById(payload.id, (err, user) => {
+passport.use(new JwtStrategy(jwtOptions, 
+  function (payload, done) {
+    User.FindById(payload.id, (err, user) => {
       if (err) {
         return done(err)
       }

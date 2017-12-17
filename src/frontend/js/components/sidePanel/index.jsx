@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
 import {toggleSidebar, getSidebarContent, getExistingSectios} from './actions.js';
-import {getPossibleSectiosList, selectSectionToEdit, selectSectionToAddContent} from '../../pages/admin/actions.js';
+import {getPossibleSectiosList, getUsersList, selectSectionToEdit, selectSectionToAddContent} from 'pages/admin/actions.js';
 
 import FeedbackForm from '../feedbackForm'
 import Button from '../button';
@@ -28,7 +28,6 @@ import Button from '../button';
         .event
         .get('SidebarAsyncLoading')
 }))
-
 export default class Sidebar extends Component {
 
     static propTypes = {
@@ -86,6 +85,7 @@ class AdminSidebar extends Component {
     render() {
 
         let {adminPageLoaded, show, openFromRight, content, dispatch} = this.props;
+
         return (
             <div className='Sidebar SidebarAdmin'>
                 <div className='SidebarAdminContent Left '>
@@ -167,7 +167,7 @@ class UserSidebar extends Component {
                     style={styles.navLeft}
                     onClick=
                     {() => this.toggleSidebar(openFromRight)}>
-                    < SidebarUserContent title='Разделы'/>
+                    <SidebarUserContent title='Разделы'/>
                 </div>
                 <div
                     className='SideNavContent Right'
@@ -207,10 +207,10 @@ class SidebarUserContent extends Component {
                     <p className="col s12 l12 m12 center-align">
                         {this.props.title || 'Заглушка'}
                     </p>
-                    <div >
+                    <div>
                         <Button text='Test Button' data='modal1' className='modal-trigger'/>
                     </div>
-                </div >
+                </div>
             )
     }
 }
@@ -231,6 +231,11 @@ class SidebarAdminContent extends Component {
     getPossibleSectios() {
         const {dispatch} = this.props
         dispatch(getPossibleSectiosList());
+    }
+
+    getUsers() {
+        const {dispatch} = this.props
+        dispatch(getUsersList());
     }
 
     selectSectionToEdit(event, sectionID) {
@@ -269,9 +274,17 @@ class SidebarAdminContent extends Component {
                 <div>
                     <Button
                         onClick={() => {
-                        this.getPossibleSectios()
-                    }}
-                        text='Управление разделами'/> {ExistingSections}
+                            this.getUsers()
+                        }}
+                        text='Пользователи'
+                    />
+                    <Button
+                        onClick={() => {
+                            this.getPossibleSectios()
+                        }}
+                        text='Разделы'
+                    />
+                    {ExistingSections}
                 </div>
             </div>
         )

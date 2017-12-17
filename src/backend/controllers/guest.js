@@ -32,6 +32,9 @@ const getPage = function (done) {
         if (err)
             throw err
         else {
+            if(guestSection)
+                guestSection.Messages = guestSection.Messages.reverse();
+
             return done(null, guestSection)
         }
     })

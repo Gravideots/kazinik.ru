@@ -4,13 +4,15 @@ import {
   GET_GUEST_ROOM_START,
   GET_GUEST_ROOM_ERROR,
   GET_GUEST_ROOM_SUCCESS,
+  TOOGLE_QUESTION_BUTTON_STATE,
 } from './actions.js';
 
 const initialState = Map({
     guestRoomAsyncLoading: false,
     guestRoomAsyncError: null,
     guestRoomAsyncData: null,
-    guestRoomSelectedTag: null
+    guestRoomSelectedTag: null,
+    questionButtonState: false
   });
 
 const actionsMap = {
@@ -32,6 +34,11 @@ const actionsMap = {
     return state.merge(Map({
       guestRoomAsyncLoading: false,
       guestRoomAsyncData: action.data,
+    }));
+  },
+  [TOOGLE_QUESTION_BUTTON_STATE]: (state, action) => {
+    return state.merge(Map({
+      questionButtonState: action.bool
     }));
   },
 }

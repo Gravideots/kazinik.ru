@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import {getAdminPage, leaveAdminPage} from './actions.js';
+import {getAdminPage, leaveAdminPage, getPossibleSectiosList} from './actions.js';
 
-import {GetSectionsList, CreateNewSection, EditSection} from './sectionManagement'
+import {SectionsList, CreateNewSection, EditSection, UsersSection} from './sectionManagement'
 import {AddContent, ContentCreation} from './contentManagement'
 
 import Sidebar from 'components/sidePanel';
@@ -21,7 +21,6 @@ import Sidebar from 'components/sidePanel';
     .admin
     .get('asyncLoading')
 }))
-
 export default class Admin extends Component {
   static propTypes = {
     content: PropTypes.object,
@@ -35,8 +34,10 @@ export default class Admin extends Component {
   componentWillMount() {
     const {dispatch, token, location} = this.props;
 
-    if(token)
+    if(token){
       dispatch(getAdminPage());
+      dispatch(getPossibleSectiosList());
+    }
   }
 
   componentWillUnmount() {
@@ -49,10 +50,13 @@ export default class Admin extends Component {
     if(!token){
       return <Redirect to='/login'/>
     }
-
+  
     if (content) {
+      if (content.Users) {
+        return <UsersSection users={content.Users} dispatch={dispatch}/>;
+      }
       if (content.PosibleSections) {
-        return <GetSectionsList content={content.PosibleSections} dispatch={dispatch}/>;
+        return <SectionsList content={content.PosibleSections} dispatch={dispatch}/>;
       }
       if (content.NewSection) {
         return <CreateNewSection content={content} dispatch={dispatch}/>;
@@ -67,6 +71,7 @@ export default class Admin extends Component {
         return <ContentCreation contentToCreate={content.ContentToCreate} dispatch={dispatch}/>;
       }
     else {
+      //TODO переделать на прелоадер
       return <AdminStart/>;
     }
 

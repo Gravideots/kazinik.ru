@@ -16,9 +16,6 @@ html {
             display: none;
         }
     }
-    .Page{
-        margin-top: 60px;
-    }
     .UnderConstr {
         display: none;
         text-align: center;
@@ -49,8 +46,10 @@ html {
 @import '../js/components/sidePanel/style.scss';
 @import '../js/components/textArea/style.scss';
 @import '../js/components/guestComment/style.scss';
+@import '../js/components/footer/style.scss';
 
 //Pages
+@import '../js/pages/main/style.scss';
 @import '../js/pages/event/style.scss';
 @import '../js/pages/school/style.scss';
 @import '../js/pages/admin/style.scss';

@@ -30,7 +30,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cookieParser());
 app.use(passport.initialize());
-app.use(require('./router/index'))
+app.use('/admin', require('./router/index').adminRouter)
+app.use('/', require('./router/index').router)
 app.use(redirectUnmatched);
 require('./config/passport')
 

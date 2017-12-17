@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {testAction, testAsync, getMainPage} from './actions.js';
 
 import Slider from 'components/slider';
+import Footer from 'components/footer';
 import Sections from './sections';
 
 @connect(state => ({
@@ -104,22 +105,22 @@ export default class Main extends Component {
       if (special && special.Active) {
         firstBlock = <div className='row'>
           <div className='col l4'>
-            <Slider data={events} navigation='EVENT' internal={true} show='1'/>
+            <Slider data={events} big={false} navigation='EVENT' internal={true} show='1'/>
           </div>
           <div className='col l4'>
-            <Slider data={events} navigation='EVENT' internal={true} show='1' dots={true}/>
+            <Slider data={events} big={false} navigation='EVENT' internal={true} show='1' dots={true}/>
           </div>
           <div className='col l4'>
-            <Slider data={school} navigation='SCHOOL' internal={true} show='1' dots={true}/>
+            <Slider data={school} big={false} navigation='SCHOOL' internal={true} show='1' dots={true}/>
           </div>
         </div>
       } else {
         firstBlock = <div className='row'>
           <div className='col l6'>
-            <Slider data={events} navigation='MAIN' internal={true} show='1' dots={true}/>
+            <Slider data={events} big={true} navigation='EVENT' internal={true} show='1' dots={true}/>
           </div>
           <div className='col l6'>
-            <Slider data={school} navigation='SCHOOL' internal={true} show='1' dots={true}/>
+            <Slider data={school} big={true} navigation='SCHOOL' internal={true} show='1' dots={true}/>
           </div>
         </div>
       }
@@ -131,7 +132,7 @@ export default class Main extends Component {
               data={partners}
               navigation='MAIN'
               internal={false}
-              show='7'
+              show={(partners.length > 10)? '10': partners.length}
               arrow={true}/>
           </div>
         </div>
@@ -144,6 +145,7 @@ export default class Main extends Component {
         {firstBlock}
         {secondBlock}
         <Sections sections={sections}/>
+        <Footer/>
       </div>
     );
   }

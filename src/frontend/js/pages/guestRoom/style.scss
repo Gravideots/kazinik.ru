@@ -10,8 +10,9 @@
     .ButtonContainer{
         &.sticky{
             position: fixed;
+            left: 0;
             top: 80px;
-            width: 67.263%;
+            width: 100%;
             z-index: 99;
         }
         .Button{

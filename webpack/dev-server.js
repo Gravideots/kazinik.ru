@@ -26,7 +26,8 @@ const devServer = {
     colors: true
   },
   proxy: {
-    '/api/*': 'http://localhost:3003'
+    '/api/*': 'http://localhost:3003',
+    '/admin/api/*': 'http://localhost:3003',
   },
   headers: {
     'Access-Control-Allow-Origin': '*'

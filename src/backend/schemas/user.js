@@ -38,4 +38,4 @@ userSchema.methods.checkPassword = function (password) {
 
 const db = mongoose.createConnection(dbConfig.appDB.url);
 
-module.exports = db.model('User', userSchema);
+module.exports = userSchema;

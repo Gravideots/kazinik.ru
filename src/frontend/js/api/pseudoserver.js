@@ -1,6 +1,6 @@
 export const MainPage = {
     special: {
-        Active: true,
+        Active: false,
         contentType: '',
         contentURL: ''
     },
@@ -9,7 +9,8 @@ export const MainPage = {
             Active: true,
             Title: 'Школа для мальчиков и девочек',
             SubTitle: 'Lorem ipsum dolor sit amet',
-            BackgroundImage: 'https://www.w3.org/html/logo/downloads/HTML5_sticker.png',
+            BackgroundImage: 'http://lorempixel.com/900/357/',
+            BackgroundImageSmall: 'http://lorempixel.com/590/360/',
             URL: '1'
         }
     ],
@@ -18,21 +19,24 @@ export const MainPage = {
             Active: true,
             Title: 'Концерт в камерном зале',
             SubTitle: 'Lorem ipsum dolor sit amet',
-            BackgroundImage: 'http://kazinik.ru/documents/__________________4_100.jpg',
+            BackgroundImage: 'http://lorempixel.com/900/357/',
+            BackgroundImageSmall: 'http://lorempixel.com/590/360/',
             URL: '1'
         },
         {
             Active: true,
             Title: 'Сказки старого органа',
             SubTitle: 'Lorem ipsum dolor sit amet',
-            BackgroundImage: 'http://kazinik.ru/documents/__________________3_100.jpg',
+            BackgroundImage: 'http://lorempixel.com/900/357/',
+            BackgroundImageSmall: 'http://lorempixel.com/590/360/',
             URL: '2'
         },
         {
             Active: true,
             Title: 'Концерт в камерном зале',
             SubTitle: 'Lorem ipsum dolor sit amet',
-            BackgroundImage: 'http://kazinik.ru/documents/__________________3_100.jpg',
+            BackgroundImage: 'http://lorempixel.com/900/357/',
+            BackgroundImageSmall: 'http://lorempixel.com/590/360/',
             URL: '2'
         }
     ],
@@ -146,7 +150,7 @@ export const EventPage = {
     Title: 'Убить Моцарта',
     SubTitle: 'Михаил Казиник',
     TitleImage: {
-        Full: 'http://kazinik.ru/documents/kazinik_ru_4_100_1.jpg',
+        Full: 'http://lorempixel.com/900/600/',
         Crop: 'url'
     },
     Text: [
@@ -218,7 +222,7 @@ export const SchoolPage = {
         Finish: new Date(),
     },
     TitleImage: {
-        Full: 'https://i.imgur.com/NnzxG4S.jpg',
+        Full: 'http://lorempixel.com/1920/480/',
         Crop: 'String',
     },
     Price: 'от 20 000 р за человека',
@@ -244,7 +248,7 @@ export const NotePage = [
         SubTitle: 'Etiam condimentum lectus ut quam placerat convallis.Etiam condimentum lectus ut quam placerat convallis.Etiam condimentum lectus ut quam placerat convallis.',
         Description: 'Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так.',
         TitleImage: {
-            Full: 'https://i.imgur.com/NnzxG4S.jpg',
+            Full: 'http://lorempixel.com/1920/480/',
             Crop: 'https://i.imgur.com/NnzxG4S.jpg',
         },
         Tags: [{

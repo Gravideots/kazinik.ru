@@ -9,6 +9,10 @@ export const GET_POSSIBLE_SECTIONS_LIST_START = 'GET_POSSIBLE_SECTIONS_LIST_STAR
 export const GET_POSSIBLE_SECTIONS_LIST_SUCCESS = 'GET_POSSIBLE_SECTIONS_LIST_SUCCESS'
 export const GET_POSSIBLE_SECTIONS_LIST_ERROR = 'GET_POSSIBLE_SECTIONS_LIST_ERROR'
 
+export const GET_USERS_LIST_START = 'GET_USERS_START'
+export const GET_USERS_LIST_SUCCESS = 'GET_USERS_LIST_SUCCESS'
+export const GET_USERS_LIST_ERROR = 'GET_USERS_LIST_ERROR'
+
 export const GET_EXISTING_SECTIONS_LIST_START = 'GET_EXISTING_SECTIONS_LIST_START';
 export const GET_EXISTING_SECTIONS_LIST_SUCCESS = 'GET_EXISTING_SECTIONS_LIST_SUCCESS';
 export const GET_EXISTING_SECTIONS_LIST_ERROR = 'GET_EXISTING_SECTIONS_LIST_ERROR';
@@ -82,14 +86,27 @@ export function getPossibleSectiosList() {
         api
             .getSectionsList("possible")
             .then(data => dispatch(getPossibleSectionsListSuccess(data)))
-            // .then(data => {
-            //     data
-            //         .json()
-            //         .then(data => {
-            //             dispatch(getPossibleSectionsListSuccess(data))
-            //         });
-            // })
             .catch(error => dispatch(getPossibleSectionsListError(error)));
+    };
+}
+
+function getUsersListStart(data) {
+    return {type: GET_USERS_LIST_START};
+}
+function getUsersListSuccess(data) {
+    return {type: GET_USERS_LIST_SUCCESS, data};
+}
+function getUsersListError(data) {
+    return {type: GET_USERS_LIST_ERROR};
+}
+
+export function getUsersList() {
+    return function (dispatch) {
+        dispatch(getUsersListStart())
+        api
+            .getUsersList()
+            .then(data => dispatch(getUsersListSuccess(data)))
+            .catch(error => dispatch(getUsersListError(error)));
     };
 }
 
@@ -104,11 +121,7 @@ export function selectSectionToEdit(sectionID) {
         api
             .getSection(sectionID)
             .then(data => {
-                data
-                    .json()
-                    .then(data => {
-                        dispatch(selectSectionToEditSuccess(data))
-                    })
+                dispatch(selectSectionToEditSuccess(data))
             })
             .catch(error => {
                 dispatch(selectSectionToEditError(error))
@@ -137,13 +150,9 @@ export function createNewSection(sectionData, sectionType) {
         api
             .createNewSection(newSectionData)
             .then(data => {
-                data
-                    .json()
-                    .then(data => {
-                        dispatch(createNewSectionSuccess(data.body))
-                        dispatch(getExistingSectios())
-                        dispatch(getPossibleSectiosList())
-                    })
+                dispatch(createNewSectionSuccess(data.body))
+                dispatch(getExistingSectios())
+                dispatch(getPossibleSectiosList())
             })
             .catch(error => {
                 dispatch(createNewSectionError(error))
@@ -165,13 +174,6 @@ export function getExistingSectios() {
         dispatch(getExistingSectiosStart())
         api
             .getSectionsList('existing')
-            // .then(data => {
-            //     data
-            //         .json()
-            //         .then(data => {
-            //             dispatch(getExistingSectiosSuccess(data))
-            //         })
-            // })
             .then(data => dispatch(getExistingSectiosSuccess(data)))
             .catch(error => dispatch(getExistingSectiosError(error)))
     }
@@ -192,13 +194,9 @@ export function deleteSection(sectionID) {
         api
             .deleteSection(sectionID)
             .then(data => {
-                data
-                    .json()
-                    .then(data => {
-                        dispatch(deleteSectionSuccess(data))
-                        dispatch(getExistingSectios())
-                        dispatch(getPossibleSectiosList())
-                    })
+                dispatch(deleteSectionSuccess(data))
+                dispatch(getExistingSectios())
+                dispatch(getPossibleSectiosList())
             })
             .catch(error => dispatch(deleteSectionError(error)))
     }
@@ -219,12 +217,8 @@ export function updateSection(sectionData) {
         api
             .updateSection(sectionData)
             .then(data => {
-                data
-                    .json()
-                    .then(data => {
-                        updateSectionSuccess(data)
-                        dispatch(getExistingSectios())
-                    })
+                updateSectionSuccess(data)
+                dispatch(getExistingSectios())
             })
             .catch(error => dispatch(updateSectionError(error)))
     }
@@ -245,11 +239,7 @@ export function selectSectionToAddContent(sectionID) {
         api
             .getSection(sectionID)
             .then(data => {
-                data
-                    .json()
-                    .then(data => {
-                        dispatch(selectSectionToAddContentSuccess({ContentManagement: data}))
-                    })
+                dispatch(selectSectionToAddContentSuccess({ContentManagement: data}))
             })
             .catch(error => dispatch(selectSectionToAddContentError(error)))
     }
@@ -274,12 +264,8 @@ export function addMedia(media) {
         api
             .addMedia(media)
             .then(data => {
-                data
-                    .json()
-                    .then(data => {
-                        dispatch(addMediaSuccess({ContentManagement: data}))
-                        dispatch(selectSectionToAddContent(data.data))
-                    })
+                dispatch(addMediaSuccess({ContentManagement: data}))
+                dispatch(selectSectionToAddContent(data.data))
             })
             .catch(error => dispatch(addMediaError(error)))
     }
@@ -303,12 +289,8 @@ export function deleteMedia(sectionID, mediaID) {
         api
             .deleteMedia(sectionID, mediaID)
             .then(data => {
-                data
-                    .json()
-                    .then(data => {
-                        dispatch(deleteMediaSuccess({ContentManagement: data}))
-                        dispatch(selectSectionToAddContent(data.data))
-                    })
+                dispatch(deleteMediaSuccess({ContentManagement: data}))
+                dispatch(selectSectionToAddContent(data.data))
             })
             .catch(error => dispatch(deleteMediaError(error)))
     }

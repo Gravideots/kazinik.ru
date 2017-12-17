@@ -24,6 +24,40 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>
+      var baseWidth = 1920;
+      var baseFontSize = 25.5;
+
+      (function() {
+        var throttle = function(type, name, obj) {
+            obj = obj || window;
+            var running = false;
+            var func = function() {
+                if (running) { return; }
+                running = true;
+                requestAnimationFrame(function() {
+                    obj.dispatchEvent(new CustomEvent(name));
+                    running = false;
+                });
+            };
+            obj.addEventListener(type, func);
+        };
+
+        /* init - you can init any event */
+        throttle("resize", "optimizedResize");
+      })();
+
+      // handle event
+      window.addEventListener("optimizedResize", recalculateFontSize);
+
+      function recalculateFontSize(){
+        let currentWidth = window.innerWidth;
+        let currentP = (100 / baseWidth)*currentWidth;
+        document.documentElement.style.fontSize = (baseFontSize * currentP)/100 + 'px';
+      }
+
+      recalculateFontSize();
+    </script>
   </body>
 
 </html>

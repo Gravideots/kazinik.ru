@@ -10,6 +10,10 @@ import {
     GET_POSSIBLE_SECTIONS_LIST_SUCCESS,
     GET_POSSIBLE_SECTIONS_LIST_ERROR,
 
+    GET_USERS_LIST_START,
+    GET_USERS_LIST_SUCCESS,
+    GET_USERS_LIST_ERROR,
+
     SELECT_SECTION_TO_CREATE,
 
     SELECT_SECTION_TO_EDIT_START,
@@ -51,6 +55,16 @@ const actionsMap = {
         return state.merge(Map({asyncLoading: false, asyncData: action.data, asyncError: null}));
     },
     [GET_POSSIBLE_SECTIONS_LIST_ERROR]: (state, action) => {
+        return state.merge(Map({asyncLoading: false, asyncData: null, asyncError: action.data}));
+    },
+
+    [GET_USERS_LIST_START]: (state, action) => {
+        return state.merge(Map({asyncLoading: true, asyncData: null, asyncError: null}));
+    },
+    [GET_USERS_LIST_SUCCESS]: (state, action) => {
+        return state.merge(Map({asyncLoading: false, asyncData: action.data, asyncError: null}));
+    },
+    [GET_USERS_LIST_ERROR]: (state, action) => {
         return state.merge(Map({asyncLoading: false, asyncData: null, asyncError: action.data}));
     },
 
