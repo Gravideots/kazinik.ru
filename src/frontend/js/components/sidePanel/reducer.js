@@ -13,7 +13,11 @@ import {
 
     GET_EXISTING_SECTIONS_LIST_START,
     GET_EXISTING_SECTIONS_LIST_SUCCESS,
-    GET_EXISTING_SECTIONS_LIST_ERROR
+    GET_EXISTING_SECTIONS_LIST_ERROR,
+
+    GET_NAVIGATION_LIST_START,
+    GET_NAVIGATION_LIST_SUCCESS,
+    GET_NAVIGATION_LIST_ERROR,
 } from './actions.js';
 
 const initialState = Map({
@@ -48,7 +52,17 @@ const actionsMap = {
 
     [GET_EXISTING_SECTIONS_LIST_SUCCESS]: (state, action) => {
         return state.merge(Map({asyncLoading: false, asyncError: null, asyncData: action.data}));
-    }
+    },
+
+    [GET_NAVIGATION_LIST_START]: (state) => {
+        return state.merge(Map({asyncLoading: true, asyncError: null, asyncData: null}));
+    },
+    [GET_NAVIGATION_LIST_SUCCESS]: (state, action) => {
+        return state.merge(Map({asyncLoading: false, asyncData: action.data}));
+    },
+    [GET_NAVIGATION_LIST_ERROR]: (state, action) => {
+        return state.merge(Map({asyncLoading: false, asyncError: action.data}));
+    },
 }
 
 export default function reducer(state = initialState, action = {}) {

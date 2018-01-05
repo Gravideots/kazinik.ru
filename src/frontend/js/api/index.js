@@ -53,13 +53,7 @@ function notePage(id) {
 }
 
 function getSidebarContent() {
-  return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
-    if (response.status !== 200) {
-      console.log('Looks like there was a problem. Status Code: ' + response.status);
-      return response.status;
-    }
-    return response;
-  });
+  return mainPage();
 }
 
 function sectionPage(type, tag = null) {
@@ -75,6 +69,22 @@ function sectionPage(type, tag = null) {
 
 
 
+function getNavigationList() {
+  return fetch( apiPrefix + '/api/guest/',{
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return MainPage.sectionsBlock    
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
 
 function sendGuestMessage(message){
   return fetch( apiPrefix + '/api/guest/', {
@@ -315,6 +325,8 @@ export default {
   schoolPage,
   notePage,
   sectionPage,
+
+  getNavigationList,
   getGuestRoom,
   getSidebarContent,
 

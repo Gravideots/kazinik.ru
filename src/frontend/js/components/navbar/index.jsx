@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { Route, Switch, Redirect, BrowserHistory } from 'react-router';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import {routeCodes} from 'config/routes';
+import { routeCodes } from 'config/routes';
 
 import Input from '../input'
 import Logo from '../logo'
@@ -9,8 +9,7 @@ import Icon from '../icon'
 import Button from '../button'
 import Text from '../text'
 
-import {connect} from 'react-redux';
-import {toggleSidebar} from './actions.js';
+import { toggleSidebar } from './actions.js';
 
 @connect(state => ({
 
