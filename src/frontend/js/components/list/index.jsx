@@ -18,7 +18,7 @@ export default class List extends Component {
             <div className='List row'>
               {listData.map((listElement, key) => {
                 return (
-                  <div className='col l6'>
+                  <div className='col s12 l6'>
                     <MediaListElement key={key} data={listElement}/>
                   </div>
                 );

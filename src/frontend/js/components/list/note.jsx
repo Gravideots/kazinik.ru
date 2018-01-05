@@ -12,15 +12,15 @@ export default class NoteListElement extends Component {
 
     return(
       <div className='NoteListElement row'>
-        <div className='col s4'>
+        <div className='col s12'>
           <Text>{data.Author + " " + data.Date.toLocaleString('ru-RU')}</Text>
           <Image src={data.TitleImage.Crop}/>
-          <Text type='footnote'>{data.SubTitle.slice(0, 400) + '...'}</Text>
+          <Text type='helptext'>{data.SubTitle.slice(0, 400) + '...'}</Text>
         </div>
-        <div className='col s8'>
+        <div className='col s12'>
             <Text type='subheader bold'>«{data.Title}»</Text>
-            <Text type='footnote'>{data.Description.slice(0, 900) + '...'}</Text>
-            <Link className='col s3'
+            <Text type='helptext'>{data.Description.slice(0, 900) + '...'}</Text>
+            <Link className='col s12'
             to={{ pathname: routeCodes.NOTE + data.Id, data }}>
                 <Button text='Читать далее >>>'/>
             </Link>

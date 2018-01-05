@@ -35,7 +35,7 @@ export default class GuestPost extends Component {
             <div className="card">
               <div className="card-content">
                 <div className='row'>
-                  <div className='col s4'>
+                  <div className='col s12'>
                     <div className='col s5'>
                       <Text type='footnote'>Сообщение №</Text>
                     </div>
@@ -43,7 +43,7 @@ export default class GuestPost extends Component {
                       <Text type='footnote bold'>{data.ID}</Text>
                     </div>
                   </div>
-                  <div className='col s4'>
+                  <div className='col s12'>
                     <div className='col s3'>
                       <Text type='footnote'>Имя:</Text>
                     </div>
@@ -51,7 +51,7 @@ export default class GuestPost extends Component {
                       <Text type='footnote bold'>{data.Username}</Text>
                     </div>
                   </div>
-                  <div className='col s4'>
+                  <div className='col s12'>
                     <div className='col s3'>
                       <Text type='footnote'>Дата:</Text>
                     </div>
@@ -60,7 +60,7 @@ export default class GuestPost extends Component {
                     </div>
                   </div>
                 </div>
-                <p>{data.Message}</p>
+                <p className='maintext'>{data.Message}</p>
               </div>
               <div className="card-action">
                   <Button text='Ответить' onClick={this.requestModal}/>

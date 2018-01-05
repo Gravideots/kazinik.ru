@@ -5,6 +5,11 @@
         margin-top: -0.9rem;    
         width: 100%;
         text-align: center;
+        @media #{$media} and ($feature: $value) {
+            min-height: 50vh;
+            height: auto;
+            margin-top: -0.7rem;
+        }
         .Image {
             position: absolute;
             height: 100%;

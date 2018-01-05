@@ -13,7 +13,7 @@ html {
     }
     .Main {
         @media #{$media} and ($feature: $value) {
-            display: none;
+    //        display: none;
         }
     }
     .UnderConstr {
@@ -25,11 +25,15 @@ html {
         background-repeat: no-repeat;
 
         @media #{$media} and ($feature: $value) {
-            display: block;
+        //    display: block;
             height: 100vh;
             width: 100vw;
         }
     }
+}
+
+@mixin response($media, $feature, $value) {
+	@media #{$media} and ($feature: $value) { @content; }
 }
 
 @import '../js/components/navbar/style.scss';

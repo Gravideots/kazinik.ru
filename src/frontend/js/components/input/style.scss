@@ -11,6 +11,11 @@
         text-align: center;
         font-size: 0.6667rem;
 
+        @media #{$media} and ($feature: $value) {
+            font-size: 2rem;
+            height: 4rem;
+        }
+
         &::placeholder{
             color: #797878;
             font-style: italic;

@@ -1,5 +1,7 @@
 .navbar-fixed{
     margin-bottom: 0.6rem;
+    height: 9.23rem;
+    min-height: 56px;
 }
 nav{
     &.Navbar{
@@ -16,10 +18,29 @@ nav{
                 &:nth-child(1){
                     width: 5%;
                     text-align: center;
+                    @media #{$media} and ($feature: $value) {
+                        width: 16%;
+                        align-items: center;
+                    }
                 }
                 width: 95%;
                 display: flex;
                 justify-content: space-around;
+            }
+
+            .mobileNav {
+                display: none;
+                @media #{$media} and ($feature: $value) {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding-right: 2.5rem;
+                }
+
+                & .Button {
+                    margin: 0 auto;
+                    text-align: center;
+                }
             }
 
             .Button{
@@ -28,6 +49,11 @@ nav{
                         height: 3rem;
                         line-height: 3rem;
                         font-size: 2rem;
+                        @media #{$media} and ($feature: $value) {
+                            height: auto;
+                            line-height: 10rem;
+                            font-size: 7rem;
+                        }
                     }
                 }
             }
@@ -68,6 +94,23 @@ nav{
             color: #039be5;
             font-size: 0.6667rem;
         }
+    }
+}
+
+
+
+.socialicon {
+    display: flex;
+
+    &__item {
+        width: 27px;
+        height: 22px;
+        text-align: center;
+        margin-left: 5px;
+    }
+
+    &__image {
+        height: 100%;
     }
 }
 
