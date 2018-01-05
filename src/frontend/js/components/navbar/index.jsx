@@ -52,28 +52,16 @@ export default class Navbar extends Component {
                                     <a href="mailto:youremailaddress">mikhail@kazinik.com</a>
                                 </Text>
                             </div>
-                            <div className="IconBlock">
-                                <div>
-                                    <Text type='footnote'>
-                                        <a href="http://vk.com">
-                                            <Icon iconName={'code'} size='tiny'/>
-                                        </a>
-                                    </Text>
-                                </div>
-                                <div>
-                                    <Text type='footnote'>
-                                        <a href="http://fb.com">
-                                            <Icon iconName={'class'} size='tiny'/>
-                                        </a>
-                                    </Text>
-                                </div>
-                                <div>
-                                    <Text type='footnote'>
-                                        <a href="http://youtube.com">
-                                            <Icon iconName={'report'} size='tiny'/>
-                                        </a>
-                                    </Text>
-                                </div>
+                            <div className='socialicon'>
+                                <a className='socialicon__item' href="http://vk.com">
+                                    <img className='socialicon__image' src='/assets/img/icons/vk.svg'/>
+                                </a>
+                                <a className='socialicon__item' href="http://fb.com">
+                                    <img className='socialicon__image' src='/assets/img/icons/facebook-f.svg'/>
+                                </a>
+                                <a className='socialicon__item' href="http://youtube.com">
+                                    <img className='socialicon__image' src='/assets/img/icons/youtube.svg'/>
+                                </a>
                             </div>
                             <Button onClick={() => this.toggleSidebar(true)} text='Форма обратной связи'/>
                         </div>

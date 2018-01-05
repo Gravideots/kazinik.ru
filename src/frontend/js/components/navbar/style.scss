@@ -101,16 +101,20 @@ nav{
 
 .socialicon {
     display: flex;
+    align-items: center;
 
     &__item {
         width: 27px;
         height: 22px;
         text-align: center;
         margin-left: 5px;
+        position: relative;
     }
 
     &__image {
         height: 100%;
+        left: 0;
+        position: absolute;
     }
 }
 
