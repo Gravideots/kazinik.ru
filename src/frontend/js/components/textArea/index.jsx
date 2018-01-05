@@ -48,8 +48,8 @@ export default class TextArea extends Component {
     let position = tooltipPosition? tooltipPosition: 'bottom';
 
     return (
-      <div className={ className? 'TextArea ' + className:'TextArea'}>
-        <textarea className={areaName} placeholder={placeholder} data-position={position} data-tooltip='Обязательное поле' value={this.state.value} onChange={this.handleChange} rows={6}/>
+      <div className={ className? 'TextArea Input' + className:'TextArea Input'}>
+        <textarea className={'materialize-textarea ' + areaName} placeholder={placeholder} data-position={position} data-tooltip='Обязательное поле' value={this.state.value} onChange={this.handleChange} rows={6}/>
       </div>
     );
   }

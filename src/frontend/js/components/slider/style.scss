@@ -2,7 +2,10 @@
     &.slick-slider .slick-list, &.slick-slider .slick-track{
         width: 98%;
         left: 0;
-        margin: auto; 
+        margin: auto;
+        @media #{$media} and ($feature: $value) {
+            width: 100%;
+        }
     }
     .Button{
         position: absolute;
@@ -15,5 +18,36 @@
         &:nth-child(3){
             right: -2rem;
         }
+    }
+
+    & .slick-dots {
+        bottom: 10px;
+    }
+
+    & .slick-dots li
+        {
+            width: 11px;
+            height: 11px;
+
+                & button {
+                padding: 0;
+                width: 11px;
+                height: 11px;
+        
+                &::before {
+                border: 2px solid #fff;
+                border-radius: 50%;
+                content: '';
+                width: 11px;
+                height: 11px;
+                opacity: 1;
+                padding: 0;
+            }
+        }
+    }
+
+    & .slick-dots li.slick-active button::before {
+        opacity: 1;
+        background: #fff;
     }
 }

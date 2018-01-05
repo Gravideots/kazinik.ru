@@ -10,9 +10,18 @@
         border-radius: 1rem;
         background-color: #ffffff;
         margin: auto;
+        @media #{$media} and ($feature: $value) {
+            font-size: 3rem;
+            line-height: 4rem;
+            border-radius: 4rem;
+            padding: 1rem 2.5rem;
+        }
         &.active {
             border: 2px solid;
             font-weight: bold;
+            @media #{$media} and ($feature: $value) {
+                border: 1px solid;
+            }
         }
     }
 }

@@ -183,28 +183,28 @@ export default class QuestionCreator extends Component {
       return (
         <div className='QuestionCreator row'>
           <div className='Container col s12'>
-            <div className='col s7'>
-              <div className='col s6'>
-                <div className='col l3'>
+            <div className='col s12'>
+              <div className='col s12'>
+                <div className='col s12 l3'>
                   <Text>ФИО:</Text>
                 </div>
-                <div className='col l8'>
+                <div className='col s12 l8'>
                   <Input ref={e => this.state.nameInputInstance = e} placeholder='Ваше имя' name='name' type='text' onChange={inputNameHandler}/>
                 </div>
               </div>
-              <div className='col s6'>
-                <div className='col l3'>
+              <div className='col s12'>
+                <div className='col s12 l3'>
                   <Text>E-mail:</Text>
                 </div>
-                <div className='col l8'>
+                <div className='col s12 l8'>
                   <Input ref={e => this.state.mailInputInstance = e} placeholder='Ваш E-mail' type='text' name='mail' onChange={inputMailHandler} validate={validator.validate}/>
                 </div>
               </div>
             </div>
             <div className='col s12'>
-              <TextArea ref={e => this.state.textAreaInstance = e} name='textArea' tooltipPosition='right' onChange={inputMessageHandler}/>
+              <TextArea ref={e => this.state.textAreaInstance = e} name='contactForm__textarea' placeholder='Введите ваше сообщение' tooltipPosition='right' onChange={inputMessageHandler}/>
             </div>
-            <div className='col s5'>
+            <div className='col offset-s2 s6'>
               {
                 sitekey?
                 <Captcha
@@ -217,8 +217,8 @@ export default class QuestionCreator extends Component {
                 null
               }
             </div>
-            <div className='col s2'>
-              <Button text='ОТПРАВИТЬ' onClick={sendQuestion}/>
+            <div className='col s12'>
+              <Button text='ОТПРАВИТЬ' className='modal-trigger Button--fw' onClick={sendQuestion}/>
             </div>
           </div>
         </div>

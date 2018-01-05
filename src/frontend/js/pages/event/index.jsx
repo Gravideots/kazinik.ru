@@ -94,26 +94,26 @@ export default class Event extends Component {
                 <div className='col l6'>
                     <Image className='col l12' src={titleImage.Full}/>
                     <div className='col l12'>
-                        <div className='col l3'>
-                            <Text type='footnote bolder'>Дата проведения</Text>
+                        <div className='col s7 offset-s1 l3'>
+                            <Text type='EventPage__helptext bolder'>Дата проведения</Text>
                             <Text>{eventDate.toLocaleDateString("ru-RU")}</Text>
                         </div>
-                        <div className='col l3'>
-                            <Text type='footnote bolder'>Время</Text>
+                        <div className='col s4 l3'>
+                            <Text type='EventPage__helptext bolder'>Время</Text>
                             <Text>{eventDate.toLocaleTimeString("ru-RU", time)}</Text>
                         </div>
-                        <div className='col l3'>
-                            <Text type='footnote bolder'>Место проведения</Text>
+                        <div className='col s12 offset-s1 l3'>
+                            <Text type='EventPage__helptext bolder'>Место проведения</Text>
                             <Text>{address}</Text>
                         </div>
-                        <div className='col l3'>
+                        <div className='col s8 offset-s2 l3'>
                             <Button
                                 onClick={() => {
                                 this.openDropDown()
                             }}
                                 text='Купить билет'
                                 data='salersModal'
-                                className='modal-trigger'/>
+                                className='modal-trigger Button--fw'/>
                             <div id="salersModal" className="modal bottom-sheet">
                                 <div className="modal-header">
                                     <Text type='header center'>
