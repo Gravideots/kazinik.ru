@@ -1,9 +1,16 @@
 .GuestRoom {
+    width: 90%;
+    @media #{$media} and ($feature: $value) {
+        width: 100%;
+    }
     .Text{
         >p{
             >span{
                 font-weight: normal;
                 font-size: 1rem;
+                @media #{$media} and ($feature: $value) {
+                    font-size: 3.5rem;
+                }
             }
         }
     }
@@ -31,6 +38,11 @@
                     color: white;
                     float: unset;
                     font-size: 2.4rem;
+                    @media #{$media} and ($feature: $value) {
+                        font-size: 11rem;
+                        position: absolute;
+                        left: 5rem;
+                    }
                 }
                 p{
                     height: auto;
@@ -38,8 +50,25 @@
                     vertical-align: middle;
                     padding: .5rem 0;
                     font-weight: 800;
+                    font-size: 1rem;
+                    position: relative;
+                    @media #{$media} and ($feature: $value) {
+                        width: 100%;
+                        font-size: 4rem;
+                        padding: 3.5rem 0;
+                    }
+
                 }
             }
+        }
+    }
+
+    .List {
+        width: 100%;
+        margin: 0 -0.75rem;
+        @media #{$media} and ($feature: $value) {
+            width: 90%;
+            margin: 0 auto;
         }
     }
     
@@ -47,28 +76,67 @@
         background-color: #FFFFFF;
         padding: 0.5rem;
         margin: 0;
+        height: auto;
+        @media #{$media} and ($feature: $value) {
+            padding: 0;
+            height: 100%;
+        }
 
         .Container{
             padding: 0.5rem 0;
             background-color: #E6E5D1;
+            height: auto;
+            @media #{$media} and ($feature: $value) {
+                padding: 0;
+                height: 100%;
+            }
 
             input{
-                background-color: white;
+            //    background-color: white;
             }
 
             .Button button{
-                padding: 0 2rem;
+            //    padding: 0 2rem;
             }
         }
     }
 
     .modal.bottom-sheet{
         max-height: 65%;
+        top: unset;
+        @media #{$media} and ($feature: $value) {
+            max-height: 100%;
+            top: 0;
+        }
     }
+
+    .modal .modal-content {
+        padding: 24px;
+        height: auto;
+        @media #{$media} and ($feature: $value) {
+            padding: 0;
+            height: 100%;
+        }
+    }
+
+    .TextArea {
+        padding: 0 1.5rem;
+    }
+}
+
+.GuestBook {
+    margin-bottom: 0;
+    @media #{$media} and ($feature: $value) {
+        margin-bottom: 7rem;
+    }
+<<<<<<< HEAD
 
     @media screen {
         
 
         
     }
+=======
+   
+>>>>>>> 5779c2f8fb3f3ccef63ee0337f6c4443a5106a66
 }

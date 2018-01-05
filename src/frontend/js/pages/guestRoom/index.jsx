@@ -143,17 +143,16 @@ export default class GuestRoom extends Component {
           <Text type='superHeader center'>{guestRoomAsyncData.Title}</Text>
           <div className='row'>
             <div className='col s6'>
-              <Text type='footnote center bold'>Задано вопросов: <span>{guestRoomAsyncData.Messages.length}</span></Text>
+              <Text type='helptext center bold'>Задано вопросов: <span>{guestRoomAsyncData.Messages.length}</span></Text>
             </div>
             <div className='col s6'>
-              <Text type='footnote center bold'>Ответов: <span>{guestRoomAsyncData.Messages.length}</span></Text>
+              <Text type='helptext center bold'>Ответов: <span>{guestRoomAsyncData.Messages.length}</span></Text>
             </div>
           </div>
           <div className={(questionButtonState)?'ButtonContainer sticky':'ButtonContainer'}>
             <Button text='Open Modal' onClick={this.openModal}>
-              <div className="bigBlackBtn">
-                <Icon iconName="help_outline"/>
-                <p className="waves-effect waves-light btn black">задать вопрос</p>
+              <div className="bigBlackBtn">                
+                <p className="waves-effect waves-light btn black"><Icon iconName="help_outline"/>задать вопрос</p>
               </div>
             </Button>
           </div>

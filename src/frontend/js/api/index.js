@@ -79,6 +79,7 @@ function sectionPage(type, tag = null) {
 function sendGuestMessage(message){
   return fetch( apiPrefix + '/api/guest/', {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -158,6 +159,7 @@ function getUsersList(){
 function deleteMedia(sectionID, mediaID) {
   return fetch( apiPrefix + '/admin/api/media/' + sectionID + '/' + mediaID, {
     method: 'DELETE',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -175,6 +177,7 @@ function deleteMedia(sectionID, mediaID) {
 function addMedia(mediaData) {
   return fetch( apiPrefix + '/admin/api/media/', {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -193,7 +196,7 @@ function addMedia(mediaData) {
 
 function getAdminPage() {
   return fetch( apiPrefix + '/admin/api/sections/possible',{
-    mode: 'no-cors',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -211,6 +214,7 @@ function getAdminPage() {
 
 function getSectionsList(param) {
   return fetch( apiPrefix + '/admin/api/sections/' + param,{
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -229,6 +233,7 @@ function getSectionsList(param) {
 function createNewSection(sectionData) {
   return fetch( apiPrefix + '/admin/api/section/', {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -246,6 +251,7 @@ function createNewSection(sectionData) {
 function getSection(sectionID) {
   return fetch( apiPrefix + '/admin/api/section/' + sectionID, {
     method: 'GET',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json'
@@ -262,6 +268,7 @@ function getSection(sectionID) {
 function deleteSection(sectionID) {
   return fetch( apiPrefix + '/admin/api/section/' + sectionID, {
     method: 'DELETE',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -279,6 +286,7 @@ function deleteSection(sectionID) {
 function updateSection(sectionData) {
   return fetch( apiPrefix + '/admin/api/section/' + sectionData.id, {
     method: 'PUT',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',

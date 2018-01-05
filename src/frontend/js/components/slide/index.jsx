@@ -16,7 +16,7 @@ export default class Slide extends Component {
             <Image src={ big? data.BackgroundImage : data.BackgroundImageSmall } alt={ data.Title }/>
             <Image src='assets/img/black.jpg' alt=''/>
             <Text type='whiteText'>{ data.Title }</Text>
-            <Text type='footnote whiteText'>{ data.SubTitle }</Text>
+            <Text type='footnote'>{ data.SubTitle }</Text>
         </div>
     );
   }

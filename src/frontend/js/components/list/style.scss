@@ -11,6 +11,11 @@
         position: absolute;
         bottom: 0;
         margin-bottom: 15px;
+        @media #{$media} and ($feature: $value) {
+          position: relative;
+          margin: 2rem 0;
+        }
+
       }
   }
 

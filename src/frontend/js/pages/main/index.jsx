@@ -105,22 +105,22 @@ export default class Main extends Component {
       if (special && special.Active) {
         firstBlock = <div className='row'>
           <div className='col l4'>
-            <Slider data={events} big={false} navigation='EVENT' internal={true} show='1'/>
+            <Slider data={events} big={false} navigation='EVENT' internal={true} show='1' arrow={false}/>
           </div>
           <div className='col l4'>
-            <Slider data={events} big={false} navigation='EVENT' internal={true} show='1' dots={true}/>
+            <Slider data={events} big={false} navigation='EVENT' internal={true} show='1' dots={true} arrow={false}/>
           </div>
           <div className='col l4'>
-            <Slider data={school} big={false} navigation='SCHOOL' internal={true} show='1' dots={true}/>
+            <Slider data={school} big={false} navigation='SCHOOL' internal={true} show='1' dots={true} arrow={false}/>
           </div>
         </div>
       } else {
         firstBlock = <div className='row'>
           <div className='col l6'>
-            <Slider data={events} big={true} navigation='EVENT' internal={true} show='1' dots={true}/>
+            <Slider data={events} big={true} navigation='EVENT' internal={true} show='1' dots={true} arrow={false}/>
           </div>
           <div className='col l6'>
-            <Slider data={school} big={true} navigation='SCHOOL' internal={true} show='1' dots={true}/>
+            <Slider data={school} big={true} navigation='SCHOOL' internal={true} show='1' dots={true} arrow={false}/>
           </div>
         </div>
       }
