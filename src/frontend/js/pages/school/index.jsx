@@ -102,7 +102,7 @@ export default class School extends Component {
             <Text type='header bold whiteText'>
               «{title}»
             </Text>
-            <Text type='footnote whiteText'>
+            <Text type='footnote'>
               {subTitle}
             </Text>
           </div>
@@ -110,25 +110,25 @@ export default class School extends Component {
         <div className='row'>
           <div className='col l12'>
             <div className='col l3'>
-              <Text type='footnote bolder'>Даты проведения</Text>
+              <Text type='SchoolPage__helptext bolder'>Даты проведения</Text>
               <Text>С {schoolDateStart.toLocaleDateString("ru-RU")} по {schoolDateEnd.toLocaleDateString("ru-RU")}</Text>
             </div>
             <div className='col l3'>
-              <Text type='footnote bolder'>Место проведения</Text>
+              <Text type='SchoolPage__helptext bolder'>Место проведения</Text>
               <Text>{address}</Text>
             </div>
             <div className='col l3'>
-              <Text type='footnote bolder'>Стоимость</Text>
+              <Text type='SchoolPage__helptext bolder'>Стоимость</Text>
               <Text>{price}</Text>
             </div>
-            <div className='col l3'>
+            <div className='col s12 m12 l3'>
               <Button
                 onClick={() => {
                   this.openDropDown()
                 }}
                 text='Оставить заявку'
                 data='modal1'
-                className='modal-trigger'/>
+                className='modal-trigger Button--fw'/>
             </div>
           </div>
         </div>

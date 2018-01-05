@@ -33,7 +33,7 @@ export default class Comment extends Component {
                   </div>
                 </div>
               </div>
-              <p>{data.Message}</p>
+              <p className='maintext'>{data.Message}</p>
             </div>
           </div>
         </div>

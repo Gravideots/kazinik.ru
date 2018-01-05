@@ -1,7 +1,27 @@
 .MainPage{
   .Sections{
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
     margin-bottom: 1.6rem;
+
+    @media #{$media} and ($feature: $value) {
+      flex-direction: column;
+    }
   }
+
+  .row {
+    @media #{$media} and ($feature: $value) {
+      padding: 0;
+    }
+  
+    .col {
+      @media #{$media} and ($feature: $value) {
+        width: 100%;
+        padding: 0 2.5rem;
+        margin-top: 2.5rem;
+      }
+    }
+  }
+  
 }

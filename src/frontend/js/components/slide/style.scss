@@ -3,6 +3,9 @@
     height: 14rem;
     position: relative;
     overflow: hidden;
+    @media #{$media} and ($feature: $value) {
+        height: 50rem;
+    }
 
     .Text:nth-of-type(1){
         top: 30%;
@@ -19,6 +22,10 @@
     .Image{
         height: 100%;
         width: 96.3%;
+        @media #{$media} and ($feature: $value) {
+            width: 100%;
+        }
+
         &:nth-of-type(2){
             position: absolute;
             top: 0;

@@ -29,59 +29,69 @@ export default class Navbar extends Component {
             <div className="navbar-fixed">
                 <nav className="Navbar nav-extended">
                     <div className="nav-wrapper">
-
-
-                            <Button onClick={() => this.toggleSidebar(false)}>
-                                <Icon iconName={'menu'} size='small'/>
-                            </Button>
-                            <div className="col l9 xl11 hide-on-med-and-down">
-                                <NavLink
-                                    activeClassName='Menu-link--active'
-                                    className='Menu-link'
-                                    exact
-                                    to={routeCodes.Main}>
-                                    <Logo text='Михаил Казиник'/>
-                                </NavLink>
-                                <div className="SearchInput">
-                                    <Input
-                                        placeholder='Поиск'
-                                        type='text'
-                                        iconName='search'
-                                        onChange={this.handleChange}
-                                    />
+                        <Button onClick={() => this.toggleSidebar(false)}>
+                            <Icon iconName={'menu'} size='small'/>
+                        </Button>
+                        <div className="col l9 xl11 hide-on-med-and-down">
+                            <NavLink
+                                activeClassName='Menu-link--active'
+                                className='Menu-link'
+                                exact
+                                to={routeCodes.Main}>
+                                <Logo text='Михаил Казиник'/>
+                            </NavLink>
+                            <div className="SearchInput">
+                                <Input
+                                    placeholder='Поиск'
+                                    type='text'
+                                    iconName='search'
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+                            <div>
+                                <Text type='footnote'>
+                                    <a href="mailto:youremailaddress">mikhail@kazinik.com</a>
+                                </Text>
+                            </div>
+                            <div className="IconBlock">
+                                <div>
+                                    <Text type='footnote'>
+                                        <a href="http://vk.com">
+                                            <Icon iconName={'code'} size='tiny'/>
+                                        </a>
+                                    </Text>
                                 </div>
                                 <div>
                                     <Text type='footnote'>
-                                        <a href="mailto:youremailaddress">mikhail@kazinik.com</a>
+                                        <a href="http://fb.com">
+                                            <Icon iconName={'class'} size='tiny'/>
+                                        </a>
                                     </Text>
                                 </div>
-                                <div className="IconBlock">
-                                    <div>
-                                        <Text type='footnote'>
-                                            <a href="http://vk.com">
-                                                <Icon iconName={'code'} size='tiny'/>
-                                            </a>
-                                        </Text>
-                                    </div>
-                                    <div>
-                                        <Text type='footnote'>
-                                            <a href="http://fb.com">
-                                                <Icon iconName={'class'} size='tiny'/>
-                                            </a>
-                                        </Text>
-                                    </div>
-                                    <div>
-                                        <Text type='footnote'>
-                                            <a href="http://youtube.com">
-                                                <Icon iconName={'report'} size='tiny'/>
-                                            </a>
-                                        </Text>
-                                    </div>
+                                <div>
+                                    <Text type='footnote'>
+                                        <a href="http://youtube.com">
+                                            <Icon iconName={'report'} size='tiny'/>
+                                        </a>
+                                    </Text>
                                 </div>
-                                <Button onClick={() => this.toggleSidebar(true)} text='Форма обратной связи'/>
-
                             </div>
-
+                            <Button onClick={() => this.toggleSidebar(true)} text='Форма обратной связи'/>
+                        </div>
+                        <div className='mobileNav '>
+                            <Button onClick={() => this.toggleSidebar(true)} text='Связаться'/>
+                            <div className='socialicon'>
+                                    <a className='socialicon__item' href="http://vk.com">
+                                        <img className='socialicon__image' src='/assets/img/icons/vk.svg'/>
+                                    </a>
+                                    <a className='socialicon__item' href="http://fb.com">
+                                        <img className='socialicon__image' src='/assets/img/icons/facebook-f.svg'/>
+                                    </a>
+                                    <a className='socialicon__item' href="http://youtube.com">
+                                        <img className='socialicon__image' src='/assets/img/icons/youtube.svg'/>
+                                    </a>
+                            </div>
+                        </div>
                     </div>
                 </nav>
             </div>
