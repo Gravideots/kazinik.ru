@@ -12,7 +12,7 @@ import {
 
 promisePolyfill.polyfill();
 
-var API = 'loal';
+var API = 'local';
 
 let apiPrefix = (API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
 
@@ -53,13 +53,7 @@ function notePage(id) {
 }
 
 function getSidebarContent() {
-  return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
-    if (response.status !== 200) {
-      console.log('Looks like there was a problem. Status Code: ' + response.status);
-      return response.status;
-    }
-    return response;
-  });
+  return mainPage();
 }
 
 function sectionPage(type, tag = null) {
@@ -75,10 +69,27 @@ function sectionPage(type, tag = null) {
 
 
 
+function getNavigationList() {
+  return fetch( apiPrefix + '/api/guest/',{
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return MainPage.sectionsBlock    
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
 
 function sendGuestMessage(message){
   return fetch( apiPrefix + '/api/guest/', {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -158,16 +169,18 @@ function getUsersList(){
 function deleteMedia(sectionID, mediaID) {
   return fetch( apiPrefix + '/admin/api/media/' + sectionID + '/' + mediaID, {
     method: 'DELETE',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
       'Authorization': getToken()
     },
-  }).then(response => {
-    if (response.status !== 200) {
-      return response.status;
-    }
-    return response;
+  }).then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
   })
 }
 
@@ -193,7 +206,7 @@ function addMedia(mediaData) {
 
 function getAdminPage() {
   return fetch( apiPrefix + '/admin/api/sections/possible',{
-    mode: 'no-cors',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -211,6 +224,7 @@ function getAdminPage() {
 
 function getSectionsList(param) {
   return fetch( apiPrefix + '/admin/api/sections/' + param,{
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -229,6 +243,7 @@ function getSectionsList(param) {
 function createNewSection(sectionData) {
   return fetch( apiPrefix + '/admin/api/section/', {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -244,8 +259,11 @@ function createNewSection(sectionData) {
   })
 }
 function getSection(sectionID) {
+  if(!sectionID)
+    return false
   return fetch( apiPrefix + '/admin/api/section/' + sectionID, {
     method: 'GET',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json'
@@ -262,6 +280,7 @@ function getSection(sectionID) {
 function deleteSection(sectionID) {
   return fetch( apiPrefix + '/admin/api/section/' + sectionID, {
     method: 'DELETE',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -279,6 +298,7 @@ function deleteSection(sectionID) {
 function updateSection(sectionData) {
   return fetch( apiPrefix + '/admin/api/section/' + sectionData.id, {
     method: 'PUT',
+    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -305,6 +325,8 @@ export default {
   schoolPage,
   notePage,
   sectionPage,
+
+  getNavigationList,
   getGuestRoom,
   getSidebarContent,
 
