@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Route, Switch, Redirect } from 'react-router';
-import {NavLink} from 'react-router-dom';
+import { Route, Switch, Redirect, BrowserHistory } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import {routeCodes} from 'config/routes';
 
 import Input from '../input'
@@ -23,7 +23,7 @@ export default class Navbar extends Component {
     }
     
     render() {
-        const { location } = this.props;
+        const { location, history } = this.props;
         if( location.pathname === '/admin' ) return null;
         return (
             <div className="navbar-fixed">
@@ -80,7 +80,9 @@ export default class Navbar extends Component {
                         </div>
                         <div className='mobileNav '>
                             <Button onClick={() => this.toggleSidebar(true)} text='Связаться'/>
-                            <div className='socialicon'>
+                            {
+                                (location.pathname === '/')?
+                                <div className='socialicon'>
                                     <a className='socialicon__item' href="http://vk.com">
                                         <img className='socialicon__image' src='/assets/img/icons/vk.svg'/>
                                     </a>
@@ -90,7 +92,16 @@ export default class Navbar extends Component {
                                     <a className='socialicon__item' href="http://youtube.com">
                                         <img className='socialicon__image' src='/assets/img/icons/youtube.svg'/>
                                     </a>
-                            </div>
+                                </div>
+                                :
+                                <Button onClick={() => history.goBack()}>
+                                    <div className='socialicon'>
+                                        <a className='socialicon__item'>
+                                            <img className='socialicon__image' src='/assets/img/icons/vk.svg'/>
+                                        </a>
+                                    </div>
+                                </Button>
+                            }
                         </div>
                     </div>
                 </nav>
