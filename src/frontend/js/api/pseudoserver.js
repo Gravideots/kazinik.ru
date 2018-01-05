@@ -9,8 +9,8 @@ export const MainPage = {
             Active: true,
             Title: 'Школа для мальчиков и девочек',
             SubTitle: 'Lorem ipsum dolor sit amet',
-            BackgroundImage: 'http://lorempixel.com/900/357/',
-            BackgroundImageSmall: 'http://lorempixel.com/590/360/',
+            BackgroundImage: 'https://dummyimage.com/900x357/121f42/ffffff.png',
+            BackgroundImageSmall: 'https://dummyimage.com/590x360/121f42/ffffff.png', 
             URL: '1'
         }
     ],
@@ -19,24 +19,24 @@ export const MainPage = {
             Active: true,
             Title: 'Концерт в камерном зале',
             SubTitle: 'Lorem ipsum dolor sit amet',
-            BackgroundImage: 'http://lorempixel.com/900/357/',
-            BackgroundImageSmall: 'http://lorempixel.com/590/360/',
+            BackgroundImage: 'https://dummyimage.com/900x357/121f42/ffffff.png',
+            BackgroundImageSmall: 'https://dummyimage.com/590x360/121f42/ffffff.png',
             URL: '1'
         },
         {
             Active: true,
             Title: 'Сказки старого органа',
             SubTitle: 'Lorem ipsum dolor sit amet',
-            BackgroundImage: 'http://lorempixel.com/900/357/',
-            BackgroundImageSmall: 'http://lorempixel.com/590/360/',
+            BackgroundImage: 'https://dummyimage.com/900x357/121f42/ffffff.png',
+            BackgroundImageSmall: 'https://dummyimage.com/590x360/121f42/ffffff.png',
             URL: '2'
         },
         {
             Active: true,
             Title: 'Концерт в камерном зале',
             SubTitle: 'Lorem ipsum dolor sit amet',
-            BackgroundImage: 'http://lorempixel.com/900/357/',
-            BackgroundImageSmall: 'http://lorempixel.com/590/360/',
+            BackgroundImage: 'https://dummyimage.com/900x357/121f42/ffffff.png',
+            BackgroundImageSmall: 'https://dummyimage.com/590x360/121f42/ffffff.png',
             URL: '2'
         }
     ],
@@ -150,8 +150,8 @@ export const EventPage = {
     Title: 'Убить Моцарта',
     SubTitle: 'Михаил Казиник',
     TitleImage: {
-        Full: 'http://lorempixel.com/900/600/',
-        Crop: 'url'
+        Full: 'https://dummyimage.com/900x600/121f42/ffffff.png',
+        Crop: 'https://dummyimage.com/900x600/121f42/ffffff.png'
     },
     Text: [
         {
@@ -222,8 +222,8 @@ export const SchoolPage = {
         Finish: new Date(),
     },
     TitleImage: {
-        Full: 'http://lorempixel.com/1920/480/',
-        Crop: 'String',
+        Full: 'https://dummyimage.com/1920x480/121f42/ffffff.png',
+        Crop: 'https://dummyimage.com/900x600/121f42/ffffff.png',
     },
     Price: 'от 20 000 р за человека',
     Text: [
@@ -248,8 +248,8 @@ export const NotePage = [
         SubTitle: 'Etiam condimentum lectus ut quam placerat convallis.Etiam condimentum lectus ut quam placerat convallis.Etiam condimentum lectus ut quam placerat convallis.',
         Description: 'Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так.',
         TitleImage: {
-            Full: 'http://lorempixel.com/1920/480/',
-            Crop: 'https://i.imgur.com/NnzxG4S.jpg',
+            Full: 'https://dummyimage.com/1920x480/121f42/ffffff.png',
+            Crop: 'https://dummyimage.com/900x600/121f42/ffffff.png',
         },
         Tags: [{
             URL: 'String',
@@ -261,7 +261,7 @@ export const NotePage = [
                 Text: 'Etiam condimentum lectus ut quam placerat convallis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
                 Question: null,
                 Answer: null,
-                Image: 'https://previews.123rf.com/images/kaspri/kaspri1405/kaspri140500002/28032240-Raw-buckwheat-groats-background-dry-cereal-seeds-large-vertical--Stock-Photo.jpg',
+                Image: 'https://dummyimage.com/1920x1080/121f42/ffffff.png',
                 Media: []
             },
             {
@@ -269,7 +269,7 @@ export const NotePage = [
                 Text: 'Etiam condimentum lectus ut quam placerat convallis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
                 Question: null,
                 Answer: null,
-                Image: 'https://previews.123rf.com/images/kaspri/kaspri1405/kaspri140500002/28032240-Raw-buckwheat-groats-background-dry-cereal-seeds-large-vertical--Stock-Photo.jpg',
+                Image: 'https://dummyimage.com/640x480/121f42/ffffff.png',
                 Media: []
             },
         ]
@@ -282,8 +282,8 @@ export const NotePage = [
         SubTitle: 'Все как на самом деле нет',
         Description: 'Etiam condimentum lectus ut quam placerat convallis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer vitae turpis ac ex ultricies mattis. Duis lorem neque, facilisis at volutpat id, convallis ac sapien. Etiam ac vulputate leo, in commodo est. In vel sagittis dolor. Curabitur rutrum felis eu fermentum tincidunt. Etiam ut sollicitudin dui. Proin justo turpis, interdum accumsan ligula nec, mollis ornare lectus. Donec malesuada vitae justo nec imperdiet. Aenean quis faucibus nulla, vel commodo eros. Nulla sit amet pharetra sem. Maecenas semper purus eu vehicula congue. Integer aliquet, eros pulvinar gravida dapibus, velit leo pellentesque nisi, eget finibus odio ligula sit amet ipsum. Duis dapibus massa vitae enim vestibulum, sed rutrum ligula dictum.',
         TitleImage: {
-            Full: 'https://i.imgur.com/NnzxG4S.jpg',
-            Crop: 'https://i.imgur.com/NnzxG4S.jpg',
+            Full: 'https://dummyimage.com/1920x480/121f42/ffffff.png',
+            Crop: 'https://dummyimage.com/900x600/121f42/ffffff.png',
         },
         Tags: [{
             URL: 'String',
@@ -295,7 +295,7 @@ export const NotePage = [
                 Text: 'Etiam condimentum lectus ut quam placerat convallis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
                 Question: 'Греча?',
                 Answer: 'Отлично!  Donec malesuada vitae justo nec imperdiet. Aenean quis faucibus nulla, vel commodo eros. Nulla sit amet pharetra sem. Maecenas semper purus eu vehicula congue. Integer aliquet, eros pulvinar gravida dapibus, velit leo pellentesque nisi, eget finibus odio ligula sit amet ipsum. Duis dapibus massa vitae enim vestibulum, sed rutrum ligula dictum.',
-                Image: 'https://previews.123rf.com/images/kaspri/kaspri1405/kaspri140500002/28032240-Raw-buckwheat-groats-background-dry-cereal-seeds-large-vertical--Stock-Photo.jpg',
+                Image: 'https://dummyimage.com/1920x1080/121f42/ffffff.png',
                 Media: []
             },
             {
@@ -303,7 +303,7 @@ export const NotePage = [
                 Text: '',
                 Question: 'Как оно? Etiam condimentum lectus ut quam placerat convallis.',
                 Answer: 'Отличный фильм!  Donec malesuada vitae justo nec imperdiet. Aenean quis faucibus nulla, vel commodo eros. Nulla sit amet pharetra sem. Maecenas semper purus eu vehicula congue. Integer aliquet, eros pulvinar gravida dapibus, velit leo pellentesque nisi, eget finibus odio ligula sit amet ipsum. Duis dapibus massa vitae enim vestibulum, sed rutrum ligula dictum.',
-                Image: 'https://mediananny.com/content/images_new/news/620x408/153333.jpg',
+                Image: 'https://dummyimage.com/640x480/121f42/ffffff.png', 
                 Media: []
             }
         ]

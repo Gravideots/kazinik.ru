@@ -12,7 +12,7 @@ import {
 
 promisePolyfill.polyfill();
 
-var API = 'loal';
+var API = 'local';
 
 let apiPrefix = (API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
 
@@ -165,11 +165,12 @@ function deleteMedia(sectionID, mediaID) {
       'Content-Type': 'application/json',
       'Authorization': getToken()
     },
-  }).then(response => {
-    if (response.status !== 200) {
-      return response.status;
-    }
-    return response;
+  }).then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
   })
 }
 
@@ -177,7 +178,6 @@ function deleteMedia(sectionID, mediaID) {
 function addMedia(mediaData) {
   return fetch( apiPrefix + '/admin/api/media/', {
     method: 'POST',
-    mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
       'Content-Type': 'application/json',
@@ -249,6 +249,8 @@ function createNewSection(sectionData) {
   })
 }
 function getSection(sectionID) {
+  if(!sectionID)
+    return false
   return fetch( apiPrefix + '/admin/api/section/' + sectionID, {
     method: 'GET',
     mode: 'cors',

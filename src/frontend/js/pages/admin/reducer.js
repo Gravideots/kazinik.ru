@@ -28,7 +28,7 @@ import {
     SELECT_ADD_CONTENT_TO_SECTION_ERROR,
     SELECT_ADD_CONTENT_TO_SECTION_SUCCESS,
 
-    OPEN_CONTENT_CREATION
+    OPEN_CONTENT_CREATION,
 } from './actions.js';
 
 const initialState = Map({asyncLoading: false, asyncLoaded: false, asyncError: null, asyncData: null});

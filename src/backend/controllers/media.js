@@ -23,7 +23,7 @@ const createNewMedia = function (sectionID, mediaURL, Tags, done) {
         _id: sectionID
     }, {
         $push: {
-            "Listing.Media.Data": newMedia
+            "Listing": newMedia
         },
         $addToSet: {
             Tags: {$each: newMedia.Tags}
@@ -49,7 +49,7 @@ const getMediaByID = function (sectionID, mediaID, done) {
             else {
                 let media = section
                     .Listing
-                    .Media
+                    .data
                     .id(mediaID);
                 return done(null, media)
             }
@@ -57,26 +57,49 @@ const getMediaByID = function (sectionID, mediaID, done) {
 }
 
 const dropMediaByID = function (sectionID, mediaID, done) {
-    Section
-        .findOne({
-            _id: sectionID
-        }, function (err, section) {
-            if (err) 
-                throw err
-            else {
-                section
-                    .Listing
-                    .Media
-                    .Data
-                    .id(mediaID)
-                    .remove()
-                section.save()
-                return done(null, section)
-            }
-        })
+
+    var sectionIdObject = mongoose.Types.ObjectId(sectionID);
+    var mediaIdObject = mongoose.Types.ObjectId(mediaID);
+
+    Section.collection.updateOne(
+        {
+            _id: sectionIdObject,
+            Listing: { $elemMatch: { _id: mediaIdObject } }
+        },
+        {
+            $pull: { "Listing": { _id: mediaIdObject } }
+        },
+        ( err, result ) => {
+
+            Section.collection.findOne({
+                _id: sectionIdObject
+            }, {}, ( err, doc ) => {
+                
+                done( null, doc);
+            })
+        }
+    )
 }
 
 const updateMediaByID = function (sectionID, mediaID, data, done) {
+
+    var sectionIdObject = mongoose.Types.ObjectId(sectionID);
+    var mediaIdObject = mongoose.Types.ObjectId(mediaID);
+
+    // Section.collection.findOneAndUpdate(
+    //     {
+    //         _id: sectionIdObject,
+    //         Listing: { $elemMatch: { _id: mediaIdObject } }
+    //     },
+    //     {
+    //         $set: { "Listing.$.": { _id: mediaIdObject } }
+    //     },
+    //     ( err, result ) => {
+    //         console.log( 'MSG', err, result )
+    //         Section.collection.close()
+    //     }
+    // )
+
     Section
         .findOne({
             _id: sectionID
@@ -86,7 +109,6 @@ const updateMediaByID = function (sectionID, mediaID, data, done) {
             else {
                 var media = section
                     .Listing
-                    .Media
                     .id(mediaID)
                 media.Title = data
                 section.save()

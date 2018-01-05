@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Route, Switch, Redirect } from 'react-router';
 import {NavLink} from 'react-router-dom';
 import {routeCodes} from 'config/routes';
 
@@ -11,16 +12,19 @@ import Text from '../text'
 import {connect} from 'react-redux';
 import {toggleSidebar} from './actions.js';
 
-@connect(state => ({}))
+@connect(state => ({
 
+}))
 export default class Navbar extends Component {
 
     toggleSidebar(openFromRight) {
         const {dispatch} = this.props
         dispatch(toggleSidebar(openFromRight));
     }
-
+    
     render() {
+        const { location } = this.props;
+        if( location.pathname === '/admin' ) return null;
         return (
             <div className="navbar-fixed">
                 <nav className="Navbar nav-extended">
