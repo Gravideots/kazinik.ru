@@ -1,18 +1,38 @@
+$media: screen;
+$feature: max-width;
+$value: 1300px;
+
 .AdminPage {
     margin-left: 20%;
     width: 80%;
     height: 100%;
     background: white;
     z-index: 10;
+
     .add-content {
         height: 170px;
         border-width: 2px;
         border-style: dashed;
         border-color: gray;
+        padding: 0;
+
+        .file-field{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            align-items: center;
+            justify-content: center;
+        }
     }
     .edit-button {
         margin-top: 1.5rem
     }
+
+    @media #{$media} and ($feature: $value) {
+        background: rgb(21, 177, 60);
+    } 
 }
 
 .element {

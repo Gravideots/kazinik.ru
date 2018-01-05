@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import Button from 'components/button'
+import Text from 'components/text'
+import Icon from 'components/icon'
+import MediaListElement from 'components/list/media'
+
 export default class CreateMedia extends Component {
   
       static propTypes = {
@@ -32,8 +37,8 @@ export default class CreateMedia extends Component {
   
       handleSubmit(event) {
           event.preventDefault();
-          const {dispatch} = this.props;
-          dispatch(addMedia(this.state));
+          const {dispatch, action} = this.props;
+          dispatch(action(this.state));
       }
   
       render() {
@@ -73,12 +78,7 @@ export default class CreateMedia extends Component {
                               </label>
                           </div>
                           <div className='col s12'>
-                              <button className='btn waves-effect waves-light' type='submit' name='action'>
-                                  Сохранить
-                                  <i className='material-icons right'>
-                                      send
-                                  </i>
-                              </button>
+                              <Button text='Сохранить' className='btn waves-effect waves-light' iconName='send' onClick={(e) => this.handleSubmit(e)} />
                           </div>
                       </form>
                   </div>

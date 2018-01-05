@@ -95,6 +95,7 @@ adminRouter.post('/api/section/', auth.jwtAuth, function (req, res) {
     section.createNewSection(req, res)
 })
 adminRouter.get('/api/section/:id', function (req, res) {
+    
     section.getSection(req, res)
 })
 adminRouter.put('/api/section/:id', auth.jwtAuth, function (req, res) {

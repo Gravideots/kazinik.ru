@@ -6,7 +6,9 @@ import {openContentCreation, addMedia, deleteMedia} from './actions.js';
 
 import MediaListElement from 'components/list/media'
 import Interviews from './sections/Interviews'
-import Media from './sections/Interviews'
+import Articles from './sections/Articles'
+import Events from './sections/Events'
+import Media from './sections/Media'
 
 export class AddContent extends Component {
 
@@ -70,22 +72,21 @@ export class ContentCreation extends Component {
         contentToCreate: PropTypes.object,
         dispatch: PropTypes.func
     }
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
     }
     render() {
-        const {contentToCreate, dispatch} = this.props
+        const { contentToCreate, dispatch } = this.props
 
-        if (contentToCreate.type == 'Interviews') 
-            return <Interviews/>
-        if (contentToCreate.type == 'Media') 
-            return <CreateMedia sectionID={contentToCreate.id} dispatch={dispatch}/>
-        
-        return null
+        switch( contentToCreate.type){
+            case 'Interviews': return <Interviews/>;
+            case 'Articles': return <Articles/>;
+            case 'Media': return <Media sectionID={contentToCreate.id} dispatch={dispatch} action={addMedia}/>;
+            case 'Events': return <Events/>;
+            default: return null;
+        }
     }
 }
-
-
 
 class ContentList extends Component {
     static propTypes = {
@@ -110,7 +111,7 @@ class ContentList extends Component {
             
             switch (contentType) {
                 case 'Media':
-                    let data = content.Listing.Media.Data;
+                    let data = content.Listing;
                     return (
                         <div className='row'>
                             {data.map((listElement, key) => {
