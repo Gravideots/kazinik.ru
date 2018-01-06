@@ -136,7 +136,7 @@ export default class Event extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='col l6'>
+                <div className='col l6 EventPage__maintext'>
                     <Text type='header bold'>
                         «{title}»
                     </Text>
@@ -144,7 +144,15 @@ export default class Event extends Component {
                         {subTitle}
                     </Text>
                     <div className='col s12'>
-                        <TextSlider texts={texts}/>
+                        <TextSlider texts={texts}
+                        responsive={[
+                            {
+                              breakpoint: 763,
+                              settings: 
+                                'unslick'
+                            }
+                          ]}
+                        />
                     </div>
                 </div>
             </div>

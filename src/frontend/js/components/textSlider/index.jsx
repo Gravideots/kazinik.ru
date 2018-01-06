@@ -9,7 +9,8 @@ export default class TextSlider extends Component {
 
     render() {
         const {
-            texts
+            texts,
+            responsive,
         } = this.props;
 
         var settings = {
@@ -21,7 +22,8 @@ export default class TextSlider extends Component {
             speed: 500,
             slidesToScroll: 1,
             nextArrow: (texts.length > 1)?<Button><Icon iconName='navigate_next' size='medium'/></Button>:null,
-            prevArrow: (texts.length > 1)?<Button><Icon iconName='navigate_before' size='medium'/></Button>:null
+            prevArrow: (texts.length > 1)?<Button><Icon iconName='navigate_before' size='medium'/></Button>:null,
+            responsive: responsive
         };
 
         if(texts.length > 0)

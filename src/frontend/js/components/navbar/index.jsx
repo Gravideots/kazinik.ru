@@ -84,7 +84,7 @@ export default class Navbar extends Component {
                                 <Button onClick={() => history.goBack()}>
                                     <div className='socialicon'>
                                         <a className='socialicon__item'>
-                                            <img className='socialicon__image' src='/assets/img/icons/vk.svg'/>
+                                            <img className='socialicon__image' src='/assets/img/icons/arrow.svg'/>
                                         </a>
                                     </div>
                                 </Button>

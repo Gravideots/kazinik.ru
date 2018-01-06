@@ -18,7 +18,8 @@ export default class Slider extends Component {
         show,
         dots,
         arrow,
-        big
+        big,
+        responsive
     } = this.props;
 
     var settings = {
@@ -32,7 +33,8 @@ export default class Slider extends Component {
         slidesToScroll: 1,
         arrows: (arrow)? true : false,
         nextArrow: (arrow && data.length > show)? <Button><Icon iconName='navigate_next' size='medium'/></Button>: null,
-        prevArrow: (arrow && data.length > show)? <Button><Icon iconName='navigate_before' size='medium'/></Button>: null
+        prevArrow: (arrow && data.length > show)? <Button><Icon iconName='navigate_before' size='medium'/></Button>: null,
+        responsive: responsive
     };
 
     return (

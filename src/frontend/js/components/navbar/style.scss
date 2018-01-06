@@ -113,8 +113,9 @@ nav{
 
     &__image {
         height: 100%;
-        left: 0;
+        left: 50%;
         position: absolute;
+        transform: translateX(-50%);
     }
 }
 
