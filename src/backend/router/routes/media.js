@@ -28,7 +28,32 @@ function deleteMedia(req, res) {
     })
 }
 
+function getMedia(req, res){
+    
+    let tag = req.params.tag;
+    
+    if( tag )
+        media.getMediaByTag( tag, function ( error, result ) {
+            if (error) 
+                res.status(500).send('Что то пошло не так')
+            else {
+                res.send({data: result})
+            }
+
+        })
+    else
+        media.getAllMedia( function ( error, result ) {
+            if (error) 
+                res.status(500).send('Что то пошло не так')
+            else {
+                res.send({data: result})
+            }
+
+        })
+}
+
 module.exports = {
+    getMedia,
     createMedia,
     deleteMedia
 }

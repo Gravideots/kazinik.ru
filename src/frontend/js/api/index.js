@@ -57,17 +57,30 @@ function getSidebarContent() {
 }
 
 function sectionPage(type, tag = null) {
-  return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
-    var listing = [];
-    if (tag !== null) {
-      return SectionPage[tag];
-    } else 
-      return SectionPage[type];
+
+  return fetch( apiPrefix + '/api/' + type.toLowerCase() + ( tag ? '/' + tag : '' ),{
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'multipart/form-data'
     }
-  );
+  })
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json    
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+  // return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
+  //   var listing = [];
+  //   if (tag !== null) {
+  //     return SectionPage[tag];
+  //   } else 
+  //     return SectionPage[type];
+  //   }
+  // );
 }
-
-
 
 function getNavigationList() {
   return fetch( apiPrefix + '/api/guest/',{

@@ -37,7 +37,7 @@ app.use(redirectUnmatched);
 require('./config/passport')
 
 function redirectUnmatched(req, res) {
-    res.status(418).redirect('kazinik.ru');
+    res.status(418).redirect('/');
 }
   
 app.listen(port, function (error) {

@@ -21,6 +21,9 @@ import FeedbackForm from 'components/feedbackForm'
         .get('asyncLoaded'),
     content: state
         .sidepanel
+        .get('userData'),
+    contentAdmin: state
+        .sidepanel
         .get('asyncData'),
     SidebarAsyncError: state
         .event
@@ -44,14 +47,14 @@ export default class Sidebar extends Component {
     }
 
     render() {
-        let {adminPageLoaded, show, openFromRight, content, dispatch} = this.props;
+        let {adminPageLoaded, show, openFromRight, content, contentAdmin, dispatch} = this.props;
 
-        if (adminPageLoaded) 
+        if (adminPageLoaded)
             return (
                 <AdminSidebar
                     adminPageLoaded={adminPageLoaded}
                     dispatch={dispatch}
-                    content={content}
+                    content={contentAdmin}
                 />
             )
         else 
@@ -111,6 +114,7 @@ class UserSidebar extends Component {
         show: PropTypes.bool,
         openFromRight: PropTypes.bool,
         content: PropTypes.array,
+        contentAdmin: PropTypes.object,
 
         dispatch: PropTypes.func
     }

@@ -9,6 +9,7 @@ export default class TagsCloud extends Component {
       selected
     } = this.props;
 
+  
     return (
       <div className='TagsCloud center row'>
         {tags.map((tag, key)=>{
@@ -23,5 +24,4 @@ export default class TagsCloud extends Component {
       </div>
     )
   }
-
 }

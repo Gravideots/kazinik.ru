@@ -3,6 +3,34 @@ const MediaSchema = require('../schemas/media')
 const mongoose = require('mongoose');
 const {transliterate, slugify} = require('transliteration')
 
+
+const getAllMedia = function ( done ){
+
+    Section.find({
+        Type: 'Media'
+    }, ( err, doc ) => {
+        
+        if(err)
+            done(err);
+        else
+            done( null, doc);
+    })
+
+}
+
+const getMediaByTag = ( tag, done) => {
+    
+    Section.find({
+        Type: 'Media',
+        Listing: { $elemMatch: { 'Tags.$.URL': tag } }
+    }, ( err, doc ) => {
+        
+        if(err)
+            done(err);
+        else
+            done( null, doc);
+    })
+}
 const createNewMedia = function (sectionID, mediaURL, Tags, done) {
 
     let mediaSchema = mongoose.model('Media', MediaSchema);
@@ -118,6 +146,8 @@ const updateMediaByID = function (sectionID, mediaID, data, done) {
 }
 
 module.exports = {
+    getMediaByTag,
+    getAllMedia,
     createNewMedia,
     getMediaByID,
     dropMediaByID,

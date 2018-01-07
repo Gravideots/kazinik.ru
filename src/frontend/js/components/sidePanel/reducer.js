@@ -26,7 +26,8 @@ const initialState = Map({
     openFromRight: false,
     asyncLoading: false,
     asyncError: null,
-    asyncData: null
+    asyncData: null,
+    userData: null
 });
 
 const actionsMap = {
@@ -55,10 +56,10 @@ const actionsMap = {
     },
 
     [GET_NAVIGATION_LIST_START]: (state) => {
-        return state.merge(Map({asyncLoading: true, asyncError: null, asyncData: null}));
+        return state.merge(Map({asyncLoading: true, asyncError: null, userData: null}));
     },
     [GET_NAVIGATION_LIST_SUCCESS]: (state, action) => {
-        return state.merge(Map({asyncLoading: false, asyncData: action.data}));
+        return state.merge(Map({asyncLoading: false, userData: action.data}));
     },
     [GET_NAVIGATION_LIST_ERROR]: (state, action) => {
         return state.merge(Map({asyncLoading: false, asyncError: action.data}));

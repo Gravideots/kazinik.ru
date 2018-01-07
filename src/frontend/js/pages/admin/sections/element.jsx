@@ -46,13 +46,13 @@ export default class Element extends Component {
                     }}>
                         Редактировать
                     </a>
-                    <a
+                    {/* <a
                         href='#'
                         onClick={(event) => {
                         this.deleteSection(event, element.id);
                     }}>
                         Удалить
-                    </a>
+                    </a> */}
                 </div>
             );
         } else {

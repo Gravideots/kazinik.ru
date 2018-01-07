@@ -5,18 +5,11 @@ function getPossibleSectiosList(req, res) {
 
     let PosibleSections = [
         {
-            name: 'Интервью',
-            type: 'Interviews',
+            name: 'Мысли в слух',
+            type: 'Notes',
             description: 'Тестовое описание',
             active: false,
-            exists: false,
-            id: null
-        }, {
-            name: 'Статьи',
-            type: 'Articles',
-            description: 'Тестовое описание',
-            active: false,
-            exists: false,
+            exists: true,
             id: null
         }, {
             name: 'Медиа',
