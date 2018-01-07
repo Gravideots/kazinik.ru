@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
-const dbConfig = require('../config/dbConfig')
 
-const SectionSchema = mongoose.Schema({
+module.exports = SectionSchema = mongoose.Schema({
     Active: Boolean,
     Title: String,
     Description: String,
@@ -17,6 +16,6 @@ const SectionSchema = mongoose.Schema({
     Listing: []
 })
 
-const db = mongoose.createConnection(dbConfig.appDB.url);
+// const db = mongoose.createConnection(dbConfig.appDB.url);
 
-module.exports = db.model('Section', SectionSchema);
+// module.exports = db.model('Section', SectionSchema);

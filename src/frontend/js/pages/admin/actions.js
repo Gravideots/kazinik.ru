@@ -280,14 +280,11 @@ function addMediaError() {
     return {type: ADD_MEDIA_CONTENT_ERROR}
 }
 
-export function deleteMedia(sectionID, mediaID) {
-
-    console.log(sectionID, mediaID)
-
+export function deleteMedia(sectionID, mediaID, tags) {
     return function (dispatch) {
         dispatch(deleteMediaStart())
         api
-            .deleteMedia(sectionID, mediaID)
+            .deleteMedia(sectionID, mediaID, tags)
             .then(data => {
                 dispatch(deleteMediaSuccess({ContentManagement: data}))
                 dispatch(selectSectionToAddContent(data.data))

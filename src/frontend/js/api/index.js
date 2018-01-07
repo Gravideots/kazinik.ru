@@ -179,7 +179,8 @@ function getUsersList(){
 }
 
 
-function deleteMedia(sectionID, mediaID) {
+function deleteMedia(sectionID, mediaID, tags) {
+  console.log(tags)
   return fetch( apiPrefix + '/admin/api/media/' + sectionID + '/' + mediaID, {
     method: 'DELETE',
     mode: 'cors',

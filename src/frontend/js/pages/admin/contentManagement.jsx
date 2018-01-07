@@ -99,10 +99,10 @@ class ContentList extends Component {
         super(props)
     }
 
-    deleteMedia(event, sectionID, mediaID) {
+    deleteMedia(event, sectionID, mediaID, tags) {
         event.preventDefault();
         const {dispatch} = this.props;
-        dispatch(deleteMedia(sectionID, mediaID));
+        dispatch(deleteMedia(sectionID, mediaID, tags));
     }
 
     render() {
@@ -127,7 +127,7 @@ class ContentList extends Component {
                                             <i
                                                 className="small material-icons col l2 edit-button"
                                                 onClick=
-                                                { (event) => { this.deleteMedia(event, content._id, listElement._id ) } }>
+                                                { (event) => { this.deleteMedia(event, content._id, listElement._id, listElement.Tags ) } }>
                                                 clear
                                             </i>
                                         </a>

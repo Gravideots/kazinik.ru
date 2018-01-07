@@ -2,9 +2,8 @@ const remoteHost = "mongodb://kazinik:KAZINIKDB@kazinik-shard-00-00-nol3s.mongod
 const localHost = '127.0.0.1'
 const localPort = "27017"
 
-
-
 let dbpath = (process.env.DB === 'local') ? ('mongodb://' + localHost + ':' + localPort + '/appDB') :  remoteHost ;
+
 module.exports = {
     appDB: {
         'url': dbpath

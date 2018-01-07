@@ -2,10 +2,14 @@ const mongoose = require('mongoose');
 const GuestSchema = require('../schemas/guest')
 const dbConfig = require('../config/dbConfig');
 
-const db = mongoose.createConnection(dbConfig.appDB.url);
-let guestBookSchema = db.model('Guest', GuestSchema.GuestBookSchema);
+mongoose.Promise = global.Promise;
+
+let guestBookSchema = mongoose.model('Guest', GuestSchema.GuestBookSchema);
 
 const createGuestSection = function (Title, CaptchaKey, done) {
+
+    //mongoose.connect(dbConfig.appDB.url, { useMongoClient: true });
+
     guestBookSchema.findOne(function (err, guestSection) {
         if (err)
             throw err
@@ -18,29 +22,30 @@ const createGuestSection = function (Title, CaptchaKey, done) {
                 newGuestSection.save(function (err) {
                     if (err)
                         throw err
-                    return done(null, newGuestSection)
+                     
+                    done( null, newGuestSection);
                 })
-            } else {
-                return done(null, guestSection)
-            }
+            } else 
+                done( null, guestSection);
         }
     })
 }
 
 const getPage = function (done) {
-    guestBookSchema.findOne(function (err, guestSection) {
+
+    //mongoose.connect(dbConfig.appDB.url, { useMongoClient: true });
+
+    guestBookSchema.findOne(function (err, res) {
         if (err)
             throw err
-        else {
-            if(guestSection)
-                guestSection.Messages = guestSection.Messages.reverse();
-
-            return done(null, guestSection)
-        }
+        
+        done(null, { CaptchaKey: res.CaptchaKey, Title: res.Title, Messages: res.Messages.reverse()});
     })
 }
 
 const createQuestion = function (question, done) {
+
+    //mongoose.connect(dbConfig.appDB.url, { useMongoClient: true });
 
     let newQuestion = mongoose.model("Question", GuestSchema.GuestQuestionSchema)
     let questionSchema = new newQuestion()
@@ -54,11 +59,15 @@ const createQuestion = function (question, done) {
         questionSchema.ID = res.Messages.length + 1;
         res.Messages.push(questionSchema)
         res.save()
-        return done(null, res)
+        
+        done(null, { CaptchaKey: res.CaptchaKey, Title: res.Title, Messages: res.Messages.reverse()});
     })
 }
 
 const createAnswer = function (answer, done) {
+
+    //mongoose.connect(dbConfig.appDB.url, { useMongoClient: true });
+    
     let newAnswer = mongoose.model("Answer", GuestSchema.GuestAnswerSchema)
     let answerSchema = new newAnswer()
 
@@ -71,8 +80,12 @@ const createAnswer = function (answer, done) {
     guestBookSchema.findOne({}, function (err, res) {
         var quest = res.Messages[answer.postId -1]
         quest.Answers.push(answerSchema)
-        res.save()
-        return done(null, res)
+        res.save(function (err) {
+            console.log('Save');
+            if (err) throw (err);
+            // saved!
+            done(null, { CaptchaKey: res.CaptchaKey, Title: res.Title, Messages: res.Messages.reverse()});
+        })
     })
 }
 

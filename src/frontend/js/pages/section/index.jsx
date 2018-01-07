@@ -67,12 +67,12 @@ export default class Section extends Component {
       return (
         <div className='Section'>
           <div className='container'>
-            <Text type='superHeader bold center'>{sectionPageAsyncData.data[0].Title}</Text>
-            <TagCloud tags={sectionPageAsyncData.data[0].Tags} click={this.clickOnTag} selected={sectionPageSelectedTag} />
-            <Text type='main'>{sectionPageAsyncData.data[0].Description}</Text>
+            <Text type='superHeader bold center'>{sectionPageAsyncData.data.Title}</Text>
+            <TagCloud tags={sectionPageAsyncData.data.Tags} click={this.clickOnTag} selected={sectionPageSelectedTag} />
+            <Text type='main'>{sectionPageAsyncData.data.Description}</Text>
           </div>
           <div className={(match.params.key !== 'Event' && match.params.key !== 'School')? 'container': ''}>
-            <List listData={sectionPageAsyncData.data[0].Listing} type={match.params.key}/>
+            <List listData={sectionPageAsyncData.data.Listing} type={match.params.key}/>
           </div>
         </div>
       );
