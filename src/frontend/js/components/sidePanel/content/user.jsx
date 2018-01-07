@@ -24,12 +24,12 @@ export default class SidebarUserContent extends Component {
       if (!fixed) 
           return (
               <div>
-                  <div className='right-align'>
+                  <div className='left-align'>
                       <i className='close small material-icons col s12 l12 m12'>
                           close
                       </i>
                   </div>
-                  <p className="col s12 l12 m12 center-align">
+                  <p className="col s12 l12 m12 center-align Sidebar__title">
                       {this.props.title || 'Заглушка'}
                   </p>
                   <div>
@@ -46,6 +46,17 @@ export default class SidebarUserContent extends Component {
                         )
                       })}
                   </div>
+                  <div className='socialicon'>
+                    <a className='socialicon__item' href="http://vk.com">
+                        <img className='socialicon__image' src='/assets/img/icons/vk.svg'/>
+                    </a>
+                    <a className='socialicon__item' href="http://fb.com">
+                        <img className='socialicon__image' src='/assets/img/icons/facebook-f.svg'/>
+                    </a>
+                    <a className='socialicon__item' href="http://youtube.com">
+                        <img className='socialicon__image' src='/assets/img/icons/youtube.svg'/>
+                    </a>
+                </div>
               </div>
           )
   }

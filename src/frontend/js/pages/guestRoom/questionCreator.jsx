@@ -183,6 +183,16 @@ export default class QuestionCreator extends Component {
       return (
         <div className='QuestionCreator row'>
           <div className='Container col s12'>
+            <div className={'left-align'}>
+                <i className={'close small material-icons col s12 l12 m12'}>
+                  close
+                </i>
+            </div>
+            <div className='col s12'>
+                <div className='col s12 l3'>
+                  <Text>Ваше сообщение</Text>
+                </div>
+            </div>
             <div className='col s12'>
               <div className='col s12'>
                 <div className='col s12 l3'>
@@ -204,7 +214,7 @@ export default class QuestionCreator extends Component {
             <div className='col s12'>
               <TextArea ref={e => this.state.textAreaInstance = e} name='contactForm__textarea' placeholder='Введите ваше сообщение' tooltipPosition='right' onChange={inputMessageHandler}/>
             </div>
-            <div className='col offset-s2 s6'>
+            <div className='col s12 l6 captcha'>
               {
                 sitekey?
                 <Captcha

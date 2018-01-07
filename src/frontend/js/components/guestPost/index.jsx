@@ -36,26 +36,26 @@ export default class GuestPost extends Component {
               <div className="card-content">
                 <div className='row'>
                   <div className='col s12'>
-                    <div className='col s5'>
+                    <div className='col s6 m5 l5'>
                       <Text type='footnote'>Сообщение №</Text>
                     </div>
-                    <div className='col s7'>
+                    <div className='col s6 m7 l7'>
                       <Text type='footnote bold'>{data.ID}</Text>
                     </div>
                   </div>
                   <div className='col s12'>
-                    <div className='col s3'>
+                    <div className='col s4 m3 l3'>
                       <Text type='footnote'>Имя:</Text>
                     </div>
-                    <div className='col s9'>
+                    <div className='col s8 m9 l9'>
                       <Text type='footnote bold'>{data.Username}</Text>
                     </div>
                   </div>
                   <div className='col s12'>
-                    <div className='col s3'>
+                    <div className='col s3 m3 l3'>
                       <Text type='footnote'>Дата:</Text>
                     </div>
-                    <div className='col s9'>
+                    <div className='col s9 m9 l9'>
                       <Text type='footnote bold'>{data.Date.toLocaleString('ru')}</Text>
                     </div>
                   </div>

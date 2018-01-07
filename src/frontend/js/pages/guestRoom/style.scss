@@ -15,12 +15,19 @@
         }
     }
     .ButtonContainer{
+        margin-bottom: 0;
+        @media #{$media} and ($feature: $value) {
+            margin-bottom: 3rem;
+        }
         &.sticky{
             position: fixed;
             left: 0;
             top: 80px;
             width: 100%;
             z-index: 99;
+            @media #{$media} and ($feature: $value) {
+                top: 10rem;
+            }
         }
         .Button{
             width: 100%;
@@ -86,9 +93,13 @@
             padding: 0.5rem 0;
             background-color: #E6E5D1;
             height: auto;
+            display: block;
             @media #{$media} and ($feature: $value) {
                 padding: 0;
                 height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
             }
 
             input{
@@ -98,6 +109,16 @@
             .Button button{
             //    padding: 0 2rem;
             }
+            .captcha {
+                display: block;
+                @media #{$media} and ($feature: $value) {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        }
+        .main {
+            text-align: center;
         }
     }
 
@@ -129,5 +150,29 @@
     @media #{$media} and ($feature: $value) {
         margin-bottom: 7rem;
     }
+
+    .footnote:not(.bold) {
+        text-align: initial;
+        @media #{$media} and ($feature: $value) {
+            text-align: right;
+        }
+    }
    
+}
+
+.GuestComment {
+    .collapsible-header {
+        font-size: inherit;
+        @media #{$media} and ($feature: $value) {
+            font-size: 2.5rem;
+        }
+
+        i {
+            @media #{$media} and ($feature: $value) {
+                width: 2.8rem;
+                font-size: 2.8rem;
+                padding-top: 0.5rem;
+            }
+        }
+    }
 }
