@@ -76,8 +76,6 @@ const dropSectionByID = function (sectionID, done) {
 }
 
 const updateSectionByID = function (sectionID, data, done) {
-    
-    //mongoose.connect(dbConfig.appDB.url, { useMongoClient: true });
 
     sectionModel
         .findByIdAndUpdate({
