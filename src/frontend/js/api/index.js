@@ -12,7 +12,7 @@ import {
 
 promisePolyfill.polyfill();
 
-var API = 'loal';
+var API = 'local';
 
 let apiPrefix = (API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
 
