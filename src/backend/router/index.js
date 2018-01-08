@@ -46,6 +46,12 @@ router.get('/interview', function (req, res) {
     interview(req, res)
 })
 
+router.get('/api/media/:tag', function (req, res) {
+    media.getMedia(req, res)
+})
+router.get('/api/media', function (req, res) {
+    media.getMedia(req, res)
+})
 router.get('/search', function (req, res) {
     search(req, res)
 })
@@ -95,7 +101,6 @@ adminRouter.post('/api/section/', auth.jwtAuth, function (req, res) {
     section.createNewSection(req, res)
 })
 adminRouter.get('/api/section/:id', function (req, res) {
-    
     section.getSection(req, res)
 })
 adminRouter.put('/api/section/:id', auth.jwtAuth, function (req, res) {
@@ -104,6 +109,7 @@ adminRouter.put('/api/section/:id', auth.jwtAuth, function (req, res) {
 adminRouter.delete('/api/section/:id', auth.jwtAuth, function (req, res) {
     section.deleteSection(req, res)
 })
+
 adminRouter.post('/api/media', auth.jwtAuth, function (req, res) {
     media.createMedia(req, res)
 })

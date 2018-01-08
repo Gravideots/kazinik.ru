@@ -127,13 +127,25 @@ export default class Main extends Component {
 
       if (partners) {
         secondBlock = <div className='row'>
-          <div className='col s12'>
+          <div className='col s12 partnerSlider'>
             <Slider
               data={partners}
               navigation='MAIN'
               internal={false}
               show={(partners.length > 10)? '10': partners.length}
-              arrow={true}/>
+              dots={false}
+              arrow={true}
+              responsive={[
+                {
+                  breakpoint: 763,
+                  settings: {
+                    slidesToShow: '2',
+                    arrows: false,
+                    dots: true
+                 }
+                }
+              ]}
+              />
           </div>
         </div>
       }

@@ -10,7 +10,7 @@ import GuestBook from 'components/guestBook';
 export default class List extends Component {
   render() {
     const {listData, type, action} = this.props;
-
+    
     if (listData && type) {
       switch (type) {
         case 'Media':
@@ -18,8 +18,8 @@ export default class List extends Component {
             <div className='List row'>
               {listData.map((listElement, key) => {
                 return (
-                  <div className='col s12 l6'>
-                    <MediaListElement key={key} data={listElement}/>
+                  <div key={key} className='col s12 l6'>
+                    <MediaListElement  data={listElement}/>
                   </div>
                 );
               })}

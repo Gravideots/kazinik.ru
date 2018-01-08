@@ -14,6 +14,10 @@ export const GET_POSSIBLE_SECTIONS_LIST_START = 'GET_POSSIBLE_SECTIONS_LIST_STAR
 export const GET_POSSIBLE_SECTIONS_LIST_SUCCESS = 'GET_POSSIBLE_SECTIONS_LIST_SUCCESS';
 export const GET_POSSIBLE_SECTIONS_LIST_ERROR = 'GET_POSSIBLE_SECTIONS_LIST_ERROR';
 
+export const GET_NAVIGATION_LIST_START = 'GET_NAVIGATION_LIST_START';
+export const GET_NAVIGATION_LIST_SUCCESS = 'GET_NAVIGATION_LIST_SUCCESS';
+export const GET_NAVIGATION_LIST_ERROR = 'GET_NAVIGATION_LIST_ERROR';
+
 export function toggleSidebar(openFromRight) {
     return {type: TOGGLE_SIDE_BAR, openFromRight: openFromRight};
 }
@@ -46,18 +50,11 @@ export function getSidebarContent() {
     }
 }
 
-export function getExistingSectios() {
+export function getExistingSections() {
     return function (dispatch) {
         dispatch(getExistingSectiosStart())
         api
             .getSectionsList("existing")
-            // .then(data => {
-            //     data
-            //         .json()
-            //         .then(data => {
-            //             dispatch(getExistingSectiosSuccess(data))
-            //         })
-            // })
             .then(data => dispatch(getExistingSectiosSuccess(data)))
             .catch(error => dispatch(getExistingSectiosError(error)))
     }
@@ -70,4 +67,24 @@ function getExistingSectiosSuccess(data) {
 }
 function getExistingSectiosError(error) {
     return {type: GET_EXISTING_SECTIONS_LIST_ERROR, error};
+}
+
+export function getNavigation() {
+    return function (dispatch) {
+        dispatch(getNavigationStart())
+        api
+            .getNavigationList()
+            .then(data => dispatch(getNavigationSuccess(data)))
+            .catch(error => dispatch(getNavigationError(error)))
+    }
+}
+
+function getNavigationStart() {
+    return {type: GET_NAVIGATION_LIST_START};
+}
+function getNavigationSuccess(data) {
+    return {type: GET_NAVIGATION_LIST_SUCCESS, data};
+}
+function getNavigationError(error) {
+    return {type: GET_NAVIGATION_LIST_ERROR, error};
 }

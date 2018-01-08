@@ -246,7 +246,7 @@ function dropSchoolByID(id, done) {
 //dropSchoolByID('59ca689fa7156b094154b440')
 
 //createSection(Title, Description)
-//createGuestSection('Гостевая', '6Ld7UTUUAAAAAJ43uq19kCKb1XtvlamkFakgXGou')
+createGuestSection('Гостевая', '6Ld7UTUUAAAAAJ43uq19kCKb1XtvlamkFakgXGou')
 //addNoteToSection('59b9400d427b0b242db852e3')
 //addMediaToSection('59b9400d427b0b242db852e3');
 

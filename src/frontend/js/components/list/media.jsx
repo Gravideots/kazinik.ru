@@ -6,7 +6,7 @@ import Button from 'components/button';
 export default class MediaListElement extends Component {
   render() {
     const {data} = this.props;
-
+    
     if (data !== undefined) 
       return (<ReactPlayer
         url={data.URL}

@@ -1,12 +1,19 @@
 const mongoose = require('mongoose');
+const dbConfig = require('../config/dbConfig')
 
 const Section = require('../schemas/section')
 const Note = require('../schemas/note')
 const Media = require('../schemas/media')
 
+mongoose.Promise = global.Promise;
+
+let sectionModel = mongoose.model('Section', Section);
+
 const createNewSection = function (sectionData, sectionType, done) {
 
-    let newSection = new Section()
+    //mongoose.connect(dbConfig.appDB.url, { useMongoClient: true });
+
+    let newSection = new sectionModel()
 
     // if (!newSection.Listing[sectionType.type]) 
     //     return done('ERROR')
@@ -21,46 +28,56 @@ const createNewSection = function (sectionData, sectionType, done) {
         if (err) 
             throw err
         else 
-            return done(null, newSection)
+            done( null, newSection);
     })
 }
 
 const getAllSections = function (done) {
-    Section
+    
+    //mongoose.connect(dbConfig.appDB.url, { useMongoClient: true });
+
+    sectionModel
         .find({}, function (err, sections) {
             if (err) 
                 throw err
             else 
-                return done(null, sections)
+                done( null, sections);
         })
 }
 
 const getSectionByID = function (sectionID, done) {
-    Section
+    
+    //mongoose.connect(dbConfig.appDB.url, { useMongoClient: true });
+
+    sectionModel
         .findOne({
             _id: sectionID
         }, function (err, section) {
             if (err) 
                 throw err
             else 
-                return done(null, section)
+                done( null, section);
         })
 }
 
 const dropSectionByID = function (sectionID, done) {
-    Section
+    
+    //mongoose.connect(dbConfig.appDB.url, { useMongoClient: true });
+
+    sectionModel
         .remove({
             _id: sectionID
         }, function (err) {
             if (err) 
                 throw err
-            else 
-                return done(null, true)
+            else
+                done( null, true);
         })
 }
 
 const updateSectionByID = function (sectionID, data, done) {
-    Section
+
+    sectionModel
         .findByIdAndUpdate({
             _id: sectionID
         }, {
@@ -73,9 +90,8 @@ const updateSectionByID = function (sectionID, data, done) {
         }, function (err, updatedSection) {
             if (err) 
                 throw err
-            else {
-                return done(null, updatedSection)
-            }
+            else 
+                done( null, updatedSection);
         })
 }
 

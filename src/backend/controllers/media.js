@@ -1,14 +1,92 @@
 const Section = require('../schemas/section')
 const MediaSchema = require('../schemas/media')
 const mongoose = require('mongoose');
-const {transliterate, slugify} = require('transliteration')
+const dbConfig = require('../config/dbConfig')
 
+mongoose.Promise = global.Promise;
+
+const {transliterate, slugify} = require('transliteration')
+let sectionModel = mongoose.model('Section', Section);
+
+const getAllMedia = function ( done ){
+
+    // mongoose
+    //     .connect(dbConfig.appDB.url, { useMongoClient: true })
+    //     .then( () => {
+
+    //         sectionModel.findOne({
+    //             Type: 'Media'
+    //         }, ( err, doc ) => {
+                
+    //             if(err)
+    //                 done(err);
+    //             else
+    //                 mongoose.connection.close( () => {
+    //                     done( null, doc);
+    //                 });
+    //         })
+    //     })
+
+    sectionModel.findOne({
+        Type: 'Media'
+    }, ( err, doc ) => {
+        
+        if(err)
+            done(err);
+        else
+            done( null, doc);
+    })
+}
+
+const getMediaByTag = ( tag, done) => {
+
+    sectionModel.findOne({
+        Type: 'Media'
+    }, ( err, doc ) => {
+        
+        if(err)
+            done(err);
+        else{
+
+            let arr = doc.Listing.filter((el) => {
+                return el.Tags.find( (e) => e.URL === tag );
+            })
+            doc.Listing = arr;
+            
+            done( null, doc);
+        }
+    })
+    // mongoose
+    //     .connect(dbConfig.appDB.url, { useMongoClient: true })
+    //     .then( ()=> {
+    
+    //         sectionModel.findOne({
+    //             Type: 'Media'
+    //         }, ( err, doc ) => {
+                
+    //             if(err)
+    //                 done(err);
+    //             else{
+        
+    //                 let arr = doc.Listing.filter((el) => {
+    //                     return el.Tags.find( (e) => e.URL === tag );
+    //                 })
+    //                 doc.Listing = arr;
+                    
+    //                 mongoose.connection.close( () => {
+    //                     done( null, doc);
+    //                 });
+    //             }
+    //         })
+    //     })
+}
 const createNewMedia = function (sectionID, mediaURL, Tags, done) {
 
-    let mediaSchema = mongoose.model('Media', MediaSchema);
-    let newMedia = new mediaSchema()
+    
+    var mediaSchema = mongoose.model('Media', MediaSchema);
+    var newMedia = new mediaSchema()
 
-    let arrayOfTags = Tags
+    var arrayOfTags = Tags
         .replace(/ /g, '')
         .split(',')
         .map(function (tag) {
@@ -17,9 +95,8 @@ const createNewMedia = function (sectionID, mediaURL, Tags, done) {
     
     newMedia.URL = mediaURL
     newMedia.Tags = arrayOfTags
-   
 
-    Section.findOneAndUpdate({
+    sectionModel.findOneAndUpdate({
         _id: sectionID
     }, {
         $push: {
@@ -31,37 +108,86 @@ const createNewMedia = function (sectionID, mediaURL, Tags, done) {
         upsert: true
     }, {
         new: true
-    }, function (err, section) {
+    }, (err, section) => {
         if (err) 
             throw err
-        else 
-            return done(null, section)
+        else    
+            done( null, section);
     })
+
+    // mongoose
+    //     .connect(dbConfig.appDB.url, { useMongoClient: true })
+    //     .then( () => {
+   
+    //         sectionModel.findOneAndUpdate({
+    //             _id: sectionID
+    //         }, {
+    //             $push: {
+    //                 "Listing": newMedia
+    //             },
+    //             $addToSet: {
+    //                 Tags: {$each: newMedia.Tags}
+    //             },
+    //             upsert: true
+    //         }, {
+    //             new: true
+    //         }, (err, section) => {
+    //             if (err) 
+    //                 throw err
+    //             else 
+    //                 mongoose.connection.close( () => {
+    //                     done( null, section);
+    //                 });
+    //         })
+    //     })
 }
 
 const getMediaByID = function (sectionID, mediaID, done) {
-    Section
+
+    // mongoose
+    //     .connect(dbConfig.appDB.url, { useMongoClient: true })
+    //     .then( () => {
+    //         sectionModel
+    //             .findOne({
+    //                 _id: sectionID
+    //             }, function (err, section) {
+    //                 if (err)
+    //                     throw err
+    //                 else {
+    //                     let media = section
+    //                         .Listing
+    //                         .data
+    //                         .id(mediaID);
+    //                     mongoose.connection.close( () => {
+    //                         done( null, media);
+    //                     });
+    //                 }
+    //             })
+    //     })
+
+    sectionModel
         .findOne({
             _id: sectionID
         }, function (err, section) {
-            if (err) 
+            if (err)
                 throw err
             else {
                 let media = section
                     .Listing
                     .data
                     .id(mediaID);
-                return done(null, media)
+                done( null, media);
             }
         })
 }
 
 const dropMediaByID = function (sectionID, mediaID, done) {
 
+    
     var sectionIdObject = mongoose.Types.ObjectId(sectionID);
     var mediaIdObject = mongoose.Types.ObjectId(mediaID);
-
-    Section.collection.updateOne(
+    
+    sectionModel.collection.updateOne(
         {
             _id: sectionIdObject,
             Listing: { $elemMatch: { _id: mediaIdObject } }
@@ -71,36 +197,43 @@ const dropMediaByID = function (sectionID, mediaID, done) {
         },
         ( err, result ) => {
 
-            Section.collection.findOne({
-                _id: sectionIdObject
-            }, {}, ( err, doc ) => {
-                
-                done( null, doc);
-            })
+            sectionModel.collection.findOne({ _id: sectionIdObject }, {}, ( err, doc ) => done( null, doc) )
         }
     )
+
+    // mongoose
+    //     .connect(dbConfig.appDB.url, { useMongoClient: true })
+    //     .then( () => {
+    //         sectionModel.collection.updateOne(
+    //             {
+    //                 _id: sectionIdObject,
+    //                 Listing: { $elemMatch: { _id: mediaIdObject } }
+    //             },
+    //             {
+    //                 $pull: { "Listing": { _id: mediaIdObject } }
+    //             },
+    //             ( err, result ) => {
+        
+    //                 sectionModel.collection.findOne({
+    //                     _id: sectionIdObject
+    //                 }, {}, ( err, doc ) => {
+                        
+    //                     mongoose.connection.close( () => {
+    //                         done( null, doc);
+    //                     });
+    //                 })
+    //             }
+    //         )
+    //     })
 }
 
 const updateMediaByID = function (sectionID, mediaID, data, done) {
 
+    
     var sectionIdObject = mongoose.Types.ObjectId(sectionID);
     var mediaIdObject = mongoose.Types.ObjectId(mediaID);
 
-    // Section.collection.findOneAndUpdate(
-    //     {
-    //         _id: sectionIdObject,
-    //         Listing: { $elemMatch: { _id: mediaIdObject } }
-    //     },
-    //     {
-    //         $set: { "Listing.$.": { _id: mediaIdObject } }
-    //     },
-    //     ( err, result ) => {
-    //         console.log( 'MSG', err, result )
-    //         Section.collection.close()
-    //     }
-    // )
-
-    Section
+    sectionModel
         .findOne({
             _id: sectionID
         }, function (err, section) {
@@ -112,12 +245,53 @@ const updateMediaByID = function (sectionID, mediaID, data, done) {
                     .id(mediaID)
                 media.Title = data
                 section.save()
-                return done(null, media)
+                
+                done( null, media);
             }
         })
+
+    // mongoose
+    //     .connect(dbConfig.appDB.url, { useMongoClient: true })
+    //     .then(() => {
+
+    //     // sectionModel.collection.findOneAndUpdate(
+    //     //     {
+    //     //         _id: sectionIdObject,
+    //     //         Listing: { $elemMatch: { _id: mediaIdObject } }
+    //     //     },
+    //     //     {
+    //     //         $set: { "Listing.$.": { _id: mediaIdObject } }
+    //     //     },
+    //     //     ( err, result ) => {
+    //     //         console.log( 'MSG', err, result )
+    //     //         sectionModel.collection.close()
+    //     //     }
+    //     // )
+
+    //     sectionModel
+    //         .findOne({
+    //             _id: sectionID
+    //         }, function (err, section) {
+    //             if (err) 
+    //                 throw err
+    //             else {
+    //                 var media = section
+    //                     .Listing
+    //                     .id(mediaID)
+    //                 media.Title = data
+    //                 section.save()
+                    
+    //                 mongoose.connection.close( () => {
+    //                     done( null, media);
+    //                 });
+    //             }
+    //         })
+    //     })
 }
 
 module.exports = {
+    getMediaByTag,
+    getAllMedia,
     createNewMedia,
     getMediaByID,
     dropMediaByID,

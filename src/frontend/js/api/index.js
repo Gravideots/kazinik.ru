@@ -12,7 +12,7 @@ import {
 
 promisePolyfill.polyfill();
 
-var API = 'local';
+var API = 'loal';
 
 let apiPrefix = (API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
 
@@ -53,28 +53,51 @@ function notePage(id) {
 }
 
 function getSidebarContent() {
-  return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
-    if (response.status !== 200) {
-      console.log('Looks like there was a problem. Status Code: ' + response.status);
-      return response.status;
-    }
-    return response;
-  });
+  return mainPage();
 }
 
 function sectionPage(type, tag = null) {
-  return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
-    var listing = [];
-    if (tag !== null) {
-      return SectionPage[tag];
-    } else 
-      return SectionPage[type];
+
+  return fetch( apiPrefix + '/api/' + type.toLowerCase() + ( tag ? '/' + tag : '' ),{
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'multipart/form-data'
     }
-  );
+  })
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json    
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+  // return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
+  //   var listing = [];
+  //   if (tag !== null) {
+  //     return SectionPage[tag];
+  //   } else 
+  //     return SectionPage[type];
+  //   }
+  // );
 }
 
-
-
+function getNavigationList() {
+  return fetch( apiPrefix + '/api/guest/',{
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+  .then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return MainPage.sectionsBlock    
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
 
 function sendGuestMessage(message){
   return fetch( apiPrefix + '/api/guest/', {
@@ -156,7 +179,8 @@ function getUsersList(){
 }
 
 
-function deleteMedia(sectionID, mediaID) {
+function deleteMedia(sectionID, mediaID, tags) {
+  console.log(tags)
   return fetch( apiPrefix + '/admin/api/media/' + sectionID + '/' + mediaID, {
     method: 'DELETE',
     mode: 'cors',
@@ -315,6 +339,8 @@ export default {
   schoolPage,
   notePage,
   sectionPage,
+
+  getNavigationList,
   getGuestRoom,
   getSidebarContent,
 
