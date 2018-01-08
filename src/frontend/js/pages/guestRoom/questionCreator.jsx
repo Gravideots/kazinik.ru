@@ -188,8 +188,8 @@ export default class QuestionCreator extends Component {
                   close
                 </i>
             </div>
-            <div className='col s12'>
-                <div className='col s12 l3'>
+            <div className='col s12 m7'>
+                <div className='col s12 m6 l3'>
                   <Text>Ваше сообщение</Text>
                 </div>
             </div>
@@ -202,7 +202,7 @@ export default class QuestionCreator extends Component {
                   <Input ref={e => this.state.nameInputInstance = e} placeholder='Ваше имя' name='name' type='text' onChange={inputNameHandler}/>
                 </div>
               </div>
-              <div className='col s12'>
+              <div className='col s12 m6 l6'>
                 <div className='col s12 l3'>
                   <Text>E-mail:</Text>
                 </div>
@@ -227,7 +227,7 @@ export default class QuestionCreator extends Component {
                 null
               }
             </div>
-            <div className='col s12'>
+            <div className='col s12 m2'>
               <Button text='ОТПРАВИТЬ' className='modal-trigger Button--fw' onClick={sendQuestion}/>
             </div>
           </div>

@@ -22,7 +22,7 @@ export default class NoteListElement extends Component {
         <div className='col s12 m8'>
             <Text type='subheader bold'>«{data.Title}»</Text>
             <Text type='helptext'>{data.Description.slice(0, 900) + '...'}</Text>
-            <Link className='col s12 m8'
+            <Link className='col s12 m3'
             to={{ pathname: routeCodes.NOTE + data.Id, data }}>
                 <Button text='Читать далее >>>'/>
             </Link>
