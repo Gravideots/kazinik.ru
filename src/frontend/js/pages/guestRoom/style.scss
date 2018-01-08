@@ -86,7 +86,6 @@
         height: auto;
         @media #{$media} and ($feature: $value) {
             padding: 0;
-            height: 100%;
         }
 
         .Container{
@@ -125,9 +124,11 @@
     .modal.bottom-sheet{
         max-height: 65%;
         top: unset;
+        min-height: unset;
         @media #{$media} and ($feature: $value) {
-            max-height: 100%;
+            min-height: 100vh;
             top: 0;
+            max-height: unset;
         }
     }
 

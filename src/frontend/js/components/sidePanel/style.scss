@@ -75,6 +75,7 @@
     }
     .Left {
         float: left;
+        background: #E6E5D1;
         @media #{$media} and ($feature: $value) {
             width: 100%;
             padding: 1rem;
