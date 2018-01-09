@@ -166,7 +166,8 @@ export default class QuestionCreator extends Component {
     } = this.state;
 
     const {
-      sitekey
+      sitekey,
+      close
     } = this.props;
 
     const {
@@ -184,9 +185,11 @@ export default class QuestionCreator extends Component {
         <div className='QuestionCreator row'>
           <div className='Container col s12'>
             <div className={'left-align'}>
-                <i className={'close small material-icons col s12 l12 m12'}>
-                  close
-                </i>
+                <Button onClick={close}>
+                  <i className='close small material-icons col s12 m1'>
+                      close
+                  </i>
+                </Button>
             </div>
             <div className='col s12 m7'>
                 <div className='col s12 m6 l3'>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { routeCodes } from 'config/routes';
 
 import Button from 'components/button';
@@ -20,17 +20,25 @@ export default class SidebarUserContent extends Component {
   }
 
   render() {
-      let {fixed, title, paths} = this.props;
+      let {fixed, title, paths, close} = this.props;
       if (!fixed) 
           return (
               <div>
                   <div className='left-align'>
-                      <i className='close small material-icons col s12 l12 m12'>
-                          close
-                      </i>
+                      <Button onClick={close}>
+                        <i className='close small material-icons col s12 l12 m12'>
+                            close
+                        </i>
+                      </Button>
                   </div>
                   <p className="col s12 l12 m12 center-align Sidebar__title">
-                      {this.props.title || 'Заглушка'}
+                    <NavLink
+                        onClick={close}
+                        to={routeCodes.Main}>
+                        <div>
+                            <Text type='header '>{ this.props.title || 'На главную' }</Text>
+                        </div>
+                    </NavLink>
                   </p>
                   <div>
                       { paths.map( ( path, key ) => {

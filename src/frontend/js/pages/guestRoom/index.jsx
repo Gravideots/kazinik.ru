@@ -161,7 +161,7 @@ export default class GuestRoom extends Component {
             headerText=''
             ref={e => this.state.modal = e}
           >
-            <QuestionCreator action={this.sendMessage} sitekey={guestRoomAsyncData.CaptchaKey} postId={this.state.postId} reset={this.state.reset}/>
+            <QuestionCreator action={this.sendMessage} sitekey={guestRoomAsyncData.CaptchaKey} postId={this.state.postId} reset={this.state.reset} close={this.resetSendForm}/>
           </Modal>
         </div>
       );

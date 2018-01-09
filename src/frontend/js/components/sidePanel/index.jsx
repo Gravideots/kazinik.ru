@@ -177,21 +177,16 @@ class UserSidebar extends Component {
                 <div
                     className='PageOverlay'
                     style={styles.overlay}
-                    onClick=
-                    {() => this.toggleSidebar(openFromRight)}></div>
+                    onClick={() => this.toggleSidebar(openFromRight)}></div>
                 <div
                     className='SideNavContent Left'
-                    style={styles.navLeft}
-                    onClick=
-                    {() => this.toggleSidebar(openFromRight)}>
-                    <SidebarUserContent title='Михаил Казиник' paths={ content }/>
+                    style={styles.navLeft}>
+                    <SidebarUserContent title='Михаил Казиник' paths={ content } close={() => this.toggleSidebar(openFromRight)}/>
                 </div>
                 <div
                     className='SideNavContent Right'
-                    style={styles.navRight}
-                    onClick=
-                    {() => this.toggleSidebar(this.props.openFromRight)}>
-                    <FeedbackForm/>
+                    style={styles.navRight}>
+                    <FeedbackForm close={() => this.toggleSidebar(openFromRight)}/>
                 </div>
             </div>
         )
