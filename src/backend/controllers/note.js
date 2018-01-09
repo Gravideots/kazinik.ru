@@ -1,24 +1,30 @@
 const NoteSchema = require('../schemas/note')
 const Section = require('../schemas/section')
-const mongoose = require('mongoose');
 
-const createNewNote = function (sectionID, Title, Description, done) {
+const createNote = function ( note, done ) {
 
-    let noteSchema = mongoose.model('Note', NoteSchema);
-    let Note = new noteSchema()
+    let Note = new NoteSchema( note )
 
-    Note.Title = Title
-    Note.Description = Description
-    Note.Tags = [{ URL: '1', Text: 'TAG-1' }, { URL: '2', Text: 'TAG-2' }, { URL: '3', Text: 'TAG-3' }]
-    Note.Date = new Date()
-
-    Section.findOneAndUpdate({ _id: sectionID }, { $push: { "Listing.Notes": Note } }, function (err, section) {
+    Section.findOneAndUpdate({ Type: 'Notes' }, { $push: { "Listing": Note } }, function ( err, section ) {
         if (err)
             throw err
         else
             return done(null, section)
     })
 }
+
+const getAllNotes = function ( done ){
+
+    Section
+        .findOne({ Type: 'Notes' }, function (err, section) {
+            if (err)
+                throw err
+            else {
+                let note = section.Listing;
+                return done(null, note)
+            }
+        })
+} 
 
 const getNoteByID = function (sectionID, noteID, done) {
     Section
@@ -59,4 +65,4 @@ const updateNoteByID = function (sectionID, noteID, data, done) {
         })
 }
 
-module.exports = { createNewNote, getNoteByID, updateNoteByID, dropNoteByID }
+module.exports = { createNote, getAllNotes, getNoteByID, updateNoteByID, dropNoteByID }

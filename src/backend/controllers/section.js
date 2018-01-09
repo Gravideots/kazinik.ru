@@ -5,15 +5,11 @@ const Section = require('../schemas/section')
 const Note = require('../schemas/note')
 const Media = require('../schemas/media')
 
-mongoose.Promise = global.Promise;
-
-let sectionModel = mongoose.model('Section', Section);
-
 const createNewSection = function (sectionData, sectionType, done) {
 
     //mongoose.connect(dbConfig.appDB.url, { useMongoClient: true });
 
-    let newSection = new sectionModel()
+    let newSection = new Section()
 
     // if (!newSection.Listing[sectionType.type]) 
     //     return done('ERROR')
@@ -36,7 +32,7 @@ const getAllSections = function (done) {
     
     //mongoose.connect(dbConfig.appDB.url, { useMongoClient: true });
 
-    sectionModel
+    Section
         .find({}, function (err, sections) {
             if (err) 
                 throw err
@@ -49,7 +45,7 @@ const getSectionByID = function (sectionID, done) {
     
     //mongoose.connect(dbConfig.appDB.url, { useMongoClient: true });
 
-    sectionModel
+    Section
         .findOne({
             _id: sectionID
         }, function (err, section) {
@@ -64,7 +60,7 @@ const dropSectionByID = function (sectionID, done) {
     
     //mongoose.connect(dbConfig.appDB.url, { useMongoClient: true });
 
-    sectionModel
+    Section
         .remove({
             _id: sectionID
         }, function (err) {
@@ -77,7 +73,7 @@ const dropSectionByID = function (sectionID, done) {
 
 const updateSectionByID = function (sectionID, data, done) {
 
-    sectionModel
+    Section
         .findByIdAndUpdate({
             _id: sectionID
         }, {

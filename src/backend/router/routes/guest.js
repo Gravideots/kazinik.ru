@@ -1,4 +1,3 @@
-const express = require('express')
 const guest = require('../../controllers/guest')
 
 function createMessage(req, res) {

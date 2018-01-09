@@ -12,7 +12,7 @@ import {
 
 promisePolyfill.polyfill();
 
-var API = 'loal';
+var API = 'local';
 
 let apiPrefix = (API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
 
@@ -58,7 +58,7 @@ function getSidebarContent() {
 
 function sectionPage(type, tag = null) {
 
-  return fetch( apiPrefix + '/api/' + type.toLowerCase() + ( tag ? '/' + tag : '' ),{
+  return fetch( apiPrefix + '/api/' + type.toLowerCase() + '/' + ( tag ? tag : '' ),{
     mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',

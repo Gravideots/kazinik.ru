@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 const GuestSchema = require('../schemas/guest')
-const dbConfig = require('../config/dbConfig');
-
-mongoose.Promise = global.Promise;
 
 let guestBookSchema = mongoose.model('Guest', GuestSchema.GuestBookSchema);
 

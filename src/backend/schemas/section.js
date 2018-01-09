@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-module.exports = SectionSchema = mongoose.Schema({
+const SectionSchema = mongoose.Schema({
     Active: Boolean,
     Title: String,
     Description: String,
@@ -18,4 +18,4 @@ module.exports = SectionSchema = mongoose.Schema({
 
 // const db = mongoose.createConnection(dbConfig.appDB.url);
 
-// module.exports = db.model('Section', SectionSchema);
+module.exports = mongoose.model('Section', SectionSchema);

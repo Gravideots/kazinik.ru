@@ -4,10 +4,9 @@ const router = express.Router();
 
 //PAGES
 const main = require('./routes/main')
-const article = require('./routes/article')
 const event = require('./routes/event')
 const guest = require('./routes/guest')
-const interview = require('./routes/interview')
+const notes = require('./routes/notes')
 const search = require('./routes/search')
 const section = require('./routes/section')
 const specialEvent = require('./routes/specialEvent')
@@ -42,8 +41,8 @@ router.get('/event', function (req, res) {
     event(req, res)
 })
 
-router.get('/interview', function (req, res) {
-    interview(req, res)
+router.get('/api/notes/', function (req, res) {
+    notes.getNotes(req, res)
 })
 
 router.get('/api/media/:tag', function (req, res) {
@@ -52,6 +51,7 @@ router.get('/api/media/:tag', function (req, res) {
 router.get('/api/media', function (req, res) {
     media.getMedia(req, res)
 })
+
 router.get('/search', function (req, res) {
     search(req, res)
 })
@@ -91,30 +91,50 @@ router.post('/registration', auth.jwtAuth, user.createUser, (req, res)=>{
 adminRouter.get('/api/users', auth.jwtAuth, function (req, res) {
     user.getAllUsers(req, res)
 })
+
 adminRouter.get('/api/sections/:param', auth.jwtAuth, function (req, res) {
+
     if (req.params.param == 'existing') 
         section.getExistingSectionsList(req, res)
+
     if (req.params.param == 'possible') 
         section.getPossibleSectiosList(req, res)
 })
+
 adminRouter.post('/api/section/', auth.jwtAuth, function (req, res) {
+
     section.createNewSection(req, res)
 })
+
 adminRouter.get('/api/section/:id', function (req, res) {
+
     section.getSection(req, res)
 })
+
 adminRouter.put('/api/section/:id', auth.jwtAuth, function (req, res) {
+
     section.updateSection(req, res)
 })
+
 adminRouter.delete('/api/section/:id', auth.jwtAuth, function (req, res) {
+
     section.deleteSection(req, res)
 })
 
 adminRouter.post('/api/media', auth.jwtAuth, function (req, res) {
+
     media.createMedia(req, res)
 })
+
 adminRouter.delete('/api/media/:sectionID/:mediaID', auth.jwtAuth, function (req, res) {
+
     media.deleteMedia(req, res)
 })
 
-module.exports = {router, adminRouter};
+// adminRouter.post('/api/note', auth.jwtAuth, function (req, res) {
+adminRouter.post('/api/note', function (req, res) {
+
+    notes.createNote(req, res)
+})
+
+module.exports = { router, adminRouter };
