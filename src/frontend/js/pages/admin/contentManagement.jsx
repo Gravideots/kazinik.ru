@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {openContentCreation, addMedia, deleteMedia} from './actions.js';
 
 import MediaListElement from 'components/list/media'
-import Interviews from './sections/Interviews'
+import Notes from './sections/Notes'
 import Articles from './sections/Articles'
 import Events from './sections/Events'
 import Media from './sections/Media'
@@ -77,10 +77,9 @@ export class ContentCreation extends Component {
     }
     render() {
         const { contentToCreate, dispatch } = this.props
-
+        
         switch( contentToCreate.type){
-            case 'Interviews': return <Interviews/>;
-            case 'Articles': return <Articles/>;
+            case 'Notes': return <Notes sectionID={contentToCreate.id} dispatch={dispatch} />;
             case 'Media': return <Media sectionID={contentToCreate.id} dispatch={dispatch} action={addMedia}/>;
             case 'Events': return <Events/>;
             default: return null;

@@ -30,9 +30,38 @@ $value: 1300px;
         margin-top: 1.5rem
     }
 
-    @media #{$media} and ($feature: $value) {
-        background: rgb(21, 177, 60);
-    } 
+    &.Note{
+
+        .input-field{
+
+            input{
+
+                background-color: rgba(224, 223, 219, 0.678);
+                border-radius: 0;
+                border: none;
+                
+                &.filed{
+                    &:not(:focus){
+
+                        background-color: white;
+                    }
+                }
+
+                &.header{
+
+                    height: 3rem;
+                    font-size: 1rem;
+                    color: black;
+                }
+
+                &.author{
+
+                    height: 2.5rem;
+                    font-size: 1rem;
+                }
+            }
+        } 
+    }
 }
 
 .element {

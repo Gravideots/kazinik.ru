@@ -36,25 +36,6 @@
         }
 
     }
-    .SidebarAdminContent {
-        position: relative;
-        width: 100%;
-        max-width: 400px;
-        height: 100%;
-        background: black;
-        box-Shadow: 2px 0 12px rgba(0, 0, 0, 0.4);
-        display: flex;
-        will-Change: transform;
-        flex-Direction: column;
-        transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
-        i {
-            padding: 0rem;
-        }
-        .Title {
-            background: white;
-            padding-left: 0.7rem;
-        }
-    }
     .Right {
         float: right;
         padding: 1rem;
@@ -76,6 +57,27 @@
     .Left {
         float: left;
         background: #E6E5D1;
+
+        &.SidebarAdminContent {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: black;
+            box-Shadow: 2px 0 12px rgba(0, 0, 0, 0.4);
+            display: flex;
+            will-Change: transform;
+            flex-Direction: column;
+            transition: transform 0.3s cubic-bezier(0, 0, 0.3, 1);
+            i {
+                padding: 0rem;
+            }
+            .Title {
+                background: white;
+                padding-left: 0.7rem;
+            }
+        }
+
         @media #{$media} and ($feature: $value) {
             width: 100%;
             padding: 1rem;
