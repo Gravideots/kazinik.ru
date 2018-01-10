@@ -68,14 +68,14 @@ export default class Note extends Component {
             <Text type='header bold center'>
               «{title}»
             </Text>
-            <Text type='subheader italic center'>
+            <Text type='subheader italic center hide-on-med-and-down'>
               {subTitle}
             </Text>
-            <Text type=''>
+            <Text type='hide-on-med-and-down'>
               {description}
             </Text>
         </div>
-        <div className='container noteBlock'>
+        <div className='container noteBlock hide-on-med-and-down'>
           {texts.map((text, i) => {
             return  <div key={i} className='row'>
                       <Text type='subheader center'>{text.Title}</Text>
@@ -89,7 +89,7 @@ export default class Note extends Component {
                   })
           }
         </div>
-        <div className='container'>
+        <div className='container hide-on-med-and-down'>
           <div className='row'>
             <Text type='right italic'>{athor}</Text>
           </div>

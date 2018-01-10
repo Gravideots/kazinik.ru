@@ -93,12 +93,14 @@
             background-color: #E6E5D1;
             height: auto;
             display: block;
+            min-height: unset;
             @media #{$media} and ($feature: $value) {
                 padding: 0;
                 height: 100%;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
+                min-height: 100vh;
             }
 
             input{
