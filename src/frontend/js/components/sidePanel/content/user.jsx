@@ -31,31 +31,31 @@ export default class SidebarUserContent extends Component {
                         </i>
                       </Button>
                   </div>
-                  <div className="col s12 l12 m12 center-align Sidebar__title">
-                    <NavLink
-                        onClick={close}
-                        to={routeCodes.Main}>
-                        <div>
-                            <Text type='header '>{ this.props.title || 'На главную' }</Text>
-                        </div>
-                    </NavLink>
-                  </div>
 
                   <div className='Sidebar__linkcontainer'>
-                  <div>
-                      { paths.map( ( path, key ) => {
+                    <div className="col s12 l12 m12 center-align Sidebar__title">
+                        <NavLink
+                            onClick={close}
+                            to={routeCodes.Main}>
+                            <div>
+                                <Text type='header '>{ this.props.title || 'На главную' }</Text>
+                            </div>
+                        </NavLink>
+                    </div>
+                    <div>
+                        { paths.map( ( path, key ) => {
 
-                        return(
-                          <Link className='SideMenuLinks'
-                            key = { key }
-                            to={{pathname: (path.Listed)? routeCodes['SECTION'] + path.URL : routeCodes[ path.URL ] }}>
-                              <div>
-                                  <Text type='main'>{ path.Title }</Text>
-                              </div>
-                          </Link>
-                        )
-                      })}
-                  </div>
+                            return(
+                            <Link className='SideMenuLinks'
+                                key = { key }
+                                to={{pathname: (path.Listed)? routeCodes['SECTION'] + path.URL : routeCodes[ path.URL ] }}>
+                                <div>
+                                    <Text type='main'>{ path.Title }</Text>
+                                </div>
+                            </Link>
+                            )
+                        })}
+                    </div>
                   </div>
                   <div className='socialicon'>
                     <a className='socialicon__item' href="http://vk.com">
