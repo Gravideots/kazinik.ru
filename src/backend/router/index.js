@@ -64,7 +64,7 @@ router.get('/api/guest', function (req, res) {
     guest.getGuestPage(req, res)
 })
 
-router.post('/api/guest', auth.jwtAuth, function (req, res) {
+router.post('/api/guest', function (req, res) {
     guest.createMessage(req, res)
 })
 
@@ -131,8 +131,7 @@ adminRouter.delete('/api/media/:sectionID/:mediaID', auth.jwtAuth, function (req
     media.deleteMedia(req, res)
 })
 
-// adminRouter.post('/api/note', auth.jwtAuth, function (req, res) {
-adminRouter.post('/api/note', function (req, res) {
+adminRouter.post('/api/note', auth.jwtAuth, function (req, res) {
 
     notes.createNote(req, res)
 })

@@ -16,8 +16,8 @@ export default class NoteListElement extends Component {
       <div className='NoteListElement row'>
         <div className='col s12 m4'>
           <Text>{data.Author + " " + ( data.Date ? data.Date.toLocaleDateString('ru-RU') : "" ) } </Text>
-          <Image src={data.TitleImage.Crop}/>
-          <Text type='helptext'>{data.SubTitle.slice(0, 400) + '...'}</Text>
+          <Image src={ data.TitleImage? data.TitleImage.Crop? data.TitleImage.Crop : data.TitleImage.Full? data.TitleImage.Full: '' : '' }/>
+          <Text type='helptext'>{ data.SubTitle? data.SubTitle.slice(0, 400) + '...' : '' }</Text>
         </div>
         <div className='col s12 m8'>
             <Text type='subheader bold'>«{data.Title}»</Text>

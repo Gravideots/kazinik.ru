@@ -76,7 +76,7 @@ export default class Note extends Component {
             </Text>
         </div>
         <div className='container noteBlock'>
-          {texts.map((text, i) => {
+          { texts.map((text, i) => {
             return  <div key={i} className='row'>
                       <Text type='subheader center'>{text.Title}</Text>
                       <Text>{text.Text}</Text>

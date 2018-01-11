@@ -1,5 +1,9 @@
 import api from '../../api'
 
+export const ASYNC_START = 'ASYNC_ERROR'
+export const ASYNC_ERROR = 'ASYNC_ERROR'
+export const ASYNC_SUCCESS = 'ASYNC_SUCCESS'
+
 export const GET_ADMIN_PAGE_START = 'GET_ADMIN_PAGE_START'
 export const GET_ADMIN_PAGE_ERROR = 'GET_ADMIN_PAGE_ERROR'
 export const GET_ADMIN_PAGE_SUCCESS = 'GET_ADMIN_PAGE_SUCCESS'
@@ -48,6 +52,19 @@ export const ADD_MEDIA_CONTENT_SUCCESS = 'ADD_MEDIA_CONTENT_SUCCESS'
 export const DELETE_MEDIA_CONTENT_START = 'DELETE_MEDIA_CONTENT_START'
 export const DELETE_MEDIA_CONTENT_ERROR = 'DELETE_MEDIA_CONTENT_ERROR'
 export const DELETE_MEDIA_CONTENT_SUCCESS = 'DELETE_MEDIA_CONTENT_SUCCESS'
+
+
+function asyncStart() {
+    return {type: ASYNC_START}
+}
+function asyncSuccess(data) {
+    return {type: ASYNC_SUCCESS, data}
+}
+function asyncError(error) {
+    return {type: ASYNC_ERROR, error}
+}
+
+
 
 function getAdminPageStart() {
     return {type: GET_ADMIN_PAGE_START}
@@ -292,6 +309,7 @@ export function deleteMedia(sectionID, mediaID, tags) {
             .catch(error => dispatch(deleteMediaError(error)))
     }
 }
+
 function deleteMediaStart() {
     return {type: DELETE_MEDIA_CONTENT_START}
 }
@@ -300,4 +318,17 @@ function deleteMediaSuccess() {
 }
 function deleteMediaError() {
     return {type: DELETE_MEDIA_CONTENT_ERROR}
+}
+
+export function createNote( note ){
+    return function (dispatch) {
+        dispatch(asyncStart())
+        api
+            .createNote( note )
+            .then(data => {
+                dispatch(asyncSuccess({ ContentManagement: data }))
+                dispatch(selectSectionToAddContent(data.data))
+            })
+            .catch(error => dispatch(asyncError(error)))
+    }
 }

@@ -328,6 +328,25 @@ function updateSection(sectionData) {
   })
 }
 
+function createNote( note ) {
+  return fetch( apiPrefix + '/admin/api/note', {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*',
+      'Content-Type': 'application/json',
+      'Authorization': getToken()
+    },
+    body: JSON.stringify( note )
+  }).then(function(response) {
+    return response.json()
+  }).then(function(json) {
+    return json
+  }).catch(function(ex) {
+    console.log('parsing failed', ex)
+  })
+}
+
 //==============================================
 //================END ADMIN PAGE================
 //==============================================
@@ -359,7 +378,8 @@ export default {
   updateSection,
   addMedia,
   deleteMedia,
-  getUsersList
+  getUsersList,
+  createNote
 
   //==============================================
   //================END ADMIN PAGE================

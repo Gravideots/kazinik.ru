@@ -24,6 +24,7 @@ export default class ImageInput extends Component {
       
       this.props.onChange(reader.result);
     };
+    
     reader.onerror = function (error) {
       console.log('Error: ', error);
     };

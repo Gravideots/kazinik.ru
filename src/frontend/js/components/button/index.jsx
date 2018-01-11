@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import Icon from 'components/icon';
+
 export default class Button extends Component {
     static propTypes = {
         children: PropTypes.object
@@ -21,13 +23,16 @@ export default class Button extends Component {
     }
 
     render() {
-        const {children, text, data, className} = this.props;
+        const {children, text, data, className, icon} = this.props;
 
         let content = <button
             data-target={data}
             className={"btn waves-effect waves-light black" + (className !== undefined
             ? ' ' + className
-            : '')}>{text}</button>;
+            : '')}>
+                {icon? <Icon iconName={icon}/> : ''}
+                {text}
+            </button>;
 
         if (children) 
             content = children;

@@ -1,6 +1,12 @@
 import {Map} from 'immutable';
 
 import {
+
+    ASYNC_START,
+    ASYNC_ERROR,
+    ASYNC_SUCCESS,
+
+
     GET_ADMIN_PAGE_START,
     GET_ADMIN_PAGE_ERROR,
     GET_ADMIN_PAGE_SUCCESS,
@@ -34,6 +40,18 @@ import {
 const initialState = Map({asyncLoading: false, asyncLoaded: false, asyncError: null, asyncData: null});
 
 const actionsMap = {
+
+
+    [ASYNC_START]: (state) => {
+        return state.merge(Map({asyncLoading: true, asyncLoaded: false, asyncError: null, asyncData: null}));
+    },
+    [ASYNC_ERROR]: (state, action) => {
+        return state.merge(Map({asyncLoading: false, asyncLoaded: false, asyncError: action.data}));
+    },
+    [ASYNC_SUCCESS]: (state, action) => {
+        return state.merge(Map({asyncLoading: false, asyncLoaded: true}));
+    },
+
     //Event page data
     [GET_ADMIN_PAGE_START]: (state) => {
         return state.merge(Map({asyncLoading: true, asyncLoaded: false, asyncError: null, asyncData: null}));

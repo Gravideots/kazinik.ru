@@ -20,7 +20,7 @@ const getAllNotes = function ( done ){
             if (err)
                 throw err
             else {
-                let note = section.Listing;
+                let note = section;
                 return done(null, note)
             }
         })
