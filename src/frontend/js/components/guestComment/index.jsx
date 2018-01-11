@@ -24,7 +24,7 @@ export default class GuestComment extends Component {
         <div className='GuestComment'>
           <ul className="collapsible" data-collapsible="accordion">
             <li>
-              <div className="collapsible-header"><i className="material-icons">chat_bubble_outline</i>Коментарии {data.length}</div>
+              <div className="collapsible-header"><i className="material-icons">chat_bubble_outline</i>Коментарии&nbsp;<span>{data.length}</span></div>
               <div className="collapsible-body">
                 {data.map((comment, i)=> {
                     if(comment.ShowImage)

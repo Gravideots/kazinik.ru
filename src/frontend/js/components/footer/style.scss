@@ -4,4 +4,7 @@
   bottom: 0;
   height: 2.5rem;
   width: 100%;
+  @media #{$media} and ($feature: $value) {
+    height: 0rem;
+}
 }

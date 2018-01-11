@@ -212,7 +212,7 @@ export default class QuestionCreator extends Component {
               </div>
             </div>
             <div className='col s12 m6'>
-              <TextArea ref={e => this.state.textAreaInstance = e} name='contactForm__textarea' placeholder='Введите ваше сообщение' tooltipPosition='right' onChange={inputMessageHandler}/>
+              <TextArea ref={e => this.state.textAreaInstance = e} name='contactForm__textarea' placeholder='Введите ваше сообщение' tooltipPosition='bottom' onChange={inputMessageHandler}/>
             </div>
             <div className='col s12 m6 l6 captcha'>
               {

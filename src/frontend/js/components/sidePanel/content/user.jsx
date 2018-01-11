@@ -23,12 +23,13 @@ export default class SidebarUserContent extends Component {
       let {fixed, title, paths} = this.props;
       if (!fixed) 
           return (
-              <div>
+              <div className='Sidebar__colcontainer'>
                   <div className='left-align'>
                       <i className='close small material-icons col s12 l12 m12'>
                           close
                       </i>
                   </div>
+                  <div className='Sidebar__linkcontainer'>
                   <p className="col s12 l12 m12 center-align Sidebar__title">
                       {this.props.title || 'Заглушка'}
                   </p>
@@ -45,6 +46,7 @@ export default class SidebarUserContent extends Component {
                           </Link>
                         )
                       })}
+                  </div>
                   </div>
                   <div className='socialicon'>
                     <a className='socialicon__item' href="http://vk.com">

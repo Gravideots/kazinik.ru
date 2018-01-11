@@ -32,6 +32,13 @@ html {
     }
 }
 
+.material-tooltip{
+    font-size: inherit;
+    @media #{$media} and ($feature: $value) {
+        font-size: 3rem;
+    }
+}
+
 @mixin response($media, $feature, $value) {
 	@media #{$media} and ($feature: $value) { @content; }
 }

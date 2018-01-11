@@ -62,7 +62,7 @@
             position: absolute;
             max-width: unset;
             width: 100%;
-            padding: 2.5rem;
+            padding: 3rem;
             background: #E6E5D1;
         }
         > div {
@@ -76,27 +76,36 @@
     .Left {
         float: left;
         background: #E6E5D1;
+        padding: 1rem;
         @media #{$media} and ($feature: $value) {
-            width: 100%;
-            padding: 1rem;
+            width: 100%;            
+            padding: 3rem;
         }
+    }
+
+    &__colcontainer {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     &__title {
         font-size: inherit;
         margin-bottom: 1rem;
         @media #{$media} and ($feature: $value) {
-            font-size: 5rem;
+            font-size: 6rem;
             margin-bottom: 7rem;
+            font-weight: 600;
         }
-    }
+    }    
 }
 
 i.close {
     font-size: 2rem;
     cursor: pointer;
     @media #{$media} and ($feature: $value) {
-        font-size: 6rem;
+        font-size: 8rem;
     }
 }
 .contactForm {
@@ -131,9 +140,14 @@ i.close {
 }
 .Input textarea.contactForm__textarea {
     height: inherit;
+    min-height: unset;
     @media #{$media} and ($feature: $value) {
-        height: 28rem;
+        min-height: 28rem;
         background: unset;
+    }
+
+    &:focus:not([readonly]) {
+        height: auto;
     }
 }
 
