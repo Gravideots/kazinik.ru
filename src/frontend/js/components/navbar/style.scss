@@ -38,8 +38,11 @@ nav{
                 }
 
                 & .Button {
-                    margin: 0 auto;
+                    
                     text-align: center;
+                    &:nth-of-type(1){
+                        margin: 0 auto;
+                    }
                 }
             }
 
@@ -110,6 +113,11 @@ nav{
         text-align: center;
         margin-left: 5px;
         position: relative;
+
+        &--arrow {
+            width: 30px;
+            height: 18px;
+        }
     }
 
     &__image {

@@ -102,7 +102,7 @@ export default class Event extends Component {
                             <Text type='EventPage__helptext bolder'>Время</Text>
                             <Text>{eventDate.toLocaleTimeString("ru-RU", time)}</Text>
                         </div>
-                        <div className='col s12 offset-s1 l3'>
+                        <div className='col s11 offset-s1 l3'>
                             <Text type='EventPage__helptext bolder'>Место проведения</Text>
                             <Text>{address}</Text>
                         </div>

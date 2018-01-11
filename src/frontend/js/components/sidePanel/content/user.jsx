@@ -23,7 +23,7 @@ export default class SidebarUserContent extends Component {
       let {fixed, title, paths, close} = this.props;
       if (!fixed) 
           return (
-              <div>
+              <div className='Sidebar__colcontainer'>
                   <div className='left-align'>
                       <Button onClick={close}>
                         <i className='close small material-icons col s12 l12 m12'>
@@ -40,6 +40,8 @@ export default class SidebarUserContent extends Component {
                         </div>
                     </NavLink>
                   </div>
+
+                  <div className='Sidebar__linkcontainer'>
                   <div>
                       { paths.map( ( path, key ) => {
 
@@ -53,6 +55,7 @@ export default class SidebarUserContent extends Component {
                           </Link>
                         )
                       })}
+                  </div>
                   </div>
                   <div className='socialicon'>
                     <a className='socialicon__item' href="http://vk.com">
