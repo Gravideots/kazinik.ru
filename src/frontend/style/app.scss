@@ -15,6 +15,11 @@ html {
         @media #{$media} and ($feature: $value) {
     //        display: none;
         }
+        @media #{$media} and (min-width:320px) and (max-width:767px) and (orientation:landscape) {
+            display: none;
+        }
+
+
     }
     .UnderConstr {
         display: none;
@@ -29,6 +34,46 @@ html {
             height: 100vh;
             width: 100vw;
         }
+    }
+
+    .landscape-dummy {
+        display: none;
+        overflow: hidden;
+        background: #E6E5D1;
+        width: 100vw;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &__title {
+            font-size: 24px;
+            width: 77%;
+            text-align: center;
+        }
+
+        &__text {
+            font-size: 16px;
+            width: 55%;
+            text-align: center;
+        }
+
+        &__img {
+            width: 70px;
+            transform: rotate(0deg);
+            transition: all 0.8s cubic-bezier(.6,.34,.42,.71);
+            &:hover {
+                transform: rotate(360deg);
+            }
+        }
+        @media #{$media} and (min-width:320px) and (max-width:767px) and (orientation:landscape) {
+            display: flex;
+        }
+
+    }
+
+    @media #{$media} and (min-width:320px) and (max-width:767px) and (orientation:landscape) {
+        overflow: hidden;
     }
 }
 
