@@ -11,30 +11,6 @@ html {
     .row {
         padding: 5px;
     }
-    .Main {
-        @media #{$media} and ($feature: $value) {
-    //        display: none;
-        }
-        @media #{$media} and (min-width:320px) and (max-width:767px) and (orientation:landscape) {
-            display: none;
-        }
-
-
-    }
-    .UnderConstr {
-        display: none;
-        text-align: center;
-        background-image: url('../assets/img/underconstruction.jpg');
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-
-        @media #{$media} and ($feature: $value) {
-        //    display: block;
-            height: 100vh;
-            width: 100vw;
-        }
-    }
 
     .landscape-dummy {
         display: none;
