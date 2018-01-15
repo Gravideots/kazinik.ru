@@ -24,7 +24,7 @@ export default class NoteListElement extends Component {
             <Text type='helptext'>{data.Description.slice(0, 900) + '...'}</Text>
             <Link className='col s12 m3'
             to={{ pathname: routeCodes.NOTE + data.Id, data }}>
-                <Button text='Читать далее >>>'/>
+                <Button text='Читать далее >>>' onClick={()=>console.log('Go to ' + data.Id)}/>
             </Link>
         </div>
       </div>

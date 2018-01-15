@@ -1,7 +1,8 @@
+const mongoose = require('mongoose');
+const { transliterate, slugify } = require('transliteration')
+
 const Section = require('../schemas/section')
 const MediaSchema = require('../schemas/media')
-
-const { transliterate, slugify } = require('transliteration')
 
 const getAllMedia = function ( done ){
 

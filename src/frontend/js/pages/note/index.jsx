@@ -79,10 +79,10 @@ export default class Note extends Component {
           {texts.map((text, i) => {
 
             return  <div key={i} className='row'>
-                      <Text type='subheader center'>{text.Title}</Text>
-                      <Text>{text.Text}</Text>
-                      {(text.Question !== null)? <Text type='bold question'>— {text.Question}</Text>: null}
-                      {(text.Answer !== null)? <Text type='answer'>— {text.Answer}</Text>: null}
+                      {( text.Title && text.Title !== null)? <Text  type='subheader center'>{text.Title}</Text>: null}
+                      {( text.Text && text.Text !== null)? <Text>{text.Text}</Text>: null}
+                      {( text.Question && text.Question !== null)? <Text type='bold question'>— {text.Question}</Text>: null}
+                      {( text.Answer && text.Answer !== null)? <Text type='answer'>— {text.Answer}</Text>: null}
                       <div className='col s6 offset-s3'>
                         <Image background={false} src={text.Image}/>
                       </div>

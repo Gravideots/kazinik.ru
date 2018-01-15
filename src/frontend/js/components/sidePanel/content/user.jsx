@@ -48,6 +48,7 @@ export default class SidebarUserContent extends Component {
                             return(
                             <Link className='SideMenuLinks'
                                 key = { key }
+                                onClick={close}
                                 to={{pathname: (path.Listed)? routeCodes['SECTION'] + path.URL : routeCodes[ path.URL ] }}>
                                 <div>
                                     <Text type='main'>{ path.Title }</Text>

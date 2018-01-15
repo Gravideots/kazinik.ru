@@ -12,9 +12,9 @@ import {
 
 promisePolyfill.polyfill();
 
-var API = 'loal';
+var API = 'local';
 
-let apiPrefix = (API === 'local')? '' : "https://mighty-ravine-31476.herokuapp.com";
+let apiPrefix = (API === 'local')? '' : 'https://mighty-ravine-31476.herokuapp.com';
 
 
 function getToken(){
@@ -43,18 +43,35 @@ function schoolPage(id) {
   });
 }
 
-function notePage(id) {
-  return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
-    for (var note in NotePage) {
-      if (NotePage[note].Id == id) 
-        return NotePage[note];
-      }
-    });
-}
-
 function getSidebarContent() {
   return mainPage();
 }
+
+
+function notePage( id ) {
+  // return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
+  //   for (var note in NotePage) {
+  //     if (NotePage[note].Id == id) 
+  //       return NotePage[note];
+  //     }
+  //   });
+
+    return fetch( apiPrefix + '/api/note/' + id,{
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin':'*',
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    .then(function(response) {
+      return response.json()
+    }).then(function(json) {
+      return json    
+    }).catch(function(ex) {
+      console.log('parsing failed', ex)
+    })
+}
+
 
 function sectionPage(type, tag = null) {
 

@@ -12,6 +12,18 @@ function getNotes ( req, res ){
   });
 }
 
+function getNote ( req, res ){
+
+  var id = req.params.id;
+  
+  Note.getNoteByID( id, ( err, notes ) => {
+
+    if( err ) throw err.message;
+
+    res.status( 200 ).send( notes );
+  });
+}
+
 function createNote ( req, res ){
 
   Note.createNote( req.body, ( err, notes ) => {
@@ -25,5 +37,6 @@ function createNote ( req, res ){
 module.exports = 
 {
   getNotes,
+  getNote,
   createNote
 }

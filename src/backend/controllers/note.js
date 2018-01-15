@@ -26,14 +26,18 @@ const getAllNotes = function ( done ){
         })
 } 
 
-const getNoteByID = function (sectionID, noteID, done) {
+const getNoteByID = function (noteID, done) {
     Section
-        .findOne({ _id: sectionID }, function (err, section) {
+        .findOne({ Type: 'Notes' }, function (err, section) {
             if (err)
                 throw err
             else {
-                let note = section.Listing.Notes.id(noteID);
-                return done(null, note)
+                let note = section.Listing.find( ( el, key )=> {
+                  if( el.Id == noteID )
+                    return el;
+                });
+
+                done(null, note);
             }
         })
 }

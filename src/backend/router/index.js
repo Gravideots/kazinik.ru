@@ -45,6 +45,10 @@ router.get('/api/notes/', function (req, res) {
     notes.getNotes(req, res)
 })
 
+router.get('/api/note/:id', function (req, res) {
+  notes.getNote(req, res)
+})
+
 router.get('/api/media/:tag', function (req, res) {
     media.getMedia(req, res)
 })
@@ -131,7 +135,7 @@ adminRouter.delete('/api/media/:sectionID/:mediaID', auth.jwtAuth, function (req
     media.deleteMedia(req, res)
 })
 
-adminRouter.post('/api/note', auth.jwtAuth, function (req, res) {
+adminRouter.post('/api/note', function (req, res) {
 
     notes.createNote(req, res)
 })
