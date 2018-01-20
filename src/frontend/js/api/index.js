@@ -351,10 +351,9 @@ function createNote( note ) {
     mode: 'cors',
     headers: {
       'Access-Control-Allow-Origin':'*',
-      'Content-Type': 'application/json',
       'Authorization': getToken()
     },
-    body: JSON.stringify( note )
+    body:  note 
   }).then(function(response) {
     return response.json()
   }).then(function(json) {

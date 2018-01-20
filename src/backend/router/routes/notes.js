@@ -25,13 +25,13 @@ function getNote ( req, res ){
 }
 
 function createNote ( req, res ){
-
-  Note.createNote( req.body, ( err, notes ) => {
-    
-    if( err ) throw err.message;
-
-    res.status( 200 ).send( notes );
-  })
+  Note.createNote( req.body, req.files) 
+    .then( notes => {
+      res.status( 200 ).send( notes );
+    })
+    .catch( err  => {
+      throw err.message;
+    })
 }
 
 module.exports = 

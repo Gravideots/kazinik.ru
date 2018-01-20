@@ -47,9 +47,9 @@ export default class Sidebar extends Component {
     }
 
     render() {
-        let {adminPageLoaded, show, openFromRight, content, contentAdmin, dispatch} = this.props;
+        let {adminPageLoaded, show, openFromRight, content, contentAdmin, dispatch, location} = this.props;
 
-        if (adminPageLoaded)
+        if ( location.pathname === '/admin')
             return (
                 <AdminSidebar
                     adminPageLoaded={adminPageLoaded}

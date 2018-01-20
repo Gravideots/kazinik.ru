@@ -321,10 +321,29 @@ function deleteMediaError() {
 }
 
 export function createNote( note ){
+
+    //console.log("NOTE", note)
+    
+    let formData = new FormData();
+    
+    if( note.TitleImage !== '' ){
+      formData.append( 'TitleImage', note.TitleImage, note.TitleImage.name )
+      note.TitleImage = '';
+    }
+
+    note.Note.length > 0 && note.Note.map( ( element, key ) => {
+      if( element.Image ) {
+        formData.append( key, element.Image, element.Image.name )
+        note.Note[key] = '';
+      }
+    })
+
+    formData.append( 'note', JSON.stringify( note ));
+
     return function (dispatch) {
         dispatch(asyncStart())
         api
-            .createNote( note )
+            .createNote( formData )
             .then(data => {
                 dispatch(asyncSuccess({ ContentManagement: data }))
                 dispatch(selectSectionToAddContent(data.data))

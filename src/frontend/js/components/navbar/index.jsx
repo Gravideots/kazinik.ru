@@ -11,9 +11,7 @@ import Text from '../text'
 
 import { toggleSidebar } from './actions.js';
 
-@connect(state => ({
-
-}))
+@connect()
 export default class Navbar extends Component {
 
     toggleSidebar(openFromRight) {

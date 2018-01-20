@@ -2,6 +2,10 @@ const express = require('express')
 const adminRouter = express.Router();
 const router = express.Router();
 
+
+const multer  = require('multer')
+const upload = multer()
+
 //PAGES
 const main = require('./routes/main')
 const event = require('./routes/event')
@@ -46,7 +50,7 @@ router.get('/api/notes/', function (req, res) {
 })
 
 router.get('/api/note/:id', function (req, res) {
-  notes.getNote(req, res)
+    notes.getNote(req, res)
 })
 
 router.get('/api/media/:tag', function (req, res) {
@@ -135,7 +139,7 @@ adminRouter.delete('/api/media/:sectionID/:mediaID', auth.jwtAuth, function (req
     media.deleteMedia(req, res)
 })
 
-adminRouter.post('/api/note', function (req, res) {
+adminRouter.post('/api/note', upload.any(),  function (req, res) {
 
     notes.createNote(req, res)
 })

@@ -9,12 +9,13 @@ import Sidebar from 'components/sidePanel';
 // http://prgssr.ru/development/pogruzhenie-v-react-router.html
 
 const NavbarComponent = withRouter(props => <Navbar {...props}/>);
+const SidebarComponent = withRouter(props => <Sidebar {...props}/>);
 
 export default() => (
   <HashRouter >
     <div className='Main'>
       <NavbarComponent />
-      <Sidebar />
+      <SidebarComponent />
       <div className='Page'>
         <Routes />
       </div>

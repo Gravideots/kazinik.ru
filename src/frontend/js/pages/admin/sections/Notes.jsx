@@ -9,10 +9,9 @@ import Text from 'components/text';
 import Input from 'components/input';
 import ImageInput from 'components/input/imageInput';
 
-@connect( state => {} )
+@connect()
 export default class Note extends Component {
   static propTypes = {
-      contentToCreate: PropTypes.object,
       dispatch: PropTypes.func
   }
 
@@ -54,10 +53,10 @@ export default class Note extends Component {
   }
 
   render() {
-      const { contentToCreate, dispatch } = this.props;
+      const { dispatch } = this.props;
 
       let { article, interview, mainTitleInputInstance, authorInputInstance, descriptionInputInstance  } = this.state;
-
+      
       return (
           <div className='AdminPage Note'>
             <h5 className='center'>
@@ -65,7 +64,7 @@ export default class Note extends Component {
             </h5>
             <div className='row'>
                 <div className='row add-content valign-wrapper'>
-                    <ImageInput title='Заглавное изображение' onChange={ ( e ) => { article.TitleImage = { Full: e } ; this.setState( { article: article } ) } }/>
+                    <ImageInput title='Заглавное изображение' onChange={ ( e ) => { article.TitleImage = e ; this.setState( { article: article } ) } }/>
                 </div>
                 <div className='input-field col s12'>
                     <Input ref={e => mainTitleInputInstance = e} placeholder='Заголовок' type='text' name={ article.Title ? 'header filed': 'header' } onChange={ ( e ) => { article.Title = e; this.setState( { article: article } ) } }/>
@@ -82,7 +81,7 @@ export default class Note extends Component {
                 <p className='col s12 dash'/>
                 
                 {
-                    article.Note.map( ( elem, key ) => {
+                    article.Note && article.Note.map( ( elem, key ) => {
                         
                         if( elem.Title != void 0 )
                             return <CreatedContent key={ key } elem={ elem } type='Title' /> 

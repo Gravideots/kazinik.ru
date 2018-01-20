@@ -4,7 +4,7 @@ export default class ImageInput extends Component {
   constructor(props) {
 
     super(props);
-    this.state = { preview: null };
+    this.state = { preview: null, file: null };
     
   }
 
@@ -16,13 +16,13 @@ export default class ImageInput extends Component {
     reader.readAsDataURL(files);
 
     reader.onload = () => {
-      console.log(reader.result);
-      
+      console.log(files)
       this.setState({
-        preview: reader.result
+        preview: reader.result,
+        file: files
       })
       
-      this.props.onChange(reader.result);
+      this.props.onChange(files);
     };
     
     reader.onerror = function (error) {
