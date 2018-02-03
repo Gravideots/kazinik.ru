@@ -3,54 +3,55 @@ import React, { Component } from 'react';
 import Icon from '../icon';
 
 export default class TextArea extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: ''};
+	constructor(props) {
+		super(props);
+		this.state = {value: props.val ? props.val : ''};
 
-    this.handleChange = this.handleChange.bind(this);
-    this.reset = this.reset.bind(this);
-  }
+		this.handleChange = this.handleChange.bind(this);
+		this.reset = this.reset.bind(this);
+	}
 
-  componentDidMount(){
-    const name = this.props.name;
-    
-    if(name){
-      //$('.' + name).tooltip();
-    }
-  }
+	componentDidMount() {
+		const name = this.props.name;
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-    this.props.onChange(event.target.value);
-  }
+		if (name) {
+			// $('.' + name).tooltip();
+		}
+	}
 
-  reset(){
-    this.setState({value: ''});
-  }
+	handleChange(event) {
+		this.setState({value: event.target.value});
+		this.props.onChange(event.target.value);
+	}
 
-  showRequiredTooltip(){
-    let name = this.props.name;
-    if(name){
-      $('.' + name).tooltip().trigger("mouseenter");
-      setTimeout(function(){$("."+ name).trigger("mouseleave");}, 3000);
-    }
-  }
+	reset() {
+		this.setState({value: ''});
+	}
 
-  render() {
-    const {
-        placeholder,
-        className,
-        name,
-        tooltipPosition
-    } = this.props;
+	showRequiredTooltip() {
+		let name = this.props.name;
+		if (name) {
+			$('.' + name).tooltip().trigger('mouseenter');
+			setTimeout(function() { $('.' + name).trigger('mouseleave'); }, 3000);
+		}
+	}
 
-    let areaName = name? name: '';
-    let position = tooltipPosition? tooltipPosition: 'bottom';
+	render() {
+		const {
+			placeholder,
+			className,
+			name,
+			tooltipPosition,
+			rows
+		} = this.props;
 
-    return (
-      <div className={ className? 'TextArea Input' + className:'TextArea Input'}>
-        <textarea className={'materialize-textarea ' + areaName} placeholder={placeholder} data-position={position} data-tooltip='Обязательное поле' value={this.state.value} onChange={this.handleChange} rows={6}/>
-      </div>
-    );
-  }
+		let areaName = name || '';
+		let position = tooltipPosition || 'bottom';
+
+		return (
+			<div className={ className ? 'TextArea Input' + className : 'TextArea Input'}>
+				<textarea className={'materialize-textarea ' + areaName} placeholder={placeholder} data-position={position} data-tooltip='Обязательное поле' value={this.state.value} onChange={this.handleChange} rows={ rows || 6}/>
+			</div>
+		);
+	}
 }

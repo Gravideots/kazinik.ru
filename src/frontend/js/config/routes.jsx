@@ -29,11 +29,11 @@ export default() => (
   <Switch>
     <Route exact path={ publicPath } component={ Main } />
     <Route path={ routeCodes.SEARCH } component={ Search } />
-    <PrivateRoute  path={ routeCodes.ADMIN } component={ Admin }/>
-    <Route path={ routeCodes.EVENT + ':id' } component={ Event } />
-    <Route path={ routeCodes.SCHOOL + ':id' } component={ School } />
-    <Route path={ routeCodes.NOTE + ':id' } component={ Note } />
-    <Route path={ routeCodes.SECTION + ':key' } component={ Section } />
+    <PrivateRoute path={ routeCodes.ADMIN } component={ Admin } />
+    <Route path={ `${routeCodes.EVENT  }:id` } component={ Event } />
+    <Route path={ `${routeCodes.SCHOOL  }:id` } component={ School } />
+    <Route path={ `${routeCodes.NOTE  }:id` } component={ Note } />
+    <Route path={ `${routeCodes.SECTION  }:key` } component={ Section } />
     <Route path={ routeCodes.GUEST } component={ GuestRoom } />
     <Route path={ routeCodes.LOGIN } component={ Login } />
     <Route component={ Main } />
@@ -41,9 +41,11 @@ export default() => (
 );
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  let isAuthenticated = localStorage.getItem('userToken');
-  return(
-    <Route {...rest} render={props => (
+  const isAuthenticated = localStorage.getItem('userToken');
+  return (
+    <Route
+{...rest}
+render={props => (
       isAuthenticated ? (
         <Component token={isAuthenticated} {...props}/>
       ) : (
@@ -52,6 +54,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           state: { from: props.location }
         }}/>
       )
-    )}/>
-  )
-}
+    )} 
+    />
+  );
+};

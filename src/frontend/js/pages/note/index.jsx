@@ -57,12 +57,12 @@ export default class Note extends Component {
       description = notePageAsyncData.Description;
       texts = notePageAsyncData.Note;
       athor = notePageAsyncData.Author;
-    }
+    } else return null;
 
     return (
       <div className='Note'>
         <div className='imageCoverBlock'>
-          <Image background={true} src={titleImage.Full}/>
+          <Image background={true} src={ titleImage.Full }/>
         </div>
         <div className='container'>
             <Text type='header bold center'>
@@ -84,7 +84,7 @@ export default class Note extends Component {
                       {( text.Question && text.Question !== null)? <Text type='bold question'>— {text.Question}</Text>: null}
                       {( text.Answer && text.Answer !== null)? <Text type='answer'>— {text.Answer}</Text>: null}
                       <div className='col s6 offset-s3'>
-                        <Image background={false} src={text.Image}/>
+                        <Image background={false} src={ text.Image }/>
                       </div>
                     </div>
                   })

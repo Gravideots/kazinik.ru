@@ -8,8 +8,11 @@ export default class Image extends Component {
       alt,
       background
     } = this.props;
+    //let backgroundUrl = 'url(' + src + ')';
+    let backgroundUrl = 'url("assets/img/upload/1a2671d36ad7fdb1da560cf557bc28c4.png")';
+    
     if(background)
-      return (<div style={{'backgroundImage': 'url(' + src + ')'}} alt={alt} className='Image'/>);
+      return (<div style={{ 'backgroundImage': backgroundUrl }} alt={alt} className='Image'/>);
     else
       return (<img src={src} alt={alt} className='Image responsive-img'/>);
   }
