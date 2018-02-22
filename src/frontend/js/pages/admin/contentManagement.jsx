@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {openContentCreation, addMedia, deleteMedia} from './actions.js';
+import {openContentCreation, addMedia, editMedia, deleteMedia} from './actions.js';
 
 import MediaListElement from 'components/list/media';
 import NoteListElement from 'components/list/note';
@@ -44,11 +44,11 @@ export class AddContent extends Component {
 						<div className='col s12 center-align'>
 							<a className='btn-floating btn-large waves-effect waves-light'>
 								<i className='material-icons'>
-                                  add
+									add
 								</i>
 							</a>
 							<p className='col s12  grey-text text-darken-3 center-align'>
-                              Добавить {content.Section.Title}
+								Добавить {content.Section.Title}
 							</p>
 						</div>
 					</div>
@@ -82,6 +82,31 @@ export class ContentCreation extends Component {
 	}
 }
 ContentCreation.propTypes = {
+	contentToCreate: PropTypes.object.isRequired,
+	dispatch: PropTypes.func.isRequired
+};
+
+export class ContentEditor extends Component {
+	constructor(props) {
+		super(props);
+	}
+	openCreateContentPage(event, contentToCreate) {
+		event.preventDefault();
+		const {dispatch} = this.props;
+		dispatch(openContentCreation(contentToCreate));
+	}
+	render() {
+		const { contentToCreate, dispatch } = this.props;
+
+		switch (contentToCreate.type) {
+		case 'Notes': return <Notes sectionID={contentToCreate.id} dispatch={dispatch} />;
+		case 'Media': return <Media sectionID={contentToCreate.id} dispatch={dispatch} action={addMedia}/>;
+		case 'Events': return <Events/>;
+		default: return null;
+		}
+	}
+}
+ContentEditor.propTypes = {
 	contentToCreate: PropTypes.object.isRequired,
 	dispatch: PropTypes.func.isRequired
 };
@@ -121,6 +146,9 @@ const MediaContent = ({content, data, dispatch}) => {
 	const deleteVideo = (sectionID, mediaID, tags) => {
 		dispatch(deleteMedia(sectionID, mediaID, tags));
 	};
+	const editVideo = (sectionID, mediaID, tags) => {
+		dispatch(deleteMedia(sectionID, mediaID, tags));
+	};
 	return (
 		<div className='row'>
 			{ data.map((listElement, key) => {
@@ -129,9 +157,13 @@ const MediaContent = ({content, data, dispatch}) => {
 						<div className='col l10'>
 							<MediaListElement data={listElement}/>
 						</div>
-						<i className="small material-icons col l2 edit-button">
-              mode_edit
-						</i>
+						<Button onClick= {
+							() => { deleteVideo(content._id, listElement._id, listElement.Tags); }
+						}>
+							<i className="small material-icons col l2 edit-button">
+								mode_edit
+							</i>
+						</Button>
 						<Button onClick= {
 							() => { deleteVideo(content._id, listElement._id, listElement.Tags); }
 						}>
