@@ -1,0 +1,14 @@
+.Afisha {
+    &__list {
+        width: 97%;
+    }
+
+    &__item {
+        border-top: 1px solid #000;
+        display: flex;
+    }
+
+    &__datetime {
+        width: 25%;
+    }
+}

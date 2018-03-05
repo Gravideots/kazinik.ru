@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
 import {testAction, testAsync, getMainPage} from './actions.js';
 
+import Button from 'components/button';
 import Slider from 'components/slider';
 import Footer from 'components/footer';
 import Sections from './sections';
@@ -73,6 +75,12 @@ export default class Main extends Component {
     dispatch(testAction());
   }
 
+  navigationAfisha() {
+    const {dispatch} = this.props;
+
+    this.props.history.push('/afisha');
+  }
+
   render() {
     const {
       asyncData,
@@ -89,6 +97,7 @@ export default class Main extends Component {
     let events;
     let school;
     let partners;
+    let top;
 
     //TODO вынести в отдельный файл
     let firstBlock;
@@ -150,10 +159,26 @@ export default class Main extends Component {
         </div>
       }
 
+      top = <div className='topBlock'>
+              <div className='topBlock__background'></div>
+              <div className='topBlock__inner'>
+                <div className='topBlock__tagline'>
+                  <img src='assets/img/tagline.svg' alt=''/>
+                </div>
+                <div className='topBlock__afisha afishaTop'>
+                  <a href="#/afisha/1" className="afishaTop__item" >24/01 | Таллинн</a>
+                  <a href="#/afisha/1" className="afishaTop__item afishaTop__item--active" >24/01 | Санкт-Петербург</a>
+                  <a href="#/afisha/1" className="afishaTop__item" >24/01 | Таллинн</a>
+                  <a href="#/afisha/1" className="afishaTop__item" >24/01 | Таллинн</a>
+                </div>
+                <Button text='ПОЛНАЯ АФИША' onClick={() => this.navigationAfisha()} className='topBlock__button'/>
+              </div>
+            </div>;
     }
 
     return (
       <div className='MainPage'>
+        {top}
         {firstBlock}
         {secondBlock}
         <Sections sections={sections}/>

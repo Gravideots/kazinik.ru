@@ -65,10 +65,10 @@ export default class Note extends Component {
           <Image background={true} src={ titleImage.Full }/>
         </div>
         <div className='container'>
-            <Text type='header bold center'>
+            <Text type='header bold center Note__title'>
               «{title}»
             </Text>
-            <Text type='subheader italic center hide-on-med-and-down'>
+            <Text type='subheader italic center hide-on-med-and-down Note__subtitle'>
               {subTitle}
             </Text>
             <Text type='hide-on-med-and-down'>
@@ -79,7 +79,7 @@ export default class Note extends Component {
           {texts.map((text, i) => {
 
             return  <div key={i} className='row'>
-                      {( text.Title && text.Title !== null)? <Text  type='subheader center'>{text.Title}</Text>: null}
+                      {( text.Title && text.Title !== null)? <Text  type='subheader center noteBlock__title'>{text.Title}</Text>: null}
                       {( text.Text && text.Text !== null)? <Text>{text.Text}</Text>: null}
                       {( text.Question && text.Question !== null)? <Text type='bold question'>— {text.Question}</Text>: null}
                       {( text.Answer && text.Answer !== null)? <Text type='answer'>— {text.Answer}</Text>: null}

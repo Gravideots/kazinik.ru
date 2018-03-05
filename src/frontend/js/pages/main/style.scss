@@ -25,3 +25,109 @@
   }
   
 }
+
+.topBlock {
+//  background: url("/assets/img/top_background.jpg") center center no-repeat;
+  background: #000;
+  background-size: cover; 
+  margin: 1rem auto;
+  min-height: 550px;
+  height: 45vh;
+  width: calc(100% - 2rem);
+  padding: 1.55rem 0;
+  position: relative;
+  @media #{$media} and ($feature: $value) {
+    margin: 3rem auto;
+    height: 75vh;
+    width: calc(100% - 5rem);
+    padding: 6rem 0;
+  }
+
+  &__background {
+    background: url("/assets/img/top_background.jpg") center center no-repeat;
+    background-size: cover; 
+    position: absolute;
+    height: 100%;
+    width: 80%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    & > img {
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-42%);
+    }
+    @media #{$media} and ($feature: $value) {
+      height: 81%;
+      width: 100%;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    z-index: 1;
+    position: relative;
+  }
+
+  &__tagline {
+    min-width: 250px;
+    max-width: 500px;
+    width: 45%;
+    & > img {
+      width: 100%;
+    }
+    @media #{$media} and ($feature: $value) {
+      height: 40%;
+      width: 90%;
+    }
+  }
+
+  &__afisha {
+    width: 75%;
+    margin: 2rem 0 1.5rem;
+  }
+
+  .Button &__button {
+    border: 1px solid #fff;
+    font-size: 0.75rem;
+    padding: 0rem 1.4rem;
+    line-height: 1;
+    @media #{$media} and ($feature: $value) {
+      padding: 2.5rem 3.5rem;
+      font-size: 3.3rem;
+    }
+    
+  }
+}
+
+.afishaTop {
+  display: flex;
+  justify-content: space-between;
+  @media #{$media} and ($feature: $value) {
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    height: 95px;
+  }
+
+  &__item {
+    font-size: 1.1rem;
+    color: #fff;
+    transition-duration: 0.3s;
+    margin-bottom: 0;
+
+    &--active, &:hover {
+      color: #C1272D;
+    }
+
+    @media #{$media} and ($feature: $value) {
+      font-size: 4.5rem;
+      margin-bottom: 4rem;
+    }
+  }
+}

@@ -141,11 +141,11 @@ export default class GuestRoom extends Component {
       return (
         <div className='GuestRoom container'>
           <Text type='superHeader center'>{guestRoomAsyncData.Title}</Text>
-          <div className='row'>
-            <div className='col s6'>
+          <div className='GuestRoom__stat'>
+            <div className='GuestRoom__statItem'>
               <Text type='helptext center bold'>Задано вопросов: <span>{guestRoomAsyncData.Messages.length}</span></Text>
             </div>
-            <div className='col s6'>
+            <div className='GuestRoom__statItem'>
               <Text type='helptext center bold'>Ответов: <span>{guestRoomAsyncData.Messages.length}</span></Text>
             </div>
           </div>

@@ -2,6 +2,8 @@ import api from '../../api';
 
 export const TEST_ACTION = 'TEST_ACTION';
 
+export const NAVIGATION_AFISHA = 'NAVIGATION_AFISHA';
+
 export const TEST_ASYNC_ACTION_START = 'TEST_ASYNC_ACTION_START';
 export const TEST_ASYNC_ACTION_ERROR = 'TEST_ASYNC_ACTION_ERROR';
 export const TEST_ASYNC_ACTION_SUCCESS = 'TEST_ASYNC_ACTION_SUCCESS';
@@ -16,6 +18,10 @@ export function testAction() {
   return {
     type: TEST_ACTION,
   };
+}
+
+export function afishaNavigation() {
+  return {type: NAVIGATION_AFISHA,};
 }
 
 // Async action example

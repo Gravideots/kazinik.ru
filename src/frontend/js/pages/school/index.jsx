@@ -99,6 +99,7 @@ export default class School extends Component {
           <Image background={true} src={titleImage.Full}/>
           <Image src='assets/img/black.jpg' alt=''/>
           <div className='valign-wrapper'>
+            <div className='SchoolPage__dummy'></div>
             <Text type='header bold whiteText'>
               «{title}»
             </Text>
@@ -107,7 +108,7 @@ export default class School extends Component {
             </Text>
           </div>
         </div>
-        <div className='row'>
+        <div className='SchoolPage__info row'>
           <div className='col l12'>
             <div className='col l3'>
               <Text type='SchoolPage__helptext bolder'>Даты проведения</Text>
@@ -132,7 +133,7 @@ export default class School extends Component {
             </div>
           </div>
         </div>
-        <div className='row'>
+        <div className='SchoolPage__info row'>
           {
             texts.map((text, i) => {
               return  <div key={i} className='col s12'>

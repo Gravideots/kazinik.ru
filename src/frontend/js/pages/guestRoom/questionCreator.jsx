@@ -184,20 +184,20 @@ export default class QuestionCreator extends Component {
       return (
         <div className='QuestionCreator row'>
           <div className='Container col s12'>
-            <div className={'left-align'}>
+            <div className={'left-align QuestionCreator__close'}>
                 <Button onClick={close}>
                   <i className='close small material-icons col s12 m1'>
                       close
                   </i>
                 </Button>
             </div>
-            <div className='col s12 m7'>
-                <div className='col s12 m6 l3'>
+            <div className='col s12 m3'>
+                <div className='col s12 m6 l12'>
                   <Text>Ваше сообщение</Text>
                 </div>
             </div>
-            <div className='col s12'>
-              <div className='col s12 m6'>
+            <div className='col s12 m8'>
+              <div className='col s12 m6 '>
                 <div className='col s12 l3'>
                   <Text>ФИО:</Text>
                 </div>
@@ -214,10 +214,10 @@ export default class QuestionCreator extends Component {
                 </div>
               </div>
             </div>
-            <div className='col s12 m6'>
+            <div className='col s12 m12'>
               <TextArea ref={e => this.state.textAreaInstance = e} name='contactForm__textarea' placeholder='Введите ваше сообщение' tooltipPosition='bottom' onChange={inputMessageHandler}/>
             </div>
-            <div className='col s12 m6 l6 captcha'>
+            <div className='col s12 m4 l4 captcha'>
               {
                 sitekey?
                 <Captcha
@@ -230,7 +230,7 @@ export default class QuestionCreator extends Component {
                 null
               }
             </div>
-            <div className='col s12 m2'>
+            <div className='col s12 m4 valign-wrapper QuestionCreator__submit'>
               <Button text='ОТПРАВИТЬ' className='modal-trigger Button--fw' onClick={sendQuestion}/>
             </div>
           </div>
