@@ -15,13 +15,13 @@ export default class NoteListElement extends Component {
     return(
       <div className='NoteListElement row'>
         <div className='col s12 m4'>
-          <Text>{data.Author + " " + ( date ? date.toLocaleDateString('ru-RU') : "" ) } </Text>
+          <Text type='NoteListElement__imagesupper'>{data.Author + " " + ( date ? date.toLocaleDateString('ru-RU') : "" ) } </Text>
           <Image src={ data.TitleImage? data.TitleImage.Crop? data.TitleImage.Crop : data.TitleImage.Full? data.TitleImage.Full: '' : '' }/>
-          <Text type='helptext'>{ data.SubTitle? data.SubTitle.slice(0, 400) + '...' : '' }</Text>
+          <Text type='NoteListElement__imagesub'>{ data.SubTitle? data.SubTitle.slice(0, 400) + '...' : '' }</Text>
         </div>
         <div className='col s12 m8'>
-            <Text type='subheader bold'>«{data.Title}»</Text>
-            <Text type='helptext'>{data.Description.slice(0, 900) + '...'}</Text>
+            <Text type='subheader bold NoteListElement__title'>«{data.Title}»</Text>
+            <Text type='NoteListElement__maintext'>{data.Description.slice(0, 900) + '...'}</Text>
             <Link className='col s12 m3'
             to={{ pathname: routeCodes.NOTE + data.Id, data }}>
                 <Button text='Читать далее >>>' onClick={()=>console.log('Go to ' + data.Id)}/>

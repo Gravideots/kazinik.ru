@@ -6,7 +6,7 @@ export default class Footer extends Component {
 
     return(
       <div className='Footer'>
-          
+        <p className='Footer__text'>© Михаил Казиник, 2018 Сделано в HIG&Gravideots</p>
       </div>
     );
   }

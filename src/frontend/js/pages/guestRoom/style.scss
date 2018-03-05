@@ -3,6 +3,26 @@
     @media #{$media} and ($feature: $value) {
         width: 100%;
     }
+
+    &__stat {
+        display: flex;
+        justify-content: space-around;
+        width: calc(100% - 5.5rem);
+        margin: 1rem auto;
+        @media #{$media} and ($feature: $value) {
+            justify-content: space-between;
+            width: calc(90% - 10px);
+            margin: 3rem auto;
+        }
+    }
+
+    &__statItem {
+        width: 40%;
+        @media #{$media} and ($feature: $value) {
+            width: auto;
+        }
+    }
+
     .Text{
         >p{
             >span{
@@ -23,7 +43,7 @@
         &.sticky{
             position: fixed;
             left: 0;
-            top: 80px;
+            top: 64px;
             width: 100%;
             z-index: 99;
             @media #{$media} and ($feature: $value) {
@@ -41,15 +61,18 @@
                 display: flex;
                 align-content: center;
                 justify-content: center;
+                margin-bottom: 1.25rem;
     
                 i{
                     color: white;
                     float: unset;
                     font-size: 2.4rem;
+                    margin-right: 15px;
                     @media #{$media} and ($feature: $value) {
                         font-size: 11rem;
                         position: absolute;
                         left: 5rem;
+                        top: 10px;
                     }
                 }
                 p{
@@ -60,8 +83,11 @@
                     font-weight: 800;
                     font-size: 1rem;
                     position: relative;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     @media #{$media} and ($feature: $value) {
-                        width: 100%;
                         font-size: 4rem;
                         padding: 2.5rem 0;
                     }
@@ -73,10 +99,11 @@
 
     .List {
         width: 100%;
-        margin: 0 -0.75rem;
+        margin: 0 auto;
+        padding: 0;
         @media #{$media} and ($feature: $value) {
             width: 90%;
-            margin: 0 auto;
+            padding: 5px;
         }
     }
     
@@ -108,6 +135,15 @@
             //    background-color: white;
             }
 
+            .input {
+                margin: 0 0 0 0;
+                height: 26px;
+                @media #{$media} and ($feature: $value) {
+                    margin: 7px 0 20px 0;
+                    height: 5.5rem;
+                }
+            }
+
             .Button button{
             //    padding: 0 2rem;
             }
@@ -117,10 +153,36 @@
                     display: flex;
                     justify-content: center;
                 }
+
+                & > div {
+                    padding-left: 1.5rem;
+                    @media #{$media} and ($feature: $value) {
+                        padding-left: 0;
+                    }
+                }
             }
         }
         .main {
             text-align: center;
+        }
+
+        &__submit {
+            min-height: 78px;
+            @media #{$media} and ($feature: $value) {
+                min-height: unset;
+            }
+
+            & > .Button {
+                margin: 0 auto;
+                width: auto;
+                @media #{$media} and ($feature: $value) {
+                    width: 100%;
+                }
+            }
+        }
+
+        &__close {
+            align-self: flex-start;
         }
     }
 
@@ -146,6 +208,11 @@
 
     .TextArea {
         padding: 0 1.5rem;
+        margin-top: 0.5rem;
+        @media #{$media} and ($feature: $value) {
+            margin-top: 0rem;
+        }
+
     }
 }
 
@@ -160,14 +227,17 @@
     }
 
     .card .card-content {
-        padding: 24px;
+        padding: 10px;
+        margin-bottom: 0.75rem;
         @media #{$media} and ($feature: $value) {
             padding: 15px;
+            margin-bottom: 0;
         }
     }
 
     .card .card-action {
         border-top: none;
+        padding: 16px 10px;
     }
 
     .footnote:not(.bold) {
@@ -207,9 +277,79 @@
         width: 15px;
         height: 15px;
         margin-left: 5px;
+        position: relative;
+        top: 7px;
+        @media #{$media} and ($feature: $value) {
+            top: 0;
+        }
+    }
+
+    .collapsible-body {
+        padding: 0.75rem;
     }
 
     .Comment {
         border-bottom: 1px solid rgba(160,160,160,0.2);
+    }
+}
+
+.GuestPost {
+
+    &__info {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 1.75rem;
+        @media #{$media} and ($feature: $value) {
+            flex-direction: column;
+        }
+    }
+
+    &__infoItem {
+        width: 30%;
+        display: flex;
+        @media #{$media} and ($feature: $value) {
+            width: 100%;
+        }
+    }
+
+    & .Text {
+        width: auto;
+        white-space: nowrap;
+        & .footnote {
+            font-size: 1rem;
+            @media #{$media} and ($feature: $value) {
+                font-size: 2.3rem;
+            }
+        }
+    }
+}
+
+.Comment {
+    &__info {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 1.75rem;
+        @media #{$media} and ($feature: $value) {
+            flex-direction: column;
+        }
+    }
+
+    &__infoItem {
+        width: 30%;
+        display: flex;
+        @media #{$media} and ($feature: $value) {
+            width: 100%;
+        }
+    }
+
+    & .Text {
+        width: auto;
+        white-space: nowrap;
+        & .footnote {
+            font-size: 1rem;
+            @media #{$media} and ($feature: $value) {
+                font-size: 2.3rem;
+            }
+        }
     }
 }

@@ -1,7 +1,10 @@
 .navbar-fixed{
     margin-bottom: 0.6rem;
     height: 9.23rem;
-    min-height: 56px;
+    min-height: 64px;    
+    @media #{$media} and ($feature: $value) {
+        min-height: 56px;
+    }
 }
 nav{
     &.Navbar{
@@ -18,14 +21,15 @@ nav{
                 &:nth-child(1){
                     width: 5%;
                     text-align: center;
+                    display: flex;
+                    justify-content: space-around;
                     @media #{$media} and ($feature: $value) {
                         width: 16%;
                         align-items: center;
                     }
                 }
-                width: 95%;
-                display: flex;
-                justify-content: space-around;
+            //    width: 95%;
+                
             }
 
             .mobileNav {
@@ -35,6 +39,7 @@ nav{
                     align-items: center;
                     justify-content: space-between;
                     padding-right: 2.5rem;
+                    width: 100%;
                 }
 
                 & .Button {
@@ -49,8 +54,8 @@ nav{
             .Button{
                 i.material-icons{
                     &.small{
-                        height: 3rem;
-                        line-height: 3rem;
+                        height: auto;
+                   //     line-height: 3rem;
                         font-size: 2rem;
                         @media #{$media} and ($feature: $value) {
                             height: auto;
@@ -69,6 +74,7 @@ nav{
                         left: 0.1rem;
                         transform: rotateY(180deg);
                         margin: 0;
+                        height: auto;
                     }
                     &.small{
                         font-size: 2rem;
@@ -91,6 +97,42 @@ nav{
                         font-size: 1rem;
                     }
                 }
+            }
+            .Navbar__content {
+                display: flex;
+                align-items: center;
+                width: calc(95% - 1rem);
+                justify-content: space-between;
+            
+                & .Logo > .Text > p {
+                    font-size: 1.2rem;
+                }
+            }
+
+            .Navbar__search .input {
+                height: 1rem;
+                margin: 0;
+                font-size: 0.6667rem;
+                &:focus:not([readonly]) {
+                    height: 1rem;
+                    font-size: 0.6667rem;
+                }
+            }
+
+
+            .Navbar__link {
+                color: #000;
+                font-size: 0.6rem;
+                font-weight: 600;
+    
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            .Navbar__social {
+                min-width: 150px;
+                justify-content: space-between;
             }
         }
         a{

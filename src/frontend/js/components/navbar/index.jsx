@@ -29,7 +29,7 @@ export default class Navbar extends Component {
                         <Button onClick={() => this.toggleSidebar(false)}>
                             <Icon iconName={'menu'} size='small'/>
                         </Button>
-                        <div className="col l9 xl11 hide-on-med-and-down">
+                        <div className="col l9 xl11 hide-on-med-and-down Navbar__content">
                             <NavLink
                                 activeClassName='Menu-link--active'
                                 className='Menu-link'
@@ -37,7 +37,7 @@ export default class Navbar extends Component {
                                 to={routeCodes.Main}>
                                 <Logo text='Михаил Казиник'/>
                             </NavLink>
-                            <div className="SearchInput">
+                            <div className="Navbar__search SearchInput">
                                 <Input
                                     placeholder='Поиск'
                                     type='text'
@@ -47,17 +47,22 @@ export default class Navbar extends Component {
                             </div>
                             <div>
                                 <Text type='footnote'>
-                                    <a href="mailto:youremailaddress">mikhail@kazinik.com</a>
+                                    <a className='Navbar__link' href="#">Контакты</a>
                                 </Text>
                             </div>
-                            <div className='socialicon'>
-                                <a className='socialicon__item' href="http://vk.com">
+                            <div>
+                                <Text type='footnote'>
+                                    <a className='Navbar__link' href="mailto:youremailaddress">mikhail@kazinik.com</a>
+                                </Text>
+                            </div>
+                            <div className='Navbar__social socialicon'>
+                                <a className='socialicon__item' target='_blank' href="http://vk.com">
                                     <img className='socialicon__image' src='/assets/img/icons/vk.svg'/>
                                 </a>
-                                <a className='socialicon__item' href="http://fb.com">
+                                <a className='socialicon__item' target='_blank' href="http://fb.com">
                                     <img className='socialicon__image' src='/assets/img/icons/facebook-f.svg'/>
                                 </a>
-                                <a className='socialicon__item' href="http://youtube.com">
+                                <a className='socialicon__item' target='_blank' href="http://youtube.com">
                                     <img className='socialicon__image' src='/assets/img/icons/youtube.svg'/>
                                 </a>
                             </div>
@@ -68,13 +73,13 @@ export default class Navbar extends Component {
                             {
                                 (location.pathname === '/')?
                                 <div className='socialicon'>
-                                    <a className='socialicon__item' href="http://vk.com">
+                                    <a className='socialicon__item' target='_blank' href="http://vk.com">
                                         <img className='socialicon__image' src='/assets/img/icons/vk.svg'/>
                                     </a>
-                                    <a className='socialicon__item' href="http://fb.com">
+                                    <a className='socialicon__item' target='_blank' href="http://fb.com">
                                         <img className='socialicon__image' src='/assets/img/icons/facebook-f.svg'/>
                                     </a>
-                                    <a className='socialicon__item' href="http://youtube.com">
+                                    <a className='socialicon__item' target='_blank' href="http://youtube.com">
                                         <img className='socialicon__image' src='/assets/img/icons/youtube.svg'/>
                                     </a>
                                 </div>
