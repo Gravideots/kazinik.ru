@@ -24,7 +24,7 @@ export default class SidebarUserContent extends Component {
       if (!fixed) 
           return (
               <div className='Sidebar__colcontainer'>
-                  <div className='left-align'>
+                  <div className='left-align Sidebar__close'>
                       <Button onClick={close}>
                         <i className='close small material-icons col s12 l12 m12'>
                             close

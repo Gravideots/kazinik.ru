@@ -4,19 +4,47 @@
 
   .NoteListElement {
       border: 2px solid #E6E5D1;
-      padding: 5px;
+      padding: 5px 5px 2rem;
       position: relative;
+      margin: 0;
 
       .Button{
         position: absolute;
         bottom: 0;
-        margin-bottom: 15px;
+        margin-bottom: 30px;
         @media #{$media} and ($feature: $value) {
           position: relative;
           margin: 2rem 0;
         }
 
       }
+
+    &__maintext {
+      font-size: 0.9rem;
+      @media #{$media} and ($feature: $value) {
+          font-size: 3.3rem;
+      }
+    }
+
+    &__imagesupper {
+      font-size: 0.75rem;
+      margin-bottom: 0.5rem; 
+      @media #{$media} and ($feature: $value) {
+          font-size: 3.3rem;
+      }
+    }
+
+    &__imagesub {
+      font-size: 0.75rem;
+      @media #{$media} and ($feature: $value) {
+          font-size: 3.3rem;
+      }
+    }
+
+    &__title {
+      margin: 0;
+      line-height: 1.4;
+    }
   }
 
   .EventListElement{

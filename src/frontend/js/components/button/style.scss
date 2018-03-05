@@ -22,11 +22,13 @@
         width: auto;
         padding: 0 1rem;
         margin: 0;
+        line-height: 1;
         @media #{$media} and ($feature: $value) {
             width: 97%;
-            padding: 4rem 3.5rem;
+            padding: 2rem 3.5rem;
             margin: 5.5rem 0 7rem;
             font-size: 4rem;
+            line-height: 1;
         }
     }
     

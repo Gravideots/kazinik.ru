@@ -1,6 +1,6 @@
 .Slider{
     &.slick-slider .slick-list, &.slick-slider .slick-track{
-        width: 98%;
+        width: 100%;
         left: 0;
         margin: auto;
         @media #{$media} and ($feature: $value) {

@@ -17,27 +17,11 @@
 
     }
     .Image{
-        max-height: 23.53rem;
-        max-width: 35.3rem;
+        max-height: unset;
+        max-width: 36rem;
         @media #{$media} and ($feature: $value) {
             max-height: 50vh;
             max-width: 100%;
-        }
-    }
-
-    &__helptext {
-        font-size: 0.6667rem;
-        margin: 0;
-        @media #{$media} and ($feature: $value) {
-            font-size: 3.2rem;
-            margin: 2rem 0;
-        }
-    }
-
-    .row &__maintext {
-        padding: 0 .75rem;
-        @media #{$media} and ($feature: $value) {
-            padding: 0 2.5rem;
         }
     }
 
@@ -45,6 +29,67 @@
         font-size: inherit;
         @media #{$media} and ($feature: $value) {
             font-size: 4rem;
+        }
+    }
+
+    .row &__info {
+        width: 100%;
+        margin: 20px auto 0;
+        padding: 0;
+
+        @media #{$media} and ($feature: $value) {
+            width: 100%;
+            margin: 0;
+        }
+
+        & .col {
+            padding: 0;
+            @media #{$media} and ($feature: $value) {
+                padding: 0 .75rem;
+            }
+        }
+
+        & .Button {
+            text-align: right;
+        }
+    }
+
+    &__helptext {
+        font-size: 0.85rem;
+        margin: 0 0 0.5rem;
+        @media #{$media} and ($feature: $value) {
+            font-size: 3.2rem;
+            margin: 2rem 0;
+        }
+    }
+
+    .row &__maincontent {
+        padding: 0 .75rem;
+        @media #{$media} and ($feature: $value) {
+            padding: 0 2.5rem;
+        }
+    }
+
+    .row &__maintext {
+        font-size: 1.25rem;
+        @media #{$media} and ($feature: $value) {
+            font-size: 4.5rem;
+        }
+    }
+
+    & &__title {
+        font-size: 1.85rem;
+        line-height: 1;
+        @media #{$media} and ($feature: $value) {
+            font-size: 4rem;
+        }
+    }
+    
+    &__maintext > .TextSlider .Text > p {
+        font-size: 1.25rem;
+        line-height: 1.35;
+        @media #{$media} and ($feature: $value) {
+            font-size: 4.5rem;
         }
     }
 }

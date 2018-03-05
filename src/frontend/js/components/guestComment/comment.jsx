@@ -11,32 +11,22 @@ export default class Comment extends Component {
     const {data} = this.props;
 
     return(
-      <div className='Comment row'>
-        <div className="col s12 m12">
+      <div className='Comment'>
           <div className="card">
             <div className="card-content">
-              <div className='row'>
-                <div className='col l6'>
-                  <div className='col l2'>
-                    <Text type='footnote'>Имя:</Text>
-                  </div>
-                  <div className='col l10'>
+              <div className='Comment__info'>
+                <div className='Comment__infoItem'>
+                    <Text type='footnote'>Имя:&nbsp;</Text>
                     <Text type='footnote bold'>{data.Username}</Text>
-                  </div>
                 </div>
-                <div className='col l6'>
-                  <div className='col l2'>
-                    <Text type='footnote'>Дата:</Text>
-                  </div>
-                  <div className='col l6'>
+                <div className='Comment__infoItem'>
+                    <Text type='footnote'>Дата:&nbsp;</Text>
                     <Text type='footnote bold'>{data.Date.toLocaleString('ru')}</Text>
-                  </div>
                 </div>
               </div>
               <p className='maintext'>{data.Message}</p>
             </div>
           </div>
-        </div>
       </div>
     );
   }

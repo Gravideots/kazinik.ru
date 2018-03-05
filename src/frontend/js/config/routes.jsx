@@ -10,6 +10,7 @@ import Note from '../pages/note';
 import Section from '../pages/section';
 import GuestRoom from '../pages/guestRoom';
 import Login from '../pages/login';
+import Afisha from '../pages/afisha';
 
 const publicPath = '/';
 
@@ -23,6 +24,7 @@ export const routeCodes = {
   SECTION: `${ publicPath }section/`,
   GUEST: `${ publicPath }guest`,
   LOGIN: `${ publicPath }login`,
+  AFISHA: `${ publicPath }afisha`,
 };
 
 export default() => (
@@ -34,6 +36,7 @@ export default() => (
     <Route path={ `${routeCodes.SCHOOL  }:id` } component={ School } />
     <Route path={ `${routeCodes.NOTE  }:id` } component={ Note } />
     <Route path={ `${routeCodes.SECTION  }:key` } component={ Section } />
+    <Route path={ `${routeCodes.AFISHA  }` } component={ Afisha } />
     <Route path={ routeCodes.GUEST } component={ GuestRoom } />
     <Route path={ routeCodes.LOGIN } component={ Login } />
     <Route component={ Main } />

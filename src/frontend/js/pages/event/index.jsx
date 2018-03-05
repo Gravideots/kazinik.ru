@@ -93,20 +93,21 @@ export default class Event extends Component {
             <div className='EventPage row'>
                 <div className='col l6'>
                     <Image className='col l12' src={titleImage.Full}/>
-                    <div className='col l12'>
+                    <div className='col l12 EventPage__info'>
                         <div className='col s7 offset-s1 l3'>
                             <Text type='EventPage__helptext bolder'>Дата проведения</Text>
-                            <Text>{eventDate.toLocaleDateString("ru-RU")}</Text>
+                            <Text type='EventPage__maintext'>{eventDate.toLocaleDateString("ru-RU")}</Text>
                         </div>
                         <div className='col s4 l3'>
                             <Text type='EventPage__helptext bolder'>Время</Text>
-                            <Text>{eventDate.toLocaleTimeString("ru-RU", time)}</Text>
+                            <Text type='EventPage__maintext'>{eventDate.toLocaleTimeString("ru-RU", time)}</Text>
                         </div>
                         <div className='col s11 offset-s1 l3'>
                             <Text type='EventPage__helptext bolder'>Место проведения</Text>
-                            <Text>{address}</Text>
+                            <Text type='EventPage__maintext'>{address}</Text>
                         </div>
                         <div className='col s8 offset-s2 l3'>
+                            <Text type='EventPage__helptext bolder'>&nbsp;</Text>
                             <Button
                                 onClick={() => {
                                 this.openDropDown()
@@ -136,14 +137,14 @@ export default class Event extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='col l6 EventPage__maintext'>
-                    <Text type='header bold'>
+                <div className='col l6 EventPage__maincontent'>
+                    <Text type='header bold EventPage__title'>
                         «{title}»
                     </Text>
                     <Text type='bold'>
                         {subTitle}
                     </Text>
-                    <div className='col s12'>
+                    <div className='col s12 EventPage__maintext'>
                         <TextSlider texts={texts}
                         responsive={[
                             {

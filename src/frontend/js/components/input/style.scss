@@ -2,14 +2,14 @@
     position: relative;
 
     input{
-        height: 1rem;
+        height: 2rem;
         width: calc((100% - 4px) - 2rem);
         border: 2px solid #797878;
         border-radius: 20px;
         padding: 0 1rem;
         color: #353232;
         text-align: center;
-        font-size: 0.6667rem;
+        font-size: 0.8rem;
 
         @media #{$media} and ($feature: $value) {
             font-size: 2rem;
