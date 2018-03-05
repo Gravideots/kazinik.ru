@@ -233,6 +233,24 @@ function addMedia(mediaData) {
 	});
 }
 
+function editMedia(mediaData) {
+	return fetch(apiPrefix + '/admin/api/media/', {
+		method: 'PUT',
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'Content-Type': 'application/json',
+			Authorization: getToken()
+		},
+		body: JSON.stringify(mediaData)
+	}).then(function(response) {
+		return response.json();
+	}).then(function(json) {
+		return json;
+	}).catch(function(ex) {
+		console.log('parsing failed', ex);
+	});
+}
+
 
 function getAdminPage() {
 	return fetch(apiPrefix + '/admin/api/sections/possible', {
@@ -390,8 +408,11 @@ export default {
 	createNewSection,
 	deleteSection,
 	updateSection,
+
 	addMedia,
+	editMedia,
 	deleteMedia,
+
 	getUsersList,
 	createNote
 

@@ -309,9 +309,9 @@ export function editMedia(media) {
 	return function(dispatch) {
 		dispatch(addMediaStart());
 		api
-			.addMedia(media)
+			.editMedia(media)
 			.then(data => {
-				dispatch(addMediaSuccess({ContentManagement: data}));
+				dispatch(editMediaSuccess({ContentManagement: data}));
 				dispatch(selectSectionToAddContent(data.data));
 			})
 			.catch(error => dispatch(addMediaError(error)));

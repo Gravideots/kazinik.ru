@@ -11,9 +11,10 @@ export default class Media extends Component {
 		super(props);
 
 		this.state = {
-			URL: '',
-			tags: '',
-			sectionID: this.props.sectionID
+			URL: props.data ? props.data.URL : '',
+			tags: props.data ? props.data.Tags.map((tag) => tag.Text).toString() : '',
+			sectionID: props.sectionID,
+			mediaID: props.data ? props.data._id : null
 		};
 	}
 

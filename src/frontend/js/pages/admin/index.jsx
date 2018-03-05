@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import {getAdminPage, leaveAdminPage, getPossibleSectiosList} from './actions.js';
 
 import {SectionsList, CreateNewSection, EditSection, UsersSection} from './sectionManagement';
-import {AddContent, ContentCreation} from './contentManagement';
+import {AddContent, ContentCreation, ContentEditor} from './contentManagement';
 
 import Sidebar from 'components/sidePanel';
 
@@ -45,7 +45,7 @@ export default class Admin extends Component {
 		if (!token) {
 			return <Redirect to='/login'/>;
 		}
-
+		console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!');
 		if (content) {
 			if (content.Users) {
 				return <UsersSection users={content.Users} dispatch={dispatch}/>;
@@ -64,6 +64,9 @@ export default class Admin extends Component {
 			}
 			if (content.ContentToCreate) return (
 				<ContentCreation contentToCreate={content.ContentToCreate} dispatch={dispatch}/>
+			);
+			if (content.ContentToEdit) return (
+				<ContentEditor contentToEdit={content.ContentToEdit} dispatch={dispatch}/>
 			);
 		} else {
 			// TODO переделать на прелоадер
