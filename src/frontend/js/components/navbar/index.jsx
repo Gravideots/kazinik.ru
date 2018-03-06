@@ -37,7 +37,7 @@ export default class Navbar extends Component {
                                 to={routeCodes.Main}>
                                 <Logo text='Михаил Казиник'/>
                             </NavLink>
-                            <div className="Navbar__search SearchInput">
+                            <div className="Navbar__search SearchInput" style={{display:'none'}}>
                                 <Input
                                     placeholder='Поиск'
                                     type='text'

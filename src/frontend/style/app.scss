@@ -168,6 +168,105 @@ html {
     }
 }
 
+.TagSlider{
+    margin-bottom: 1rem;
+    &.slick-slider .slick-list{
+        width: calc(100% - 4rem);
+        left: 0;
+        margin: auto;
+        @media #{$media} and ($feature: $value) {
+            width: calc(100% - 4rem);
+        }
+    }
+    &.slick-initialized .slick-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 3rem;
+        @media #{$media} and ($feature: $value) {
+            height: 9rem;
+        }
+    }
+    .Button{
+        position: absolute;
+        top: calc(50% - 2rem);
+        @media #{$media} and ($feature: $value) {
+            top: calc(50% - 3rem);
+        }
+
+        &:nth-child(1){
+            left: -2rem;
+        }
+
+        &:nth-child(3){
+            right: -2rem;
+        }
+
+        i.medium {
+            @media #{$media} and ($feature: $value) {
+                font-size: 6rem;
+            }
+        }
+    }
+
+    & .slick-dots {
+        bottom: 10px;
+    }
+
+    & .slick-dots li
+        {
+            width: 11px;
+            height: 11px;
+
+                & button {
+                padding: 0;
+                width: 11px;
+                height: 11px;
+        
+                &::before {
+                border: 2px solid #fff;
+                border-radius: 50%;
+                content: '';
+                width: 11px;
+                height: 11px;
+                opacity: 1;
+                padding: 0;
+            }
+        }
+    }
+
+    & .slick-dots li.slick-active button::before {
+        opacity: 1;
+        background: #fff;
+    }
+
+    .chip {
+        height: auto;
+        font-size: 0.7rem;
+        font-weight: normal;
+        color: rgba(0, 0, 0, 1);
+        line-height: 1rem;
+        padding: 0 0.5rem;
+        border: 0;
+        border-radius: 1rem;
+        background-color: #ffffff;
+        margin: 0 auto;
+        @media #{$media} and ($feature: $value) {
+          font-size: 3rem;
+          line-height: 4rem;
+          border-radius: 4rem;
+          padding: 1rem 2.5rem;
+        }
+        &.active {
+          border: 2px solid;
+          font-weight: bold;
+          @media #{$media} and ($feature: $value) {
+              border: 1px solid;
+          }
+        }
+      }
+}
+
 .material-tooltip{
     font-size: inherit;
     @media #{$media} and ($feature: $value) {
