@@ -111,7 +111,7 @@ class ContentList extends Component {
 		let {content, contentType, dispatch} = this.props;
 
 		if (content && contentType) {
-			var data = content.Listing;
+			var data = content.Listing[contentType];
 
 			switch (contentType) {
 			case 'Media':

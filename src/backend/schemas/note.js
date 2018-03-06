@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const MediaSchema = require('./media');
 
-const NoteSchema = mongoose.Schema({
+module.exports = NoteSchema = mongoose.Schema({
 	Active: Boolean,
 	Date: Date,
 	Author: String,
@@ -27,5 +27,3 @@ const NoteSchema = mongoose.Schema({
 	}]
 });
 
-
-module.exports = mongoose.model('Note', NoteSchema);

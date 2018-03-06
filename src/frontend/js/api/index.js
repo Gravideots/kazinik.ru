@@ -14,7 +14,7 @@ promisePolyfill.polyfill();
 
 var API = 'local';
 
-let apiPrefix = (API === 'loal') ? '' : 'https://mighty-ravine-31476.herokuapp.com';
+let apiPrefix = (API === 'local') ? '' : 'https://mighty-ravine-31476.herokuapp.com';
 
 
 function getToken() {
@@ -48,14 +48,7 @@ function getSidebarContent() {
 }
 
 
-function notePage(id) {
-	// return fetch('https://jsonplaceholder.typicode.com/posts/1').then(response => {
-	//   for (var note in NotePage) {
-	//     if (NotePage[note].Id == id)
-	//       return NotePage[note];
-	//     }
-	//   });
-
+function getNotePage(id) {
 	return fetch(apiPrefix + '/api/note/' + id, {
 		mode: 'cors',
 		headers: {
@@ -388,7 +381,7 @@ export default {
 	mainPage,
 	eventPage,
 	schoolPage,
-	notePage,
+	getNotePage,
 	sectionPage,
 
 	getNavigationList,

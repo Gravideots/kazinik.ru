@@ -8,66 +8,64 @@ import SchoolListElement from './school';
 import GuestBook from 'components/guestBook';
 
 export default class List extends Component {
-  render() {
-    const {listData, type, action} = this.props;
-    
-    if (listData && type) {
-      switch (type) {
-        case 'Media':
-          return (
-            <div className='List row'>
-              {listData.map((listElement, key) => {
-                return (
-                  <div key={key} className='col s12 l6'>
-                    <MediaListElement  data={listElement}/>
-                  </div>
-                );
-              })}
-            </div>
-          );
-          break;
-        case 'Notes':
-          return (
-            <div className='List'>
-              {listData.map((listElement, key) => {
-                return <NoteListElement key={key} data={listElement}/>
-              })}
-            </div>
-          );
-          break;
-        case 'Special':
-        case 'Event':
-          return (
-            <div className='List row'>
-              {listData.map((listElement, key) => {
-                return <EventListElement key={key} data={listElement}/>
-              })}
-            </div>
-          );
-          break;
-        case 'School':
-          return (
-            <div className='List row'>
-              {listData.map((listElement, key) => {
-                return <SchoolListElement key={key} data={listElement}/>
-              })}
-            </div>
-          );
-          break;
-        case 'Guest':
-          return (
-            <div className='List row'>
-              {listData.map((listElement, key) => {
-                return <GuestBook key={key} data={listElement} action={action}/>
-              })}
-            </div>
-          );
-          break;
-        default:
-          return null;
-      }
-    } else 
-      return null;
-    }
-  
+	render() {
+		const {listData, type, action} = this.props;
+
+		if (listData && type) {
+			switch (type) {
+			case 'Media':
+				return (
+					<div className='List row'>
+						{listData['Media'].map((listElement, key) => {
+							return (
+								<div key={key} className='col s12 l6'>
+									<MediaListElement  data={listElement}/>
+								</div>
+							);
+						})}
+					</div>
+				);
+				break;
+			case 'Notes':
+				return (
+					<div className='List'>
+						{listData['Notes'].map((listElement, key) => {
+							return <NoteListElement key={key} data={listElement}/>;
+						})}
+					</div>
+				);
+				break;
+			case 'Special':
+			case 'Event':
+				return (
+					<div className='List row'>
+						{listData.map((listElement, key) => {
+							return <EventListElement key={key} data={listElement}/>;
+						})}
+					</div>
+				);
+				break;
+			case 'School':
+				return (
+					<div className='List row'>
+						{listData.map((listElement, key) => {
+							return <SchoolListElement key={key} data={listElement}/>;
+						})}
+					</div>
+				);
+				break;
+			case 'Guest':
+				return (
+					<div className='List row'>
+						{listData.map((listElement, key) => {
+							return <GuestBook key={key} data={listElement} action={action}/>;
+						})}
+					</div>
+				);
+				break;
+			default:
+				return null;
+			}
+		} else return null;
+	}
 }

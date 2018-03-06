@@ -46,7 +46,7 @@ const createNewMedia = function(sectionID, mediaURL, Tags, done) {
 		_id: sectionID
 	}, {
 		$push: {
-			Listing: newMedia
+			'Listing.Media': newMedia
 		},
 		upsert: true
 	}, {
@@ -66,7 +66,7 @@ const getMediaByID = function(sectionID, mediaID, done) {
 			else {
 				let media = section
 					.Listing
-					.data
+					.Media
 					.id(mediaID);
 				done(null, media);
 			}
@@ -77,18 +77,22 @@ const dropMediaByID = function(sectionID, mediaID, done) {
 	var sectionIdObject = mongoose.Types.ObjectId(sectionID);
 	var mediaIdObject = mongoose.Types.ObjectId(mediaID);
 
-	Section.collection.updateOne(
-		{
-			_id: sectionIdObject,
-			Listing: { $elemMatch: { _id: mediaIdObject } }
-		},
-		{
-			$pull: { Listing: { _id: mediaIdObject } }
-		},
-		(err, result) => {
-			Section.collection.findOne({ _id: sectionIdObject }, {}, (err, doc) => done(null, doc));
-		}
-	);
+	Section
+		.findOne({
+			_id: sectionIdObject
+		}, function(err, section) {
+			if (err) throw err;
+			else {
+				var media = section
+					.Listing
+					.Media
+					.id(mediaIdObject);
+				media.remove();
+				section.save();
+
+				done(null, media);
+			}
+		});
 };
 
 const updateMediaByID = function(sectionID, URL, Tags, mediaID, done) {
@@ -100,45 +104,23 @@ const updateMediaByID = function(sectionID, URL, Tags, mediaID, done) {
 		.split(',')
 		.map((tag) => { return { URL: transliterate(tag), Text: tag }; });
 
-	// Section
-	// 	.findOne({
-	// 		_id: sectionID
-	// 	}, function(err, section) {
-	// 		if (err) throw err;
-	// 		else {
-	// 			var media = section
-	// 				.Listing
-	// 				.id(mediaID);
-	// 			media.URL = URL;
-	// 			media.Tags = arrayOfTags;
-	// 			section.save();
-
-	// 			done(null, media);
-	// 		}
-	// 	});
-	Section.collection.update(
-		{ Type: 'Media' },
-		{ $set: { 'Listing.$[elem].URL': URL} },
-		{ arrayFilters: [{ 'elem._id': mediaIdObject }] },
-		(err, section) => {
+	Section
+		.findOne({
+			_id: sectionIdObject
+		}, function(err, section) {
 			if (err) throw err;
-			else done(null, section);
+			else {
+				var media = section
+					.Listing
+					.Media
+					.id(mediaIdObject);
+				media.URL = URL;
+				media.Tags = arrayOfTags;
+				section.save();
+
+				done(null, media);
+			}
 		});
-
-	// Section.findOne({
-	// 	Type: 'Media'
-	// }, (err, doc) => {
-	// 	if (err) done(err);
-
-	// 	else {
-	// 		let arr = doc.Listing.filter((el) => {
-	// 			return el.Tags.find((e) => e.URL === tag);
-	// 		});
-	// 		doc.Listing = arr;
-
-	// 		done(null, doc);
-	// 	}
-	// });
 };
 
 module.exports = {

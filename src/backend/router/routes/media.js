@@ -11,9 +11,9 @@ function createMedia(req, res) {
 }
 
 function editMedia(req, res) {
-	let {sectionID, URL,  tags, _id} = req.body;
+	let {sectionID, URL,  tags, mediaID} = req.body;
 
-	media.updateMediaByID(sectionID, URL, tags,  _id, function(err, media) {
+	media.updateMediaByID(sectionID, URL, tags,  mediaID, function(err, media) {
 		if (err) res.status(500).send('Что то пошло не так');
 		else res.send({data: media._id});
 	});

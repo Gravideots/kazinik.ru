@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
@@ -33,7 +34,8 @@ const storeImage = async (file) => {
 };
 
 const createNote = async ({ note }, noteFiles, done) => {
-	let Note = new NoteSchema(JSON.parse(note));
+	var noteSchema = mongoose.model('Notes', NoteSchema);
+	let Note = new noteSchema(JSON.parse(note));
 	Note.Active = true;
 	Note.Date = new Date();
 	Note.Id = slugify(Note.Title);
@@ -43,7 +45,7 @@ const createNote = async ({ note }, noteFiles, done) => {
 		else Note.Note[file.fieldname] = { Image: await storeImage(file)};
 	}));
 
-	return await Section.findOneAndUpdate({ Type: 'Notes' }, { $push: { Listing: Note } }).exec();
+	return await Section.findOneAndUpdate({ Type: 'Notes' }, { $push: { 'Listing.Notes': Note } }).exec();
 };
 
 const getAllNotes = function(done) {
@@ -51,8 +53,7 @@ const getAllNotes = function(done) {
 		.findOne({ Type: 'Notes' }, function(err, section) {
 			if (err) throw err;
 			else {
-				let note = section;
-				return done(null, note);
+				return done(null, section);
 			}
 		});
 };
@@ -62,7 +63,7 @@ const getNoteByID = function(noteID, done) {
 		.findOne({ Type: 'Notes' }, function(err, section) {
 			if (err) throw err;
 			else {
-				let note = section.Listing.find((el, key) => {
+				let note = section.Listing.Notes.find((el, key) => {
 					if (el.Id == noteID) return el;
 				});
 
@@ -72,11 +73,12 @@ const getNoteByID = function(noteID, done) {
 };
 
 const dropNoteByID = function(sectionID, noteID, done) {
+	var idObject = mongoose.Types.ObjectId(noteID);
 	Section
-		.findOne({ _id: sectionID }, function(err, section) {
+		.findOne({ Type: 'Notes' }, function(err, section) {
 			if (err) throw err;
 			else {
-				section.Listing.Notes.id(noteID).remove();
+				section.Listing.Notes.id(idObject).remove();
 				section.save();
 				return done(null, section);
 			}
@@ -84,11 +86,12 @@ const dropNoteByID = function(sectionID, noteID, done) {
 };
 
 const updateNoteByID = function(sectionID, noteID, data, done) {
+	var idObject = mongoose.Types.ObjectId(noteID);
 	Section
-		.findOne({ _id: sectionID }, function(err, section) {
+		.findOne({ Type: 'Notes' }, function(err, section) {
 			if (err) throw err;
 			else {
-				var note = section.Listing.Notes.id(noteID);
+				var note = section.Listing.Notes.id(idObject);
 				note.Title = data;
 				section.save();
 				return done(null, note);
